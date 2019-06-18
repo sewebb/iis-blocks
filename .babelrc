@@ -1,0 +1,11 @@
+{
+    "presets": [
+        "babel-preset-env"
+    ],
+    "plugins": [
+        "babel-plugin-syntax-dynamic-import",
+        "transform-class-properties",
+        "babel-plugin-transform-object-rest-spread",
+        "babel-plugin-transform-react-jsx"
+    ]
+}

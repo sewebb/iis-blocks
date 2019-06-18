@@ -1,0 +1,21 @@
+{
+  "name": "iis/blocks",
+  "type": "wordpress-plugin",
+  "description": "WP Blocks library",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Tobias Bleckert",
+      "email": "tobias.bleckert@internetstiftelsen.se",
+      "homepage": "https://internetstiftelsen.se"
+    },
+  ],
+  "require": {
+    "php": "^7.2"
+  },
+  "config": {
+    "preferred-install": "dist"
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": true
+}
