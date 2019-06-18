@@ -8,7 +8,7 @@
       "name": "Tobias Bleckert",
       "email": "tobias.bleckert@internetstiftelsen.se",
       "homepage": "https://internetstiftelsen.se"
-    },
+    }
   ],
   "require": {
     "php": "^7.2"
