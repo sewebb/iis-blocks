@@ -9,6 +9,7 @@
  * Plugin URI: https://github.com/sewebb/iis-blocks
  */
 
+require_once __DIR__ . '/src/classes/index.php';
 require_once __DIR__ . '/src/blocks/index.php';
 
 function iis_blocks_assets() {
