@@ -9,6 +9,8 @@
  * Plugin URI: https://github.com/sewebb/iis-blocks
  */
 
+require_once __DIR__ . '/src/blocks/index.php';
+
 function iis_blocks_assets() {
 	wp_register_script(
 		'iis_blocks-js', // Handle.
