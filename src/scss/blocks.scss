@@ -1,0 +1,13 @@
+.iis-info-block {
+	border-top: 4px solid #ffce2e;
+	background: #fff;
+	padding: 0 16px;
+
+	&--big {
+		border-top-color: #55c7b4;
+
+		p {
+			font-size: x-large !important;
+		}
+	}
+}
