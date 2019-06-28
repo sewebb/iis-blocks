@@ -43,6 +43,12 @@ function iis_blocks_assets() {
  * @return array
  */
 function iis_blocks_categories( $categories ) {
+	$category = array_search( 'iis', array_column( $categories, 'slug' ) );
+
+	if (false !== $category) {
+		return $categories;
+	}
+
 	return array_merge(
 		[
 			[
