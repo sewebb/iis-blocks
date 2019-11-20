@@ -17,10 +17,10 @@ function iis_render_block_archive( $atts ) {
 	$q = new WP_Query( $args );
 
 	?>
-	<main role="main" class="article">
-		<div class="iis-o-search">
-			<div class="iis-o-search-result">
-				<ul class="iis-o-search-result__list">
+	<main role="main" class="'article'">
+		<div class="<?php class_name( 'o-search' ); ?>">
+			<div class="<?php class_name( 'o-search-result' ); ?>">
+				<ul class="<?php class_name( 'o-search-result__list' ); ?>">
 					<?php if ( $q->have_posts() ) :
 						while ( $q->have_posts() ) :
 							$q->the_post();
@@ -38,17 +38,17 @@ function iis_render_block_archive( $atts ) {
 			$prev_page = previous_posts( false );
 
 			if ( $next_page || ( $prev_page && $paged > 1 ) ) : ?>
-				<div class="iis-o-search__padded iis-o-search__border">
-					<div class="iis-a-paging-wrapper">
+				<div class="<?php class_name( 'o-search__padded o-search__border' ); ?>">
+					<div class="<?php class_name( 'a-paging-wrapper' ); ?>">
 						<?php if ( $prev_page && $paged > 1 ) : ?>
-							<a href="<?php echo esc_url( $prev_page ); ?>" class="iis-a-paging">
+							<a href="<?php echo esc_url( $prev_page ); ?>" class="<?php class_name( 'a-paging' ); ?>">
 								<span class="u-visuallyhidden"><?php esc_html_e( 'Previous page', 'iis' ); ?></span>
-								<svg class="iis-icon iis-a-paging__icon">
+								<svg class="<?php class_name( 'icon a-paging__icon' ); ?>">
 									<use xlink:href="#icon-arrow-backwards"></use>
 								</svg>
 							</a>
 						<?php endif; ?>
-						<span class="iis-a-paging-wrapper__text">
+						<span class="<?php class_name( 'a-paging-wrapper__text' ); ?>">
 						<?php
 
 						printf(
@@ -61,9 +61,9 @@ function iis_render_block_archive( $atts ) {
 						?>
 					</span>
 						<?php if ( $next_page ) : ?>
-							<a href="<?php echo esc_url( $next_page ); ?>" class="iis-a-paging">
+							<a href="<?php echo esc_url( $next_page ); ?>" class="<?php class_name( 'a-paging' ); ?>">
 								<span class="u-visuallyhidden"><?php esc_html_e( 'Next page', 'iis' ); ?></span>
-								<svg class="iis-icon iis-a-paging__icon">
+								<svg class="<?php class_name( 'icon a-paging__icon' ); ?>">
 									<use xlink:href="#icon-arrow-forwards"></use>
 								</svg>
 							</a>
