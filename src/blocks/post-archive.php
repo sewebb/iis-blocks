@@ -17,7 +17,7 @@ function iis_render_block_archive( $atts ) {
 	$q = new WP_Query( $args );
 
 	?>
-	<main role="main" class="'article'">
+	<main role="main" class="article">
 		<div class="<?php class_name( 'o-search' ); ?>">
 			<div class="<?php class_name( 'o-search-result' ); ?>">
 				<ul class="<?php class_name( 'o-search-result__list' ); ?>">
