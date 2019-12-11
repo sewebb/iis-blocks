@@ -22,3 +22,4 @@ function class_name( $class ) {
 require_once __DIR__ . '/download.php';
 require_once __DIR__ . '/post-archive.php';
 require_once __DIR__ . '/newsletter.php';
+require_once __DIR__ . '/info.php';
