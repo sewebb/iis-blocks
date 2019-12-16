@@ -31,7 +31,7 @@ registerBlockType('iis/download', {
 		return (
 			<div>
 				<RichText
-					identifier="content"
+					identifier="title"
 					wrapperClassName="wp-block-heading"
 					tagName="h3"
 					value={ attributes.title }
@@ -39,7 +39,7 @@ registerBlockType('iis/download', {
 					placeholder={__('File title')}
 				/>
 				<RichText
-					identifier="content"
+					identifier="description"
 					wrapperClassName="wp-block-paragraph"
 					tagName="p"
 					value={ attributes.content }
