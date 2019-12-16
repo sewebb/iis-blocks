@@ -5,7 +5,8 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 } = wp.editor;
-const { Button } = wp.components;
+const { Fragment } = wp.element;
+const { Button, TextControl } = wp.components;
 
 registerBlockType('iis/download', {
 	title: __('Download'),
@@ -23,7 +24,7 @@ registerBlockType('iis/download', {
 		},
 		file: {
 			type: 'string',
-			default: null,
+			default: '',
 		},
 	},
 	edit({ attributes, setAttributes }) {
@@ -34,7 +35,7 @@ registerBlockType('iis/download', {
 					wrapperClassName="wp-block-heading"
 					tagName="h3"
 					value={ attributes.title }
-					onChange={ value => setAttributes({ title: value }) }
+					onChange={ (value) => setAttributes({ title: value }) }
 					placeholder={__('File title')}
 				/>
 				<RichText
@@ -42,30 +43,32 @@ registerBlockType('iis/download', {
 					wrapperClassName="wp-block-paragraph"
 					tagName="p"
 					value={ attributes.content }
-					onChange={ value => setAttributes({ content: value }) }
+					onChange={ (value) => setAttributes({ content: value }) }
 					placeholder={__('File description')}
 				/>
 				<div style={{ marginTop: '16px' }}>
-					{attributes.file === null && (
-						<MediaUploadCheck>
-							<MediaUpload
-								onSelect={({ url: file }) => setAttributes({ file })}
-								type="pdf"
-								value={attributes.file}
-								render={({ open }) => (
-									<Button className="components-button editor-post-featured-image__toggle" onClick={open}>
-										Upload PDF
-									</Button>
-								)}
-							/>
-						</MediaUploadCheck>
+					{!attributes.file && (
+						<Fragment>
+							<MediaUploadCheck>
+								<MediaUpload
+									onSelect={({ url: file }) => setAttributes({ file })}
+									value={attributes.file}
+									render={({ open }) => (
+										<Button className="components-button editor-post-featured-image__toggle" onClick={open}>
+											Upload File
+										</Button>
+									)}
+								/>
+							</MediaUploadCheck>
+							<p><em>or</em></p>
+						</Fragment>
 					)}
-					{attributes.file !== null && (
+					<TextControl label={__('File URL')} value={attributes.file} onChange={(url) => setAttributes({ file: url })} />
+					{attributes.file && (
 						<div>
-							<Button className="components-button is-button is-default" onClick={() => setAttributes({ file: null })}>
+							<Button className="components-button is-button is-default" onClick={() => setAttributes({ file: '' })}>
 								Remove file
 							</Button>
-							<small style={{ display: 'block', color: '#ccc' }}>{attributes.file}</small>
 						</div>
 					)}
 				</div>
