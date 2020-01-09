@@ -29,12 +29,12 @@ function iis_render_block_newsletter( $attributes ) {
 				<div class="<?php class_name( 'm-form-control m-form-control--small' ); ?>">
 					<div class="<?php class_name( 'm-form__row' ); ?> u-m-b-2">
 						<div class="<?php class_name( 'field-group' ); ?>">
-							<input type="email" name="email" class="<?php class_name( 'a-input' ); ?>" placeholder="<?php esc_attr_e( 'E-mail', 'iis' ); ?>">
+							<input type="email" name="email" class="<?php class_name( 'a-input' ); ?>" placeholder="<?php esc_attr_e( 'E-mail', 'iis-blocks' ); ?>">
 						</div>
 					</div>
 					<div class="<?php class_name( 'm-form__row' ); ?> u-m-b-2">
 						<div class="<?php class_name( 'field-group' ); ?>">
-							<input type="text" name="name" class="<?php class_name( 'a-input' ); ?>" placeholder="<?php esc_attr_e( 'Name', 'iis' ); ?>">
+							<input type="text" name="name" class="<?php class_name( 'a-input' ); ?>" placeholder="<?php esc_attr_e( 'Name', 'iis-blocks' ); ?>">
 						</div>
 					</div>
 					<div class="<?php class_name( 'm-form__row' ); ?> u-m-b-2">

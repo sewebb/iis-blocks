@@ -42,7 +42,7 @@ function iis_render_block_archive( $atts ) {
 					<div class="<?php class_name( 'a-paging-wrapper' ); ?>">
 						<?php if ( $prev_page && $paged > 1 ) : ?>
 							<a href="<?php echo esc_url( $prev_page ); ?>" class="<?php class_name( 'a-paging' ); ?>">
-								<span class="u-visuallyhidden"><?php esc_html_e( 'Previous page', 'iis' ); ?></span>
+								<span class="u-visuallyhidden"><?php esc_html_e( 'Previous page', 'iis-blocks' ); ?></span>
 								<svg class="<?php class_name( 'icon a-paging__icon' ); ?>">
 									<use xlink:href="#icon-arrow-backwards"></use>
 								</svg>
@@ -53,7 +53,7 @@ function iis_render_block_archive( $atts ) {
 
 						printf(
 						// translators: Page 1 of 10
-							__( 'page %1$s of %2$s' ),
+							__( 'page %1$s of %2$s', 'iis-blocks' ),
 							max( 1, get_query_var( 'paged' ) ),
 							$q->max_num_pages
 						);
@@ -62,7 +62,7 @@ function iis_render_block_archive( $atts ) {
 					</span>
 						<?php if ( $next_page ) : ?>
 							<a href="<?php echo esc_url( $next_page ); ?>" class="<?php class_name( 'a-paging' ); ?>">
-								<span class="u-visuallyhidden"><?php esc_html_e( 'Next page', 'iis' ); ?></span>
+								<span class="u-visuallyhidden"><?php esc_html_e( 'Next page', 'iis-blocks' ); ?></span>
 								<svg class="<?php class_name( 'icon a-paging__icon' ); ?>">
 									<use xlink:href="#icon-arrow-forwards"></use>
 								</svg>

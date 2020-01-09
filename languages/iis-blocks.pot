@@ -1,0 +1,60 @@
+# Copyright (C) 2020 Internetstiftelsen
+# This file is distributed under the same license as the Blocks plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: Blocks 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/iis-blocks\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2020-01-09T14:31:28+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.1.0\n"
+"X-Domain: iis-blocks\n"
+
+#. Plugin Name of the plugin
+msgid "Blocks"
+msgstr ""
+
+#. Plugin URI of the plugin
+msgid "https://github.com/sewebb/iis-blocks"
+msgstr ""
+
+#. Description of the plugin
+msgid "Blocks library"
+msgstr ""
+
+#. Author of the plugin
+msgid "Internetstiftelsen"
+msgstr ""
+
+#. Author URI of the plugin
+msgid "https://internetstiftelsen.se"
+msgstr ""
+
+#: src/blocks/download.php:23
+msgid "Download"
+msgstr ""
+
+#: src/blocks/newsletter.php:32
+msgid "E-mail"
+msgstr ""
+
+#: src/blocks/newsletter.php:37
+msgid "Name"
+msgstr ""
+
+#: src/blocks/post-archive.php:45
+msgid "Previous page"
+msgstr ""
+
+#. translators: Page 1 of 10
+#: src/blocks/post-archive.php:56
+msgid "page %1$s of %2$s"
+msgstr ""
+
+#: src/blocks/post-archive.php:65
+msgid "Next page"
+msgstr ""

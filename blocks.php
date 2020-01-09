@@ -7,6 +7,8 @@
  * Author URI: https://internetstiftelsen.se
  * Version: 1.0.0
  * Plugin URI: https://github.com/sewebb/iis-blocks
+ * Text Domain: iis-blocks
+ * Domain Path: /languages/
  */
 
 require_once __DIR__ . '/src/classes/index.php';
@@ -62,3 +64,9 @@ function iis_blocks_categories( $categories ) {
 
 add_filter( 'block_categories', 'iis_blocks_categories', 10 );
 add_action( 'init', 'iis_blocks_assets' );
+
+function iis_blocks_load_textdomain() {
+	load_plugin_textdomain( 'iis-blocks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );
+}
+
+add_action( 'plugins_loaded', 'iis_blocks_load_textdomain' );
