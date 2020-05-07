@@ -3,3 +3,4 @@ import './blocks/Info';
 import './blocks/Download';
 import './blocks/PostArchive';
 import './blocks/Newsletter';
+import './blocks/Hero';
