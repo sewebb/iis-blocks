@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(11);
+module.exports = __webpack_require__(12);
 
 
 /***/ }),
@@ -88,7 +88,9 @@ __webpack_require__(5);
 
 __webpack_require__(7);
 
-__webpack_require__(16);
+__webpack_require__(11);
+
+__webpack_require__(17);
 
 /***/ }),
 /* 2 */
@@ -1630,16 +1632,6 @@ if (hadRuntime) {
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 12 */,
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1809,6 +1801,159 @@ registerBlockType('iis/hero', {
 		);
 	},
 	save: function save() {
+		return null;
+	}
+});
+
+/***/ }),
+/* 12 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 13 */,
+/* 14 */,
+/* 15 */,
+/* 16 */,
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$editor = wp.editor,
+    InspectorControls = _wp$editor.InspectorControls,
+    RichText = _wp$editor.RichText,
+    withColors = _wp$editor.withColors,
+    PanelColorSettings = _wp$editor.PanelColorSettings;
+var _wp$components = wp.components,
+    PanelBody = _wp$components.PanelBody,
+    SelectControl = _wp$components.SelectControl,
+    TextControl = _wp$components.TextControl;
+
+
+registerBlockType('iis/button', {
+	title: __('Button'),
+	category: 'iis',
+	icon: 'admin-links',
+	keywords: [__('button')],
+	attributes: {
+		size: {
+			type: 'string',
+			default: 'regular'
+		},
+		text: {
+			type: 'string',
+			default: ''
+		},
+		link: {
+			type: 'string',
+			default: ''
+		},
+		buttonColor: {
+			type: 'string',
+			default: null
+		}
+	},
+	edit: withColors({ buttonColor: 'color' })(function (_ref) {
+		var attributes = _ref.attributes,
+		    setAttributes = _ref.setAttributes,
+		    buttonColor = _ref.buttonColor,
+		    setButtonColor = _ref.setButtonColor;
+
+		var sizes = [{ value: 'small', label: 'Small' }, { value: 'regular', label: 'Default' }, { value: 'large', label: 'Large' }];
+
+		var buttonStyle = {
+			display: 'inline-block',
+			position: 'relative',
+			margin: '0',
+			padding: '.556rem 1rem',
+			overflow: 'hidden',
+			border: '0',
+			borderRadius: '.25rem',
+			backgroundColor: buttonColor.color ? buttonColor.color : '#0477ce',
+			color: '#fff',
+			fontFamily: 'sans-serif',
+			textDecoration: 'none',
+			textShadow: 'none',
+			hyphens: 'auto',
+			cursor: 'pointer'
+		};
+
+		if ('small' === attributes.size) {
+			buttonStyle.padding = '.3rem .75rem';
+			buttonStyle.fontSize = '.88889rem';
+		} else if ('large' === attributes.size) {
+			buttonStyle.padding = '.8rem 2rem';
+			buttonStyle.fontSize = '1.33333rem';
+		} else {
+			buttonStyle.fontSize = '.88889rem';
+		}
+
+		return React.createElement(
+			'div',
+			null,
+			React.createElement(
+				InspectorControls,
+				null,
+				React.createElement(
+					PanelBody,
+					null,
+					React.createElement(SelectControl, {
+						label: __('Size'),
+						options: sizes,
+						value: attributes.size,
+						onChange: function onChange(size) {
+							return setAttributes({ size: size });
+						}
+					}),
+					React.createElement(TextControl, {
+						label: __('URL'),
+						value: attributes.link,
+						help: attributes.link ? React.createElement(
+							'a',
+							{ style: { display: 'block', marginTop: '1rem' }, href: attributes.link, target: '_blank' },
+							__('Test link')
+						) : null,
+						type: 'url',
+						onChange: function onChange(link) {
+							return setAttributes({ link: link });
+						}
+					})
+				),
+				React.createElement(PanelColorSettings, {
+					title: __('Color Settings'),
+					colorSettings: [{
+						value: buttonColor.color,
+						onChange: setButtonColor,
+						label: __('Button Color')
+					}]
+				})
+			),
+			React.createElement(
+				'div',
+				null,
+				React.createElement(
+					'div',
+					{ style: buttonStyle },
+					React.createElement(RichText, {
+						tagName: 'span',
+						value: attributes.text,
+						placeholder: __('Button text'),
+						onChange: function onChange(text) {
+							return setAttributes({ text: text });
+						}
+					})
+				)
+			)
+		);
+	}),
+	save: function save(_ref2) {
+		var attributes = _ref2.attributes;
+
 		return null;
 	}
 });
