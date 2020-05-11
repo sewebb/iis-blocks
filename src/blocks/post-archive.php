@@ -18,9 +18,9 @@ function iis_render_block_archive( $atts ) {
 
 	?>
 	<main role="main" class="article">
-		<div class="<?php class_name( 'o-search' ); ?>">
-			<div class="<?php class_name( 'o-search-result' ); ?>">
-				<ul class="<?php class_name( 'o-search-result__list' ); ?>">
+		<div class="<?php imns( 'o-search' ); ?>">
+			<div class="<?php imns( 'o-search-result' ); ?>">
+				<ul class="<?php imns( 'o-search-result__list' ); ?>">
 					<?php if ( $q->have_posts() ) :
 						while ( $q->have_posts() ) :
 							$q->the_post();
@@ -38,17 +38,17 @@ function iis_render_block_archive( $atts ) {
 			$prev_page = previous_posts( false );
 
 			if ( $next_page || ( $prev_page && $paged > 1 ) ) : ?>
-				<div class="<?php class_name( 'o-search__padded o-search__border' ); ?>">
-					<div class="<?php class_name( 'a-paging-wrapper' ); ?>">
+				<div class="<?php imns( 'o-search__padded o-search__border' ); ?>">
+					<div class="<?php imns( 'a-paging-wrapper' ); ?>">
 						<?php if ( $prev_page && $paged > 1 ) : ?>
-							<a href="<?php echo esc_url( $prev_page ); ?>" class="<?php class_name( 'a-paging' ); ?>">
+							<a href="<?php echo esc_url( $prev_page ); ?>" class="<?php imns( 'a-paging' ); ?>">
 								<span class="u-visuallyhidden"><?php esc_html_e( 'Previous page', 'iis-blocks' ); ?></span>
-								<svg class="<?php class_name( 'icon a-paging__icon' ); ?>">
+								<svg class="<?php imns( 'icon a-paging__icon' ); ?>">
 									<use xlink:href="#icon-arrow-backwards"></use>
 								</svg>
 							</a>
 						<?php endif; ?>
-						<span class="<?php class_name( 'a-paging-wrapper__text' ); ?>">
+						<span class="<?php imns( 'a-paging-wrapper__text' ); ?>">
 						<?php
 
 						printf(
@@ -61,9 +61,9 @@ function iis_render_block_archive( $atts ) {
 						?>
 					</span>
 						<?php if ( $next_page ) : ?>
-							<a href="<?php echo esc_url( $next_page ); ?>" class="<?php class_name( 'a-paging' ); ?>">
+							<a href="<?php echo esc_url( $next_page ); ?>" class="<?php imns( 'a-paging' ); ?>">
 								<span class="u-visuallyhidden"><?php esc_html_e( 'Next page', 'iis-blocks' ); ?></span>
-								<svg class="<?php class_name( 'icon a-paging__icon' ); ?>">
+								<svg class="<?php imns( 'icon a-paging__icon' ); ?>">
 									<use xlink:href="#icon-arrow-forwards"></use>
 								</svg>
 							</a>
