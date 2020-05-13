@@ -1,0 +1,37 @@
+<?php
+
+function iis_render_block_hero( $attributes ) {
+	$attributes = array_merge([
+		'mediaUrl'  => null,
+		'mediaId'   => null,
+		'title'     => '',
+		'introText' => '',
+		'alignment' => 'full'
+	], $attributes);
+
+	ob_start();
+	?>
+	<figure class="<?php imns( 'o-hero' ); ?>">
+		<?php echo wp_get_attachment_image( $attributes['mediaId'], 'hero', false, ['class' => imns( 'o-hero__image', false )] ); ?>
+		<figcaption class="<?php imns( 'o-hero__caption' ); ?>">
+			<div class="wrapper">
+				<div class="<?php imns( 'o-hero__text' ); ?>">
+					<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
+					<p class="<?php imns( 'o-hero__paragraph' ); ?>"><?php echo esc_html( $attributes['introText'] ); ?></p>
+				</div>
+			</div>
+		</figcaption>
+	</figure>
+	<?php
+
+	$content = ob_get_clean();
+
+	return str_replace( [ "\t", "\n", "\r" ], '', $content );
+}
+
+register_block_type(
+	'iis/hero',
+	[
+		'render_callback' => 'iis_render_block_hero',
+	]
+);
