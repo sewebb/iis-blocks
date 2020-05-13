@@ -88,7 +88,7 @@ registerBlockType('iis/hero', {
 								<MediaUpload
 									onSelect={imageObject => (
 										setAttributes({
-											mediaUrl: imageObject.sizes.large.url,
+											mediaUrl: imageObject.sizes.full.url,
 											mediaId: imageObject.id,
 										})
 									)}

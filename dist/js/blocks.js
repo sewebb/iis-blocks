@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(12);
+module.exports = __webpack_require__(13);
 
 
 /***/ }),
@@ -90,7 +90,7 @@ __webpack_require__(7);
 
 __webpack_require__(11);
 
-__webpack_require__(17);
+__webpack_require__(12);
 
 /***/ }),
 /* 2 */
@@ -1742,7 +1742,7 @@ registerBlockType('iis/hero', {
 						React.createElement(MediaUpload, {
 							onSelect: function onSelect(imageObject) {
 								return setAttributes({
-									mediaUrl: imageObject.sizes.large.url,
+									mediaUrl: imageObject.sizes.full.url,
 									mediaId: imageObject.id
 								});
 							},
@@ -1807,16 +1807,6 @@ registerBlockType('iis/hero', {
 
 /***/ }),
 /* 12 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 13 */,
-/* 14 */,
-/* 15 */,
-/* 16 */,
-/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1957,6 +1947,12 @@ registerBlockType('iis/button', {
 		return null;
 	}
 });
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);
