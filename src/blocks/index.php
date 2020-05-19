@@ -12,6 +12,10 @@ if ( ! function_exists( 'imns' ) ) {
 		$namespace = apply_filters( 'iis_blocks_namespace', env( 'IIS_NAMESPACE', 'iis-' ) );
 		$classes   = array_map(
 			function ( $single_class ) use ( $namespace ) {
+				if ( strpos( $single_class, '!' ) === 0) {
+					return substr( $single_class, 1 );
+				}
+
 				return $namespace . $single_class;
 			},
 			explode( ' ', $class )

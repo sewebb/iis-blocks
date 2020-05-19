@@ -9,9 +9,15 @@ function iis_render_block_hero( $attributes ) {
 		'alignment' => 'full'
 	], $attributes);
 
+	$class = 'o-hero';
+
+	if ($attributes['alignment'] == 'full') {
+		$class .= ' !alignfull';
+	}
+
 	ob_start();
 	?>
-	<figure class="<?php imns( 'o-hero' ); ?>">
+	<figure class="<?php imns( $class ); ?>">
 		<?php echo wp_get_attachment_image( $attributes['mediaId'], 'hero', false, ['class' => imns( 'o-hero__image', false )] ); ?>
 		<figcaption class="<?php imns( 'o-hero__caption' ); ?>">
 			<div class="wrapper">
