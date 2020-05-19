@@ -39,3 +39,4 @@ require_once __DIR__ . '/newsletter.php';
 require_once __DIR__ . '/info.php';
 require_once __DIR__ . '/button.php';
 require_once __DIR__ . '/hero.php';
+require_once __DIR__ . '/puff.php';

@@ -6,12 +6,12 @@ function iis_render_block_hero( $attributes ) {
 		'mediaId'   => null,
 		'title'     => '',
 		'introText' => '',
-		'alignment' => 'full'
+		'align'     => 'full'
 	], $attributes);
 
 	$class = 'o-hero';
 
-	if ($attributes['alignment'] == 'full') {
+	if ($attributes['align'] == 'full') {
 		$class .= ' !alignfull';
 	}
 

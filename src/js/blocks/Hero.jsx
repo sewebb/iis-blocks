@@ -34,10 +34,6 @@ registerBlockType('iis/hero', {
 			type: 'string',
 			default: '',
 		},
-		alignment: {
-			type: 'string',
-			default: 'full',
-		},
 	},
 	edit({ attributes, setAttributes }) {
 		const style = {

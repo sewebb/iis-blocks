@@ -68,7 +68,7 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(13);
+module.exports = __webpack_require__(14);
 
 
 /***/ }),
@@ -91,6 +91,8 @@ __webpack_require__(7);
 __webpack_require__(11);
 
 __webpack_require__(12);
+
+__webpack_require__(13);
 
 /***/ }),
 /* 2 */
@@ -1674,10 +1676,6 @@ registerBlockType('iis/hero', {
 		introText: {
 			type: 'string',
 			default: ''
-		},
-		alignment: {
-			type: 'string',
-			default: 'full'
 		}
 	},
 	edit: function edit(_ref) {
@@ -1950,6 +1948,114 @@ registerBlockType('iis/button', {
 
 /***/ }),
 /* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+var __ = wp.i18n.__;
+var _wp$element = wp.element,
+    useEffect = _wp$element.useEffect,
+    useState = _wp$element.useState;
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$components = wp.components,
+    SelectControl = _wp$components.SelectControl,
+    CheckboxControl = _wp$components.CheckboxControl;
+
+
+registerBlockType('iis/puff', {
+	title: __('Post puff', 'iis'),
+	category: 'iis',
+	icon: 'format-aside',
+	keywords: [__('card', 'iis'), __('teaser', 'iis'), __('puff', 'iis')],
+	supports: {
+		align: ['right']
+	},
+	attributes: {
+		postId: {
+			type: 'string',
+			default: null
+		},
+		showAsTeaser: {
+			type: 'boolean',
+			default: false
+		}
+	},
+	edit: function edit(_ref) {
+		var attributes = _ref.attributes,
+		    setAttributes = _ref.setAttributes;
+
+		var _useState = useState([]),
+		    _useState2 = _slicedToArray(_useState, 2),
+		    posts = _useState2[0],
+		    setPosts = _useState2[1];
+
+		var containerStyles = {
+			border: '1px dotted #bbb',
+			padding: '1rem'
+		};
+
+		useEffect(function () {
+			wp.apiFetch({ path: '/wp/v2/posts?parent=0&per_page=-1' }).then(function (posts) {
+				// Make posts in options format.
+				var postOptions = posts.map(function (post) {
+					return {
+						label: post.title.rendered,
+						value: post.id
+					};
+				});
+
+				setPosts(postOptions);
+			});
+		}, []);
+
+		return React.createElement(
+			'div',
+			{ style: containerStyles },
+			React.createElement(
+				'fieldset',
+				null,
+				React.createElement(
+					'legend',
+					null,
+					__('Post puff', 'iis')
+				),
+				React.createElement(SelectControl, {
+					label: __('Post', 'iis'),
+					onChange: function onChange(postId) {
+						return setAttributes({ postId: postId });
+					},
+					options: posts.length ? [{
+						label: __('Choose a post', 'internetkunskap'),
+						value: null
+					}].concat(_toConsumableArray(posts)) : [{
+						label: __('Loading posts...', 'internetkunskap'),
+						value: '',
+						disabled: true
+					}],
+					value: attributes.postId
+				}),
+				React.createElement(CheckboxControl, {
+					label: 'Show as teaser',
+					checked: attributes.showAsTeaser,
+					onChange: function onChange(showAsTeaser) {
+						return setAttributes({ showAsTeaser: showAsTeaser });
+					}
+				})
+			)
+		);
+	},
+	save: function save() {
+		return null;
+	}
+});
+
+/***/ }),
+/* 14 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
