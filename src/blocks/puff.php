@@ -50,7 +50,7 @@ function iis_render_puff( $attributes ) {
 
 		<div class="<?php echo $class; ?>">
 			<article class="<?php imns( 'm-card m-card--padded' ); ?>" id="post-<?php echo $attributes['postId']; ?>">
-				<?php if ($thumbnail) { echo $thumbnail; } ?>
+				<?php if ( $thumbnail ) echo $thumbnail; ?>
 				<div class="<?php imns( 'm-card__content' ); ?>">
 					<div class="<?php imns( 'a-meta' ); ?>">
 					<span class="<?php imns( 'a-meta__term' ); ?>">
