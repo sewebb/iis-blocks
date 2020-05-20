@@ -65,6 +65,14 @@ registerBlockType('iis/button', {
 			buttonStyle.fontSize = '.88889rem';
 		}
 
+		console.log(buttonColor);
+
+		if ( !buttonColor.slug || ['jade-dark', 'ruby-dark', 'ocean-dark'].includes(buttonColor.slug) ) {
+			buttonStyle.color = '#fff';
+		} else {
+			buttonStyle.color = '#1f2a36';
+		}
+
 		return (
 			<div>
 				<InspectorControls>

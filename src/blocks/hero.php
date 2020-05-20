@@ -1,6 +1,6 @@
 <?php
 
-function iis_render_block_hero( $attributes ) {
+function iis_render_block_hero( $attributes, $content ) {
 	$attributes = array_merge([
 		'mediaUrl'  => null,
 		'mediaId'   => null,
@@ -24,6 +24,12 @@ function iis_render_block_hero( $attributes ) {
 				<div class="<?php imns( 'o-hero__text' ); ?>">
 					<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
 					<p class="<?php imns( 'o-hero__paragraph' ); ?>"><?php echo esc_html( $attributes['introText'] ); ?></p>
+
+					<?php if ( $content ) : ?>
+					<div class="<?php imns( 'o-hero__buttons' ); ?>">
+						<?php echo $content; ?>
+					</div>
+					<?php endif; ?>
 				</div>
 			</div>
 		</figcaption>

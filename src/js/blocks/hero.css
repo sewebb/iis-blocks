@@ -1,0 +1,40 @@
+.iis-block-hero {
+	position: relative;
+	text-align: left;
+	color: #fff;
+	background-color: #1f2a36;
+}
+
+.iis-block-hero__content {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	display: flex;
+	align-items: flex-end;
+	text-shadow: 0 0 1rem rgba(0,0,0,.5);
+	background-image: linear-gradient(180deg,hsla(0,0%,100%,0) 0,transparent 55%,#000);
+}
+
+.iis-block-hero__inner-content {
+	padding: 4rem;
+	max-width: 80%;
+}
+
+.iis-block-hero__image {
+	min-height: 27.77778rem;
+	max-height: 50vh;
+	object-fit: cover;
+	width: 100%;
+	display: block;
+}
+
+.iis-block-hero__buttons .block-editor-block-list__layout {
+	display: flex;
+	align-items: center;
+}
+
+.iis-block-hero__buttons .block-editor-block-list__layout > * {
+	margin-right: 20px;
+}

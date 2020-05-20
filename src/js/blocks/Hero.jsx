@@ -7,7 +7,10 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 	RichText,
+	InnerBlocks,
 } = wp.editor;
+
+import './hero.css';
 
 registerBlockType('iis/hero', {
 	title: __('Hero'),
@@ -36,38 +39,6 @@ registerBlockType('iis/hero', {
 		},
 	},
 	edit({ attributes, setAttributes }) {
-		const style = {
-			position: 'relative',
-			textAlign: 'left',
-			color: '#fff',
-			backgroundColor: '#1f2a36',
-		};
-
-		const imageStyle = {
-			minHeight: '27.77778rem',
-			maxHeight: '50vh',
-			objectFit: 'cover',
-			width: '100%',
-			display: 'block',
-		};
-
-		const contentStyle = {
-			position: 'absolute',
-			top: 0,
-			right: 0,
-			bottom: 0,
-			left: 0,
-			display: 'flex',
-			alignItems: 'flex-end',
-			textShadow: '0 0 1rem rgba(0,0,0,.5)',
-			backgroundImage: 'linear-gradient(180deg,hsla(0,0%,100%,0) 0,transparent 55%,#000)',
-		};
-
-		const innerContentStyle = {
-			padding: '4rem',
-			maxWidth: '80%',
-		};
-
 		let image = null;
 
 		if (attributes.mediaUrl) {
@@ -107,10 +78,10 @@ registerBlockType('iis/hero', {
 						)}
 					</PanelBody>
 				</InspectorControls>
-				<div style={style}>
-					<img src={attributes.mediaUrl} style={imageStyle} />
-					<div style={contentStyle}>
-						<div style={innerContentStyle}>
+				<div className="iis-block-hero">
+					<img src={attributes.mediaUrl} className="iis-block-hero__image" />
+					<div className="iis-block-hero__content">
+						<div className="iis-block-hero__inner-content">
 							<RichText
 								tagName="h1"
 								value={ attributes.title }
@@ -123,6 +94,9 @@ registerBlockType('iis/hero', {
 								placeholder={__('Content')}
 								onChange={ introText => setAttributes({ introText }) }
 							/>
+							<div className="iis-block-hero__buttons">
+								<InnerBlocks allowedBlocks={['iis/button']} />
+							</div>
 						</div>
 					</div>
 				</div>
@@ -130,6 +104,6 @@ registerBlockType('iis/hero', {
 		);
 	},
 	save() {
-		return null;
+		return <InnerBlocks.Content />;
 	},
 });
