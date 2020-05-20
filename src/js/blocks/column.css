@@ -1,0 +1,9 @@
+.iis-block-column {
+	background-color: #fff;
+	padding: 1rem;
+	margin: 1rem;
+	outline: 1px solid #000;
+}
+
+.iis-block-column__content {
+}
