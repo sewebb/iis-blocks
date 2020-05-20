@@ -94,6 +94,10 @@ __webpack_require__(12);
 
 __webpack_require__(13);
 
+__webpack_require__(21);
+
+__webpack_require__(24);
+
 /***/ }),
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
@@ -2625,6 +2629,122 @@ exports.push([module.i, ".iis-block-hero {\n\tposition: relative;\n\ttext-align:
 
 // exports
 
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(22);
+
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType;
+var InnerBlocks = wp.editor.InnerBlocks;
+
+
+registerBlockType('iis/grid', {
+	title: __('Grid'),
+	category: 'iis',
+	icon: 'megaphone',
+	keywords: [__('grid', 'iis'), __('columns', 'iis'), __('column', 'iis')],
+	attributes: {
+		big: {
+			type: 'boolean',
+			default: false
+		}
+	},
+	edit: function edit() {
+		return React.createElement(
+			'div',
+			{ className: 'iis-block-grid' },
+			React.createElement(InnerBlocks, { allowedBlocks: ['iis/column'] })
+		);
+	},
+	save: function save() {
+		return React.createElement(InnerBlocks.Content, null);
+	}
+});
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(23);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(17)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./grid.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./grid.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(16)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".iis-block-grid .block-editor-block-list__layout {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tmargin: -20px 0 0 -20px;\n}\n\n.iis-block-grid .block-editor-block-list__layout > * {\n\tflex: 1;\n\tmargin-top: 20px;\n\tmargin-left: 20px;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(22);
+
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType;
+var InnerBlocks = wp.editor.InnerBlocks;
+
+
+registerBlockType('iis/column', {
+	title: __('Grid'),
+	category: 'iis',
+	icon: 'megaphone',
+	keywords: [__('grid', 'iis'), __('columns', 'iis'), __('column', 'iis')],
+	parent: ['iis/grid'],
+	attributes: {
+		big: {
+			type: 'boolean',
+			default: false
+		}
+	},
+	edit: function edit() {
+		return React.createElement(InnerBlocks, null);
+	},
+	save: function save() {
+		return React.createElement(InnerBlocks.Content, null);
+	}
+});
 
 /***/ })
 /******/ ]);

@@ -1,0 +1,11 @@
+.iis-block-grid .block-editor-block-list__layout {
+	display: flex;
+	flex-wrap: wrap;
+	margin: -20px 0 0 -20px;
+}
+
+.iis-block-grid .block-editor-block-list__layout > * {
+	flex: 1;
+	margin-top: 20px;
+	margin-left: 20px;
+}

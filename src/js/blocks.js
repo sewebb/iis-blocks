@@ -6,3 +6,5 @@ import './blocks/Newsletter';
 import './blocks/Hero';
 import './blocks/Button';
 import './blocks/Puff';
+import './blocks/Grid';
+import './blocks/Column';
