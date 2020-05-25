@@ -1,16 +1,13 @@
 const { __ } = wp.i18n;
-const { registerBlockType } = wp.blocks;
 const { Fragment } = wp.element;
+const { registerBlockType } = wp.blocks;
 const { PanelBody, SelectControl } = wp.components;
 const {
   InspectorControls,
   InnerBlocks
 } = wp.editor;
 
-import './grid.css';
-import './column.css';
-
-const COLUMN_WIDTH_OPTIONS = [
+const columnWidthOptions = [
   {
     label: 'Two columns',
     value: '1/2'
@@ -21,6 +18,8 @@ const COLUMN_WIDTH_OPTIONS = [
   }
 ];
 
+import './column.css';
+
 registerBlockType('iis/column', {
   title: __('Column'),
   category: 'iis',
@@ -28,42 +27,48 @@ registerBlockType('iis/column', {
   keywords: [__('grid', 'iis'), __('columns', 'iis'), __('column', 'iis')],
   parent: ['iis/grid'],
   attributes: {
+    big: {
+      type: 'boolean',
+      default: false
+    },
     columnWidth: {
       type: 'string',
-      default: '1/3'
+      default: ''
     }
   },
-  edit({ attributes, setAttributes }) {
+  edit ({ attributes, setAttributes }) {
     const columnWidth = attributes.columnWidth
 
     return (
       <Fragment>
         <InspectorControls>
-          <PanelBody title="Column width">
+          <PanelBody title='Column width'>
             <SelectControl
-              label="Width"
+              label='Width'
               onChange={(columnWidth) => setAttributes({ columnWidth })}
               options={[
                 {
-                  label: "Choose column width...",
-                  value: "",
+                  label: 'Choose a with',
+                  value: ''
                 },
-                ...COLUMN_WIDTH_OPTION,
+                ...columnWidthOptions
               ]}
               value={columnWidth}
             />
           </PanelBody>
         </InspectorControls>
-        <div className="iis-block-column">
-          <strong>Column width: {columnWidth}</strong>
-          <div class="iis-block-column__content">
+        <div className='iis-block-column'>
+          <div className='iis-block-column__heading'>
+            Width: {columnWidth}
+          </div>
+          <div class='iis-block-column__content'>
             <InnerBlocks allowedBlocks={['iis/puff']} />
           </div>
         </div>
       </Fragment>
-    );
+    )
   },
-  save() {
+  save () {
     return <InnerBlocks.Content />;
-  },
+  }
 });
