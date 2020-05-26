@@ -2712,31 +2712,87 @@ exports.push([module.i, ".iis-block-grid .block-editor-block-list__layout {\n\td
 "use strict";
 
 
-__webpack_require__(2);
+__webpack_require__(25);
 
 var __ = wp.i18n.__;
+var Fragment = wp.element.Fragment;
 var registerBlockType = wp.blocks.registerBlockType;
-var InnerBlocks = wp.editor.InnerBlocks;
+var _wp$components = wp.components,
+    PanelBody = _wp$components.PanelBody,
+    SelectControl = _wp$components.SelectControl;
+var _wp$editor = wp.editor,
+    InspectorControls = _wp$editor.InspectorControls,
+    InnerBlocks = _wp$editor.InnerBlocks;
 
+
+var columnWidthOptions = [{
+  label: 'Two columns',
+  value: '1/2'
+}, {
+  label: 'Three columns',
+  value: '1/3'
+}];
 
 registerBlockType('iis/column', {
-	title: __('Grid'),
-	category: 'iis',
-	icon: 'megaphone',
-	keywords: [__('grid', 'iis'), __('columns', 'iis'), __('column', 'iis')],
-	parent: ['iis/grid'],
-	attributes: {
-		big: {
-			type: 'boolean',
-			default: false
-		}
-	},
-	edit: function edit() {
-		return React.createElement(InnerBlocks, null);
-	},
-	save: function save() {
-		return React.createElement(InnerBlocks.Content, null);
-	}
+  title: __('Column'),
+  category: 'iis',
+  icon: 'megaphone',
+  keywords: [__('grid', 'iis'), __('columns', 'iis'), __('column', 'iis')],
+  parent: ['iis/grid'],
+  attributes: {
+    columnWidth: {
+      type: 'string',
+      default: ''
+    }
+  },
+  edit: function edit(_ref) {
+    var attributes = _ref.attributes,
+        setAttributes = _ref.setAttributes;
+
+    var columnWidth = attributes.columnWidth;
+
+    return React.createElement(
+      Fragment,
+      null,
+      React.createElement(
+        InspectorControls,
+        null,
+        React.createElement(
+          PanelBody,
+          { title: 'Column width' },
+          React.createElement(SelectControl, {
+            label: 'Width',
+            onChange: function onChange(columnWidth) {
+              return setAttributes({ columnWidth: columnWidth });
+            },
+            options: [{
+              label: 'Choose a with',
+              value: ''
+            }].concat(columnWidthOptions),
+            value: columnWidth
+          })
+        )
+      ),
+      React.createElement(
+        'div',
+        { className: 'iis-block-column' },
+        React.createElement(
+          'div',
+          { className: 'iis-block-column__heading' },
+          'Width: ',
+          columnWidth
+        ),
+        React.createElement(
+          'div',
+          { 'class': 'iis-block-column__content' },
+          React.createElement(InnerBlocks, null)
+        )
+      )
+    );
+  },
+  save: function save() {
+    return React.createElement(InnerBlocks.Content, null);
+  }
 });
 
 /***/ }),
@@ -2744,6 +2800,52 @@ registerBlockType('iis/column', {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 24 */,
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(26);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./column.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./column.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".iis-block-column {\n\tpadding: 1rem;\n\tborder: 1px dotted #bbb;\n}\n\n.iis-block-column__heading {\n\tfont-family: sans-serif;\n\tfont-size: 14px;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);
