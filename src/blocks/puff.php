@@ -45,6 +45,7 @@ function iis_render_puff( $attributes ) {
 	else :
 		$thumbnail 	= get_the_post_thumbnail($post, 'article-thumb', [ 'class' => imns( 'm-card__image', false ) ]);
 		$excerpt	= $post->post_excerpt;
+		$date 		= get_the_date(null, $post);
 		$categories = get_the_category($post);
 		?>
 
@@ -52,14 +53,18 @@ function iis_render_puff( $attributes ) {
 			<article class="<?php imns( 'm-card m-card--padded' ); ?>" id="post-<?php echo $attributes['postId']; ?>">
 				<?php if ( $thumbnail ) echo $thumbnail; ?>
 				<div class="<?php imns( 'm-card__content' ); ?>">
-					<div class="<?php imns( 'a-meta' ); ?>">
-					<span class="<?php imns( 'a-meta__term' ); ?>">
-						<svg class="<?php imns( 'icon a-meta__icon' ); ?>">
-							<use xlink:href="#icon-<?php echo $icon ?>"></use>
-						</svg>
-						<?php if ( ! is_wp_error( $media ) ) echo $media[0]->name; ?>
-					</span>
+					<?php if ( ! is_wp_error( $media ) ) : ?>
+					<div class="<?php imns( 'm-card__meta' ); ?>">
+						<div class="<?php imns( 'a-meta' ); ?>">
+							<?php echo $date; ?>
+						</div>
+						<div class="<?php imns( 'a-meta a-meta--ruby' ); ?>">
+							<svg class="<?php imns( 'icon' ); ?>">
+								<use xlink:href="#icon-<?php echo $icon ?>"></use>
+							</svg> <?php echo $media[0]->name; ?>
+						</div>
 					</div>
+					<?php endif; ?>
 					<?php if ( $permalink ) : ?>
 						<a href="<?php echo $permalink; ?>" class="<?php imns( 'm-card__link' ); ?>"><h1 class="beta"><?php echo $title; ?></h1></a>
 					<?php else : ?>
