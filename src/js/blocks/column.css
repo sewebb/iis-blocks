@@ -1,0 +1,9 @@
+.iis-block-column {
+	padding: 1rem;
+	border: 1px dotted #bbb;
+}
+
+.iis-block-column__heading {
+	font-family: sans-serif;
+	font-size: 14px;
+}
