@@ -58,7 +58,7 @@ registerBlockType('iis/column', {
             Width: {columnWidth}
           </div>
           <div class='iis-block-column__content'>
-            <InnerBlocks allowedBlocks={['iis/puff']} />
+            <InnerBlocks />
           </div>
         </div>
       </Fragment>
