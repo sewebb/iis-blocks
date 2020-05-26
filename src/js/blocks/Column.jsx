@@ -27,10 +27,6 @@ registerBlockType('iis/column', {
   keywords: [__('grid', 'iis'), __('columns', 'iis'), __('column', 'iis')],
   parent: ['iis/grid'],
   attributes: {
-    big: {
-      type: 'boolean',
-      default: false
-    },
     columnWidth: {
       type: 'string',
       default: ''
