@@ -68,25 +68,27 @@ function iis_render_puff( $attributes ) {
 
 	if ( $attributes['showAsTeaser'] ) : ?>
 		<div class="<?php echo $class; ?>">
-			<section class="<?php imns( 'm-teaser' ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
+			<figure class="<?php imns( 'm-teaser' ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
 				<?php if ( $content['thumbnail'] ) echo $content['thumbnail']; ?>
-				<div class="<?php imns( 'm-teaser__caption' ); ?>">
-					<a class="<?php imns( 'm-teaser__link' ); ?>" href="<?php echo $content['title']; ?>">
-						<div class="<?php imns( 'm-teaser__headline-wrapper' ); ?>">
-							<h1 class="<?php imns( 'm-teaser__headline' ); ?>">
-								<?php echo $content['title']; ?>
-							</h1>
-						</div>
-						<?php if ( $content['text'] ) : ?>
-						<div class="<?php imns( 'm-teaser__excerpt-wrapper' ); ?>">
-							<p class="<?php imns( 'm-teaser__excerpt' ); ?>">
-								<?php echo $content['text']; ?>
-							</p>
-						</div>
-						<?php endif; ?>
-					</a>
-				</div>
-			</section>
+				<figcaption class="<?php imns( 'm-teaser__caption' ); ?>">
+					<div class="<?php imns( 'm-teaser__overlay' ); ?>">
+						<a class="<?php imns( 'm-teaser__link' ); ?>" href="<?php echo $content['permalink']; ?>">
+							<div class="<?php imns( 'm-teaser__headline-wrapper' ); ?>">
+								<h1 class="<?php imns( 'm-teaser__headline' ); ?>">
+									<?php echo $content['title']; ?>
+								</h1>
+							</div>
+							<?php if ( $content['text'] ) : ?>
+								<div class="<?php imns( 'm-teaser__excerpt-wrapper' ); ?>">
+									<p class="<?php imns( 'm-teaser__excerpt' ); ?>">
+										<?php echo $content['text']; ?>
+									</p>
+								</div>
+							<?php endif; ?>
+						</a>
+					</div>
+				</figcaption>
+			</figure>
 		</div>
 
 		<?php
