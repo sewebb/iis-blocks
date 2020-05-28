@@ -1,0 +1,10 @@
+{
+    "extends": "@internetstiftelsen/eslint-config-react",
+    "globals": {
+        "wp": true
+    },
+    "rules": {
+        "react/prop-types": 0,
+        "react/jsx-indent-props": [2, "tab"]
+    }
+}
