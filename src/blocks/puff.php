@@ -40,7 +40,8 @@ function iis_render_puff( $attributes ) {
 	} else {
 		$post       = get_post( $attributes['postId'] );
 		$media      = get_the_terms( $post, 'media' );
-		$icon       = ! is_wp_error( $media ) && $media[0]->name === 'video' ? 'play' : 'arrow-forwards';
+		$media_name = ! is_wp_error( $media ) ? $media[0]->name : 'article';
+		$icon       = 'arrow-variant';
 		$date       = get_the_date( null, $post );
 		$categories = get_the_category( $post );
 		$thumbnail  = get_the_post_thumbnail(
@@ -48,6 +49,12 @@ function iis_render_puff( $attributes ) {
 			$image_size,
 			[ 'class' => $image_class ]
 		);
+
+		if ( 'video' == $media_name ) {
+			$icon = 'play';
+		} elseif ( 'podcast' == $media_name ) {
+			$icon = 'podcast';
+		}
 
 		$content = [
 			'thumbnail'  => $thumbnail,
@@ -61,11 +68,7 @@ function iis_render_puff( $attributes ) {
 		];
 	}
 
-	$class = 'u-m-b-4';
-
-	if ( $attributes['align'] === 'right' ) {
-		$class .= ' alignright';
-	}
+	$class = ( 'right' == $attributes['align'] ) ? 'alignright' : '';
 
 	ob_start();
 
@@ -73,9 +76,12 @@ function iis_render_puff( $attributes ) {
 		<div class="<?php echo $class; ?>">
 			<figure class="<?php imns( 'm-teaser' ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
 				<?php
+
 				if ( $content['thumbnail'] ) {
-echo $content['thumbnail'];}
-?>
+					echo $content['thumbnail'];
+				}
+
+				?>
 				<figcaption class="<?php imns( 'm-teaser__caption' ); ?>">
 					<div class="<?php imns( 'm-teaser__overlay' ); ?>">
 						<a class="<?php imns( 'm-teaser__link' ); ?>" href="<?php echo $content['permalink']; ?>">
@@ -104,9 +110,12 @@ echo $content['thumbnail'];}
 		<div class="<?php echo $class; ?>">
 			<article class="<?php imns( 'm-card m-card--padded' ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
 				<?php
+
 				if ( $content['thumbnail'] ) {
-echo $content['thumbnail'];}
-?>
+					echo $content['thumbnail'];
+				}
+
+				?>
 				<div class="<?php imns( 'm-card__content' ); ?>">
 					<?php if ( $content['media'] && ! is_wp_error( $content['media'] ) ) : ?>
 					<div class="<?php imns( 'm-card__meta' ); ?>">
