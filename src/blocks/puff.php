@@ -33,7 +33,9 @@ function iis_render_puff( $attributes ) {
 		$thumbnail = get_the_post_thumbnail($post, 'large', [ 'class' => imns( 'm-teaser__image', false ) ]);
 		?>
 
+		<?php if ($align) : ?>
 		<div class="<?php echo $class; ?>">
+		<?php endif; ?>
 			<section class="<?php imns( 'm-teaser' ); ?>" id="post-<?php echo $attributes['postId']; ?>">
 				<?php if ( $thumbnail ) echo $thumbnail; ?>
 				<div class="<?php imns( 'm-teaser__caption' ); ?>">
@@ -47,7 +49,9 @@ function iis_render_puff( $attributes ) {
 					</a>
 				</div>
 			</section>
+		<?php if ($align) : ?>
 		</div>
+		<?php endif; ?>
 
 		<?php
 	else :
@@ -57,7 +61,9 @@ function iis_render_puff( $attributes ) {
 		$categories = get_the_category($post);
 		?>
 
+		<?php if ($align) : ?>
 		<div class="<?php echo $class; ?>">
+		<?php endif; ?>
 			<article class="<?php imns( 'm-card m-card--padded' ); ?>" id="post-<?php echo $attributes['postId']; ?>">
 				<?php if ( $thumbnail ) echo $thumbnail; ?>
 				<div class="<?php imns( 'm-card__content' ); ?>">
@@ -89,7 +95,9 @@ function iis_render_puff( $attributes ) {
 					</div>
 				</div>
 			</article>
+		<?php if ($align) : ?>
 		</div>
+		<?php endif; ?>
 	<?php endif;
 	return ob_get_clean();
 }
