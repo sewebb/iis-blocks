@@ -12,12 +12,19 @@ function iis_render_puff( $attributes ) {
 	$title		    = $post->post_title;
 	$permalink      = get_permalink($post);
 	$media 		    = get_the_terms($post, 'media');
-	$icon 		    = ! is_wp_error( $media ) && $media[0]->name === 'video' ? 'play' : 'arrow-forwards';
+	$media_name 	= ! is_wp_error( $media ) ? $media[0]->name : 'article';
+	$icon 			= 'arrow-variant';
 	$class          = 'u-m-b-4';
 	$align			= $attributes['align'] ?? '';
 
 	if ( $align === 'right' ) {
 		$class .= ' alignright';
+	}
+
+	if ($media_name === 'video') {
+		$icon = 'play';
+	} else if ($media_name === 'podcast') {
+		$icon = 'podcast';
 	}
 
 	ob_start();
