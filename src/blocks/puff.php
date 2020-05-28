@@ -14,11 +14,12 @@ function iis_render_puff( $attributes ) {
 	], $attributes);
 
 	$image_class = ($attributes['showAsTeaser']) ? imns( 'm-teaser__image', false ) : imns( 'm-card__image', false );
+	$image_size = ( $attributes['showAsTeaser'] ) ? 'large' : 'puff-image';
 
 	if ($attributes['custom']) {
 		$image = wp_get_attachment_image(
 			$attributes['imageId'],
-			'large',
+			$image_size,
 			false,
 			[ 'class' => $image_class ]
 		);
@@ -41,7 +42,7 @@ function iis_render_puff( $attributes ) {
 		$categories = get_the_category( $post );
 		$thumbnail  = get_the_post_thumbnail(
 			$post,
-			'large',
+			$image_size,
 			[ 'class' => $image_class ]
 		);
 
@@ -71,12 +72,18 @@ function iis_render_puff( $attributes ) {
 				<?php if ( $content['thumbnail'] ) echo $content['thumbnail']; ?>
 				<div class="<?php imns( 'm-teaser__caption' ); ?>">
 					<a class="<?php imns( 'm-teaser__link' ); ?>" href="<?php echo $content['title']; ?>">
-						<h1 class="<?php imns( 'm-teaser__headline' ); ?>">
-							<?php echo $content['title']; ?>
-							<svg class="<?php imns( 'icon m-teaser__headline__icon' ); ?>">
-								<use xlink:href="#icon-<?php echo $content['icon']; ?>"></use>
-							</svg>
-						</h1>
+						<div class="<?php imns( 'm-teaser__headline-wrapper' ); ?>">
+							<h1 class="<?php imns( 'm-teaser__headline' ); ?>">
+								<?php echo $content['title']; ?>
+							</h1>
+						</div>
+						<?php if ( $content['text'] ) : ?>
+						<div class="<?php imns( 'm-teaser__excerpt-wrapper' ); ?>">
+							<p class="<?php imns( 'm-teaser__excerpt' ); ?>">
+								<?php echo $content['text']; ?>
+							</p>
+						</div>
+						<?php endif; ?>
 					</a>
 				</div>
 			</section>
