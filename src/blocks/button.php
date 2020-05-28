@@ -1,27 +1,30 @@
 <?php
 
 function iis_render_block_button( $attributes ) {
-	$attributes = array_merge([
-		'size' => 'regular',
-		'text' => '',
-		'url' => '/',
-		'buttonColor' => null,
-	], $attributes);
+	$attributes = array_merge(
+		[
+			'size'        => 'regular',
+			'text'        => '',
+			'url'         => '/',
+			'buttonColor' => null,
+		],
+		$attributes
+	);
 
-	$className = 'a-button';
+	$class_name = 'a-button';
 
-	if ($attributes['buttonColor'] && $attributes['buttonColor'] != 'ocean-dark') {
-		$className .= ' a-button--' . $attributes['buttonColor'];
+	if ( $attributes['buttonColor'] && 'ocean-dark' != $attributes['buttonColor'] ) {
+		$class_name .= ' a-button--' . $attributes['buttonColor'];
 	}
 
-	if ($attributes['size'] && $attributes['size'] != 'regular') {
-		$className .= ' a-button--' . $attributes['size'];
+	if ( $attributes['size'] && 'regular' != $attributes['size'] ) {
+		$class_name .= ' a-button--' . $attributes['size'];
 	}
 
 	ob_start();
 	?>
 	<div>
-		<a href="<?php echo esc_url( $attributes['url'] ); ?>" class="<?php imns( $className ); ?>">
+		<a href="<?php echo esc_url( $attributes['url'] ); ?>" class="<?php imns( $class_name ); ?>">
 			<span class="<?php imns( 'a-button__text' ); ?>"><?php echo esc_html( $attributes['text'] ); ?></span>
 		</a>
 	</div>

@@ -1,22 +1,25 @@
 <?php
 
 function iis_render_puff( $attributes ) {
-	$attributes = array_merge([
-		'custom'       => false,
-		'postId'       => null,
-		'showAsTeaser' => false,
-		'title'        => null,
-		'text'         => null,
-		'imageId'     => null,
-		'alignment'    => null,
-		'url'          => null,
-		'align'        => null,
-	], $attributes);
+	$attributes = array_merge(
+		[
+			'custom'       => false,
+			'postId'       => null,
+			'showAsTeaser' => false,
+			'title'        => null,
+			'text'         => null,
+			'imageId'      => null,
+			'alignment'    => null,
+			'url'          => null,
+			'align'        => null,
+		],
+		$attributes
+	);
 
-	$image_class = ($attributes['showAsTeaser']) ? imns( 'm-teaser__image', false ) : imns( 'm-card__image', false );
-	$image_size = ( $attributes['showAsTeaser'] ) ? 'large' : 'puff-image';
+	$image_class = ( $attributes['showAsTeaser'] ) ? imns( 'm-teaser__image', false ) : imns( 'm-card__image', false );
+	$image_size  = ( $attributes['showAsTeaser'] ) ? 'large' : 'puff-image';
 
-	if ($attributes['custom']) {
+	if ( $attributes['custom'] ) {
 		$image = wp_get_attachment_image(
 			$attributes['imageId'],
 			$image_size,
@@ -35,10 +38,10 @@ function iis_render_puff( $attributes ) {
 			'media'      => null,
 		];
 	} else {
-		$post       = get_post($attributes['postId']);
+		$post       = get_post( $attributes['postId'] );
 		$media      = get_the_terms( $post, 'media' );
 		$icon       = ! is_wp_error( $media ) && $media[0]->name === 'video' ? 'play' : 'arrow-forwards';
-		$date 		= get_the_date( null, $post );
+		$date       = get_the_date( null, $post );
 		$categories = get_the_category( $post );
 		$thumbnail  = get_the_post_thumbnail(
 			$post,
@@ -46,11 +49,11 @@ function iis_render_puff( $attributes ) {
 			[ 'class' => $image_class ]
 		);
 
-		$content    = [
+		$content = [
 			'thumbnail'  => $thumbnail,
 			'title'      => $post->post_title,
 			'text'       => $post->post_excerpt,
-			'permalink'  => get_permalink($post),
+			'permalink'  => get_permalink( $post ),
 			'icon'       => $icon,
 			'date'       => $date,
 			'categories' => $categories,
@@ -69,7 +72,10 @@ function iis_render_puff( $attributes ) {
 	if ( $attributes['showAsTeaser'] ) : ?>
 		<div class="<?php echo $class; ?>">
 			<figure class="<?php imns( 'm-teaser' ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
-				<?php if ( $content['thumbnail'] ) echo $content['thumbnail']; ?>
+				<?php
+				if ( $content['thumbnail'] ) {
+echo $content['thumbnail'];}
+?>
 				<figcaption class="<?php imns( 'm-teaser__caption' ); ?>">
 					<div class="<?php imns( 'm-teaser__overlay' ); ?>">
 						<a class="<?php imns( 'm-teaser__link' ); ?>" href="<?php echo $content['permalink']; ?>">
@@ -97,7 +103,10 @@ function iis_render_puff( $attributes ) {
 
 		<div class="<?php echo $class; ?>">
 			<article class="<?php imns( 'm-card m-card--padded' ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
-				<?php if ( $content['thumbnail'] ) echo $content['thumbnail']; ?>
+				<?php
+				if ( $content['thumbnail'] ) {
+echo $content['thumbnail'];}
+?>
 				<div class="<?php imns( 'm-card__content' ); ?>">
 					<?php if ( $content['media'] && ! is_wp_error( $content['media'] ) ) : ?>
 					<div class="<?php imns( 'm-card__meta' ); ?>">
@@ -106,7 +115,7 @@ function iis_render_puff( $attributes ) {
 						</div>
 						<div class="<?php imns( 'a-meta a-meta--ruby' ); ?>">
 							<svg class="<?php imns( 'icon' ); ?>">
-								<use xlink:href="#icon-<?php echo $content['icon'] ?>"></use>
+								<use xlink:href="#icon-<?php echo $content['icon']; ?>"></use>
 							</svg> <?php echo $content['media'][0]->name; ?>
 						</div>
 					</div>
@@ -130,7 +139,8 @@ function iis_render_puff( $attributes ) {
 				</div>
 			</article>
 		</div>
-	<?php endif;
+	<?php
+	endif;
 	return ob_get_clean();
 }
 

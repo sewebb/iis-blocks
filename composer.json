@@ -1,21 +1,31 @@
 {
-  "name": "iis/blocks",
-  "type": "wordpress-plugin",
-  "description": "WP Blocks library",
-  "license": "MIT",
-  "authors": [
-    {
-      "name": "Tobias Bleckert",
-      "email": "tobias.bleckert@internetstiftelsen.se",
-      "homepage": "https://internetstiftelsen.se"
-    }
-  ],
-  "require": {
-    "php": "^7.2"
-  },
-  "config": {
-    "preferred-install": "dist"
-  },
-  "minimum-stability": "dev",
-  "prefer-stable": true
+    "name": "iis/blocks",
+    "type": "wordpress-plugin",
+    "description": "WP Blocks library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Tobias Bleckert",
+            "email": "tobias.bleckert@internetstiftelsen.se",
+            "homepage": "https://internetstiftelsen.se"
+        }
+    ],
+    "require": {
+        "php": "^7.2"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "3.*",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+        "wp-coding-standards/wpcs": "^1.1"
+    },
+    "config": {
+        "preferred-install": "dist"
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpcs -p --standard=wordpress-rules.xml --extensions=php ./src",
+        "php-fix": "./vendor/bin/phpcbf -p --standard=wordpress-rules.xml --extensions=php ./src",
+        "php-blame": "./vendor/bin/phpcs -p --standard=wordpress-rules.xml --report=gitblame --extensions=php ./src"
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }

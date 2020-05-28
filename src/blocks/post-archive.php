@@ -21,15 +21,18 @@ function iis_render_block_archive( $atts ) {
 		<div class="<?php imns( 'o-search' ); ?>">
 			<div class="<?php imns( 'o-search-result' ); ?>">
 				<ul class="<?php imns( 'o-search-result__list' ); ?>">
-					<?php if ( $q->have_posts() ) :
+					<?php
+					if ( $q->have_posts() ) :
 						while ( $q->have_posts() ) :
 							$q->the_post();
 
 							include __DIR__ . '/../components/search-post.php';
-						endwhile; ?>
+						endwhile;
+						?>
 						<?php
 						wp_reset_postdata();
-					endif; ?>
+					endif;
+					?>
 
 				</ul>
 			</div>
@@ -37,7 +40,8 @@ function iis_render_block_archive( $atts ) {
 			$next_page = next_posts( $q->max_num_pages, false );
 			$prev_page = previous_posts( false );
 
-			if ( $next_page || ( $prev_page && $paged > 1 ) ) : ?>
+			if ( $next_page || ( $prev_page && $paged > 1 ) ) :
+			?>
 				<div class="<?php imns( 'o-search__padded o-search__border' ); ?>">
 					<div class="<?php imns( 'a-paging-wrapper' ); ?>">
 						<?php if ( $prev_page && $paged > 1 ) : ?>

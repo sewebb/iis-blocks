@@ -5,14 +5,14 @@ if ( ! function_exists( 'imns' ) ) {
 	 * Get and echo the styleguide namespace, set in .env-file of the theme
 	 *
 	 * @param string $class Class names, separated by space
-	 * @param bool $echo
+	 * @param bool   $echo
 	 * @return void|string
 	 */
 	function imns( $class, $echo = true ) {
 		$namespace = apply_filters( 'iis_blocks_namespace', env( 'IIS_NAMESPACE', 'iis-' ) );
 		$classes   = array_map(
 			function ( $single_class ) use ( $namespace ) {
-				if ( strpos( $single_class, '!' ) === 0) {
+				if ( strpos( $single_class, '!' ) === 0 ) {
 					return substr( $single_class, 1 );
 				}
 
@@ -23,7 +23,7 @@ if ( ! function_exists( 'imns' ) ) {
 
 		$classes = esc_attr( implode( ' ', $classes ) );
 
-		if ($echo) {
+		if ( $echo ) {
 			echo $classes;
 
 			return;

@@ -3,7 +3,7 @@
 		<?php $content_grid = ''; if ( has_post_thumbnail() ) : ?>
 			<div class="grid-18 grid-md-6">
 				<a href="<?php the_permalink(); ?>">
-					<?php the_post_thumbnail( 'article-thumb', ['class' => 'iis-o-search-result__image iis-o-search-result__image--article'] ); ?>
+					<?php the_post_thumbnail( 'article-thumb', [ 'class' => 'iis-o-search-result__image iis-o-search-result__image--article' ] ); ?>
 				</a>
 			</div>
 		<?php endif; ?>
