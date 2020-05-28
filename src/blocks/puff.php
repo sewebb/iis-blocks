@@ -14,8 +14,9 @@ function iis_render_puff( $attributes ) {
 	$media 		    = get_the_terms($post, 'media');
 	$icon 		    = ! is_wp_error( $media ) && $media[0]->name === 'video' ? 'play' : 'arrow-forwards';
 	$class          = 'u-m-b-4';
+	$align			= $attributes['align'] ?? '';
 
-	if ( $attributes['align'] === 'right' ) {
+	if ( $align === 'right' ) {
 		$class .= ' alignright';
 	}
 
