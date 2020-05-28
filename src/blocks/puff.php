@@ -73,51 +73,47 @@ function iis_render_puff( $attributes ) {
 	ob_start();
 
 	if ( $attributes['showAsTeaser'] ) : ?>
-		<div class="<?php echo $class; ?>">
-			<figure class="<?php imns( 'm-teaser' ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
-				<?php
+		<figure class="<?php imns( 'm-teaser' ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
+			<?php
 
-				if ( $content['thumbnail'] ) {
-					echo $content['thumbnail'];
-				}
+			if ( $content['thumbnail'] ) {
+				echo $content['thumbnail'];
+			}
 
-				?>
-				<figcaption class="<?php imns( 'm-teaser__caption' ); ?>">
-					<div class="<?php imns( 'm-teaser__overlay' ); ?>">
-						<a class="<?php imns( 'm-teaser__link' ); ?>" href="<?php echo $content['permalink']; ?>">
-							<div class="<?php imns( 'm-teaser__headline-wrapper' ); ?>">
-								<h1 class="<?php imns( 'm-teaser__headline' ); ?>">
-									<?php echo $content['title']; ?>
-								</h1>
+			?>
+			<figcaption class="<?php imns( 'm-teaser__caption' ); ?>">
+				<div class="<?php imns( 'm-teaser__overlay' ); ?>">
+					<a class="<?php imns( 'm-teaser__link' ); ?>" href="<?php echo $content['permalink']; ?>">
+						<div class="<?php imns( 'm-teaser__headline-wrapper' ); ?>">
+							<h1 class="<?php imns( 'm-teaser__headline' ); ?>">
+								<?php echo $content['title']; ?>
+							</h1>
+						</div>
+						<?php if ( $content['text'] ) : ?>
+							<div class="<?php imns( 'm-teaser__excerpt-wrapper' ); ?>">
+								<p class="<?php imns( 'm-teaser__excerpt' ); ?>">
+									<?php echo $content['text']; ?>
+								</p>
 							</div>
-							<?php if ( $content['text'] ) : ?>
-								<div class="<?php imns( 'm-teaser__excerpt-wrapper' ); ?>">
-									<p class="<?php imns( 'm-teaser__excerpt' ); ?>">
-										<?php echo $content['text']; ?>
-									</p>
-								</div>
-							<?php endif; ?>
-						</a>
-					</div>
-				</figcaption>
-			</figure>
-		</div>
+						<?php endif; ?>
+					</a>
+				</div>
+			</figcaption>
+		</figure>
 
 		<?php
 	else :
 		?>
+		<div class="<?php imns( 'm-card m-card--padded' ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
+			<?php
 
-		<div class="<?php echo $class; ?>">
-			<article class="<?php imns( 'm-card m-card--padded' ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
-				<?php
+			if ( $content['thumbnail'] ) {
+				echo $content['thumbnail'];
+			}
 
-				if ( $content['thumbnail'] ) {
-					echo $content['thumbnail'];
-				}
-
-				?>
-				<div class="<?php imns( 'm-card__content' ); ?>">
-					<?php if ( $content['media'] && ! is_wp_error( $content['media'] ) ) : ?>
+			?>
+			<div class="<?php imns( 'm-card__content' ); ?>">
+				<?php if ( $content['media'] && ! is_wp_error( $content['media'] ) ) : ?>
 					<div class="<?php imns( 'm-card__meta' ); ?>">
 						<div class="<?php imns( 'a-meta' ); ?>">
 							<?php echo $content['date']; ?>
@@ -128,25 +124,24 @@ function iis_render_puff( $attributes ) {
 							</svg> <?php echo $content['media'][0]->name; ?>
 						</div>
 					</div>
-					<?php endif; ?>
-					<?php if ( $content['permalink'] ) : ?>
-						<a href="<?php echo $content['permalink']; ?>" class="<?php imns( 'm-card__link' ); ?>">
-							<h1 class="beta"><?php echo $content['title']; ?></h1>
-						</a>
-					<?php else : ?>
-						<h1 class="beta"><?php echo $content['title']; ?></h1>
-					<?php endif; ?>
+				<?php endif; ?>
+				<?php if ( $content['permalink'] ) : ?>
+					<a href="<?php echo $content['permalink']; ?>" class="<?php imns( 'm-card__link' ); ?>">
+						<h2 class="beta"><?php echo $content['title']; ?></h2>
+					</a>
+				<?php else : ?>
+					<h2 class="beta"><?php echo $content['title']; ?></h2>
+				<?php endif; ?>
 
-					<?php echo $content['text']; ?>
-					<div class="<?php imns( 'm-card__tags' ); ?>">
-						<?php if ( $content['categories'] ) : ?>
-							<?php foreach ( $content['categories'] as $category ) : ?>
-								<a href="<?php echo esc_url( get_tag_link( $category->term_id ) ); ?>" class="<?php imns( 'a-tag' ); ?>"><?php echo esc_html( $category->name ); ?></a>
-							<?php endforeach; ?>
-						<?php endif; ?>
-					</div>
+				<?php echo $content['text']; ?>
+				<div class="<?php imns( 'm-card__tags' ); ?>">
+					<?php if ( $content['categories'] ) : ?>
+						<?php foreach ( $content['categories'] as $category ) : ?>
+							<a href="<?php echo esc_url( get_tag_link( $category->term_id ) ); ?>" class="<?php imns( 'a-tag' ); ?>"><?php echo esc_html( $category->name ); ?></a>
+						<?php endforeach; ?>
+					<?php endif; ?>
 				</div>
-			</article>
+			</div>
 		</div>
 	<?php
 	endif;
