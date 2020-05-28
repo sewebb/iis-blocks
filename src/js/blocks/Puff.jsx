@@ -55,14 +55,14 @@ registerBlockType('iis/puff', {
 						options={posts.length ? (
 							[
 								{
-									label: __('Choose a post', 'internetkunskap'),
+									label: __('Choose a post', 'iis'),
 									value: null,
 								},
 								...posts,
 							]
 						) : [
 							{
-								label: __('Loading posts...', 'internetkunskap'),
+								label: __('Loading posts...', 'iis'),
 								value: '',
 								disabled: true,
 							},
