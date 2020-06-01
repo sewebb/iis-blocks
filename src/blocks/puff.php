@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Render Puff block
+ *
+ * @param  array $attributes  Block settings
+ * @return string             HTML for block
+ */
 function iis_render_puff( $attributes ) {
 	$attributes = array_merge(
 		[
@@ -38,9 +44,9 @@ function iis_render_puff( $attributes ) {
 			'media'      => null,
 		];
 	} else {
-		$post       = get_post( $attributes['postId'] );
+		$post = get_post( $attributes['postId'] );
 
-		$media      = get_the_terms( $post, 'media' );
+		$media = get_the_terms( $post, 'media' );
 		if ( false !== $media ) {
 			$media_name = ! is_wp_error( $media ) ? $media[0]->name : 'article';
 		} else {
@@ -154,7 +160,7 @@ function iis_render_puff( $attributes ) {
 				</div>
 			</article>
 		</div>
-	<?php
+		<?php
 	endif;
 	return ob_get_clean();
 }
