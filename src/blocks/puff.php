@@ -82,22 +82,14 @@ function iis_render_puff( $attributes ) {
 
 			?>
 			<figcaption class="<?php imns( 'm-teaser__caption' ); ?>">
-				<div class="<?php imns( 'm-teaser__overlay' ); ?>">
-					<a class="<?php imns( 'm-teaser__link' ); ?>" href="<?php echo $content['permalink']; ?>">
-						<div class="<?php imns( 'm-teaser__headline-wrapper' ); ?>">
-							<h1 class="<?php imns( 'm-teaser__headline' ); ?>">
-								<?php echo $content['title']; ?>
-							</h1>
-						</div>
-						<?php if ( $content['text'] ) : ?>
-							<div class="<?php imns( 'm-teaser__excerpt-wrapper' ); ?>">
-								<p class="<?php imns( 'm-teaser__excerpt' ); ?>">
-									<?php echo $content['text']; ?>
-								</p>
-							</div>
-						<?php endif; ?>
-					</a>
-				</div>
+				<a class="<?php imns( 'm-teaser__link' ); ?>" href="<?php echo $content['permalink']; ?>">
+					<h1 class="<?php imns( 'm-teaser__headline' ); ?>">
+						<?php echo $content['title']; ?>
+						<svg class="<?php imns( 'icon m-teaser__headline__icon' ); ?>">
+							<use xlink:href="#icon-forwards"></use>
+						</svg>
+					</h1>
+				</a>
 			</figcaption>
 		</figure>
 
