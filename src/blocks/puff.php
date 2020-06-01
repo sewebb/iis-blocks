@@ -86,7 +86,7 @@ function iis_render_puff( $attributes ) {
 					<h1 class="<?php imns( 'm-teaser__headline' ); ?>">
 						<?php echo $content['title']; ?>
 						<svg class="<?php imns( 'icon m-teaser__headline__icon' ); ?>">
-							<use xlink:href="#icon-forwards"></use>
+							<use xlink:href="#icon-arrow-forwards"></use>
 						</svg>
 					</h1>
 				</a>
