@@ -17,7 +17,7 @@ function iis_render_puff( $attributes ) {
 	);
 
 	$image_class = ( $attributes['showAsTeaser'] ) ? imns( 'm-teaser__image', false ) : imns( 'm-card__image', false );
-	$image_size  = ( $attributes['showAsTeaser'] ) ? 'large' : 'puff-image';
+	$image_size  = ( $attributes['showAsTeaser'] ) ? 'puff-teaser-image' : 'puff-image';
 
 	if ( $attributes['custom'] ) {
 		$image = wp_get_attachment_image(
