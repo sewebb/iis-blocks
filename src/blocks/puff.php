@@ -39,8 +39,14 @@ function iis_render_puff( $attributes ) {
 		];
 	} else {
 		$post       = get_post( $attributes['postId'] );
+
 		$media      = get_the_terms( $post, 'media' );
-		$media_name = ! is_wp_error( $media ) ? $media[0]->name : 'article';
+		if ( false !== $media ) {
+			$media_name = ! is_wp_error( $media ) ? $media[0]->name : 'article';
+		} else {
+			$media_name = 'article';
+		}
+
 		$icon       = 'arrow-variant';
 		$date       = get_the_date( null, $post );
 		$categories = get_the_category( $post );
