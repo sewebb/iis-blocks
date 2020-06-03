@@ -11,6 +11,10 @@ const {
 
 const columnWidthOptions = [
 	{
+		label: 'One column',
+		value: '1',
+	},
+	{
 		label: 'Two columns',
 		value: '1/2',
 	},
@@ -29,7 +33,7 @@ registerBlockType('iis/column', {
 	attributes: {
 		columnWidth: {
 			type: 'string',
-			default: '',
+			default: '1/2',
 		},
 	},
 	getEditWrapperProps(attributes) {
@@ -51,13 +55,7 @@ registerBlockType('iis/column', {
 						<SelectControl
 							label="Width"
 							onChange={(width) => setAttributes({ columnWidth: width })}
-							options={[
-								{
-									label: 'Choose a with',
-									value: '',
-								},
-								...columnWidthOptions,
-							]}
+							options={columnWidthOptions}
 							value={columnWidth}
 						/>
 					</PanelBody>
