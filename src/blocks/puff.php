@@ -12,6 +12,7 @@ function iis_render_puff( $attributes ) {
 			'custom'       => false,
 			'postId'       => null,
 			'showAsTeaser' => false,
+			'showOnMobile' => false,
 			'title'        => null,
 			'text'         => null,
 			'imageId'      => null,
@@ -81,6 +82,10 @@ function iis_render_puff( $attributes ) {
 	}
 
 	$class = ( 'right' == $attributes['align'] ) ? 'alignright' : '';
+
+	if ('right' == $attributes['align'] && !$attributes['showOnMobile']) {
+		$class .= ' u-hide-sm';
+	}
 
 	ob_start();
 
