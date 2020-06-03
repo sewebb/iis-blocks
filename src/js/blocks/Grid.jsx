@@ -12,8 +12,7 @@ registerBlockType('iis/grid', {
 	icon: 'megaphone',
 	keywords: [__('grid', 'iis'), __('columns', 'iis'), __('column', 'iis')],
 	supports: {
-		// Wide is only used here for more width in editor
-		align: ['full', 'wide'],
+		align: ['full', 'center'],
 	},
 	attributes: {
 		big: {
@@ -22,8 +21,17 @@ registerBlockType('iis/grid', {
 		},
 		align: {
 			type: 'string',
-			default: 'wide',
+			default: 'center',
 		},
+	},
+	getEditWrapperProps(attributes) {
+		const { align } = attributes;
+
+		if (align === 'center') {
+			return { 'data-align': 'wide' };
+		}
+
+		return {};
 	},
 	edit() {
 		return (
