@@ -1,13 +1,24 @@
 <?php
 
-function iis_render_grid( $_, $content ) {
+function iis_render_grid( $attributes, $content ) {
+	$attributes = array_merge(
+		[
+			'align' => 'center',
+		],
+		$attributes
+	);
+
+	$class = '';
+
+	if ( 'full' == $attributes['align'] ) {
+		$class .= 'alignfull';
+	}
+
 	ob_start();
 	?>
-	<div class="<?php imns( 'section section--tight' ); ?>">
-		<div class="wrapper">
-			<div class="row">
-				<?php echo $content; ?>
-			</div>
+	<div class="wp-block-iis-grid <?php echo $class; ?>">
+		<div class="row">
+			<?php echo $content; ?>
 		</div>
 	</div>
 	<?php
