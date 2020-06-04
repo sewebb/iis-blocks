@@ -1,9 +1,14 @@
 <?php
 
 function iis_render_column( $attributes, $content ) {
-	$column_width = $attributes['columnWidth'] ?? '1/2';
+	$attributes = array_merge(
+		[
+			'columnWidth' => '1/2',
+		],
+		$attributes
+	);
 
-	switch ( $column_width ) {
+	switch ( $attributes['columnWidth'] ) {
 		case '1/2':
 			$grid_class = 'grid-18 grid-md-9';
 			break;
