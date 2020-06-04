@@ -1,11 +1,18 @@
 <?php
 
+/**
+ * Render Puff block
+ *
+ * @param  array $attributes  Block settings
+ * @return string             HTML for block
+ */
 function iis_render_puff( $attributes ) {
 	$attributes = array_merge(
 		[
 			'custom'       => false,
 			'postId'       => null,
 			'showAsTeaser' => false,
+			'showOnMobile' => false,
 			'title'        => null,
 			'text'         => null,
 			'imageId'      => null,
@@ -38,9 +45,15 @@ function iis_render_puff( $attributes ) {
 			'media'      => null,
 		];
 	} else {
-		$post       = get_post( $attributes['postId'] );
-		$media      = get_the_terms( $post, 'media' );
-		$media_name = ! is_wp_error( $media ) ? $media[0]->name : 'article';
+		$post = get_post( $attributes['postId'] );
+
+		$media = get_the_terms( $post, 'media' );
+		if ( false !== $media ) {
+			$media_name = ! is_wp_error( $media ) ? $media[0]->name : 'article';
+		} else {
+			$media_name = 'article';
+		}
+
 		$icon       = 'arrow-variant';
 		$date       = get_the_date( null, $post );
 		$categories = get_the_category( $post );
@@ -69,6 +82,10 @@ function iis_render_puff( $attributes ) {
 	}
 
 	$class = ( 'right' == $attributes['align'] ) ? 'alignright' : '';
+
+	if ('right' == $attributes['align'] && !$attributes['showOnMobile']) {
+		$class .= ' u-hide-sm';
+	}
 
 	ob_start();
 
@@ -135,7 +152,7 @@ function iis_render_puff( $attributes ) {
 				</div>
 			</div>
 		</div>
-	<?php
+		<?php
 	endif;
 	return ob_get_clean();
 }

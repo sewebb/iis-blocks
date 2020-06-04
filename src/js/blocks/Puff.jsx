@@ -45,6 +45,10 @@ registerBlockType('iis/puff', {
 			type: 'boolean',
 			default: false,
 		},
+		showOnMobile: {
+			type: 'boolean',
+			default: false,
+		},
 		imagePreviewUrl: {
 			type: 'string',
 			default: null,
@@ -62,7 +66,11 @@ registerBlockType('iis/puff', {
 			default: '',
 		},
 		url: {
-			type: 'text',
+			type: 'string',
+			default: null,
+		},
+		align: {
+			type: 'string',
 			default: null,
 		},
 	},
@@ -155,6 +163,13 @@ registerBlockType('iis/puff', {
 							checked={showAsTeaser}
 							onChange={(value) => setAttributes({ showAsTeaser: value })}
 						/>
+						{attributes.align === 'right' && (
+							<CheckboxControl
+								label="Show on mobile"
+								checked={attributes.showOnMobile}
+								onChange={(showOnMobile) => setAttributes({ showOnMobile })}
+							/>
+						)}
 					</PanelBody>
 					{attributes.custom && (
 						<PanelBody title="Image">

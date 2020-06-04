@@ -1,3 +1,5 @@
+import './hero.css';
+
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { registerBlockType } = wp.blocks;
@@ -9,8 +11,6 @@ const {
 	RichText,
 	InnerBlocks,
 } = wp.editor;
-
-import './hero.css';
 
 registerBlockType('iis/hero', {
 	title: __('Hero'),
@@ -38,11 +38,20 @@ registerBlockType('iis/hero', {
 			default: '',
 		},
 	},
+	getEditWrapperProps(attributes) {
+		const { align } = attributes;
+
+		if (align === 'center') {
+			return { 'data-align': 'wide' };
+		}
+
+		return {};
+	},
 	edit({ attributes, setAttributes }) {
 		let image = null;
 
 		if (attributes.mediaUrl) {
-			image = <img src={attributes.mediaUrl} alt="" style={{width: '100%', height: 'auto'}}/>;
+			image = <img src={attributes.mediaUrl} alt="" style={{ width: '100%', height: 'auto' }} />;
 		}
 
 		return (
@@ -53,7 +62,7 @@ registerBlockType('iis/hero', {
 						{attributes.mediaUrl === null && (
 							<MediaUploadCheck>
 								<MediaUpload
-									onSelect={imageObject => (
+									onSelect={(imageObject) => (
 										setAttributes({
 											mediaUrl: imageObject.sizes.full.url,
 											mediaId: imageObject.id,
@@ -61,9 +70,11 @@ registerBlockType('iis/hero', {
 									)}
 									type="image"
 									value={attributes.mediaUrl}
-									render={({open}) => (
-										<Button className="components-button editor-post-featured-image__toggle"
-												onClick={open}>
+									render={({ open }) => (
+										<Button
+											className="components-button editor-post-featured-image__toggle"
+											onClick={open}
+										>
 											Upload Image!
 										</Button>
 									)}
@@ -71,8 +82,10 @@ registerBlockType('iis/hero', {
 							</MediaUploadCheck>
 						)}
 						{attributes.mediaUrl !== null && (
-							<Button className="components-button is-button is-default"
-									onClick={() => setAttributes({mediaUrl: null})}>
+							<Button
+								className="components-button is-button is-default"
+								onClick={() => setAttributes({ mediaUrl: null })}
+							>
 								Remove background
 							</Button>
 						)}
@@ -84,15 +97,15 @@ registerBlockType('iis/hero', {
 						<div className="iis-block-hero__inner-content">
 							<RichText
 								tagName="h1"
-								value={ attributes.title }
+								value={attributes.title}
 								placeholder={__('Title')}
-								onChange={ title => setAttributes({ title }) }
+								onChange={(title) => setAttributes({ title })}
 							/>
 							<RichText
 								tagName="p"
-								value={ attributes.introText }
+								value={attributes.introText}
 								placeholder={__('Content')}
-								onChange={ introText => setAttributes({ introText }) }
+								onChange={(introText) => setAttributes({ introText })}
 							/>
 							<div className="iis-block-hero__buttons">
 								<InnerBlocks allowedBlocks={['iis/button']} />
