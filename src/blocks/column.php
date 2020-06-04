@@ -1,7 +1,7 @@
 <?php
 
 function iis_render_column( $attributes, $content ) {
-	$column_width = $attributes['columnWidth'] ?? '';
+	$column_width = $attributes['columnWidth'] ?? '1/2';
 
 	switch ( $column_width ) {
 		case '1/2':
