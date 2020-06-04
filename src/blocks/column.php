@@ -23,7 +23,7 @@ function iis_render_column( $attributes, $content ) {
 	ob_start();
 	?>
 
-	<div class="<?php echo $grid_class; ?>">
+	<div class="<?php echo $grid_class; ?> u-m-b-4">
 		<?php echo $content; ?>
 	</div>
 
