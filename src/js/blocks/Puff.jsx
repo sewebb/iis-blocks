@@ -26,7 +26,7 @@ registerBlockType('iis/puff', {
 		__('puff', 'iis'),
 	],
 	supports: {
-		align: ['right'],
+		align: ['right', 'wide'],
 	},
 	attributes: {
 		custom: {
@@ -85,7 +85,6 @@ registerBlockType('iis/puff', {
 			border: '1px solid #bbb',
 			borderRadius: '.25rem',
 			overflow: 'hidden',
-			maxWidth: '400px',
 		};
 
 		const styleCardContent = {
@@ -125,6 +124,15 @@ registerBlockType('iis/puff', {
 
 		if (attributes.imagePreviewUrl) {
 			image = <img src={attributes.imagePreviewUrl} alt="" style={{ width: '100%', height: 'auto' }} />;
+		}
+
+		if (!attributes.showAsTeaser && attributes.align === 'wide') {
+			styleCard.display = 'flex';
+			styleCardImage.maxWidth = '50%';
+			styleCardImage.height = '100%';
+			styleCardImage.flex = '0 0 100%';
+			styleCardImage.width = '100%';
+			styleCardImage.borderRadius = '.25rem 0 0 .25rem';
 		}
 
 		useEffect(() => {

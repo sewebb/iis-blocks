@@ -81,7 +81,7 @@ function iis_render_puff( $attributes ) {
 		];
 	}
 
-	$class = ( 'right' == $attributes['align'] ) ? 'alignright' : '';
+	$class = ( in_array( $attributes['align'], [ 'right', 'wide' ], true ) ) ? 'align' . $attributes['align'] : '';
 
 	if ('right' == $attributes['align'] && !$attributes['showOnMobile']) {
 		$class .= ' u-hide-sm';
@@ -112,8 +112,14 @@ function iis_render_puff( $attributes ) {
 
 		<?php
 	else :
+		$card_class = 'm-card m-card--padded';
+
+		if ( 'wide' == $attributes['align'] ) {
+			$card_class .= ' m-card--wide';
+		}
+
 		?>
-		<div class="<?php imns( 'm-card m-card--padded' ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
+		<div class="<?php imns( $card_class ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
 			<?php
 
 			if ( $content['thumbnail'] ) {

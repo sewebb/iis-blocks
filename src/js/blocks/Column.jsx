@@ -11,16 +11,20 @@ const {
 
 const columnWidthOptions = [
 	{
-		label: 'One column',
-		value: '1',
+		label: '1/3',
+		value: '1/3',
 	},
 	{
-		label: 'Two columns',
+		label: '1/2',
 		value: '1/2',
 	},
 	{
-		label: 'Three columns',
-		value: '1/3',
+		label: '2/3',
+		value: '2/3',
+	},
+	{
+		label: 'Full width',
+		value: '1',
 	},
 ];
 

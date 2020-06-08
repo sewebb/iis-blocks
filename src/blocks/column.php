@@ -15,6 +15,9 @@ function iis_render_column( $attributes, $content ) {
 		case '1/3':
 			$grid_class = 'grid-18 grid-md-6';
 			break;
+		case '2/3':
+			$grid_class = 'grid-18 grid-md-12';
+			break;
 		default:
 			$grid_class = 'grid-18';
 			break;
