@@ -7,14 +7,18 @@ function iis_render_block_hero( $attributes, $content ) {
 			'mediaId'   => null,
 			'title'     => '',
 			'introText' => '',
-			'align'     => 'full',
+			'align'     => 'wide',
 		],
 		$attributes
 	);
 
 	$class = 'o-hero';
 
-	if ( $attributes['align'] == 'full' ) {
+	if ( ! $attributes['mediaId'] ) {
+		$class .= ' o-hero--no-image';
+	}
+
+	if ( 'full' == $attributes['align'] ) {
 		$class .= ' !alignfull';
 	}
 

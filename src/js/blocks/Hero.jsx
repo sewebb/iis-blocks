@@ -18,7 +18,7 @@ registerBlockType('iis/hero', {
 	icon: 'megaphone',
 	keywords: [__('hero'), __('title')],
 	supports: {
-		align: ['full', 'center'],
+		align: ['full', 'wide'],
 	},
 	attributes: {
 		mediaUrl: {
@@ -37,15 +37,10 @@ registerBlockType('iis/hero', {
 			type: 'string',
 			default: '',
 		},
-	},
-	getEditWrapperProps(attributes) {
-		const { align } = attributes;
-
-		if (align === 'center') {
-			return { 'data-align': 'wide' };
-		}
-
-		return {};
+		align: {
+			type: 'string',
+			default: 'wide',
+		},
 	},
 	edit({ attributes, setAttributes }) {
 		let image = null;
@@ -91,8 +86,11 @@ registerBlockType('iis/hero', {
 						)}
 					</PanelBody>
 				</InspectorControls>
-				<div className="iis-block-hero">
-					<img src={attributes.mediaUrl} className="iis-block-hero__image" />
+				<div className={`iis-block-hero ${!attributes.mediaId ? 'iis-block-hero--no-image' : null}`}>
+					{attributes.mediaUrl && (
+						<img src={attributes.mediaUrl} className="iis-block-hero__image" />
+					)}
+
 					<div className="iis-block-hero__content">
 						<div className="iis-block-hero__inner-content">
 							<RichText
