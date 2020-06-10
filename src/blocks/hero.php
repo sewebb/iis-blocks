@@ -7,21 +7,30 @@ function iis_render_block_hero( $attributes, $content ) {
 			'mediaId'   => null,
 			'title'     => '',
 			'introText' => '',
-			'align'     => 'full',
+			'align'     => 'wide',
 		],
 		$attributes
 	);
 
 	$class = 'o-hero';
+	$img   = null;
 
-	if ( $attributes['align'] == 'full' ) {
+	if ( $attributes['mediaId'] ) {
+		$img = wp_get_attachment_image( $attributes['mediaId'], 'hero', false, [ 'class' => imns( 'o-hero__image', false ) ] );
+	}
+
+	if ( ! $img ) {
+		$class .= ' o-hero--no-image';
+	}
+
+	if ( 'full' == $attributes['align'] ) {
 		$class .= ' !alignfull';
 	}
 
 	ob_start();
 	?>
 	<div class="wp-block-iis-hero <?php imns( $class ); ?>">
-		<?php echo wp_get_attachment_image( $attributes['mediaId'], 'hero', false, [ 'class' => imns( 'o-hero__image', false ) ] ); ?>
+		<?php echo $img; ?>
 		<div class="<?php imns( 'o-hero__caption' ); ?>">
 			<div class="wrapper">
 				<div class="<?php imns( 'o-hero__text' ); ?>">
