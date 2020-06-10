@@ -79,7 +79,7 @@ registerBlockType('iis/hero', {
 						{attributes.mediaUrl !== null && (
 							<Button
 								className="components-button is-button is-default"
-								onClick={() => setAttributes({ mediaUrl: null })}
+								onClick={() => setAttributes({ mediaUrl: null, mediaId: null })}
 							>
 								Remove background
 							</Button>
