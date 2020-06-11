@@ -1,5 +1,11 @@
 <?php
 
+/**
+ * Render Puff block
+ *
+ * @param  array $attributes  Block settings
+ * @return string             HTML for block
+ */
 function iis_render_puff( $attributes ) {
 	$attributes = array_merge(
 		[
@@ -106,8 +112,14 @@ function iis_render_puff( $attributes ) {
 			</figcaption>
 		</figure>
 
-		<?php
+	<?php
 	else :
+		$card_class = 'm-card m-card--padded';
+
+		if ( 'wide' == $attributes['align'] ) {
+			$card_class .= ' m-card--wide';
+		}
+
 		?>
 		<div class="<?php imns( $card_class ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
 			<?php
@@ -138,7 +150,7 @@ function iis_render_puff( $attributes ) {
 					<h2 class="beta"><?php echo $content['title']; ?></h2>
 				<?php endif; ?>
 
-				<?php echo $content['text']; ?>
+				<p class="<?php imns( 'm-card__text' ); ?>"><?php echo $content['text']; ?></p>
 				<div class="<?php imns( 'm-card__bottom' ); ?>">
 					<?php if ( $content['categories'] ) : ?>
 						<?php foreach ( $content['categories'] as $category ) : ?>
@@ -148,7 +160,7 @@ function iis_render_puff( $attributes ) {
 				</div>
 			</div>
 		</div>
-		<?php
+	<?php
 	endif;
 	return ob_get_clean();
 }

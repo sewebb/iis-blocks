@@ -169,11 +169,13 @@ registerBlockType('iis/puff', {
 								onChange={(showOnMobile) => setAttributes({ showOnMobile })}
 							/>
 						)}
-						<CheckboxControl
-							label={__('Display tags/categories', 'iis')}
-							checked={attributes.displayTags}
-							onChange={(displayTags) => setAttributes({ displayTags })}
-						/>
+						{!custom && (
+							<CheckboxControl
+								label={__('Display tags/categories', 'iis')}
+								checked={attributes.displayTags}
+								onChange={(displayTags) => setAttributes({ displayTags })}
+							/>
+						)}
 					</PanelBody>
 					{attributes.custom && (
 						<PanelBody title="Image">
