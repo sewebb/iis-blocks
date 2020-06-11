@@ -28,13 +28,13 @@ registerBlockType('iis/postarchive', {
 				<InspectorControls>
 					<PanelBody>
 						<DataSelect
-							label={ __('Select post type', 'iis') }
+							label={__('Select post type', 'iis')}
 							placeholder={{ value: null, label: __('Post type', 'iis') }}
-							api="/wp-json/wp/v2/types"
-							value_key={ obj => obj.slug }
-							label_key={ obj => obj.name }
+							api="/wp/v2/types"
+							value_key={(obj) => obj.slug}
+							label_key={(obj) => obj.name}
 							value={attributes.postType}
-							set={ postType => setAttributes({ postType }) }
+							set={(postType) => setAttributes({ postType })}
 						/>
 					</PanelBody>
 				</InspectorControls>

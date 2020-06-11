@@ -13,6 +13,7 @@ function iis_render_puff( $attributes ) {
 			'postId'       => null,
 			'showAsTeaser' => false,
 			'showOnMobile' => false,
+			'displayTags'  => false,
 			'title'        => null,
 			'text'         => null,
 			'imageId'      => null,
@@ -56,7 +57,8 @@ function iis_render_puff( $attributes ) {
 
 		$icon       = 'arrow-variant';
 		$date       = get_the_date( null, $post );
-		$categories = get_the_category( $post );
+		$taxonomies = apply_filters( 'iis_blocks_puff_taxonomies', 'category' );
+		$categories = ( $attributes['displayTags'] ) ? wp_get_post_terms( $post->ID, $taxonomies ) : null;
 		$thumbnail  = get_the_post_thumbnail(
 			$post,
 			$image_size,
@@ -81,9 +83,9 @@ function iis_render_puff( $attributes ) {
 		];
 	}
 
-	$class = ( 'right' == $attributes['align'] ) ? 'alignright' : '';
+	$class = ( in_array( $attributes['align'], [ 'right', 'wide' ], true ) ) ? 'align' . $attributes['align'] : '';
 
-	if ('right' == $attributes['align'] && !$attributes['showOnMobile']) {
+	if ( 'right' == $attributes['align'] && ! $attributes['showOnMobile'] ) {
 		$class .= ' u-hide-sm';
 	}
 
@@ -110,10 +112,16 @@ function iis_render_puff( $attributes ) {
 			</figcaption>
 		</figure>
 
-		<?php
+	<?php
 	else :
+		$card_class = 'm-card m-card--padded';
+
+		if ( 'wide' == $attributes['align'] ) {
+			$card_class .= ' m-card--wide';
+		}
+
 		?>
-		<div class="<?php imns( 'm-card m-card--padded' ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
+		<div class="<?php imns( $card_class ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
 			<?php
 
 			if ( $content['thumbnail'] ) {
@@ -142,8 +150,8 @@ function iis_render_puff( $attributes ) {
 					<h2 class="beta"><?php echo $content['title']; ?></h2>
 				<?php endif; ?>
 
-				<?php echo $content['text']; ?>
-				<div class="<?php imns( 'm-card__tags' ); ?>">
+				<p class="<?php imns( 'm-card__text' ); ?>"><?php echo $content['text']; ?></p>
+				<div class="<?php imns( 'm-card__bottom' ); ?>">
 					<?php if ( $content['categories'] ) : ?>
 						<?php foreach ( $content['categories'] as $category ) : ?>
 							<a href="<?php echo esc_url( get_tag_link( $category->term_id ) ); ?>" class="<?php imns( 'a-tag' ); ?>"><?php echo esc_html( $category->name ); ?></a>
@@ -152,7 +160,7 @@ function iis_render_puff( $attributes ) {
 				</div>
 			</div>
 		</div>
-		<?php
+	<?php
 	endif;
 	return ob_get_clean();
 }
