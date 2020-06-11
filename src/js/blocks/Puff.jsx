@@ -1,9 +1,9 @@
+import DataSelect from '../components/DataSelect';
+
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
-const { useEffect, useState } = wp.element;
 const { registerBlockType } = wp.blocks;
 const {
-	SelectControl,
 	CheckboxControl,
 	PanelBody,
 	Button,
@@ -49,6 +49,10 @@ registerBlockType('iis/puff', {
 			type: 'boolean',
 			default: false,
 		},
+		displayTags: {
+			type: 'boolean',
+			default: false,
+		},
 		imagePreviewUrl: {
 			type: 'string',
 			default: null,
@@ -75,7 +79,6 @@ registerBlockType('iis/puff', {
 		},
 	},
 	edit({ attributes, setAttributes }) {
-		const [posts, setPosts] = useState([]);
 		const {
 			showAsTeaser,
 			custom,
@@ -135,18 +138,6 @@ registerBlockType('iis/puff', {
 			styleCardImage.borderRadius = '.25rem 0 0 .25rem';
 		}
 
-		useEffect(() => {
-			wp.apiFetch({ path: '/wp/v2/posts?parent=0&per_page=-1' }).then((fetchedPosts) => {
-				// Make posts in options format.
-				const postOptions = fetchedPosts.map((post) => ({
-					label: post.title.rendered,
-					value: post.id,
-				}));
-
-				setPosts(postOptions);
-			});
-		}, []);
-
 		return (
 			<Fragment>
 				<InspectorControls>
@@ -178,6 +169,11 @@ registerBlockType('iis/puff', {
 								onChange={(showOnMobile) => setAttributes({ showOnMobile })}
 							/>
 						)}
+						<CheckboxControl
+							label={__('Display tags/categories', 'iis')}
+							checked={attributes.displayTags}
+							onChange={(displayTags) => setAttributes({ displayTags })}
+						/>
 					</PanelBody>
 					{attributes.custom && (
 						<PanelBody title="Image">
@@ -227,25 +223,15 @@ registerBlockType('iis/puff', {
 						style={(showAsTeaser && custom) ? styleTeaserContent : styleCardContent}
 					>
 						{!custom && (
-							<SelectControl
-								label={__('Post', 'iis')}
-								onChange={(postId) => setAttributes({ postId })}
-								options={posts.length ? (
-									[
-										{
-											label: __('Choose a post', 'internetkunskap'),
-											value: null,
-										},
-										...posts,
-									]
-								) : [
-									{
-										label: __('Loading posts...', 'internetkunskap'),
-										value: '',
-										disabled: true,
-									},
-								]}
+							<DataSelect
+								label={__('Select post', 'iis')}
+								placeholder={{ value: null, label: __('Choose a post', 'iis') }}
+								api={`/iis-blocks/v1/puff-posts?include=${attributes.postId}`}
+								value_key={(obj) => obj.ID}
+								label_key={(obj) => obj.post_title}
 								value={attributes.postId}
+								set={(postId) => setAttributes({ postId })}
+								search
 							/>
 						)}
 						{custom && (
