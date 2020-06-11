@@ -6,6 +6,8 @@ function iis_render_puff( $attributes ) {
 			'custom'       => false,
 			'postId'       => null,
 			'showAsTeaser' => false,
+			'showOnMobile' => false,
+			'displayTags'  => false,
 			'title'        => null,
 			'text'         => null,
 			'imageId'      => null,
@@ -38,12 +40,19 @@ function iis_render_puff( $attributes ) {
 			'media'      => null,
 		];
 	} else {
-		$post       = get_post( $attributes['postId'] );
-		$media      = get_the_terms( $post, 'media' );
-		$media_name = ! is_wp_error( $media ) ? $media[0]->name : 'article';
+		$post = get_post( $attributes['postId'] );
+
+		$media = get_the_terms( $post, 'media' );
+		if ( false !== $media ) {
+			$media_name = ! is_wp_error( $media ) ? $media[0]->name : 'article';
+		} else {
+			$media_name = 'article';
+		}
+
 		$icon       = 'arrow-variant';
 		$date       = get_the_date( null, $post );
-		$categories = get_the_category( $post );
+		$taxonomies = apply_filters( 'iis_blocks_puff_taxonomies', 'category' );
+		$categories = ( $attributes['displayTags'] ) ? wp_get_post_terms( $post->ID, $taxonomies ) : null;
 		$thumbnail  = get_the_post_thumbnail(
 			$post,
 			$image_size,
@@ -68,7 +77,11 @@ function iis_render_puff( $attributes ) {
 		];
 	}
 
-	$class = ( 'right' == $attributes['align'] ) ? 'alignright' : '';
+	$class = ( in_array( $attributes['align'], [ 'right', 'wide' ], true ) ) ? 'align' . $attributes['align'] : '';
+
+	if ( 'right' == $attributes['align'] && ! $attributes['showOnMobile'] ) {
+		$class .= ' u-hide-sm';
+	}
 
 	ob_start();
 
@@ -96,7 +109,7 @@ function iis_render_puff( $attributes ) {
 		<?php
 	else :
 		?>
-		<div class="<?php imns( 'm-card m-card--padded' ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
+		<div class="<?php imns( $card_class ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
 			<?php
 
 			if ( $content['thumbnail'] ) {
@@ -126,7 +139,7 @@ function iis_render_puff( $attributes ) {
 				<?php endif; ?>
 
 				<?php echo $content['text']; ?>
-				<div class="<?php imns( 'm-card__tags' ); ?>">
+				<div class="<?php imns( 'm-card__bottom' ); ?>">
 					<?php if ( $content['categories'] ) : ?>
 						<?php foreach ( $content['categories'] as $category ) : ?>
 							<a href="<?php echo esc_url( get_tag_link( $category->term_id ) ); ?>" class="<?php imns( 'a-tag' ); ?>"><?php echo esc_html( $category->name ); ?></a>
@@ -135,7 +148,7 @@ function iis_render_puff( $attributes ) {
 				</div>
 			</div>
 		</div>
-	<?php
+		<?php
 	endif;
 	return ob_get_clean();
 }

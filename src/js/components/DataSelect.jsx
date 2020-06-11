@@ -42,8 +42,7 @@ export default class DataSelect extends Component {
 			url += `?search=${this.state.search}`;
 		}
 
-		fetch(url)
-			.then(response => response.json())
+		wp.apiFetch({ path: url })
 			.then((json) => {
 				if ('data' in json && 'status' in json.data && json.data.status > 299) {
 					throw new Error(json.message);

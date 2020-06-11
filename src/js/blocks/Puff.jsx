@@ -1,9 +1,9 @@
+import DataSelect from '../components/DataSelect';
+
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
-const { useEffect, useState } = wp.element;
 const { registerBlockType } = wp.blocks;
 const {
-	SelectControl,
 	CheckboxControl,
 	PanelBody,
 	Button,
@@ -26,7 +26,7 @@ registerBlockType('iis/puff', {
 		__('puff', 'iis'),
 	],
 	supports: {
-		align: ['right'],
+		align: ['right', 'wide'],
 	},
 	attributes: {
 		custom: {
@@ -42,6 +42,14 @@ registerBlockType('iis/puff', {
 			default: {},
 		},
 		showAsTeaser: {
+			type: 'boolean',
+			default: false,
+		},
+		showOnMobile: {
+			type: 'boolean',
+			default: false,
+		},
+		displayTags: {
 			type: 'boolean',
 			default: false,
 		},
@@ -62,12 +70,15 @@ registerBlockType('iis/puff', {
 			default: '',
 		},
 		url: {
-			type: 'text',
+			type: 'string',
+			default: null,
+		},
+		align: {
+			type: 'string',
 			default: null,
 		},
 	},
 	edit({ attributes, setAttributes }) {
-		const [posts, setPosts] = useState([]);
 		const {
 			showAsTeaser,
 			custom,
@@ -77,7 +88,6 @@ registerBlockType('iis/puff', {
 			border: '1px solid #bbb',
 			borderRadius: '.25rem',
 			overflow: 'hidden',
-			maxWidth: '400px',
 		};
 
 		const styleCardContent = {
@@ -119,17 +129,14 @@ registerBlockType('iis/puff', {
 			image = <img src={attributes.imagePreviewUrl} alt="" style={{ width: '100%', height: 'auto' }} />;
 		}
 
-		useEffect(() => {
-			wp.apiFetch({ path: '/wp/v2/posts?parent=0&per_page=-1' }).then((fetchedPosts) => {
-				// Make posts in options format.
-				const postOptions = fetchedPosts.map((post) => ({
-					label: post.title.rendered,
-					value: post.id,
-				}));
-
-				setPosts(postOptions);
-			});
-		}, []);
+		if (!attributes.showAsTeaser && attributes.align === 'wide') {
+			styleCard.display = 'flex';
+			styleCardImage.maxWidth = '50%';
+			styleCardImage.height = '100%';
+			styleCardImage.flex = '0 0 100%';
+			styleCardImage.width = '100%';
+			styleCardImage.borderRadius = '.25rem 0 0 .25rem';
+		}
 
 		return (
 			<Fragment>
@@ -154,6 +161,18 @@ registerBlockType('iis/puff', {
 							label="Show as teaser"
 							checked={showAsTeaser}
 							onChange={(value) => setAttributes({ showAsTeaser: value })}
+						/>
+						{attributes.align === 'right' && (
+							<CheckboxControl
+								label="Show on mobile"
+								checked={attributes.showOnMobile}
+								onChange={(showOnMobile) => setAttributes({ showOnMobile })}
+							/>
+						)}
+						<CheckboxControl
+							label={__('Display tags/categories', 'iis')}
+							checked={attributes.displayTags}
+							onChange={(displayTags) => setAttributes({ displayTags })}
 						/>
 					</PanelBody>
 					{attributes.custom && (
@@ -204,25 +223,15 @@ registerBlockType('iis/puff', {
 						style={(showAsTeaser && custom) ? styleTeaserContent : styleCardContent}
 					>
 						{!custom && (
-							<SelectControl
-								label={__('Post', 'iis')}
-								onChange={(postId) => setAttributes({ postId })}
-								options={posts.length ? (
-									[
-										{
-											label: __('Choose a post', 'internetkunskap'),
-											value: null,
-										},
-										...posts,
-									]
-								) : [
-									{
-										label: __('Loading posts...', 'internetkunskap'),
-										value: '',
-										disabled: true,
-									},
-								]}
+							<DataSelect
+								label={__('Select post', 'iis')}
+								placeholder={{ value: null, label: __('Choose a post', 'iis') }}
+								api={`/iis-blocks/v1/puff-posts?include=${attributes.postId}`}
+								value_key={(obj) => obj.ID}
+								label_key={(obj) => obj.post_title}
 								value={attributes.postId}
+								set={(postId) => setAttributes({ postId })}
+								search
 							/>
 						)}
 						{custom && (
