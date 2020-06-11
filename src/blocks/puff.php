@@ -150,7 +150,7 @@ function iis_render_puff( $attributes ) {
 					<h2 class="beta"><?php echo $content['title']; ?></h2>
 				<?php endif; ?>
 
-				<?php echo $content['text']; ?>
+				<p class="<?php imns( 'm-card__text' ); ?>"><?php echo $content['text']; ?></p>
 				<div class="<?php imns( 'm-card__bottom' ); ?>">
 					<?php if ( $content['categories'] ) : ?>
 						<?php foreach ( $content['categories'] as $category ) : ?>
