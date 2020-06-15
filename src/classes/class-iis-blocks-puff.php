@@ -3,7 +3,7 @@ defined( 'ABSPATH' ) || die( 'not allowed' );
 
 if ( ! class_exists( 'Iis_Blocks_Puff' ) ) :
 	/**
-	 * Class IIS newsletter
+	 * Class IIS puff
 	 *
 	 * Handle the newsletters
 	 */
