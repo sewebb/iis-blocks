@@ -9,17 +9,18 @@
 function iis_render_puff( $attributes ) {
 	$attributes = array_merge(
 		[
-			'custom'       => false,
-			'postId'       => null,
-			'showAsTeaser' => false,
-			'showOnMobile' => false,
-			'displayTags'  => false,
-			'title'        => null,
-			'text'         => null,
-			'imageId'      => null,
-			'alignment'    => null,
-			'url'          => null,
-			'align'        => null,
+			'custom'         => false,
+			'postId'         => null,
+			'showAsTeaser'   => false,
+			'showOnMobile'   => false,
+			'displayTags'    => false,
+			'displayExcerpt' => true,
+			'title'          => null,
+			'text'           => null,
+			'imageId'        => null,
+			'alignment'      => null,
+			'url'            => null,
+			'align'          => null,
 		],
 		$attributes
 	);
@@ -38,7 +39,7 @@ function iis_render_puff( $attributes ) {
 		$content = [
 			'thumbnail'  => $image,
 			'title'      => $attributes['title'],
-			'text'       => $attributes['text'],
+			'text'       => ( ! empty( $attributes['text'] ) ) ? $attributes['text'] : null,
 			'permalink'  => $attributes['url'],
 			'icon'       => 'arrow-forwards',
 			'date'       => null,
@@ -58,7 +59,7 @@ function iis_render_puff( $attributes ) {
 		$icon       = 'arrow-variant';
 		$date       = get_the_date( null, $post );
 		$taxonomies = apply_filters( 'iis_blocks_puff_taxonomies', 'category' );
-		$categories = ( $attributes['displayTags'] ) ? wp_get_post_terms( $post->ID, $taxonomies ) : null;
+		$categories = ( $attributes['displayTags'] && ! $attributes['showAsTeaser'] ) ? wp_get_post_terms( $post->ID, $taxonomies ) : null;
 		$thumbnail  = get_the_post_thumbnail(
 			$post,
 			$image_size,
@@ -74,7 +75,7 @@ function iis_render_puff( $attributes ) {
 		$content = [
 			'thumbnail'  => $thumbnail,
 			'title'      => $post->post_title,
-			'text'       => $post->post_excerpt,
+			'text'       => ( $attributes['displayExcerpt'] && ! empty( $post->post_excerpt ) ) ? $post->post_excerpt : null,
 			'permalink'  => get_permalink( $post ),
 			'icon'       => $icon,
 			'date'       => $date,
@@ -89,79 +90,79 @@ function iis_render_puff( $attributes ) {
 		$class .= ' u-hide-sm';
 	}
 
-	ob_start();
+	$card_class = 'm-card';
 
-	if ( $attributes['showAsTeaser'] ) : ?>
-		<figure class="<?php imns( 'm-teaser' ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
-			<?php
+	if ( 'wide' == $attributes['align'] && ! $attributes['showAsTeaser'] ) {
+		$card_class .= ' m-card--wide';
+	}
 
-			if ( $content['thumbnail'] ) {
-				echo $content['thumbnail'];
-			}
+	if ( $attributes['showAsTeaser'] ) {
+		$card_class .= ' m-card--teaser';
+	} else {
+		$card_class .= ' m-card--padded';
+	}
 
-			?>
-			<figcaption class="<?php imns( 'm-teaser__caption' ); ?>">
-				<a class="<?php imns( 'm-teaser__link' ); ?>" href="<?php echo $content['permalink']; ?>">
-					<h1 class="<?php imns( 'm-teaser__headline' ); ?>">
-						<?php echo $content['title']; ?>
-						<svg class="<?php imns( 'icon m-teaser__headline__icon' ); ?>">
-							<use xlink:href="#icon-arrow-forwards"></use>
-						</svg>
-					</h1>
-				</a>
-			</figcaption>
-		</figure>
+	$headline_size = ( $attributes['showAsTeaser'] ) ? 'alpha' : 'beta';
 
+	ob_start(); ?>
+	<div class="<?php imns( $card_class ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
 		<?php
-	else :
-		$card_class = 'm-card m-card--padded';
 
-		if ( 'wide' == $attributes['align'] ) {
-			$card_class .= ' m-card--wide';
+		if ( $content['thumbnail'] ) {
+			echo $content['thumbnail'];
 		}
 
 		?>
-		<div class="<?php imns( $card_class ); ?> <?php echo $class; ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
-			<?php
-
-			if ( $content['thumbnail'] ) {
-				echo $content['thumbnail'];
-			}
-
-			?>
-			<div class="<?php imns( 'm-card__content' ); ?>">
-				<?php if ( $content['media'] && ! is_wp_error( $content['media'] ) ) : ?>
-					<div class="<?php imns( 'm-card__meta' ); ?>">
-						<div class="<?php imns( 'a-meta' ); ?>">
-							<?php echo $content['date']; ?>
-						</div>
-						<div class="<?php imns( 'a-meta a-meta--ruby' ); ?>">
-							<svg class="<?php imns( 'icon' ); ?>">
-								<use xlink:href="#icon-<?php echo $content['icon']; ?>"></use>
-							</svg> <?php echo $content['media'][0]->name; ?>
-						</div>
+		<div class="<?php imns( 'm-card__content' ); ?>">
+			<?php if ( $content['media'] && ! is_wp_error( $content['media'] ) ) : ?>
+				<div class="<?php imns( 'm-card__meta' ); ?>">
+					<div class="<?php imns( 'a-meta' ); ?>">
+						<?php echo $content['date']; ?>
 					</div>
-				<?php endif; ?>
-				<?php if ( $content['permalink'] ) : ?>
-					<a href="<?php echo $content['permalink']; ?>" class="<?php imns( 'm-card__link' ); ?>">
-						<h2 class="beta"><?php echo $content['title']; ?></h2>
-					</a>
-				<?php else : ?>
-					<h2 class="beta"><?php echo $content['title']; ?></h2>
-				<?php endif; ?>
-
-				<p class="<?php imns( 'm-card__text' ); ?>"><?php echo $content['text']; ?></p>
-				<div class="<?php imns( 'm-card__bottom' ); ?>">
-					<?php if ( $content['categories'] ) : ?>
-						<?php foreach ( $content['categories'] as $category ) : ?>
-							<a href="<?php echo esc_url( get_tag_link( $category->term_id ) ); ?>" class="<?php imns( 'a-tag' ); ?>"><?php echo esc_html( $category->name ); ?></a>
-						<?php endforeach; ?>
-					<?php endif; ?>
+					<div class="<?php imns( 'a-meta a-meta--ruby' ); ?>">
+						<svg class="<?php imns( 'icon' ); ?>">
+							<use xlink:href="#icon-<?php echo $content['icon']; ?>"></use>
+						</svg> <?php echo $content['media'][0]->name; ?>
+					</div>
 				</div>
+			<?php endif; ?>
+			<?php if ( $content['permalink'] ) : ?>
+				<a href="<?php echo $content['permalink']; ?>" class="<?php imns( 'm-card__link' ); ?>">
+					<h2 class="<?php echo $headline_size; ?>">
+						<?php echo $content['title']; ?>
+
+						<?php if ( $attributes['showAsTeaser'] ) : ?>
+							<svg class="<?php imns( 'icon m-card__headline__icon' ); ?>">
+								<use xlink:href="#icon-arrow-forwards"></use>
+							</svg>
+						<?php endif; ?>
+					</h2>
+				</a>
+			<?php else : ?>
+				<h2 class="<?php echo $headline_size; ?>">
+					<?php echo $content['title']; ?>
+					<?php if ( $attributes['showAsTeaser'] ) : ?>
+						<svg class="<?php imns( 'icon m-card__headline__icon' ); ?>">
+							<use xlink:href="#icon-arrow-forwards"></use>
+						</svg>
+					<?php endif; ?>
+				</h2>
+			<?php endif; ?>
+
+			<?php if ( $content['text'] ) : ?>
+				<p class="<?php imns( 'm-card__text' ); ?>"><?php echo $content['text']; ?></p>
+			<?php endif; ?>
+			<?php if ( $content['categories'] ) : ?>
+			<div class="<?php imns( 'm-card__bottom' ); ?>">
+				<?php foreach ( $content['categories'] as $category ) : ?>
+					<a href="<?php echo esc_url( get_tag_link( $category->term_id ) ); ?>" class="<?php imns( 'a-tag' ); ?>"><?php echo esc_html( $category->name ); ?></a>
+				<?php endforeach; ?>
 			</div>
+			<?php endif; ?>
 		</div>
-		<?php
-	endif;
+	</div>
+	<?php
+
 	return ob_get_clean();
 }
 

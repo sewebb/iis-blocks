@@ -53,6 +53,10 @@ registerBlockType('iis/puff', {
 			type: 'boolean',
 			default: false,
 		},
+		displayExcerpt: {
+			type: 'boolean',
+			default: true,
+		},
 		imagePreviewUrl: {
 			type: 'string',
 			default: null,
@@ -170,11 +174,18 @@ registerBlockType('iis/puff', {
 							/>
 						)}
 						{!custom && (
-							<CheckboxControl
-								label={__('Display tags/categories', 'iis')}
-								checked={attributes.displayTags}
-								onChange={(displayTags) => setAttributes({ displayTags })}
-							/>
+							<Fragment>
+								<CheckboxControl
+									label={__('Display tags/categories', 'iis')}
+									checked={attributes.displayTags}
+									onChange={(displayTags) => setAttributes({ displayTags })}
+								/>
+								<CheckboxControl
+									label="Display excerpt"
+									checked={attributes.displayExcerpt}
+									onChange={(displayExcerpt) => setAttributes({ displayExcerpt })}
+								/>
+							</Fragment>
 						)}
 					</PanelBody>
 					{attributes.custom && (
