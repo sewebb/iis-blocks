@@ -25,7 +25,7 @@ function iis_render_puff( $attributes ) {
 		$attributes
 	);
 
-	$image_class = ( $attributes['showAsTeaser'] ) ? imns( 'm-teaser__image', false ) : imns( 'm-card__image', false );
+	$image_class = imns( 'm-card__image', false );
 	$image_size  = ( $attributes['showAsTeaser'] ) ? 'puff-teaser-image' : 'puff-image';
 
 	if ( $attributes['custom'] ) {
