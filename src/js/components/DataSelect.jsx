@@ -3,10 +3,6 @@ const { SelectControl, Notice, TextControl } = wp.components;
 const { Component, Fragment } = wp.element;
 
 export default class DataSelect extends Component {
-	static defaultProps = {
-		set: () => {},
-	};
-
 	static getDerivedStateFromProps(props, state) {
 		if (props.value !== state.value) {
 			return {
@@ -125,3 +121,7 @@ export default class DataSelect extends Component {
 		);
 	}
 }
+
+DataSelect.defaultProps = {
+	set: () => {},
+};
