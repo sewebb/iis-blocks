@@ -35,6 +35,23 @@ if ( ! class_exists( 'Iis_Blocks_Puff' ) ) :
 					);
 				}
 			);
+
+			add_action(
+				'rest_api_init',
+				function () {
+					register_rest_route(
+						'iis-blocks/v1',
+						'/image-sizes',
+						[
+							'methods'             => 'GET',
+							'callback'            => [ $this, 'get_image_sizes' ],
+							'permission_callback' => function () {
+								return current_user_can( 'edit_posts' );
+							},
+						]
+					);
+				}
+			);
 		}
 
 		/**
@@ -75,6 +92,44 @@ if ( ! class_exists( 'Iis_Blocks_Puff' ) ) :
 			}
 
 			return $posts;
+		}
+
+		/**
+		 * Fetch image sizes.
+		 *
+		 * @return array[]
+		 */
+		public static function get_image_sizes() {
+			$image_sizes        = apply_filters( 'iis_blocks_puff_image_sizes', [ 'puff-image', 'puff-teaser-image' ] );
+			$sizes              = [];
+			$intermediate_sizes = get_intermediate_image_sizes();
+			$additional_sizes   = wp_get_additional_image_sizes();
+
+			foreach ( $intermediate_sizes as $size ) {
+				if ( ! in_array( $size, $image_sizes, true ) ) {
+					continue;
+				}
+
+				$name = ucwords( str_replace( [ '-', '_' ], ' ', $size ) );
+
+				if ( in_array( $size, [ 'thumbnail', 'medium', 'large' ], true ) ) {
+					$sizes[] = [
+						'width'  => get_option( $size . '_size_w' ),
+						'height' => get_option( $size . '_size_h' ),
+						'name'   => $name,
+						'size'   => $size,
+					];
+				} elseif ( isset( $additional_sizes[ $size ] ) ) {
+					$sizes[] = [
+						'width'  => $additional_sizes[ $size ]['width'],
+						'height' => $additional_sizes[ $size ]['height'],
+						'name'   => $name,
+						'size'   => $size,
+					];
+				}
+			}
+
+			return $sizes;
 		}
 	}
 

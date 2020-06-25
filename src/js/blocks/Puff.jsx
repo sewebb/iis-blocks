@@ -1,7 +1,7 @@
 import DataSelect from '../components/DataSelect';
 
 const { __ } = wp.i18n;
-const { Fragment } = wp.element;
+const { Fragment, useState, useEffect } = wp.element;
 const { registerBlockType } = wp.blocks;
 const {
 	CheckboxControl,
@@ -57,7 +57,7 @@ registerBlockType('iis/puff', {
 			type: 'boolean',
 			default: true,
 		},
-		imagePreviewUrl: {
+		imageSize: {
 			type: 'string',
 			default: null,
 		},
@@ -83,6 +83,8 @@ registerBlockType('iis/puff', {
 		},
 	},
 	edit({ attributes, setAttributes }) {
+		const [imageSizes, setImageSizes] = useState(null);
+		const [imagePreview, setImagePreview] = useState(null);
 		const {
 			showAsTeaser,
 			custom,
@@ -129,8 +131,8 @@ registerBlockType('iis/puff', {
 
 		let image = null;
 
-		if (attributes.imagePreviewUrl) {
-			image = <img src={attributes.imagePreviewUrl} alt="" style={{ width: '100%', height: 'auto' }} />;
+		if (imagePreview) {
+			image = <img src={imagePreview} alt="" style={{ width: '100%', height: 'auto' }} />;
 		}
 
 		if (!attributes.showAsTeaser && attributes.align === 'wide') {
@@ -141,6 +143,48 @@ registerBlockType('iis/puff', {
 			styleCardImage.width = '100%';
 			styleCardImage.borderRadius = '.25rem 0 0 .25rem';
 		}
+
+		useEffect(() => {
+			if (!attributes.imageId) {
+				setImagePreview(null);
+
+				return;
+			}
+
+			wp.data.select('core').getMedia(attributes.imageId);
+		}, [attributes.imageId]);
+
+		useEffect(() => {
+			if (!imageSizes) {
+				return;
+			}
+
+			let size = attributes.imageSize;
+
+			if (!size && attributes.showAsTeaser) {
+				size = 'puff-teaser-image';
+			} else if (!size && !attributes.showAsTeaser) {
+				size = 'puff-image';
+			}
+
+			console.log(size, imageSizes);
+
+			if (!(size in imageSizes)) {
+				size = 'full';
+			}
+
+			setImagePreview(imageSizes[size].source_url);
+		}, [imageSizes, attributes.imageSize, attributes.showAsTeaser]);
+
+		useEffect(() => {
+			wp.data.subscribe(() => {
+				const media = wp.data.select('core').getMedia(attributes.imageId);
+
+				if (media) {
+					setImageSizes(media.media_details.sizes);
+				}
+			});
+		}, []);
 
 		return (
 			<Fragment>
@@ -187,21 +231,31 @@ registerBlockType('iis/puff', {
 								/>
 							</Fragment>
 						)}
+						{custom && (
+							<DataSelect
+								label={__('Image size', 'iis')}
+								placeholder={{ value: '', label: __('Auto', 'iis') }}
+								api="/iis-blocks/v1/image-sizes"
+								value_key={(obj) => obj.size}
+								label_key={(obj) => `${obj.name} (${obj.width}x${obj.height}`}
+								value={attributes.imageSize}
+								set={(imageSize) => setAttributes({ imageSize })}
+							/>
+						)}
 					</PanelBody>
 					{attributes.custom && (
 						<PanelBody title="Image">
 							<div>{image}</div>
-							{attributes.imagePreviewUrl === null && (
+							{imagePreview === null && (
 								<MediaUploadCheck>
 									<MediaUpload
 										onSelect={(imageObject) => (
 											setAttributes({
-												imagePreviewUrl: imageObject.sizes.full.url,
 												imageId: imageObject.id,
 											})
 										)}
 										type="image"
-										value={attributes.imagePreviewUrl}
+										value={imagePreview}
 										render={({ open }) => (
 											<Button
 												className="components-button editor-post-featured-image__toggle"
@@ -213,10 +267,10 @@ registerBlockType('iis/puff', {
 									/>
 								</MediaUploadCheck>
 							)}
-							{attributes.imagePreviewUrl !== null && (
+							{imagePreview !== null && (
 								<Button
 									className="components-button is-button is-default"
-									onClick={() => setAttributes({ imagePreviewUrl: null, imageId: null })}
+									onClick={() => setAttributes({ imageId: null })}
 								>
 									Remove image
 								</Button>
@@ -225,9 +279,9 @@ registerBlockType('iis/puff', {
 					)}
 				</InspectorControls>
 				<div style={styleCard}>
-					{custom && attributes.imagePreviewUrl && (
+					{custom && imagePreview && (
 						<img
-							src={attributes.imagePreviewUrl}
+							src={imagePreview}
 							alt=""
 							style={(showAsTeaser) ? styleTeaserImage : styleCardImage}
 						/>

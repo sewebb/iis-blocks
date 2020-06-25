@@ -18,6 +18,7 @@ function iis_render_puff( $attributes ) {
 			'title'          => null,
 			'text'           => null,
 			'imageId'        => null,
+			'imageSize'      => null,
 			'alignment'      => null,
 			'url'            => null,
 			'align'          => null,
@@ -27,6 +28,11 @@ function iis_render_puff( $attributes ) {
 
 	$image_class = imns( 'm-card__image', false );
 	$image_size  = ( $attributes['showAsTeaser'] ) ? 'puff-teaser-image' : 'puff-image';
+	$image_sizes = apply_filters( 'iis_blocks_puff_image_sizes', [ 'puff-image', 'puff-teaser-image' ] );
+
+	if ( null !== $attributes['imageSize'] && in_array( $attributes['imageSize'], $image_sizes, true ) ) {
+		$image_size = $attributes['imageSize'];
+	}
 
 	if ( $attributes['custom'] ) {
 		$image = wp_get_attachment_image(
