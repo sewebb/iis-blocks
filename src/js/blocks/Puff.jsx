@@ -147,15 +147,24 @@ registerBlockType('iis/puff', {
 		useEffect(() => {
 			if (!attributes.imageId) {
 				setImagePreview(null);
+				setImageSizes(null);
 
 				return;
 			}
+
+			wp.data.subscribe(() => {
+				const media = wp.data.select('core').getMedia(attributes.imageId);
+
+				if (media) {
+					setImageSizes(media.media_details.sizes);
+				}
+			});
 
 			wp.data.select('core').getMedia(attributes.imageId);
 		}, [attributes.imageId]);
 
 		useEffect(() => {
-			if (!imageSizes) {
+			if (!imageSizes || !attributes.imageId) {
 				return;
 			}
 
@@ -167,24 +176,12 @@ registerBlockType('iis/puff', {
 				size = 'puff-image';
 			}
 
-			console.log(size, imageSizes);
-
 			if (!(size in imageSizes)) {
 				size = 'full';
 			}
 
 			setImagePreview(imageSizes[size].source_url);
-		}, [imageSizes, attributes.imageSize, attributes.showAsTeaser]);
-
-		useEffect(() => {
-			wp.data.subscribe(() => {
-				const media = wp.data.select('core').getMedia(attributes.imageId);
-
-				if (media) {
-					setImageSizes(media.media_details.sizes);
-				}
-			});
-		}, []);
+		}, [imageSizes, attributes.imageSize, attributes.showAsTeaser, attributes.imageId]);
 
 		return (
 			<Fragment>
@@ -287,7 +284,7 @@ registerBlockType('iis/puff', {
 						/>
 					)}
 					<div
-						style={(showAsTeaser && custom) ? styleTeaserContent : styleCardContent}
+						style={(showAsTeaser && custom && imagePreview) ? styleTeaserContent : styleCardContent}
 					>
 						{!custom && (
 							<DataSelect
