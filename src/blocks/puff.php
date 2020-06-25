@@ -28,7 +28,7 @@ function iis_render_puff( $attributes ) {
 
 	$image_class = imns( 'm-card__image', false );
 	$image_size  = ( $attributes['showAsTeaser'] ) ? 'puff-teaser-image' : 'puff-image';
-	$image_sizes = apply_filters( 'iis_blocks_puff_image_sizes', [ 'puff-image', 'puff-teaser-image' ] );
+	$image_sizes = apply_filters( 'iis_blocks_puff_image_sizes', [ 'puff-image', 'puff-teaser-image', 'puff-image-4:3' ] );
 
 	if ( null !== $attributes['imageSize'] && in_array( $attributes['imageSize'], $image_sizes, true ) ) {
 		$image_size = $attributes['imageSize'];
