@@ -228,17 +228,15 @@ registerBlockType('iis/puff', {
 								/>
 							</Fragment>
 						)}
-						{custom && (
-							<DataSelect
-								label={__('Image size', 'iis')}
-								placeholder={{ value: '', label: __('Auto', 'iis') }}
-								api="/iis-blocks/v1/image-sizes"
-								value_key={(obj) => obj.size}
-								label_key={(obj) => `${obj.name} (${obj.width}x${obj.height}`}
-								value={attributes.imageSize}
-								set={(imageSize) => setAttributes({ imageSize })}
-							/>
-						)}
+						<DataSelect
+							label={__('Image size', 'iis')}
+							placeholder={{ value: '', label: __('Auto', 'iis') }}
+							api="/iis-blocks/v1/image-sizes"
+							value_key={(obj) => obj.size}
+							label_key={(obj) => `${obj.name} (${obj.width}x${obj.height}`}
+							value={attributes.imageSize}
+							set={(imageSize) => setAttributes({ imageSize })}
+						/>
 					</PanelBody>
 					{attributes.custom && (
 						<PanelBody title="Image">
