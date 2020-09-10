@@ -5,6 +5,7 @@ const { registerBlockType } = wp.blocks;
 const {
 	InnerBlocks,
 } = wp.editor;
+const { useSelect } = wp.data;
 
 registerBlockType('iis/grid', {
 	title: __('Grid'),
@@ -33,10 +34,33 @@ registerBlockType('iis/grid', {
 
 		return {};
 	},
-	edit() {
+	edit({ clientId }) {
+		const { hasChildBlocks } = useSelect(
+			(select) => {
+				const { getBlockOrder, getBlockRootClientId } = select(
+					'core/block-editor',
+				);
+
+				return {
+					hasChildBlocks: getBlockOrder(clientId).length > 0,
+					rootClientId: getBlockRootClientId(clientId),
+				};
+			},
+			[clientId],
+		);
+
 		return (
 			<div className="iis-block-grid">
-				<InnerBlocks allowedBlocks={['iis/column']} />
+				<InnerBlocks
+					allowedBlocks={['iis/column']}
+					template={[['iis/column'], ['iis/column']]}
+					orientation="horizontal"
+					renderAppender={
+						hasChildBlocks
+							? undefined
+							: () => <InnerBlocks.ButtonBlockAppender />
+					}
+				/>
 			</div>
 		);
 	},

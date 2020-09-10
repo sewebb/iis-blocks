@@ -4,6 +4,7 @@ const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { registerBlockType } = wp.blocks;
 const { PanelBody, SelectControl } = wp.components;
+const { useSelect } = wp.data;
 const {
 	InspectorControls,
 	InnerBlocks,
@@ -49,8 +50,21 @@ registerBlockType('iis/column', {
 
 		return {};
 	},
-	edit({ attributes, setAttributes }) {
+	edit({ attributes, setAttributes, clientId }) {
 		const { columnWidth } = attributes;
+		const { hasChildBlocks } = useSelect(
+			(select) => {
+				const { getBlockOrder, getBlockRootClientId } = select(
+					'core/block-editor',
+				);
+
+				return {
+					hasChildBlocks: getBlockOrder(clientId).length > 0,
+					rootClientId: getBlockRootClientId(clientId),
+				};
+			},
+			[clientId],
+		);
 
 		return (
 			<Fragment>
@@ -66,7 +80,13 @@ registerBlockType('iis/column', {
 				</InspectorControls>
 				<div className="iis-block-column">
 					<div className="iis-block-column__content">
-						<InnerBlocks />
+						<InnerBlocks
+							renderAppender={
+								hasChildBlocks
+									? undefined
+									: () => <InnerBlocks.ButtonBlockAppender />
+							}
+						/>
 					</div>
 				</div>
 			</Fragment>

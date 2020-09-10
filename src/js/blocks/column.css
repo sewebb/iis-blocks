@@ -1,6 +1,7 @@
 .iis-block-column {
+	height: 100%;
 	padding: 0 1rem;
-	border: 1px dotted #bbb;
+	border: 1px dotted #888;
 }
 
 .iis-block-column__heading {
