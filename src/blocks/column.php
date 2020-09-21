@@ -4,6 +4,7 @@ function iis_render_column( $attributes, $content ) {
 	$attributes = array_merge(
 		[
 			'columnWidth' => '1/2',
+			'className'   => '',
 		],
 		$attributes
 	);
@@ -24,9 +25,12 @@ function iis_render_column( $attributes, $content ) {
 	}
 
 	ob_start();
+
+	$grid_class .= ' ' . $attributes['className'];
+
 	?>
 
-	<div class="<?php echo $grid_class; ?> u-m-b-4">
+	<div class="<?php echo sanitize_html_classes( $grid_class ); ?> u-m-b-4">
 		<?php echo $content; ?>
 	</div>
 

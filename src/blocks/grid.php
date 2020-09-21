@@ -3,12 +3,13 @@
 function iis_render_grid( $attributes, $content ) {
 	$attributes = array_merge(
 		[
-			'align' => 'center',
+			'className' => '',
+			'align'     => 'center',
 		],
 		$attributes
 	);
 
-	$class = '';
+	$class = $attributes['className'];
 
 	if ( 'full' == $attributes['align'] ) {
 		$class .= 'alignfull';
@@ -16,7 +17,7 @@ function iis_render_grid( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<div class="wp-block-iis-grid <?php echo $class; ?>">
+	<div class="wp-block-iis-grid <?php echo sanitize_html_classes( $class ); ?>">
 		<div class="row">
 			<?php echo $content; ?>
 		</div>
