@@ -113,7 +113,7 @@ function iis_render_puff( $attributes ) {
 	$headline_size = ( $attributes['showAsTeaser'] ) ? 'alpha' : 'beta';
 
 	ob_start(); ?>
-	<div class="<?php imns( $card_class ); ?> <?php echo sanitize_html_classes( $class ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
+	<div class="<?php imns( $card_class ); ?> <?php echo iis_sanitize_html_classes( $class ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
 		<?php
 
 		if ( $content['thumbnail'] ) {

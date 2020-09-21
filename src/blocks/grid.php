@@ -17,7 +17,7 @@ function iis_render_grid( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<div class="wp-block-iis-grid <?php echo sanitize_html_classes( $class ); ?>">
+	<div class="wp-block-iis-grid <?php echo iis_sanitize_html_classes( $class ); ?>">
 		<div class="row">
 			<?php echo $content; ?>
 		</div>
