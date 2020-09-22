@@ -6,7 +6,7 @@
  * @param  array $attributes  Block settings
  * @return string             HTML for block
  */
-function iis_render_puff( $attributes ) {
+function iis_render_puff( $attributes, $inner_content ) {
 	$attributes = array_merge(
 		[
 			'custom'         => false,
@@ -23,6 +23,7 @@ function iis_render_puff( $attributes ) {
 			'url'            => null,
 			'align'          => null,
 			'className'      => '',
+			'button'         => false,
 		],
 		$attributes
 	);
@@ -149,7 +150,7 @@ function iis_render_puff( $attributes ) {
 			<?php else : ?>
 				<h2 class="<?php echo $headline_size; ?>">
 					<?php echo $content['title']; ?>
-					<?php if ( $attributes['showAsTeaser'] ) : ?>
+					<?php if ( $attributes['showAsTeaser'] && $attributes['url'] ) : ?>
 						<svg class="<?php imns( 'icon m-card__headline__icon' ); ?>">
 							<use xlink:href="#icon-arrow-forwards"></use>
 						</svg>
@@ -160,12 +161,26 @@ function iis_render_puff( $attributes ) {
 			<?php if ( $content['text'] ) : ?>
 				<p class="<?php imns( 'm-card__text' ); ?>"><?php echo $content['text']; ?></p>
 			<?php endif; ?>
-			<?php if ( $content['categories'] ) : ?>
-			<div class="<?php imns( 'm-card__bottom' ); ?>">
-				<?php foreach ( $content['categories'] as $category ) : ?>
-					<a href="<?php echo esc_url( get_tag_link( $category->term_id ) ); ?>" class="<?php imns( 'a-tag' ); ?>"><?php echo esc_html( $category->name ); ?></a>
-				<?php endforeach; ?>
-			</div>
+			<?php if ( $content['categories'] || $attributes['button'] ) : ?>
+				<div class="<?php imns( 'm-card__bottom' ); ?>">
+					<?php
+
+					if ( $content['categories'] ) :
+						foreach ( $content['categories'] as $category ) :
+							?>
+							<a href="<?php echo esc_url( get_tag_link( $category->term_id ) ); ?>" class="<?php imns( 'a-tag' ); ?>"><?php echo esc_html( $category->name ); ?></a>
+						<?php
+						endforeach;
+					endif;
+					?>
+					<?php
+
+					if ( $attributes['button'] ) {
+						echo $inner_content;
+					}
+
+					?>
+				</div>
 			<?php endif; ?>
 		</div>
 	</div>

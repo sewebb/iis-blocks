@@ -29,13 +29,15 @@ registerBlockType('iis/button', {
 		buttonColor: {
 			type: 'string',
 			default: null,
-		}
+		},
 	},
-	edit: withColors({ buttonColor: 'color' })(({ attributes, setAttributes, buttonColor, setButtonColor }) => {
+	edit: withColors({ buttonColor: 'color' })(({
+		attributes, setAttributes, buttonColor, setButtonColor,
+	}) => {
 		const sizes = [
-			{value: 'small', label: 'Small'},
-			{value: 'regular', label: 'Default'},
-			{value: 'large', label: 'Large'},
+			{ value: 'small', label: 'Small' },
+			{ value: 'regular', label: 'Default' },
+			{ value: 'large', label: 'Large' },
 		];
 
 		const buttonStyle = {
@@ -55,19 +57,17 @@ registerBlockType('iis/button', {
 			cursor: 'pointer',
 		};
 
-		if ( 'small' === attributes.size ) {
+		if (attributes.size === 'small') {
 			buttonStyle.padding = '.3rem .75rem';
 			buttonStyle.fontSize = '.88889rem';
-		} else if ( 'large' === attributes.size ) {
+		} else if (attributes.size === 'large') {
 			buttonStyle.padding = '.8rem 2rem';
 			buttonStyle.fontSize = '1.33333rem';
 		} else {
 			buttonStyle.fontSize = '.88889rem';
 		}
 
-		console.log(buttonColor);
-
-		if ( !buttonColor.slug || ['jade-dark', 'ruby-dark', 'ocean-dark'].includes(buttonColor.slug) ) {
+		if (!buttonColor.slug || ['jade-dark', 'ruby-dark', 'ocean-dark'].includes(buttonColor.slug)) {
 			buttonStyle.color = '#fff';
 		} else {
 			buttonStyle.color = '#1f2a36';
@@ -78,17 +78,17 @@ registerBlockType('iis/button', {
 				<InspectorControls>
 					<PanelBody>
 						<SelectControl
-							label={ __( 'Size' ) }
-							options={ sizes }
-							value={ attributes.size }
-							onChange={ ( size ) => setAttributes( { size } ) }
+							label={__('Size')}
+							options={sizes}
+							value={attributes.size}
+							onChange={(size) => setAttributes({ size })}
 						/>
 						<TextControl
-							label={ __( 'URL' ) }
-							value={ attributes.link }
-							help={(attributes.link) ? (<a style={{ display: 'block', marginTop: '1rem' }} href={attributes.link} target="_blank">{ __( 'Test link' ) }</a>) : null}
+							label={__('URL')}
+							value={attributes.link}
+							help={(attributes.link) ? (<a style={{ display: 'block', marginTop: '1rem' }} href={attributes.link} target="_blank">{ __('Test link') }</a>) : null}
 							type="url"
-							onChange={( link ) => setAttributes({ link })}
+							onChange={(link) => setAttributes({ link })}
 						/>
 					</PanelBody>
 					<PanelColorSettings
@@ -106,9 +106,9 @@ registerBlockType('iis/button', {
 					<div style={buttonStyle}>
 						<RichText
 							tagName="span"
-							value={ attributes.text }
-							placeholder={ __('Button text') }
-							onChange={ text => setAttributes( { text } ) }
+							value={attributes.text}
+							placeholder={__('Button text')}
+							onChange={(text) => setAttributes({ text })}
 						/>
 					</div>
 				</div>

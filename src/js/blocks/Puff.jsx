@@ -14,6 +14,7 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 	RichText,
+	InnerBlocks,
 } = wp.editor;
 
 registerBlockType('iis/puff', {
@@ -80,6 +81,10 @@ registerBlockType('iis/puff', {
 		align: {
 			type: 'string',
 			default: null,
+		},
+		button: {
+			type: 'boolean',
+			default: false,
 		},
 	},
 	edit({ attributes, setAttributes }) {
@@ -200,6 +205,11 @@ registerBlockType('iis/puff', {
 								onChange={(url) => setAttributes({ url })}
 							/>
 						)}
+						<CheckboxControl
+							label="Button"
+							checked={attributes.button}
+							onChange={(value) => setAttributes({ button: value })}
+						/>
 					</PanelBody>
 					<PanelBody title="Display">
 						<CheckboxControl
@@ -313,12 +323,23 @@ registerBlockType('iis/puff', {
 								/>
 							</div>
 						)}
+						{attributes.button && (
+							<InnerBlocks
+								allowedBlocks={['iis/button']}
+								template={[['iis/button']]}
+								templateLock="all"
+							/>
+						)}
 					</div>
 				</div>
 			</Fragment>
 		);
 	},
-	save() {
+	save({ attributes }) {
+		if (attributes.button) {
+			return <InnerBlocks.Content />;
+		}
+
 		return null;
 	},
 });
