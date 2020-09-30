@@ -67,7 +67,7 @@ registerBlockType('iis/button', {
 			buttonStyle.fontSize = '.88889rem';
 		}
 
-		if (!buttonColor.slug || ['jade-dark', 'ruby-dark', 'ocean-dark'].includes(buttonColor.slug)) {
+		if (!buttonColor.slug || ['jade-dark', 'ruby-dark', 'ocean-dark', 'cyberspace'].includes(buttonColor.slug)) {
 			buttonStyle.color = '#fff';
 		} else {
 			buttonStyle.color = '#1f2a36';
