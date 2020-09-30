@@ -112,6 +112,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 	}
 
 	$headline_size = ( $attributes['showAsTeaser'] ) ? 'alpha' : 'beta';
+	$card_text_class = ( $attributes['showAsTeaser'] ) ? 'm-card__text !u-hide-md' : 'm-card__text';
 
 	ob_start(); ?>
 	<div class="<?php imns( $card_class ); ?> <?php echo iis_sanitize_html_classes( $class ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
@@ -159,7 +160,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 			<?php endif; ?>
 
 			<?php if ( $content['text'] ) : ?>
-				<p class="<?php imns( 'm-card__text' ); ?>"><?php echo $content['text']; ?></p>
+				<p class="<?php imns( $card_text_class ); ?>"><?php echo $content['text']; ?></p>
 			<?php endif; ?>
 			<?php if ( $content['categories'] || $attributes['button'] ) : ?>
 				<div class="<?php imns( 'm-card__bottom' ); ?>">
