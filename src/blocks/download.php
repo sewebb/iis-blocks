@@ -20,7 +20,9 @@ function iis_render_block_download( $attributes ) {
 					<div class="grid-18  display-flex flex-column flex-sm-row justify-content-between align-items-start">
 						<p class="u-m-b-0"><?php echo $attributes['content']; ?></p>
 						<div class="display-flex align-self-end flex-nowrap <?php imns( 'm-download__trigger' ); ?>">
-							<strong class="<?php imns( 'm-download__text' ); ?>"><?php esc_html_e( 'Download', 'iis-blocks' ); ?></strong>
+							<strong class="<?php imns( 'm-download__text' ); ?>">
+								<?php echo esc_html( apply_filters( 'iis_blocks_download_btn', __( 'Download', 'iis-blocks' ) ) ); ?>
+							</strong>
 							<figure class="<?php imns( 'm-download__icon-download' ); ?>">
 								<svg class="<?php imns( 'icon' ); ?>"><use xlink:href="#icon-download"></use></svg>
 							</figure>
