@@ -67,7 +67,7 @@ registerBlockType('iis/download', {
 					{attributes.file && (
 						<div>
 							<Button className="components-button is-button is-default" onClick={() => setAttributes({ file: '' })}>
-								Remove file
+								Remove file/file URL
 							</Button>
 						</div>
 					)}
