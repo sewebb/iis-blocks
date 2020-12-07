@@ -115,7 +115,7 @@ registerBlockType('iis/button', {
 			</div>
 		);
 	}),
-	save({ attributes }) {
+	save() {
 		return null;
 	},
 });

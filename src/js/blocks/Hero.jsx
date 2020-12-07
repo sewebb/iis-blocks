@@ -88,6 +88,7 @@ registerBlockType('iis/hero', {
 				</InspectorControls>
 				<div className={`iis-block-hero ${!attributes.mediaId ? 'iis-block-hero--no-image' : null}`}>
 					{attributes.mediaUrl && (
+						// eslint-disable-next-line jsx-a11y/alt-text
 						<img src={attributes.mediaUrl} className="iis-block-hero__image" />
 					)}
 

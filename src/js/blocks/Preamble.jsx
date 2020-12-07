@@ -18,14 +18,15 @@ registerBlockType('iis/preamble', {
 			<div style={{ fontWeight: 'bold', fontSize: 'bigger' }}>
 				<RichText
 					tagName="p"
-					value={ attributes.content }
+					value={attributes.content}
 					placeholder={__('Preamble')}
-					onChange={ content => setAttributes({ content }) }
+					onChange={(content) => setAttributes({ content })}
 				/>
 			</div>
 		);
 	},
 	save({ attributes }) {
+		// eslint-disable-next-line react/no-danger
 		return <p className="preamble" dangerouslySetInnerHTML={{ __html: attributes.content }} />;
 	},
 	transforms: {

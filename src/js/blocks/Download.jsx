@@ -34,16 +34,16 @@ registerBlockType('iis/download', {
 					identifier="title"
 					wrapperClassName="wp-block-heading"
 					tagName="h3"
-					value={ attributes.title }
-					onChange={ (value) => setAttributes({ title: value }) }
+					value={attributes.title}
+					onChange={(value) => setAttributes({ title: value })}
 					placeholder={__('File title')}
 				/>
 				<RichText
 					identifier="description"
 					wrapperClassName="wp-block-paragraph"
 					tagName="p"
-					value={ attributes.content }
-					onChange={ (value) => setAttributes({ content: value }) }
+					value={attributes.content}
+					onChange={(value) => setAttributes({ content: value })}
 					placeholder={__('File description')}
 				/>
 				<div style={{ marginTop: '16px' }}>

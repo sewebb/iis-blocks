@@ -53,14 +53,14 @@ export default class DataSelect extends Component {
 
 				return json;
 			})
-			.then(json => (
-				json.map(type => ({
+			.then((json) => (
+				json.map((type) => ({
 					value: this.props.value_key(type),
 					label: this.props.label_key(type),
 				}))
 			))
-			.then(items => this.setState({ items, loading: false }))
-			.catch(error => this.setState({ error, loading: false }));
+			.then((items) => this.setState({ items, loading: false }))
+			.catch((error) => this.setState({ error, loading: false }));
 	};
 
 	search = (value) => {
@@ -108,12 +108,12 @@ export default class DataSelect extends Component {
 					<SelectControl
 						label={this.props.search ? null : this.props.label}
 						help={this.props.help}
-						options={ [...[this.props.placeholder], ...this.state.items] }
-						value={ this.state.value }
-						onChange={ (value) => {
+						options={[...[this.props.placeholder], ...this.state.items]}
+						value={this.state.value}
+						onChange={(value) => {
 							this.props.set(value);
 							this.setState({ value });
-						} }
+						}}
 						disabled={this.props.disabled}
 					/>
 				)}

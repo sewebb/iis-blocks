@@ -5,7 +5,8 @@
     "scripts": {
         "development": "NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
         "start": "npm run development -- --watch",
-        "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+        "production": "NODE_ENV=production node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "eslint": "eslint src --ext .jsx --ext .js"
     },
     "devDependencies": {
         "@internetstiftelsen/eslint-config-react": "0.0.1",

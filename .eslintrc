@@ -6,6 +6,7 @@
     },
     "rules": {
         "react/prop-types": 0,
-        "react/jsx-indent-props": [2, "tab"]
+        "react/jsx-indent-props": [2, "tab"],
+        "react/jsx-no-target-blank": 0
     }
 }

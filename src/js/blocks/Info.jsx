@@ -39,8 +39,8 @@ registerBlockType('iis/info', {
 					<PanelBody>
 						<ToggleControl
 							label="Big"
-							checked={ attributes.big }
-							onChange={ big => setAttributes({ big }) }
+							checked={attributes.big}
+							onChange={(big) => setAttributes({ big })}
 						/>
 					</PanelBody>
 				</InspectorControls>
