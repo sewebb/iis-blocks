@@ -4,11 +4,12 @@ function iis_render_block_section( $attributes, $content ) {
 	$attributes = array_merge(
 		[
 			'white' => false,
+			'highlightColor' => 'ruby',
 		],
 		$attributes
 	);
 
-	$class_name = 'o-section';
+	$class_name = 'o-section o-section--' . str_replace( '-light', '', $attributes['highlightColor'] );
 
 	if ($attributes['white']) {
 		$class_name .= ' o-section--white';

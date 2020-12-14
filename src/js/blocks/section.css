@@ -1,0 +1,22 @@
+.iis-block-section .rich-text::selection {
+	background-color: #ff9fb4;
+}
+
+.iis-block-section .rich-text::-moz-selection {
+	background-color: #ff9fb4;
+}
+.iis-block-section--jade-light .rich-text::selection {
+	background-color: #aae3d9;
+}
+
+.iis-block-section--jade-light .rich-text::-moz-selection {
+	background-color: #aae3d9;
+}
+
+.iis-block-section--peacock-light .rich-text::selection {
+	background-color: #e0bff5;
+}
+
+.iis-block-section--peacock-light .rich-text::-moz-selection {
+	background-color: #e0bff5;
+}
