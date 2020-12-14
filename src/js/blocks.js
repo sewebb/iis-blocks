@@ -7,3 +7,5 @@ import './blocks/Button';
 import './blocks/Puff';
 import './blocks/Grid';
 import './blocks/Column';
+import './blocks/Section';
+import './blocks/SectionHeader';
