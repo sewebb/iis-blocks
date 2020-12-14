@@ -17,14 +17,12 @@ function iis_render_block_section( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<div class="wp-block-iis-section alignfull">
-		<div class="<?php imns( $class_name ); ?>">
-			<div class="<?php imns( '!wrapper o-section__content' ); ?>">
-				<div class="grid-18">
-					<div class="<?php imns( 'article' ); ?>">
-						<div class="<?php imns( 'article__content' ); ?>">
-							<?php echo $content; ?>
-						</div>
+	<div class="<?php imns( $class_name ); ?> alignfull">
+		<div class="<?php imns( '!wrapper o-section__content' ); ?>">
+			<div class="grid-18">
+				<div class="<?php imns( 'article' ); ?>">
+					<div class="<?php imns( 'article__content' ); ?>">
+						<?php echo $content; ?>
 					</div>
 				</div>
 			</div>
