@@ -8,7 +8,7 @@ const {
 	withColors,
 	PanelColorSettings,
 } = wp.editor;
-const { PanelBody, ToggleControl } = wp.components;
+const { PanelBody, ToggleControl, SelectControl } = wp.components;
 
 registerBlockType('iis/section', {
 	title: __('Section'),
@@ -27,6 +27,10 @@ registerBlockType('iis/section', {
 		highlightColor: {
 			type: 'string',
 			default: 'ruby-light',
+		},
+		decoration: {
+			type: 'string',
+			default: null,
 		},
 	},
 	supports: {
@@ -51,6 +55,25 @@ registerBlockType('iis/section', {
 							label="White"
 							checked={attributes.white}
 							onChange={(white) => setAttributes({ white })}
+						/>
+						<SelectControl
+							label="Decoration"
+							onChange={(decoration) => setAttributes({ decoration })}
+							options={[
+								{
+									label: 'None',
+									value: null,
+								},
+								{
+									label: 'Rectangle left',
+									value: 'rectangle-left',
+								},
+								{
+									label: 'Rectangle right',
+									value: 'rectangle-right',
+								},
+							]}
+							value={attributes.decoration}
 						/>
 					</PanelBody>
 					<PanelColorSettings
