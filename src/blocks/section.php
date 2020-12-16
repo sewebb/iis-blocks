@@ -9,7 +9,7 @@ function iis_render_block_section( $attributes, $content ) {
 		$attributes
 	);
 
-	$class_name = 'o-section o-section--' . str_replace( '-light', '', $attributes['highlightColor'] );
+	$class_name = 'o-section';
 
 	if ($attributes['white']) {
 		$class_name .= ' o-section--white';
@@ -18,7 +18,7 @@ function iis_render_block_section( $attributes, $content ) {
 	ob_start();
 	?>
 	<div class="<?php imns( $class_name ); ?> alignfull">
-		<div class="<?php imns( '!wrapper o-section__content' ); ?>">
+		<div class="<?php imns( '!wrapper o-section__content o-section__content--' . str_replace( '-light', '', $attributes['highlightColor'] ) ); ?>">
 			<div class="grid-18">
 				<div class="<?php imns( 'article' ); ?>">
 					<div class="<?php imns( 'article__content' ); ?>">

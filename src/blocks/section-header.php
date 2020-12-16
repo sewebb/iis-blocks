@@ -10,25 +10,21 @@ function iis_render_block_section_header( $attributes ) {
 		$attributes
 	);
 
-	$class_name = 'o-section__header';
-
 	ob_start();
 	?>
 	<div class="alignfull">
 		<div class="wrapper">
-			<div class="<?php imns( $class_name ); ?>">
-				<div class="row">
-					<div class="grid-18 grid-md-8 offset-md-1">
-						<?php if ( ! empty( $attributes['preTitle'] ) ) : ?>
-							<strong class="<?php imns( 'a-meta o-section__label' ); ?>">
-								<?php echo esc_html( strip_tags( $attributes['preTitle'] ) ); ?>
-							</strong>
-						<?php endif; ?>
-						<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
-						<p>
-							<?php echo wp_kses_post( $attributes['text'] ); ?>
-						</p>
-					</div>
+			<div class="row">
+				<div class="grid-18 grid-md-8 offset-md-1">
+					<?php if ( ! empty( $attributes['preTitle'] ) ) : ?>
+						<strong class="<?php imns( 'a-meta' ); ?>">
+							<?php echo esc_html( strip_tags( $attributes['preTitle'] ) ); ?>
+						</strong>
+					<?php endif; ?>
+					<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
+					<p>
+						<?php echo wp_kses_post( $attributes['text'] ); ?>
+					</p>
 				</div>
 			</div>
 		</div>
