@@ -1,6 +1,7 @@
 import './section.css';
 
 const { __ } = wp.i18n;
+const { Fragment } = wp.element;
 const { registerBlockType } = wp.blocks;
 const {
 	InspectorControls,
@@ -32,12 +33,25 @@ registerBlockType('iis/section', {
 			type: 'string',
 			default: null,
 		},
+		style: {
+			type: 'string',
+			default: 'landing-page',
+		},
+		backgroundColor: {
+			type: 'string',
+			default: null,
+		},
 	},
 	supports: {
 		align: ['full'],
 	},
-	edit: withColors({ highlightColor: 'color' })(({
-		attributes, setAttributes, highlightColor, setHighlightColor,
+	edit: withColors({ highlightColor: 'color', backgroundColor: 'background' })(({
+		attributes,
+		setAttributes,
+		highlightColor,
+		setHighlightColor,
+		backgroundColor,
+		setBackgroundColor,
 	}) => {
 		const style = {
 			backgroundColor: (attributes.white) ? '#fff' : '#ededed',
@@ -45,64 +59,133 @@ registerBlockType('iis/section', {
 			padding: '20px 0',
 		};
 
+		if (attributes.style === 'colored-background' && backgroundColor) {
+			style.backgroundColor = backgroundColor.color;
+		}
+
 		const className = `iis-block-section iis-block-section--${highlightColor.slug}`;
 
 		return (
 			<div className={className}>
 				<InspectorControls>
 					<PanelBody title="Design">
-						<ToggleControl
-							label="White"
-							checked={attributes.white}
-							onChange={(white) => setAttributes({ white })}
-						/>
 						<SelectControl
-							label="Decoration"
-							onChange={(decoration) => setAttributes({ decoration })}
+							label="Style"
+							onChange={(val) => setAttributes({ style: val })}
 							options={[
 								{
-									label: 'None',
-									value: null,
+									label: 'Landing page',
+									value: 'landing-page',
 								},
 								{
-									label: 'Rectangle left',
-									value: 'rectangle-left',
-								},
-								{
-									label: 'Rectangle right',
-									value: 'rectangle-right',
+									label: 'Colored background',
+									value: 'colored-background',
 								},
 							]}
-							value={attributes.decoration}
+							value={attributes.style}
 						/>
+						{attributes.style === 'landing-page' && (
+							<Fragment>
+								<ToggleControl
+									label="White"
+									checked={attributes.white}
+									onChange={(white) => setAttributes({ white })}
+								/>
+								<SelectControl
+									label="Decoration"
+									onChange={(decoration) => setAttributes({ decoration })}
+									options={[
+										{
+											label: 'None',
+											value: null,
+										},
+										{
+											label: 'Rectangle left',
+											value: 'rectangle-left',
+										},
+										{
+											label: 'Rectangle right',
+											value: 'rectangle-right',
+										},
+									]}
+									value={attributes.decoration}
+								/>
+							</Fragment>
+						)}
 					</PanelBody>
-					<PanelColorSettings
-						title={__('Color settings')}
-						colorSettings={[
-							{
-								colors: [
-									{
-										name: __('Ruby'),
-										slug: 'ruby-light',
-										color: '#ff9fb4',
-									},
-									{
-										name: __('Peacock'),
-										slug: 'peacock-light',
-										color: '#e0bff5',
-									},
-									{
-										name: __('Jade'),
-										slug: 'jade-light',
-										color: '#aae3d9',
-									},
-								],
-								value: highlightColor.color,
-								onChange: setHighlightColor,
-								label: __('Highlight Color'),
-							},
-						]}
-					/>
+					{attributes.style === 'landing-page' && (
+						<PanelColorSettings
+							title={__('Color settings')}
+							colorSettings={[
+								{
+									colors: [
+										{
+											name: __('Ruby'),
+											slug: 'ruby-light',
+											color: '#ff9fb4',
+										},
+										{
+											name: __('Peacock'),
+											slug: 'peacock-light',
+											color: '#e0bff5',
+										},
+										{
+											name: __('Jade'),
+											slug: 'jade-light',
+											color: '#aae3d9',
+										},
+									],
+									value: highlightColor.color,
+									onChange: setHighlightColor,
+									label: __('Highlight Color'),
+								},
+							]}
+						/>
+					)}
+					{attributes.style === 'colored-background' && (
+						<PanelColorSettings
+							title={__('Color settings')}
+							colorSettings={[
+								{
+									colors: [
+										{
+											name: __('Ruby'),
+											slug: 'rub-light',
+											color: '#ff9fb4',
+										},
+										{
+											name: __('Peacock'),
+											slug: 'peacock-light',
+											color: '#e0bff5',
+										},
+										{
+											name: __('Jade'),
+											slug: 'jade-light',
+											color: '#aae3d9',
+										},
+										{
+											name: __('Sandstone'),
+											slug: 'sandstone-light',
+											color: '#fcccb1',
+										},
+										{
+											name: __('Lemon'),
+											slug: 'lemon-light',
+											color: '#ffe696',
+										},
+										{
+											name: __('Ocean'),
+											slug: 'ocean-light',
+											color: '#a7d8fd',
+										},
+									],
+									value: backgroundColor.color,
+									onChange: setBackgroundColor,
+									label: __('Background Color'),
+								},
+							]}
+						/>
+					)}
 				</InspectorControls>
 				<div style={style}>
 					<InnerBlocks />

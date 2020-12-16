@@ -6,19 +6,29 @@ function iis_render_block_section( $attributes, $content ) {
 			'white' => false,
 			'highlightColor' => 'ruby',
 			'decoration' => null,
+			'style' => 'landing-page',
+			'backgroundColor' => null,
 		],
 		$attributes
 	);
 
 	$class_name    = 'o-section';
-	$content_class = '!wrapper o-section__content o-section__content--' . str_replace( '-light', '', $attributes['highlightColor'] );
+	$content_class = '!wrapper o-section__content';
 
-	if ( $attributes['white'] ) {
-		$class_name .= ' o-section--white';
-	}
+	if ( $attributes['style'] === 'landing-page' ) {
+		if ( $attributes['white'] ) {
+			$class_name .= ' o-section--white';
+		}
 
-	if ( $attributes['decoration'] ) {
-		$content_class .= ' o-section__content--' . $attributes['decoration'];
+		if ( $attributes['decoration'] ) {
+			$content_class .= ' o-section__content--' . $attributes['decoration'];
+		}
+
+		if ( $attributes['decoration'] ) {
+			$content_class .= ' o-section__content--' . str_replace( '-light', '', $attributes['highlightColor'] );
+		}
+	} elseif ( $attributes['backgroundColor'] ) {
+		$class_name .= ' !background-' . $attributes['backgroundColor'];
 	}
 
 	ob_start();
