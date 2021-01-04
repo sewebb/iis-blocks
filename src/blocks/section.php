@@ -24,7 +24,7 @@ function iis_render_block_section( $attributes, $content ) {
 			$content_class .= ' o-section__content--' . $attributes['decoration'];
 		}
 
-		if ( $attributes['decoration'] ) {
+		if ( $attributes['highlightColor'] ) {
 			$content_class .= ' o-section__content--' . str_replace( '-light', '', $attributes['highlightColor'] );
 		}
 	} elseif ( $attributes['backgroundColor'] ) {
