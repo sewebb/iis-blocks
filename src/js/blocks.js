@@ -9,3 +9,4 @@ import './blocks/Grid';
 import './blocks/Column';
 import './blocks/Section';
 import './blocks/SectionHeader';
+import './blocks/Subpages';
