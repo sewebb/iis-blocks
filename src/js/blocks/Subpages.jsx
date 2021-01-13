@@ -17,7 +17,7 @@ registerBlockType('iis/subpages', {
 	},
 	edit({ attributes }) {
 		return (
-			<div style={{ width: (attributes.align === 'right') ? '200px' : 'auto', padding: '20px', border: '1px solid #eee' }}>
+			<div style={{ width: (attributes.align === 'right') ? '300px' : 'auto', padding: '20px', border: '1px solid #eee' }}>
 				<strong>&laquo; Sub pages &raquo;</strong>
 			</div>
 		);
