@@ -25,6 +25,8 @@ function iis_render_block_hero( $attributes, $content ) {
 
 	if ( 'full' == $attributes['align'] ) {
 		$class .= ' !alignfull';
+	} else {
+		$class .= ' o-hero--border-radius';
 	}
 
 	ob_start();
