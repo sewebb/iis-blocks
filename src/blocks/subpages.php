@@ -49,12 +49,18 @@ function iis_render_block_subpages( $attributes, $content ) {
 	<div class="<?php echo $alignment; ?>">
 		<dl class="<?php imns( $class_name ); ?>">
 			<dt class="<?php imns( 'm-submenu__title' ); ?>">
+				<?php if ( $post->ID !== $top_level->ID ) : ?>
 				<a href="<?php echo get_permalink( $top_level ); ?>" class="<?php imns( 'm-submenu__title__link' ); ?>">
 					<span><?php echo apply_filters( 'the_title', $top_level->post_title ); ?></span>
 					<svg class="icon">
 						<use xlink:href="#icon-arrow-variant"></use>
 					</svg>
 				</a>
+				<?php else : ?>
+				<span class="<?php imns( 'm-submenu__title__link !u-pointer-events-none' ); ?>">
+					<span><?php echo apply_filters( 'the_title', $top_level->post_title ); ?></span>
+				</span>
+				<?php endif; ?>
 			</dt>
 			<?php
 
