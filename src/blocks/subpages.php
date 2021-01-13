@@ -82,9 +82,7 @@ function iis_render_block_subpages( $attributes, $content ) {
 							</svg>
 						</a>
 						<button type="button" class="<?php imns( 'm-submenu__item__toggle-button' ); ?>" data-a11y-toggle="sublvl<?php echo $child['post']->ID; ?>" aria-controls="sublvl<?php echo $child['post']->ID; ?>">
-							<svg class="icon">
-								<use xlink:href="#icon-arrow-down"></use>
-							</svg>
+							<span class="u-visuallyhidden">Öppna/stäng</span>
 						</button>
 					</div>
 					<ul class="<?php imns( 'm-submenu__sublevel' ); ?>" aria-hidden="true" id="sublvl<?php echo $child['post']->ID; ?>" data-focus-trap="false">
