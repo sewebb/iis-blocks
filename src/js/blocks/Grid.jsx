@@ -3,9 +3,11 @@ import './grid.css';
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const {
+	InspectorControls,
 	InnerBlocks,
 } = wp.editor;
 const { useSelect } = wp.data;
+const { PanelBody, ToggleControl } = wp.components;
 
 registerBlockType('iis/grid', {
 	title: __('Grid'),
@@ -16,13 +18,13 @@ registerBlockType('iis/grid', {
 		align: ['full', 'center'],
 	},
 	attributes: {
-		big: {
-			type: 'boolean',
-			default: false,
-		},
 		align: {
 			type: 'string',
 			default: 'center',
+		},
+		asymmetric: {
+			type: 'boolean',
+			default: false,
 		},
 	},
 	getEditWrapperProps(attributes) {
@@ -34,7 +36,7 @@ registerBlockType('iis/grid', {
 
 		return {};
 	},
-	edit({ clientId }) {
+	edit({ clientId, attributes, setAttributes }) {
 		const { hasChildBlocks } = useSelect(
 			(select) => {
 				const { getBlockOrder, getBlockRootClientId } = select(
@@ -51,6 +53,15 @@ registerBlockType('iis/grid', {
 
 		return (
 			<div className="iis-block-grid">
+				<InspectorControls>
+					<PanelBody>
+						<ToggleControl
+							label="Asymmetric"
+							checked={attributes.asymmetric}
+							onChange={(asymmetric) => setAttributes({ asymmetric })}
+						/>
+					</PanelBody>
+				</InspectorControls>
 				<InnerBlocks
 					allowedBlocks={['iis/column']}
 					template={[['iis/column'], ['iis/column']]}

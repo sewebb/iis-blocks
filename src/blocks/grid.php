@@ -3,8 +3,9 @@
 function iis_render_grid( $attributes, $content ) {
 	$attributes = array_merge(
 		[
-			'className' => '',
-			'align'     => 'center',
+			'className'  => '',
+			'align'      => 'center',
+			'asymmetric' => false,
 		],
 		$attributes
 	);
@@ -15,10 +16,16 @@ function iis_render_grid( $attributes, $content ) {
 		$class .= 'alignfull';
 	}
 
+	$row_class = 'row';
+
+	if ( $attributes['asymmetric'] ) {
+		$row_class .= ' asymmetric-md';
+	}
+
 	ob_start();
 	?>
 	<div class="wp-block-iis-grid <?php echo iis_sanitize_html_classes( $class ); ?>">
-		<div class="row">
+		<div class="<?php echo $row_class; ?>">
 			<?php echo $content; ?>
 		</div>
 	</div>
