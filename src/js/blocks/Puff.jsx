@@ -86,6 +86,10 @@ registerBlockType('iis/puff', {
 			type: 'boolean',
 			default: false,
 		},
+		displayDates: {
+			type: 'boolean',
+			default: false,
+		},
 	},
 	edit({ attributes, setAttributes }) {
 		const [imageSizes, setImageSizes] = useState(null);
@@ -235,6 +239,11 @@ registerBlockType('iis/puff', {
 									label="Display excerpt"
 									checked={attributes.displayExcerpt}
 									onChange={(displayExcerpt) => setAttributes({ displayExcerpt })}
+								/>
+								<CheckboxControl
+									label="Display dates"
+									checked={attributes.displayDates}
+									onChange={(displayDates) => setAttributes({ displayDates })}
 								/>
 							</Fragment>
 						)}

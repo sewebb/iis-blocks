@@ -15,6 +15,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 			'showOnMobile'   => false,
 			'displayTags'    => false,
 			'displayExcerpt' => true,
+			'displayDates'   => false,
 			'title'          => null,
 			'text'           => null,
 			'imageId'        => null,
@@ -135,6 +136,10 @@ function iis_render_puff( $attributes, $inner_content ) {
 						</svg> <?php echo $content['media'][0]->name; ?>
 					</div>
 				</div>
+			<?php elseif ( $post && $attributes['displayDates'] && $content['date'] ) : ?>
+				<time datetime="<?php echo $post->post_date; ?>" class="<?php imns( 'a-meta' ); ?>">
+					<?php echo $content['date']; ?>
+				</time>
 			<?php endif; ?>
 			<?php if ( $content['permalink'] ) : ?>
 				<a href="<?php echo $content['permalink']; ?>" class="<?php imns( 'm-card__link' ); ?>">
@@ -158,7 +163,6 @@ function iis_render_puff( $attributes, $inner_content ) {
 					<?php endif; ?>
 				</h2>
 			<?php endif; ?>
-
 			<?php if ( $content['text'] ) : ?>
 				<p class="<?php imns( $card_text_class ); ?>"><?php echo $content['text']; ?></p>
 			<?php endif; ?>
