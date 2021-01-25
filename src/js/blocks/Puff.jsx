@@ -18,13 +18,13 @@ const {
 } = wp.editor;
 
 registerBlockType('iis/puff', {
-	title: __('Post puff', 'iis'),
+	title: __('Post puff', 'iis-blocks'),
 	category: 'iis',
 	icon: 'format-aside',
 	keywords: [
-		__('card', 'iis'),
-		__('teaser', 'iis'),
-		__('puff', 'iis'),
+		__('card', 'iis-blocks'),
+		__('teaser', 'iis-blocks'),
+		__('puff', 'iis-blocks'),
 	],
 	supports: {
 		align: ['right', 'wide'],
@@ -203,8 +203,8 @@ registerBlockType('iis/puff', {
 						/>
 						{custom && (
 							<TextControl
-								label={__('Link', 'iis')}
-								placeholder={__('/link/to/here', 'iis')}
+								label={__('Link', 'iis-blocks')}
+								placeholder={__('/link/to/here', 'iis-blocks')}
 								value={attributes.url}
 								onChange={(url) => setAttributes({ url })}
 							/>
@@ -231,7 +231,7 @@ registerBlockType('iis/puff', {
 						{!custom && (
 							<Fragment>
 								<CheckboxControl
-									label={__('Display tags/categories', 'iis')}
+									label={__('Display tags/categories', 'iis-blocks')}
 									checked={attributes.displayTags}
 									onChange={(displayTags) => setAttributes({ displayTags })}
 								/>
@@ -248,8 +248,8 @@ registerBlockType('iis/puff', {
 							</Fragment>
 						)}
 						<DataSelect
-							label={__('Image size', 'iis')}
-							placeholder={{ value: '', label: __('Auto', 'iis') }}
+							label={__('Image size', 'iis-blocks')}
+							placeholder={{ value: '', label: __('Auto', 'iis-blocks') }}
 							api="/iis-blocks/v1/image-sizes"
 							value_key={(obj) => obj.size}
 							label_key={(obj) => `${obj.name} (${obj.width}x${obj.height}`}
@@ -305,8 +305,8 @@ registerBlockType('iis/puff', {
 					>
 						{!custom && (
 							<DataSelect
-								label={__('Select post', 'iis')}
-								placeholder={{ value: null, label: __('Choose a post', 'iis') }}
+								label={__('Select post', 'iis-blocks')}
+								placeholder={{ value: null, label: __('Choose a post', 'iis-blocks') }}
 								api={`/iis-blocks/v1/puff-posts?include=${attributes.postId}`}
 								value_key={(obj) => obj.ID}
 								label_key={(obj) => obj.post_title}

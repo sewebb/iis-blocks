@@ -47,6 +47,8 @@ function iis_blocks_assets() {
 			'editor_style'  => 'iis_blocks-css',
 		)
 	);
+
+	wp_set_script_translations( 'iis_blocks-js', 'iis-blocks', plugin_dir_path( __FILE__ ) . 'languages' );
 }
 
 /**

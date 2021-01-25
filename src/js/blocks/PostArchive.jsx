@@ -8,10 +8,10 @@ const {
 const { PanelBody } = wp.components;
 
 registerBlockType('iis/postarchive', {
-	title: __('Post Archive', 'iis'),
+	title: __('Post Archive', 'iis-blocks'),
 	category: 'iis',
 	icon: 'media-archive',
-	keywords: [__('archive', 'iis')],
+	keywords: [__('archive', 'iis-blocks')],
 	attributes: {
 		postType: {
 			type: 'string',
@@ -28,8 +28,8 @@ registerBlockType('iis/postarchive', {
 				<InspectorControls>
 					<PanelBody>
 						<DataSelect
-							label={__('Select post type', 'iis')}
-							placeholder={{ value: null, label: __('Post type', 'iis') }}
+							label={__('Select post type', 'iis-blocks')}
+							placeholder={{ value: null, label: __('Post type', 'iis-blocks') }}
 							api="/wp/v2/types"
 							value_key={(obj) => obj.slug}
 							label_key={(obj) => obj.name}

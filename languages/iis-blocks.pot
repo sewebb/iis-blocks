@@ -1,21 +1,21 @@
-# Copyright (C) 2020 Internetstiftelsen
-# This file is distributed under the same license as the Blocks plugin.
+# Copyright (C) 2021 Internetstiftelsen
+# This file is distributed under the same license as the IIS Blocks plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: Blocks 1.0.0\n"
+"Project-Id-Version: IIS Blocks 5.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/iis-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2020-01-09T14:31:28+00:00\n"
+"POT-Creation-Date: 2021-01-25T08:37:33+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.1.0\n"
+"X-Generator: WP-CLI 2.4.0\n"
 "X-Domain: iis-blocks\n"
 
 #. Plugin Name of the plugin
-msgid "Blocks"
+msgid "IIS Blocks"
 msgstr ""
 
 #. Plugin URI of the plugin
@@ -23,7 +23,7 @@ msgid "https://github.com/sewebb/iis-blocks"
 msgstr ""
 
 #. Description of the plugin
-msgid "Blocks library"
+msgid "Block library from Internetstiftelsen"
 msgstr ""
 
 #. Author of the plugin
@@ -34,27 +34,130 @@ msgstr ""
 msgid "https://internetstiftelsen.se"
 msgstr ""
 
-#: src/blocks/download.php:23
+#: src/blocks/download.php:24
 msgid "Download"
 msgstr ""
 
-#: src/blocks/newsletter.php:32
-msgid "E-mail"
-msgstr ""
-
-#: src/blocks/newsletter.php:37
-msgid "Name"
-msgstr ""
-
-#: src/blocks/post-archive.php:45
+#: src/blocks/post-archive.php:49
 msgid "Previous page"
 msgstr ""
 
 #. translators: Page 1 of 10
-#: src/blocks/post-archive.php:56
+#: src/blocks/post-archive.php:60
 msgid "page %1$s of %2$s"
 msgstr ""
 
-#: src/blocks/post-archive.php:65
+#: src/blocks/post-archive.php:69
 msgid "Next page"
+msgstr ""
+
+#: dist/js/blocks.js:1012
+#: src/js/blocks/PostArchive.jsx:11
+msgid "Post Archive"
+msgstr ""
+
+#: dist/js/blocks.js:1015
+#: src/js/blocks/PostArchive.jsx:14
+msgid "archive"
+msgstr ""
+
+#: dist/js/blocks.js:1046
+#: src/js/blocks/PostArchive.jsx:31
+msgid "Select post type"
+msgstr ""
+
+#: dist/js/blocks.js:1047
+#: src/js/blocks/PostArchive.jsx:32
+msgid "Post type"
+msgstr ""
+
+#: dist/js/blocks.js:1548
+#: src/js/blocks/Puff.jsx:21
+msgid "Post puff"
+msgstr ""
+
+#: dist/js/blocks.js:1551
+#: src/js/blocks/Puff.jsx:25
+msgid "card"
+msgstr ""
+
+#: dist/js/blocks.js:1551
+#: src/js/blocks/Puff.jsx:26
+msgid "teaser"
+msgstr ""
+
+#: dist/js/blocks.js:1551
+#: src/js/blocks/Puff.jsx:27
+msgid "puff"
+msgstr ""
+
+#: dist/js/blocks.js:1745
+#: src/js/blocks/Puff.jsx:206
+msgid "Link"
+msgstr ""
+
+#: dist/js/blocks.js:1746
+#: src/js/blocks/Puff.jsx:207
+msgid "/link/to/here"
+msgstr ""
+
+#: dist/js/blocks.js:1781
+#: src/js/blocks/Puff.jsx:234
+msgid "Display tags/categories"
+msgstr ""
+
+#: dist/js/blocks.js:1803
+#: src/js/blocks/Puff.jsx:251
+msgid "Image size"
+msgstr ""
+
+#: dist/js/blocks.js:1804
+#: src/js/blocks/Puff.jsx:252
+msgid "Auto"
+msgstr ""
+
+#: dist/js/blocks.js:1876
+#: src/js/blocks/Puff.jsx:308
+msgid "Select post"
+msgstr ""
+
+#: dist/js/blocks.js:1877
+#: src/js/blocks/Puff.jsx:309
+msgid "Choose a post"
+msgstr ""
+
+#: dist/js/blocks.js:1956
+#: dist/js/blocks.js:2114
+#: src/js/blocks/Column.jsx:36
+#: src/js/blocks/Grid.jsx:16
+msgid "grid"
+msgstr ""
+
+#: dist/js/blocks.js:1956
+#: dist/js/blocks.js:2114
+#: src/js/blocks/Column.jsx:36
+#: src/js/blocks/Grid.jsx:16
+msgid "columns"
+msgstr ""
+
+#: dist/js/blocks.js:1956
+#: dist/js/blocks.js:2114
+#: src/js/blocks/Column.jsx:36
+#: src/js/blocks/Grid.jsx:16
+msgid "column"
+msgstr ""
+
+#: dist/js/blocks.js:2561
+#: src/js/blocks/Subpages.jsx:5
+msgid "Submenu"
+msgstr ""
+
+#: dist/js/blocks.js:2564
+#: src/js/blocks/Subpages.jsx:8
+msgid "pages"
+msgstr ""
+
+#: dist/js/blocks.js:2564
+#: src/js/blocks/Subpages.jsx:8
+msgid "sub"
 msgstr ""

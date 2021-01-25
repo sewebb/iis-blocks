@@ -33,7 +33,7 @@ registerBlockType('iis/column', {
 	title: __('Column'),
 	category: 'iis',
 	icon: 'megaphone',
-	keywords: [__('grid', 'iis'), __('columns', 'iis'), __('column', 'iis')],
+	keywords: [__('grid', 'iis-blocks'), __('columns', 'iis-blocks'), __('column', 'iis-blocks')],
 	parent: ['iis/grid'],
 	attributes: {
 		columnWidth: {

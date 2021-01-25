@@ -2,10 +2,10 @@ const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 
 registerBlockType('iis/subpages', {
-	title: __('Subpages', 'iis'),
+	title: __('Submenu', 'iis-blocks'),
 	category: 'iis',
 	icon: 'admin-page',
-	keywords: [__('pages', 'iis'), __('sub', 'iis')],
+	keywords: [__('pages', 'iis-blocks'), __('sub', 'iis-blocks')],
 	supports: {
 		align: ['right', 'wide'],
 	},
@@ -18,7 +18,7 @@ registerBlockType('iis/subpages', {
 	edit({ attributes }) {
 		return (
 			<div style={{ width: (attributes.align === 'right') ? '300px' : 'auto', padding: '20px', border: '1px solid #eee' }}>
-				<strong>&laquo; Sub pages &raquo;</strong>
+				<strong>{`« ${__('Submenu', 'iis-blocks')} »`}</strong>
 			</div>
 		);
 	},

@@ -13,7 +13,7 @@ registerBlockType('iis/grid', {
 	title: __('Grid'),
 	category: 'iis',
 	icon: 'megaphone',
-	keywords: [__('grid', 'iis'), __('columns', 'iis'), __('column', 'iis')],
+	keywords: [__('grid', 'iis-blocks'), __('columns', 'iis-blocks'), __('column', 'iis-blocks')],
 	supports: {
 		align: ['full', 'center'],
 	},
