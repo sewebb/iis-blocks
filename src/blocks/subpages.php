@@ -15,7 +15,7 @@ function iis_render_block_subpages( $attributes, $content ) {
 
 	$top_level = $post;
 
-	while ( $top_level->post_parent !== 0) {
+	while ( $top_level && $top_level->post_parent !== 0) {
 		$top_level = get_post( $top_level->post_parent );
 	}
 
