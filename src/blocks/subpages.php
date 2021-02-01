@@ -22,6 +22,7 @@ function iis_render_block_subpages( $attributes, $content ) {
 	$all_children = get_pages( [
 		'child_of' => $top_level->ID,
 		'post_type' => $top_level->post_type,
+		'sort_column' => 'menu_order',
 	] );
 
 	$children = [];
