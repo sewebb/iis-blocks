@@ -21,10 +21,22 @@ registerBlockType('iis/sidebar', {
 	edit() {
 		return (
 			<div style={{
-				width: '300px', margin: '0 0 10px 10px', padding: '20px', border: '1px solid #eee',
+				width: '300px',
+				margin: '0 0 10px 10px',
+				padding: '20px',
+				border: '1px solid #eee',
+				clear: 'right',
 			}}
 			>
-				<InnerBlocks />
+				<InnerBlocks
+					allowedBlocks={[
+						'core/heading',
+						'core/paragraph',
+						'core/list',
+						'iis/button',
+					]}
+					template={[['core/heading'], ['core/paragraph']]}
+				/>
 			</div>
 		);
 	},
