@@ -25,23 +25,18 @@ function iis_render_block_subpages( $attributes, $content ) {
 		'sort_column' => 'menu_order',
 	] );
 
-	$children = [];
+	$second_level_items = [];
+	$third_level_items = [];
 
 	foreach ( $all_children as $child ) {
-		if (
-			( $child->post_parent === $top_level->ID && ! isset( $children[ $child->ID ] ) )
-			|| ( $child->post_parent !== $top_level->ID && ! isset( $children[ $child->post_parent ] ) )
-		) {
-			$children[ ( $child->post_parent === $top_level->ID ? $child->ID : $child->post_parent ) ] = [
-				'post' => null,
-				'children' => [],
-			];
-		}
-
 		if ( $child->post_parent === $top_level->ID ) {
-			$children[ $child->ID ]['post'] = $child;
+			$second_level_items[ $child->ID ] = $child;
 		} else {
-			$children[ $child->post_parent ]['children'][] = $child;
+			if ( ! isset( $third_level_items[ $child->post_parent ] ) ) {
+				$third_level_items[ $child->post_parent ] = [];
+			}
+
+			$third_level_items[ $child->post_parent ][ $child->ID ] = $child;
 		}
 	}
 
@@ -65,33 +60,33 @@ function iis_render_block_subpages( $attributes, $content ) {
 			</dt>
 			<?php
 
-			foreach ( $children as $child ) :
+			foreach ( $second_level_items as $child ) :
 				$link_classes = 'm-submenu__item__link';
 
-				if ( count( $child['children'] ) ) {
+				if ( isset( $third_level_items[ $child->ID ] ) ) {
 					$link_classes .= ' m-submenu__item__link--has-sublevel';
 				}
 
-				if ( $child['post']->ID === $post->ID ) {
+				if ( $child->ID === $post->ID ) {
 					$link_classes .= ' !is-current';
 				}
 
 				?>
 				<dd class="<?php imns( 'm-submenu__item' ); ?>">
-					<?php if ( count( $child['children'] ) ) : ?>
+					<?php if ( isset( $third_level_items[ $child->ID ] ) ) : ?>
 						<div class="<?php imns( 'm-submenu__item__sublevel' ); ?>">
-							<a href="<?php echo get_permalink( $child['post'] ); ?>" class="<?php imns( $link_classes ); ?>">
-								<span><?php echo apply_filters( 'the_title', $child['post']->post_title ); ?></span>
+							<a href="<?php echo get_permalink( $child->ID ); ?>" class="<?php imns( $link_classes ); ?>">
+								<span><?php echo apply_filters( 'the_title', $child->post_title ); ?></span>
 								<svg class="icon">
 									<use xlink:href="#icon-arrow-variant"></use>
 								</svg>
 							</a>
-							<button type="button" class="<?php imns( 'm-submenu__item__toggle-button' ); ?>" data-a11y-toggle="sublvl<?php echo $child['post']->ID; ?>" aria-controls="sublvl<?php echo $child['post']->ID; ?>">
+							<button type="button" class="<?php imns( 'm-submenu__item__toggle-button' ); ?>" data-a11y-toggle="sublvl<?php echo $child->ID; ?>" aria-controls="sublvl<?php echo $child->ID; ?>">
 								<span class="u-visuallyhidden">Öppna/stäng</span>
 							</button>
 						</div>
-						<ul class="<?php imns( 'm-submenu__sublevel' ); ?>" aria-hidden="true" id="sublvl<?php echo $child['post']->ID; ?>" data-focus-trap="false">
-							<?php foreach ( $child['children'] as $subchild ) : ?>
+						<ul class="<?php imns( 'm-submenu__sublevel' ); ?>" aria-hidden="true" id="sublvl<?php echo $child->ID; ?>" data-focus-trap="false">
+							<?php foreach ( $third_level_items[ $child->ID ] as $subchild ) : ?>
 								<li class="<?php imns( 'm-submenu__sublevel__item' ); ?>">
 									<a href="<?php echo get_permalink( $subchild ); ?>" class="<?php imns( 'm-submenu__item__link m-submenu__sublevel__item__link' ); ?>">
 										<span><?php echo apply_filters( 'the_title', $subchild->post_title ); ?></span>
@@ -103,8 +98,8 @@ function iis_render_block_subpages( $attributes, $content ) {
 							<?php endforeach; ?>
 						</ul>
 					<?php else : ?>
-						<a href="<?php echo get_permalink( $child['post'] ); ?>" class="<?php imns( $link_classes ); ?>">
-							<span><?php echo apply_filters( 'the_title', $child['post']->post_title ); ?></span>
+						<a href="<?php echo get_permalink( $child->ID ); ?>" class="<?php imns( $link_classes ); ?>">
+							<span><?php echo apply_filters( 'the_title', $child->post_title ); ?></span>
 							<svg class="icon">
 								<use xlink:href="#icon-arrow-variant"></use>
 							</svg>
