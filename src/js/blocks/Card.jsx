@@ -37,6 +37,7 @@ registerBlockType('iis/card', {
 					</PanelBody>
 				</InspectorControls>
 				<div style={{
+					minWidth: '300px',
 					position: 'relative',
 					borderRadius: '.25rem',
 					overflow: 'hidden',
