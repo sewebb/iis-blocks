@@ -90,6 +90,10 @@ registerBlockType('iis/puff', {
 			type: 'boolean',
 			default: false,
 		},
+		shadow: {
+			type: 'boolean',
+			default: false,
+		},
 	},
 	edit({ attributes, setAttributes }) {
 		const [imageSizes, setImageSizes] = useState(null);
@@ -104,6 +108,10 @@ registerBlockType('iis/puff', {
 			borderRadius: '.25rem',
 			overflow: 'hidden',
 		};
+
+		if (attributes.shadow) {
+			styleCard.boxShadow = '0 4rem 6rem rgb(31 42 54 / 20%)';
+		}
 
 		const styleCardContent = {
 			padding: '1rem',
@@ -220,6 +228,11 @@ registerBlockType('iis/puff', {
 							label="Show as teaser"
 							checked={showAsTeaser}
 							onChange={(value) => setAttributes({ showAsTeaser: value })}
+						/>
+						<CheckboxControl
+							label="Shadow"
+							checked={attributes.shadow}
+							onChange={(shadow) => setAttributes({ shadow })}
 						/>
 						{attributes.align === 'right' && (
 							<CheckboxControl

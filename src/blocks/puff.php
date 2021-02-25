@@ -25,6 +25,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 			'align'          => null,
 			'className'      => '',
 			'button'         => false,
+			'shadow'         => false,
 		],
 		$attributes
 	);
@@ -106,6 +107,10 @@ function iis_render_puff( $attributes, $inner_content ) {
 		$card_class .= ' m-card--wide';
 	}
 
+	if ( $attributes['shadow'] ) {
+		$card_class .= ' m-card--shadow';
+	}
+
 	if ( $attributes['showAsTeaser'] ) {
 		$card_class .= ' m-card--teaser';
 	} else {
@@ -136,7 +141,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 						</svg> <?php echo $content['media'][0]->name; ?>
 					</div>
 				</div>
-			<?php elseif ( $post && $attributes['displayDates'] && $content['date'] ) : ?>
+			<?php elseif ( isset( $post ) && $attributes['displayDates'] && $content['date'] ) : ?>
 				<time datetime="<?php echo $post->post_date; ?>" class="<?php imns( 'a-meta' ); ?>">
 					<?php echo $content['date']; ?>
 				</time>
