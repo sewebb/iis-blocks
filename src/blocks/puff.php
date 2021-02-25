@@ -56,6 +56,8 @@ function iis_render_puff( $attributes, $inner_content ) {
 			'categories' => null,
 			'media'      => null,
 		];
+
+		$id = '';
 	} else {
 		$post = get_post( $attributes['postId'] );
 
@@ -92,6 +94,8 @@ function iis_render_puff( $attributes, $inner_content ) {
 			'categories' => $categories,
 			'media'      => $media,
 		];
+
+		$id = 'id="post-' . $attributes['postId'] . '"';
 	}
 
 	$class  = $attributes['className'];
@@ -121,7 +125,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 	$card_text_class = ( $attributes['showAsTeaser'] ) ? 'm-card__text !u-hide-md' : 'm-card__text';
 
 	ob_start(); ?>
-	<div class="<?php imns( $card_class ); ?> <?php echo iis_sanitize_html_classes( $class ); ?>" id="post-<?php echo $attributes['postId'] ?? 'custom'; ?>">
+	<div class="<?php imns( $card_class ); ?> <?php echo iis_sanitize_html_classes( $class ); ?>" <?php echo $id; ?>>
 		<?php
 
 		if ( $content['thumbnail'] ) {
