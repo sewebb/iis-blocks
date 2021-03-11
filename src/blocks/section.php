@@ -3,11 +3,12 @@
 function iis_render_block_section( $attributes, $content ) {
 	$attributes = array_merge(
 		[
-			'white' => false,
-			'highlightColor' => 'ruby',
-			'decoration' => null,
-			'style' => 'landing-page',
+			'white'           => false,
+			'highlightColor'  => 'ruby',
+			'decoration'      => null,
+			'style'           => 'landing-page',
 			'backgroundColor' => null,
+			'className'       => '',
 		],
 		$attributes
 	);
@@ -33,7 +34,7 @@ function iis_render_block_section( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<div class="<?php imns( $class_name ); ?> alignfull">
+	<div class="<?php imns( $class_name ); ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?> alignfull">
 		<div class="<?php imns( $content_class ); ?>">
 			<div class="row">
 				<div class="grid-18">
