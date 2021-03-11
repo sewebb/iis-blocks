@@ -30,7 +30,7 @@ function iis_render_column( $attributes, $content ) {
 
 	?>
 
-	<div class="<?php echo iis_sanitize_html_classes( $grid_class ); ?> u-m-b-4">
+	<div class="<?php echo iis_sanitize_html_classes( $grid_class ); ?> u-m-b-2">
 		<?php echo $content; ?>
 	</div>
 
