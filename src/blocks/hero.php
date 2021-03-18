@@ -37,7 +37,9 @@ function iis_render_block_hero( $attributes, $content ) {
 			<div class="wrapper">
 				<div class="<?php imns( 'o-hero__text' ); ?>">
 					<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
+					<?php if ( $attributes['introText'] && ! empty( trim( $attributes['introText'] ) ) ) : ?>
 					<p class="<?php imns( 'o-hero__paragraph' ); ?>"><?php echo esc_html( $attributes['introText'] ); ?></p>
+					<?php endif; ?>
 
 					<?php if ( $content ) : ?>
 					<div class="<?php imns( 'o-hero__buttons' ); ?>">
