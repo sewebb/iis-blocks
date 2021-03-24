@@ -5,6 +5,7 @@ function iis_render_block_hero( $attributes, $content ) {
 		[
 			'mediaUrl'  => null,
 			'mediaId'   => null,
+			'mediaType' => null,
 			'title'     => '',
 			'introText' => '',
 			'align'     => 'wide',
@@ -14,6 +15,27 @@ function iis_render_block_hero( $attributes, $content ) {
 
 	$class = 'o-hero';
 	$img   = null;
+
+	if ( $attributes['mediaId'] && 'video' === $attributes['mediaType'] ) {
+		$class .= ' o-hero--border-radius o-hero--video';
+
+		if ( 'full' == $attributes['align'] ) {
+			$class .= ' !alignfull';
+		}
+
+		ob_start();
+		?>
+		<div class="wp-block-iis-hero">
+			<figure class="<?php imns( $class ); ?>">
+				<video width="100%" height="100%" src="<?php echo wp_get_attachment_url( $attributes['mediaId'] ); ?>" controls></video>
+			</figure>
+		</div>
+		<?php
+
+		$content = ob_get_clean();
+
+		return str_replace( [ "\t", "\n", "\r" ], '', $content );
+	}
 
 	if ( $attributes['mediaId'] ) {
 		$img = wp_get_attachment_image( $attributes['mediaId'], 'hero', false, [ 'class' => imns( 'o-hero__image', false ) ] );

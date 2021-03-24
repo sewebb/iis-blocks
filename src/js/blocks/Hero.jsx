@@ -29,6 +29,10 @@ registerBlockType('iis/hero', {
 			type: 'number',
 			default: null,
 		},
+		mediaType: {
+			type: 'string',
+			default: null,
+		},
 		title: {
 			type: 'string',
 			default: '',
@@ -45,7 +49,10 @@ registerBlockType('iis/hero', {
 	edit({ attributes, setAttributes }) {
 		let image = null;
 
-		if (attributes.mediaUrl) {
+		if (attributes.mediaUrl && attributes.mediaType === 'video') {
+			// eslint-disable-next-line jsx-a11y/media-has-caption
+			image = <video src={attributes.mediaUrl} style={{ width: '100%', height: 'auto' }} />;
+		} else if (attributes.mediaUrl) {
 			image = <img src={attributes.mediaUrl} alt="" style={{ width: '100%', height: 'auto' }} />;
 		}
 
@@ -57,12 +64,15 @@ registerBlockType('iis/hero', {
 						{attributes.mediaUrl === null && (
 							<MediaUploadCheck>
 								<MediaUpload
-									onSelect={(imageObject) => (
+									onSelect={(imageObject) => {
+										console.log(imageObject);
+
 										setAttributes({
-											mediaUrl: imageObject.sizes.full.url,
+											mediaUrl: ('sizes' in imageObject) ? imageObject.sizes.full.url : imageObject.url,
 											mediaId: imageObject.id,
-										})
-									)}
+											mediaType: imageObject.mime.split('/')[0],
+										});
+									}}
 									type="image"
 									value={attributes.mediaUrl}
 									render={({ open }) => (
@@ -87,30 +97,35 @@ registerBlockType('iis/hero', {
 					</PanelBody>
 				</InspectorControls>
 				<div className={`iis-block-hero ${!attributes.mediaId ? 'iis-block-hero--no-image' : null}`}>
-					{attributes.mediaUrl && (
+					{attributes.mediaUrl && attributes.mediaType === 'video' && (
+						// eslint-disable-next-line jsx-a11y/alt-text,jsx-a11y/media-has-caption
+						<video src={attributes.mediaUrl} autoPlay loop controls muted className="iis-block-hero__image" />
+					)}
+					{attributes.mediaUrl && attributes.mediaType !== 'video' && (
 						// eslint-disable-next-line jsx-a11y/alt-text
 						<img src={attributes.mediaUrl} className="iis-block-hero__image" />
 					)}
-
-					<div className="iis-block-hero__content">
-						<div className="iis-block-hero__inner-content">
-							<RichText
-								tagName="h1"
-								value={attributes.title}
-								placeholder={__('Title')}
-								onChange={(title) => setAttributes({ title })}
-							/>
-							<RichText
-								tagName="p"
-								value={attributes.introText}
-								placeholder={__('Content')}
-								onChange={(introText) => setAttributes({ introText })}
-							/>
-							<div className="iis-block-hero__buttons">
-								<InnerBlocks allowedBlocks={['iis/button']} />
+					{attributes.mediaType !== 'video' && (
+						<div className="iis-block-hero__content">
+							<div className="iis-block-hero__inner-content">
+								<RichText
+									tagName="h1"
+									value={attributes.title}
+									placeholder={__('Title')}
+									onChange={(title) => setAttributes({ title })}
+								/>
+								<RichText
+									tagName="p"
+									value={attributes.introText}
+									placeholder={__('Content')}
+									onChange={(introText) => setAttributes({ introText })}
+								/>
+								<div className="iis-block-hero__buttons">
+									<InnerBlocks allowedBlocks={['iis/button']} />
+								</div>
 							</div>
 						</div>
-					</div>
+					)}
 				</div>
 			</Fragment>
 		);
