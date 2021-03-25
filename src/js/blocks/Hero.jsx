@@ -3,7 +3,7 @@ import './hero.css';
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { registerBlockType } = wp.blocks;
-const { PanelBody, Button } = wp.components;
+const { PanelBody, Button, TextControl } = wp.components;
 const {
 	InspectorControls,
 	MediaUpload,
@@ -11,6 +11,12 @@ const {
 	RichText,
 	InnerBlocks,
 } = wp.editor;
+
+function parseYoutube(url) {
+	const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+	const match = url.match(regExp);
+	return (match && match[7].length === 11) ? match[7] : false;
+}
 
 registerBlockType('iis/hero', {
 	title: __('Hero'),
@@ -33,6 +39,10 @@ registerBlockType('iis/hero', {
 			type: 'string',
 			default: null,
 		},
+		youtube: {
+			type: 'string',
+			default: null,
+		},
 		title: {
 			type: 'string',
 			default: '',
@@ -48,12 +58,18 @@ registerBlockType('iis/hero', {
 	},
 	edit({ attributes, setAttributes }) {
 		let image = null;
+		const noYoutube = attributes.youtube === null || attributes.youtube.length < 1;
+		const youtubeId = parseYoutube(attributes.youtube);
+		const youtubeUrl = (youtubeId) ? `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0` : null;
 
 		if (attributes.mediaUrl && attributes.mediaType === 'video') {
 			// eslint-disable-next-line jsx-a11y/media-has-caption
 			image = <video src={attributes.mediaUrl} style={{ width: '100%', height: 'auto' }} />;
 		} else if (attributes.mediaUrl) {
 			image = <img src={attributes.mediaUrl} alt="" style={{ width: '100%', height: 'auto' }} />;
+		} else if (youtubeId) {
+			// eslint-disable-next-line jsx-a11y/iframe-has-title
+			image = <iframe width="100%" height="100%" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />;
 		}
 
 		return (
@@ -61,7 +77,7 @@ registerBlockType('iis/hero', {
 				<InspectorControls>
 					<PanelBody title="Background image">
 						<p>{image}</p>
-						{attributes.mediaUrl === null && (
+						{attributes.mediaUrl === null && noYoutube && (
 							<MediaUploadCheck>
 								<MediaUpload
 									onSelect={(imageObject) => {
@@ -86,7 +102,7 @@ registerBlockType('iis/hero', {
 								/>
 							</MediaUploadCheck>
 						)}
-						{attributes.mediaUrl !== null && (
+						{attributes.mediaUrl !== null && noYoutube && (
 							<Button
 								className="components-button is-button is-default"
 								onClick={() => setAttributes({ mediaUrl: null, mediaId: null })}
@@ -94,9 +110,19 @@ registerBlockType('iis/hero', {
 								Remove background
 							</Button>
 						)}
+						{!attributes.mediaUrl && (
+							<div style={{ marginTop: '1rem' }}>
+								<TextControl
+									label={__('Youtube-URL', 'iis-blocks')}
+									placeholder={__('Full youtube URL', 'iis-blocks')}
+									value={attributes.youtube}
+									onChange={(youtube) => setAttributes({ youtube })}
+								/>
+							</div>
+						)}
 					</PanelBody>
 				</InspectorControls>
-				<div className={`iis-block-hero ${!attributes.mediaId ? 'iis-block-hero--no-image' : null}`}>
+				<div className={`iis-block-hero ${!attributes.mediaId && !attributes.youtube ? 'iis-block-hero--no-image' : null} ${attributes.youtube ? 'iis-block-hero--video' : null}`}>
 					{attributes.mediaUrl && attributes.mediaType === 'video' && (
 						// eslint-disable-next-line jsx-a11y/alt-text,jsx-a11y/media-has-caption
 						<video src={attributes.mediaUrl} autoPlay loop controls muted className="iis-block-hero__image" />
@@ -105,7 +131,11 @@ registerBlockType('iis/hero', {
 						// eslint-disable-next-line jsx-a11y/alt-text
 						<img src={attributes.mediaUrl} className="iis-block-hero__image" />
 					)}
-					{attributes.mediaType !== 'video' && (
+					{!attributes.mediaUrl && youtubeUrl && (
+						// eslint-disable-next-line jsx-a11y/iframe-has-title
+						<iframe width="100%" height="100%" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
+					)}
+					{attributes.mediaType !== 'video' && !attributes.youtube && (
 						<div className="iis-block-hero__content">
 							<div className="iis-block-hero__inner-content">
 								<RichText
