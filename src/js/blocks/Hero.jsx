@@ -109,7 +109,7 @@ registerBlockType('iis/hero', {
 								/>
 							</MediaUploadCheck>
 						)}
-						{attributes.mediaUrl !== null && noYoutube && (
+						{attributes.mediaUrl !== null && (
 							<Button
 								className="components-button is-button is-default"
 								onClick={() => setAttributes({ mediaUrl: null, mediaId: null })}
