@@ -17,7 +17,7 @@ function iis_render_block_hero( $attributes, $content ) {
 	$class = 'o-hero';
 	$img   = null;
 
-	if ( $attributes['mediaId'] && 'video' === $attributes['mediaType'] ) {
+	if ( 'full' !== $attributes['align'] && $attributes['mediaId'] && 'video' === $attributes['mediaType'] ) {
 		$class .= ' o-hero--border-radius o-hero--video';
 
 		if ( 'full' == $attributes['align'] ) {
@@ -48,7 +48,7 @@ function iis_render_block_hero( $attributes, $content ) {
 		}
 	}
 
-	if ( $youtube_url ) {
+	if ( ! $attributes['mediaId'] && 'full' !== $attributes['align'] && $youtube_url ) {
 		$class .= ' o-hero--border-radius o-hero--video';
 
 		if ( 'full' == $attributes['align'] ) {

@@ -62,16 +62,19 @@ registerBlockType('iis/hero', {
 	},
 	edit({ attributes, setAttributes }) {
 		let image = null;
-		const noYoutube = attributes.youtube === null || attributes.youtube.length < 1;
+		const noYoutube = attributes.youtube === null || attributes.youtube.length < 1 || attributes.align === 'full';
 		const youtubeId = parseYoutube(attributes.youtube);
 		const youtubeUrl = (youtubeId) ? `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0` : null;
+		const displayImage = attributes.mediaUrl !== null && attributes.mediaType !== 'video';
+		const displayVideo = attributes.mediaUrl && attributes.mediaType === 'video' && attributes.align !== 'full';
+		const displayYoutube = !displayImage && !displayVideo && youtubeUrl && attributes.align !== 'full';
 
-		if (attributes.mediaUrl && attributes.mediaType === 'video') {
+		if (displayVideo) {
 			// eslint-disable-next-line jsx-a11y/media-has-caption
 			image = <video src={attributes.mediaUrl} style={{ width: '100%', height: 'auto' }} />;
-		} else if (attributes.mediaUrl) {
+		} else if (displayImage) {
 			image = <img src={attributes.mediaUrl} alt="" style={{ width: '100%', height: 'auto' }} />;
-		} else if (youtubeId) {
+		} else if (displayYoutube) {
 			// eslint-disable-next-line jsx-a11y/iframe-has-title
 			image = <iframe width="100%" height="100%" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />;
 		}
@@ -114,7 +117,7 @@ registerBlockType('iis/hero', {
 								Remove background
 							</Button>
 						)}
-						{!attributes.mediaUrl && (
+						{attributes.align !== 'full' && !attributes.mediaUrl && (
 							<div style={{ marginTop: '1rem' }}>
 								<TextControl
 									label={__('Youtube-URL', 'iis-blocks')}
@@ -126,20 +129,20 @@ registerBlockType('iis/hero', {
 						)}
 					</PanelBody>
 				</InspectorControls>
-				<div className={`iis-block-hero ${!attributes.mediaId && !attributes.youtube ? 'iis-block-hero--no-image' : null} ${attributes.youtube ? 'iis-block-hero--video' : null}`}>
-					{attributes.mediaUrl && attributes.mediaType === 'video' && (
+				<div className={`iis-block-hero ${(!displayImage && !displayYoutube && !displayVideo) ? 'iis-block-hero--no-image' : null} ${(displayVideo || displayYoutube) ? 'iis-block-hero--video' : null}`}>
+					{displayVideo && (
 						// eslint-disable-next-line jsx-a11y/alt-text,jsx-a11y/media-has-caption
 						<video src={attributes.mediaUrl} autoPlay loop controls muted className="iis-block-hero__image" />
 					)}
-					{attributes.mediaUrl && attributes.mediaType !== 'video' && (
+					{displayImage && (
 						// eslint-disable-next-line jsx-a11y/alt-text
 						<img src={attributes.mediaUrl} className="iis-block-hero__image" />
 					)}
-					{!attributes.mediaUrl && youtubeUrl && (
+					{displayYoutube && (
 						// eslint-disable-next-line jsx-a11y/iframe-has-title
 						<iframe width="100%" height="100%" src={youtubeUrl} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen />
 					)}
-					{attributes.mediaType !== 'video' && !attributes.youtube && (
+					{!displayVideo && !displayYoutube && (
 						<div className="iis-block-hero__content">
 							<div className="iis-block-hero__inner-content">
 								<RichText
