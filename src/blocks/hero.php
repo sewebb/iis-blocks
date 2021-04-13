@@ -26,7 +26,7 @@ function iis_render_block_hero( $attributes, $content ) {
 
 		ob_start();
 		?>
-		<div class="wp-block-iis-hero">
+		<div class="wp-block-iis-hero u-m-b-4">
 			<figure class="<?php imns( $class ); ?>">
 				<video width="100%" height="100%" src="<?php echo wp_get_attachment_url( $attributes['mediaId'] ); ?>" controls></video>
 			</figure>
@@ -57,7 +57,7 @@ function iis_render_block_hero( $attributes, $content ) {
 
 		ob_start();
 		?>
-		<div class="wp-block-iis-hero">
+		<div class="wp-block-iis-hero u-m-b-4">
 			<figure class="<?php imns( $class ); ?>">
 				<iframe width="100%" height="100%" src="<?php echo $youtube_url; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</figure>
@@ -80,11 +80,11 @@ function iis_render_block_hero( $attributes, $content ) {
 	if ( 'full' == $attributes['align'] ) {
 		$class .= ' !alignfull';
 	} elseif ( $img ) {
-		$class .= ' o-hero--border-radius';
+		$class .= ' o-hero--border-radius !u-m-t-4';
 	}
 
 	if ( $img ) {
-		$class .= ' !u-m-t-4';
+		$class .= ' !u-m-b-4';
 	}
 
 	ob_start();
