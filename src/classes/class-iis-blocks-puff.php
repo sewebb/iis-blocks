@@ -77,7 +77,7 @@ if ( ! class_exists( 'Iis_Blocks_Puff' ) ) :
 			$posts = get_posts(
 				[
 					'post_type'   => apply_filters( 'iis_blocks_puff_post_type', 'post' ),
-					'numberposts' => -1,
+					'numberposts' => 100,
 					's'           => $request['search'],
 					'exclude'     => $request['include'],
 				]
