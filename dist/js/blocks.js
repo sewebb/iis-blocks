@@ -2931,7 +2931,7 @@ registerBlockType('iis/card', {
 						'div',
 						null,
 						React.createElement(InnerBlocks, {
-							allowedBlocks: ['core/heading', 'core/paragraph', 'core/list', 'iis/button'],
+							allowedBlocks: ['core/heading', 'core/paragraph', 'core/html', 'core/list', 'iis/button'],
 							template: [['core/heading'], ['core/paragraph']]
 						})
 					)

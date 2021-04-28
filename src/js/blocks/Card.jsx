@@ -260,6 +260,7 @@ registerBlockType('iis/card', {
 								allowedBlocks={[
 									'core/heading',
 									'core/paragraph',
+									'core/html',
 									'core/list',
 									'iis/button',
 								]}
