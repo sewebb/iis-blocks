@@ -3,16 +3,28 @@
 function iis_render_card( $attributes, $content ) {
 	$attributes = array_merge(
 		[
-			'align'      => 'center',
-			'background' => false,
+			'align'        => 'center',
+			'background'   => false,
+			'showAsTeaser' => false,
+			'shadow'       => false,
 		],
 		$attributes
 	);
 
 	$class = 'm-card';
 
-	if ( $attributes['background'] ) {
+	if ( $attributes['showAsTeaser'] ) {
+		$class .= ' m-card--teaser';
+	} elseif ( $attributes['background'] ) {
 		$class .= ' m-card--padded';
+	}
+
+	if ( 'wide' == $attributes['align'] && ! $attributes['showAsTeaser'] ) {
+		$class .= ' m-card--wide';
+	}
+
+	if ( $attributes['shadow'] ) {
+		$class .= ' m-card--shadow';
 	}
 
 	ob_start();
