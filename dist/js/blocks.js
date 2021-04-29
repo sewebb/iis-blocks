@@ -2709,7 +2709,7 @@ registerBlockType('iis/card', {
 
 		var styleCard = {
 			position: 'relative',
-			border: '1px solid #bbb',
+			border: background ? '1px solid #bbb' : null,
 			borderRadius: '.25rem',
 			overflow: 'hidden'
 		};
@@ -2719,7 +2719,7 @@ registerBlockType('iis/card', {
 		}
 
 		var styleCardContent = {
-			padding: '1rem'
+			padding: background ? '1rem' : null
 		};
 
 		var styleCardImage = {
@@ -2931,7 +2931,7 @@ registerBlockType('iis/card', {
 						'div',
 						null,
 						React.createElement(InnerBlocks, {
-							allowedBlocks: ['core/heading', 'core/paragraph', 'core/html', 'core/list', 'iis/button'],
+							allowedBlocks: ['core/heading', 'core/paragraph', 'core/html', 'core/columns', 'core/list', 'iis/button'],
 							template: [['core/heading'], ['core/paragraph']]
 						})
 					)

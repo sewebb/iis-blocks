@@ -71,7 +71,7 @@ registerBlockType('iis/card', {
 		} = attributes;
 		const styleCard = {
 			position: 'relative',
-			border: '1px solid #bbb',
+			border: (background) ? '1px solid #bbb' : null,
 			borderRadius: '.25rem',
 			overflow: 'hidden',
 		};
@@ -81,7 +81,7 @@ registerBlockType('iis/card', {
 		}
 
 		const styleCardContent = {
-			padding: '1rem',
+			padding: (background) ? '1rem' : null,
 		};
 
 		const styleCardImage = {
@@ -261,6 +261,7 @@ registerBlockType('iis/card', {
 									'core/heading',
 									'core/paragraph',
 									'core/html',
+									'core/columns',
 									'core/list',
 									'iis/button',
 								]}
