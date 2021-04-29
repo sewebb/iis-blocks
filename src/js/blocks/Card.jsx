@@ -14,6 +14,7 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 	InnerBlocks,
+	RichText,
 } = wp.editor;
 
 registerBlockType('iis/card', {
@@ -37,17 +38,21 @@ registerBlockType('iis/card', {
 			type: 'boolean',
 			default: false,
 		},
-		imageSize: {
-			type: 'string',
-			default: null,
-		},
 		imageId: {
 			type: 'number',
 			default: null,
 		},
+		title: {
+			type: 'string',
+			default: '',
+		},
 		url: {
 			type: 'string',
 			default: null,
+		},
+		target: {
+			type: 'string',
+			default: '_self',
 		},
 		align: {
 			type: 'string',
@@ -177,6 +182,13 @@ registerBlockType('iis/card', {
 							value={attributes.url}
 							onChange={(url) => setAttributes({ url })}
 						/>
+						{attributes.url && attributes.url.length > 0 && (
+							<CheckboxControl
+								label="New window"
+								checked={attributes.target === '_blank'}
+								onChange={(value) => setAttributes({ target: (value) ? '_blank' : '_self' })}
+							/>
+						)}
 					</PanelBody>
 					<PanelBody title="Display">
 						<CheckboxControl
@@ -201,15 +213,6 @@ registerBlockType('iis/card', {
 								onChange={(showOnMobile) => setAttributes({ showOnMobile })}
 							/>
 						)}
-						<DataSelect
-							label={__('Image size', 'iis-blocks')}
-							placeholder={{ value: '', label: __('Auto', 'iis-blocks') }}
-							api="/iis-blocks/v1/image-sizes"
-							value_key={(obj) => obj.size}
-							label_key={(obj) => `${obj.name} (${obj.width}x${obj.height}`}
-							value={attributes.imageSize}
-							set={(imageSize) => setAttributes({ imageSize })}
-						/>
 					</PanelBody>
 					<PanelBody title="Image">
 						<div>{image}</div>
@@ -256,16 +259,22 @@ registerBlockType('iis/card', {
 						style={(showAsTeaser && imagePreview) ? styleTeaserContent : styleCardContent}
 					>
 						<div>
+							<RichText
+								tagName="h1"
+								value={attributes.title}
+								placeholder={__('Title')}
+								style={{ margin: 0 }}
+								onChange={(title) => setAttributes({ title })}
+							/>
 							<InnerBlocks
 								allowedBlocks={[
-									'core/heading',
 									'core/paragraph',
 									'core/html',
 									'core/columns',
 									'core/list',
 									'iis/button',
 								]}
-								template={[['core/heading'], ['core/paragraph']]}
+								template={[['core/paragraph']]}
 							/>
 						</div>
 					</div>

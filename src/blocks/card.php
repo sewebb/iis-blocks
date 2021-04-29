@@ -7,6 +7,9 @@ function iis_render_card( $attributes, $content ) {
 			'background'   => false,
 			'showAsTeaser' => false,
 			'shadow'       => false,
+			'title'        => '',
+			'url'          => null,
+			'target'       => '_self',
 		],
 		$attributes
 	);
@@ -32,11 +35,6 @@ function iis_render_card( $attributes, $content ) {
 	if ( $attributes['imageId'] ) {
 		$image_class = imns( 'm-card__image m-card__media', false );
 		$image_size  = ( $attributes['showAsTeaser'] ) ? 'puff-teaser-image' : 'puff-image';
-		$image_sizes = apply_filters( 'iis_blocks_puff_image_sizes', [ 'puff-image', 'puff-teaser-image', 'puff-image-4:3' ] );
-
-		if ( null !== $attributes['imageSize'] && in_array( $attributes['imageSize'], $image_sizes, true ) ) {
-			$image_size = $attributes['imageSize'];
-		}
 
 		$image = wp_get_attachment_image(
 			$attributes['imageId'],
@@ -46,12 +44,20 @@ function iis_render_card( $attributes, $content ) {
 		);
 	}
 
+	$has_link = $attributes['url'] && ! empty( trim( $attributes['url'] ) );
+	$title_class = ( $attributes['showAsTeaser'] ) ? 'alpha' : 'beta';
+
 	ob_start();
 	?>
 	<div class="align<?php echo esc_attr( $attributes['align'] ); ?>">
 		<article class="wp-block-iis-card <?php imns( $class ); ?>">
 			<?php echo $image; ?>
 			<div class="<?php imns( 'm-card__content' ); ?>">
+				<?php echo ( $has_link ) ? '<a href="' . esc_url( $attributes['url'] ) . '" class="' . imns( 'm-card__link', false ) . '" target="' . esc_attr( $attributes['target'] ) . '">' : ''; ?>
+				<h1 class="<?php echo $title_class; ?>">
+					<?php echo apply_filters( 'the_title', $attributes['title'] ); ?>
+				</h1>
+				<?php echo ( $has_link ) ? '</a>' : ''; ?>
 				<?php echo $content; ?>
 			</div>
 		</article>

@@ -2641,7 +2641,8 @@ var _wp$editor = wp.editor,
     InspectorControls = _wp$editor.InspectorControls,
     MediaUpload = _wp$editor.MediaUpload,
     MediaUploadCheck = _wp$editor.MediaUploadCheck,
-    InnerBlocks = _wp$editor.InnerBlocks;
+    InnerBlocks = _wp$editor.InnerBlocks,
+    RichText = _wp$editor.RichText;
 
 
 registerBlockType('iis/card', {
@@ -2665,17 +2666,21 @@ registerBlockType('iis/card', {
 			type: 'boolean',
 			default: false
 		},
-		imageSize: {
-			type: 'string',
-			default: null
-		},
 		imageId: {
 			type: 'number',
 			default: null
 		},
+		title: {
+			type: 'string',
+			default: ''
+		},
 		url: {
 			type: 'string',
 			default: null
+		},
+		target: {
+			type: 'string',
+			default: '_self'
 		},
 		align: {
 			type: 'string',
@@ -2821,6 +2826,13 @@ registerBlockType('iis/card', {
 						onChange: function onChange(url) {
 							return setAttributes({ url: url });
 						}
+					}),
+					attributes.url && attributes.url.length > 0 && React.createElement(CheckboxControl, {
+						label: 'New window',
+						checked: attributes.target === '_blank',
+						onChange: function onChange(value) {
+							return setAttributes({ target: value ? '_blank' : '_self' });
+						}
 					})
 				),
 				React.createElement(
@@ -2852,21 +2864,6 @@ registerBlockType('iis/card', {
 						checked: attributes.showOnMobile,
 						onChange: function onChange(showOnMobile) {
 							return setAttributes({ showOnMobile: showOnMobile });
-						}
-					}),
-					React.createElement(_DataSelect2.default, {
-						label: __('Image size', 'iis-blocks'),
-						placeholder: { value: '', label: __('Auto', 'iis-blocks') },
-						api: '/iis-blocks/v1/image-sizes',
-						value_key: function value_key(obj) {
-							return obj.size;
-						},
-						label_key: function label_key(obj) {
-							return obj.name + ' (' + obj.width + 'x' + obj.height;
-						},
-						value: attributes.imageSize,
-						set: function set(imageSize) {
-							return setAttributes({ imageSize: imageSize });
 						}
 					})
 				),
@@ -2930,9 +2927,18 @@ registerBlockType('iis/card', {
 					React.createElement(
 						'div',
 						null,
+						React.createElement(RichText, {
+							tagName: 'h1',
+							value: attributes.title,
+							placeholder: __('Title'),
+							style: { margin: 0 },
+							onChange: function onChange(title) {
+								return setAttributes({ title: title });
+							}
+						}),
 						React.createElement(InnerBlocks, {
-							allowedBlocks: ['core/heading', 'core/paragraph', 'core/html', 'core/columns', 'core/list', 'iis/button'],
-							template: [['core/heading'], ['core/paragraph']]
+							allowedBlocks: ['core/paragraph', 'core/html', 'core/columns', 'core/list', 'iis/button'],
+							template: [['core/paragraph']]
 						})
 					)
 				)
