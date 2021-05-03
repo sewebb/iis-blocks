@@ -708,6 +708,8 @@ __webpack_require__(9);
 
 __webpack_require__(13);
 
+__webpack_require__(28);
+
 __webpack_require__(14);
 
 __webpack_require__(15);
@@ -2620,12 +2622,6 @@ registerBlockType('iis/section-header', {
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-var _DataSelect = __webpack_require__(2);
-
-var _DataSelect2 = _interopRequireDefault(_DataSelect);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
 var __ = wp.i18n.__;
 var _wp$element = wp.element,
     Fragment = _wp$element.Fragment,
@@ -2991,7 +2987,7 @@ registerBlockType('iis/card', {
 							}
 						}),
 						React.createElement(InnerBlocks, {
-							allowedBlocks: ['core/paragraph', 'core/html', 'core/columns', 'core/list', 'iis/button'],
+							allowedBlocks: ['core/paragraph', 'core/html', 'core/columns', 'core/list', 'iis/button', 'iis/buttons'],
 							template: [['core/paragraph']]
 						})
 					)
@@ -3009,6 +3005,105 @@ registerBlockType('iis/card', {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 27 */,
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+__webpack_require__(29);
+
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType;
+var InnerBlocks = wp.editor.InnerBlocks;
+var useSelect = wp.data.useSelect;
+
+
+registerBlockType('iis/buttons', {
+	title: __('Buttons'),
+	category: 'iis',
+	icon: 'admin-links',
+	keywords: [__('buttons', 'iis-blocks'), __('button', 'iis-blocks'), __('action', 'iis-blocks')],
+	edit: function edit(_ref) {
+		var clientId = _ref.clientId;
+
+		var _useSelect = useSelect(function (select) {
+			var _select = select('core/block-editor'),
+			    getBlockOrder = _select.getBlockOrder,
+			    getBlockRootClientId = _select.getBlockRootClientId;
+
+			return {
+				hasChildBlocks: getBlockOrder(clientId).length > 0,
+				rootClientId: getBlockRootClientId(clientId)
+			};
+		}, [clientId]),
+		    hasChildBlocks = _useSelect.hasChildBlocks;
+
+		return React.createElement(
+			'div',
+			{ className: 'iis-block-buttons' },
+			React.createElement(InnerBlocks, {
+				allowedBlocks: ['iis/button'],
+				template: [['iis/button'], ['iis/button']],
+				orientation: 'horizontal',
+				renderAppender: hasChildBlocks ? undefined : function () {
+					return React.createElement(InnerBlocks.ButtonBlockAppender, null);
+				}
+			})
+		);
+	},
+	save: function save() {
+		return React.createElement(InnerBlocks.Content, null);
+	}
+});
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(30);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./buttons.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./buttons.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".iis-block-buttons > .block-editor-inner-blocks > .block-editor-block-list__layout {\n\tdisplay: flex;\n}\n\n.iis-block-buttons > .block-editor-inner-blocks > .block-editor-block-list__layout > * {\n\tmargin: 10px 10px 0 0;\n}\n", ""]);
+
+// exports
+
 
 /***/ })
 /******/ ]);

@@ -4,6 +4,7 @@ import './blocks/Download';
 import './blocks/PostArchive';
 import './blocks/Hero';
 import './blocks/Button';
+import './blocks/Buttons';
 import './blocks/Puff';
 import './blocks/Grid';
 import './blocks/Column';

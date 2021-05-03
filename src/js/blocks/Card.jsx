@@ -1,5 +1,3 @@
-import DataSelect from '../components/DataSelect';
-
 const { __ } = wp.i18n;
 const { Fragment, useState, useEffect } = wp.element;
 const { registerBlockType } = wp.blocks;
@@ -321,6 +319,7 @@ registerBlockType('iis/card', {
 									'core/columns',
 									'core/list',
 									'iis/button',
+									'iis/buttons',
 								]}
 								template={[['core/paragraph']]}
 							/>
