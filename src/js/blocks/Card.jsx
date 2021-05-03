@@ -17,6 +17,25 @@ const {
 	RichText,
 } = wp.editor;
 
+function PlayIcon() {
+	return (
+		<svg id="icon-play" viewBox="0 0 32 32" width={87} height={87}>
+			<path fill="#fff" d="M16 28.5c6.9 0 12.5-5.6 12.5-12.5S22.9 3.5 16 3.5 3.5 9.1 3.5 16 9.1 28.5 16 28.5m0 3C7.4 31.5.5 24.6.5 16S7.4.5 16 .5 31.5 7.4 31.5 16 24.6 31.5 16 31.5" />
+			<path fill="#fff" d="M11.7 8.2l11.4 7.7-11.4 7.7z" />
+		</svg>
+	);
+}
+
+function parseYoutube(url) {
+	if (!url) {
+		return null;
+	}
+
+	const regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+	const match = url.match(regExp);
+	return (match && match[7].length === 11) ? match[7] : false;
+}
+
 registerBlockType('iis/card', {
 	title: __('Card', 'iis-blocks'),
 	category: 'iis',
@@ -40,6 +59,10 @@ registerBlockType('iis/card', {
 		},
 		imageId: {
 			type: 'number',
+			default: null,
+		},
+		youtube: {
+			type: 'string',
 			default: null,
 		},
 		title: {
@@ -70,6 +93,9 @@ registerBlockType('iis/card', {
 	edit({ attributes, setAttributes }) {
 		const [imageSizes, setImageSizes] = useState(null);
 		const [imagePreview, setImagePreview] = useState(null);
+		const youtubeId = parseYoutube(attributes.youtube);
+		const youtubeUrl = (youtubeId) ? `https://www.youtube-nocookie.com/embed/${youtubeId}?rel=0` : null;
+		const mediaPreview = (imagePreview || youtubeUrl) ? imagePreview || `https://i3.ytimg.com/vi/${youtubeId}/maxresdefault.jpg` : null;
 		const {
 			showAsTeaser,
 			background,
@@ -214,6 +240,14 @@ registerBlockType('iis/card', {
 							/>
 						)}
 					</PanelBody>
+					<PanelBody title="Youtube">
+						<TextControl
+							label={__('Youtube-URL', 'iis-blocks')}
+							placeholder={__('Full youtube URL', 'iis-blocks')}
+							value={attributes.youtube}
+							onChange={(youtube) => setAttributes({ youtube })}
+						/>
+					</PanelBody>
 					<PanelBody title="Image">
 						<div>{image}</div>
 						{imagePreview === null && (
@@ -248,12 +282,26 @@ registerBlockType('iis/card', {
 					</PanelBody>
 				</InspectorControls>
 				<div style={styleCard}>
-					{imagePreview && (
-						<img
-							src={imagePreview}
-							alt=""
-							style={(showAsTeaser) ? styleTeaserImage : styleCardImage}
-						/>
+					{mediaPreview && (
+						<div style={{ position: 'relative' }}>
+							{youtubeUrl && (
+								<div
+									style={{
+										position: 'absolute',
+										top: '50%',
+										left: '50%',
+										transform: 'translate(-50%, -50%)',
+									}}
+								>
+									<PlayIcon />
+								</div>
+							)}
+							<img
+								src={mediaPreview}
+								alt=""
+								style={(showAsTeaser) ? styleTeaserImage : styleCardImage}
+							/>
+						</div>
 					)}
 					<div
 						style={(showAsTeaser && imagePreview) ? styleTeaserContent : styleCardContent}

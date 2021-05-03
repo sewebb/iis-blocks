@@ -2645,6 +2645,25 @@ var _wp$editor = wp.editor,
     RichText = _wp$editor.RichText;
 
 
+function PlayIcon() {
+	return React.createElement(
+		"svg",
+		{ id: "icon-play", viewBox: "0 0 32 32", width: 87, height: 87 },
+		React.createElement("path", { fill: "#fff", d: "M16 28.5c6.9 0 12.5-5.6 12.5-12.5S22.9 3.5 16 3.5 3.5 9.1 3.5 16 9.1 28.5 16 28.5m0 3C7.4 31.5.5 24.6.5 16S7.4.5 16 .5 31.5 7.4 31.5 16 24.6 31.5 16 31.5" }),
+		React.createElement("path", { fill: "#fff", d: "M11.7 8.2l11.4 7.7-11.4 7.7z" })
+	);
+}
+
+function parseYoutube(url) {
+	if (!url) {
+		return null;
+	}
+
+	var regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#&?]*).*/;
+	var match = url.match(regExp);
+	return match && match[7].length === 11 ? match[7] : false;
+}
+
 registerBlockType('iis/card', {
 	title: __('Card', 'iis-blocks'),
 	category: 'iis',
@@ -2668,6 +2687,10 @@ registerBlockType('iis/card', {
 		},
 		imageId: {
 			type: 'number',
+			default: null
+		},
+		youtube: {
+			type: 'string',
 			default: null
 		},
 		title: {
@@ -2709,6 +2732,9 @@ registerBlockType('iis/card', {
 		    imagePreview = _useState4[0],
 		    setImagePreview = _useState4[1];
 
+		var youtubeId = parseYoutube(attributes.youtube);
+		var youtubeUrl = youtubeId ? "https://www.youtube-nocookie.com/embed/" + youtubeId + "?rel=0" : null;
+		var mediaPreview = imagePreview || youtubeUrl ? imagePreview || "https://i3.ytimg.com/vi/" + youtubeId + "/maxresdefault.jpg" : null;
 		var showAsTeaser = attributes.showAsTeaser,
 		    background = attributes.background;
 
@@ -2759,7 +2785,7 @@ registerBlockType('iis/card', {
 		var image = null;
 
 		if (imagePreview) {
-			image = React.createElement('img', { src: imagePreview, alt: '', style: { width: '100%', height: 'auto' } });
+			image = React.createElement("img", { src: imagePreview, alt: "", style: { width: '100%', height: 'auto' } });
 		}
 
 		if (!attributes.showAsTeaser && attributes.align === 'wide') {
@@ -2818,7 +2844,7 @@ registerBlockType('iis/card', {
 				null,
 				React.createElement(
 					PanelBody,
-					{ title: 'Content' },
+					{ title: "Content" },
 					React.createElement(TextControl, {
 						label: __('Link', 'iis-blocks'),
 						placeholder: __('/link/to/here', 'iis-blocks'),
@@ -2828,7 +2854,7 @@ registerBlockType('iis/card', {
 						}
 					}),
 					attributes.url && attributes.url.length > 0 && React.createElement(CheckboxControl, {
-						label: 'New window',
+						label: "New window",
 						checked: attributes.target === '_blank',
 						onChange: function onChange(value) {
 							return setAttributes({ target: value ? '_blank' : '_self' });
@@ -2837,30 +2863,30 @@ registerBlockType('iis/card', {
 				),
 				React.createElement(
 					PanelBody,
-					{ title: 'Display' },
+					{ title: "Display" },
 					React.createElement(CheckboxControl, {
-						label: 'Background',
+						label: "Background",
 						checked: background,
 						onChange: function onChange(value) {
 							return setAttributes({ background: value });
 						}
 					}),
 					React.createElement(CheckboxControl, {
-						label: 'Show as teaser',
+						label: "Show as teaser",
 						checked: showAsTeaser,
 						onChange: function onChange(value) {
 							return setAttributes({ showAsTeaser: value });
 						}
 					}),
 					React.createElement(CheckboxControl, {
-						label: 'Shadow',
+						label: "Shadow",
 						checked: attributes.shadow,
 						onChange: function onChange(shadow) {
 							return setAttributes({ shadow: shadow });
 						}
 					}),
 					attributes.align === 'right' && React.createElement(CheckboxControl, {
-						label: 'Show on mobile',
+						label: "Show on mobile",
 						checked: attributes.showOnMobile,
 						onChange: function onChange(showOnMobile) {
 							return setAttributes({ showOnMobile: showOnMobile });
@@ -2869,9 +2895,21 @@ registerBlockType('iis/card', {
 				),
 				React.createElement(
 					PanelBody,
-					{ title: 'Image' },
+					{ title: "Youtube" },
+					React.createElement(TextControl, {
+						label: __('Youtube-URL', 'iis-blocks'),
+						placeholder: __('Full youtube URL', 'iis-blocks'),
+						value: attributes.youtube,
+						onChange: function onChange(youtube) {
+							return setAttributes({ youtube: youtube });
+						}
+					})
+				),
+				React.createElement(
+					PanelBody,
+					{ title: "Image" },
 					React.createElement(
-						'div',
+						"div",
 						null,
 						image
 					),
@@ -2884,17 +2922,17 @@ registerBlockType('iis/card', {
 									imageId: imageObject.id
 								});
 							},
-							type: 'image',
+							type: "image",
 							value: imagePreview,
 							render: function render(_ref2) {
 								var open = _ref2.open;
 								return React.createElement(
 									Button,
 									{
-										className: 'components-button editor-post-featured-image__toggle',
+										className: "components-button editor-post-featured-image__toggle",
 										onClick: open
 									},
-									'Upload Image!'
+									"Upload Image!"
 								);
 							}
 						})
@@ -2902,33 +2940,49 @@ registerBlockType('iis/card', {
 					imagePreview !== null && React.createElement(
 						Button,
 						{
-							className: 'components-button is-button is-default',
+							className: "components-button is-button is-default",
 							onClick: function onClick() {
 								return setAttributes({ imageId: null });
 							}
 						},
-						'Remove image'
+						"Remove image"
 					)
 				)
 			),
 			React.createElement(
-				'div',
+				"div",
 				{ style: styleCard },
-				imagePreview && React.createElement('img', {
-					src: imagePreview,
-					alt: '',
-					style: showAsTeaser ? styleTeaserImage : styleCardImage
-				}),
+				mediaPreview && React.createElement(
+					"div",
+					{ style: { position: 'relative' } },
+					youtubeUrl && React.createElement(
+						"div",
+						{
+							style: {
+								position: 'absolute',
+								top: '50%',
+								left: '50%',
+								transform: 'translate(-50%, -50%)'
+							}
+						},
+						React.createElement(PlayIcon, null)
+					),
+					React.createElement("img", {
+						src: mediaPreview,
+						alt: "",
+						style: showAsTeaser ? styleTeaserImage : styleCardImage
+					})
+				),
 				React.createElement(
-					'div',
+					"div",
 					{
 						style: showAsTeaser && imagePreview ? styleTeaserContent : styleCardContent
 					},
 					React.createElement(
-						'div',
+						"div",
 						null,
 						React.createElement(RichText, {
-							tagName: 'h1',
+							tagName: "h1",
 							value: attributes.title,
 							placeholder: __('Title'),
 							style: { margin: 0 },

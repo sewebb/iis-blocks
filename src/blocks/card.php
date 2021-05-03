@@ -10,6 +10,7 @@ function iis_render_card( $attributes, $content ) {
 			'title'        => '',
 			'url'          => null,
 			'target'       => '_self',
+			'youtube'      => null,
 		],
 		$attributes
 	);
@@ -31,10 +32,21 @@ function iis_render_card( $attributes, $content ) {
 	}
 
 	$image = null;
+	$image_wrapper_class = imns( 'm-card__image m-card__media', false );
 
-	if ( $attributes['imageId'] ) {
-		$image_class = imns( 'm-card__image m-card__media', false );
+	if ( !empty( trim( $attributes['youtube'] ) ) ) {
+		preg_match('#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#', $attributes['youtube'], $matches);
+
+		if ( $matches && isset( $matches[0] ) ) {
+			$youtube_id = $matches[0];
+			$image = "<img src=\"https://i3.ytimg.com/vi/{$youtube_id}/maxresdefault.jpg\" alt=\"\">";
+			$image_wrapper_class .= ' ' . imns( 'm-icon-overlay', false );
+		}
+	}
+
+	if ( null === $image && $attributes['imageId'] ) {
 		$image_size  = ( $attributes['showAsTeaser'] ) ? 'puff-teaser-image' : 'puff-image';
+		$image_class = imns( 'm-card__image m-card__media', false );
 
 		$image = wp_get_attachment_image(
 			$attributes['imageId'],
@@ -51,7 +63,19 @@ function iis_render_card( $attributes, $content ) {
 	?>
 	<div class="align<?php echo esc_attr( $attributes['align'] ); ?>">
 		<article class="wp-block-iis-card <?php imns( $class ); ?>">
-			<?php echo $image; ?>
+			<?php if ( $youtube_id ) : ?>
+			<div class="<?php echo $image_wrapper_class; ?>">
+				<svg class="icon <?php imns( 'm-icon-overlay__icon' ); ?>">
+					<use xlink:href="#icon-play"></use>
+				</svg>
+				<?php echo $image; ?>
+			</div>
+			<?php
+			else:
+				echo $image;
+			endif;
+
+			?>
 			<div class="<?php imns( 'm-card__content' ); ?>">
 				<?php echo ( $has_link ) ? '<a href="' . esc_url( $attributes['url'] ) . '" class="' . imns( 'm-card__link', false ) . '" target="' . esc_attr( $attributes['target'] ) . '">' : ''; ?>
 				<h1 class="<?php echo $title_class; ?>">
