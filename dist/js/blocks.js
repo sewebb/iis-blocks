@@ -686,7 +686,7 @@ DataSelect.defaultProps = {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(4);
-module.exports = __webpack_require__(26);
+module.exports = __webpack_require__(29);
 
 
 /***/ }),
@@ -708,11 +708,9 @@ __webpack_require__(9);
 
 __webpack_require__(13);
 
-__webpack_require__(28);
-
 __webpack_require__(14);
 
-__webpack_require__(15);
+__webpack_require__(17);
 
 __webpack_require__(18);
 
@@ -720,7 +718,9 @@ __webpack_require__(21);
 
 __webpack_require__(24);
 
-__webpack_require__(25);
+__webpack_require__(27);
+
+__webpack_require__(28);
 
 /***/ }),
 /* 5 */
@@ -1569,6 +1569,104 @@ registerBlockType('iis/button', {
 "use strict";
 
 
+__webpack_require__(15);
+
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType;
+var InnerBlocks = wp.editor.InnerBlocks;
+var useSelect = wp.data.useSelect;
+
+
+registerBlockType('iis/buttons', {
+	title: __('Buttons'),
+	category: 'iis',
+	icon: 'admin-links',
+	keywords: [__('buttons', 'iis-blocks'), __('button', 'iis-blocks'), __('action', 'iis-blocks')],
+	edit: function edit(_ref) {
+		var clientId = _ref.clientId;
+
+		var _useSelect = useSelect(function (select) {
+			var _select = select('core/block-editor'),
+			    getBlockOrder = _select.getBlockOrder,
+			    getBlockRootClientId = _select.getBlockRootClientId;
+
+			return {
+				hasChildBlocks: getBlockOrder(clientId).length > 0,
+				rootClientId: getBlockRootClientId(clientId)
+			};
+		}, [clientId]),
+		    hasChildBlocks = _useSelect.hasChildBlocks;
+
+		return React.createElement(
+			'div',
+			{ className: 'iis-block-buttons' },
+			React.createElement(InnerBlocks, {
+				allowedBlocks: ['iis/button'],
+				template: [['iis/button'], ['iis/button']],
+				orientation: 'horizontal',
+				renderAppender: hasChildBlocks ? undefined : function () {
+					return React.createElement(InnerBlocks.ButtonBlockAppender, null);
+				}
+			})
+		);
+	},
+	save: function save() {
+		return React.createElement(InnerBlocks.Content, null);
+	}
+});
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(16);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(1)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../../node_modules/css-loader/index.js!./buttons.css", function() {
+			var newContent = require("!!../../../node_modules/css-loader/index.js!./buttons.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(0)(false);
+// imports
+
+
+// module
+exports.push([module.i, ".iis-block-buttons > .block-editor-inner-blocks > .block-editor-block-list__layout {\n\tdisplay: flex;\n}\n\n.iis-block-buttons > .block-editor-inner-blocks > .block-editor-block-list__layout > * {\n\tmargin: 10px 10px 0 0;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _DataSelect = __webpack_require__(2);
@@ -1997,13 +2095,13 @@ registerBlockType('iis/puff', {
 });
 
 /***/ }),
-/* 15 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(16);
+__webpack_require__(19);
 
 var __ = wp.i18n.__;
 var registerBlockType = wp.blocks.registerBlockType;
@@ -2095,13 +2193,13 @@ registerBlockType('iis/grid', {
 });
 
 /***/ }),
-/* 16 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(17);
+var content = __webpack_require__(20);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2126,7 +2224,7 @@ if(false) {
 }
 
 /***/ }),
-/* 17 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -2140,13 +2238,13 @@ exports.push([module.i, ".iis-block-grid > .block-editor-inner-blocks > .block-e
 
 
 /***/ }),
-/* 18 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(19);
+__webpack_require__(22);
 
 var __ = wp.i18n.__;
 var Fragment = wp.element.Fragment;
@@ -2254,13 +2352,13 @@ registerBlockType('iis/column', {
 });
 
 /***/ }),
-/* 19 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(20);
+var content = __webpack_require__(23);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2285,7 +2383,7 @@ if(false) {
 }
 
 /***/ }),
-/* 20 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -2299,13 +2397,13 @@ exports.push([module.i, ".iis-block-column {\n\theight: 100%;\n\tpadding: 0 1rem
 
 
 /***/ }),
-/* 21 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-__webpack_require__(22);
+__webpack_require__(25);
 
 var __ = wp.i18n.__;
 var Fragment = wp.element.Fragment;
@@ -2495,13 +2593,13 @@ registerBlockType('iis/section', {
 });
 
 /***/ }),
-/* 22 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // style-loader: Adds some css to the DOM by adding a <style> tag
 
 // load the styles
-var content = __webpack_require__(23);
+var content = __webpack_require__(26);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // Prepare cssTransformation
 var transform;
@@ -2526,7 +2624,7 @@ if(false) {
 }
 
 /***/ }),
-/* 23 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(0)(false);
@@ -2540,7 +2638,7 @@ exports.push([module.i, ".iis-block-section .rich-text::selection {\n\tbackgroun
 
 
 /***/ }),
-/* 24 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2614,7 +2712,7 @@ registerBlockType('iis/section-header', {
 });
 
 /***/ }),
-/* 25 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3001,109 +3099,10 @@ registerBlockType('iis/card', {
 });
 
 /***/ }),
-/* 26 */
+/* 29 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 27 */,
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-__webpack_require__(29);
-
-var __ = wp.i18n.__;
-var registerBlockType = wp.blocks.registerBlockType;
-var InnerBlocks = wp.editor.InnerBlocks;
-var useSelect = wp.data.useSelect;
-
-
-registerBlockType('iis/buttons', {
-	title: __('Buttons'),
-	category: 'iis',
-	icon: 'admin-links',
-	keywords: [__('buttons', 'iis-blocks'), __('button', 'iis-blocks'), __('action', 'iis-blocks')],
-	edit: function edit(_ref) {
-		var clientId = _ref.clientId;
-
-		var _useSelect = useSelect(function (select) {
-			var _select = select('core/block-editor'),
-			    getBlockOrder = _select.getBlockOrder,
-			    getBlockRootClientId = _select.getBlockRootClientId;
-
-			return {
-				hasChildBlocks: getBlockOrder(clientId).length > 0,
-				rootClientId: getBlockRootClientId(clientId)
-			};
-		}, [clientId]),
-		    hasChildBlocks = _useSelect.hasChildBlocks;
-
-		return React.createElement(
-			'div',
-			{ className: 'iis-block-buttons' },
-			React.createElement(InnerBlocks, {
-				allowedBlocks: ['iis/button'],
-				template: [['iis/button'], ['iis/button']],
-				orientation: 'horizontal',
-				renderAppender: hasChildBlocks ? undefined : function () {
-					return React.createElement(InnerBlocks.ButtonBlockAppender, null);
-				}
-			})
-		);
-	},
-	save: function save() {
-		return React.createElement(InnerBlocks.Content, null);
-	}
-});
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(30);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// Prepare cssTransformation
-var transform;
-
-var options = {}
-options.transform = transform
-// add the styles to the DOM
-var update = __webpack_require__(1)(content, options);
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../../node_modules/css-loader/index.js!./buttons.css", function() {
-			var newContent = require("!!../../../node_modules/css-loader/index.js!./buttons.css");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(0)(false);
-// imports
-
-
-// module
-exports.push([module.i, ".iis-block-buttons > .block-editor-inner-blocks > .block-editor-block-list__layout {\n\tdisplay: flex;\n}\n\n.iis-block-buttons > .block-editor-inner-blocks > .block-editor-block-list__layout > * {\n\tmargin: 10px 10px 0 0;\n}\n", ""]);
-
-// exports
-
 
 /***/ })
 /******/ ]);

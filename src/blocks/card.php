@@ -64,10 +64,12 @@ function iis_render_card( $attributes, $content ) {
 	<div class="align<?php echo esc_attr( $attributes['align'] ); ?>">
 		<article class="wp-block-iis-card <?php imns( $class ); ?>">
 			<?php if ( $youtube_id ) : ?>
-			<div class="<?php echo $image_wrapper_class; ?>">
-				<svg class="icon <?php imns( 'm-icon-overlay__icon' ); ?>">
-					<use xlink:href="#icon-play"></use>
-				</svg>
+			<div class="<?php echo $image_wrapper_class; ?>" data-youtube="<?php echo esc_attr( $youtube_id ); ?>">
+				<button class="<?php imns( 'm-icon-overlay__button' ); ?>" aria-label="play">
+					<svg class="icon <?php imns( 'm-icon-overlay__icon' ); ?>">
+						<use xlink:href="#icon-play"></use>
+					</svg>
+				</button>
 				<?php echo $image; ?>
 			</div>
 			<?php
