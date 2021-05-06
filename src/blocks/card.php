@@ -11,6 +11,7 @@ function iis_render_card( $attributes, $content ) {
 			'url'          => null,
 			'target'       => '_self',
 			'youtube'      => null,
+			'pretitle'     => null,
 		],
 		$attributes
 	);
@@ -59,6 +60,7 @@ function iis_render_card( $attributes, $content ) {
 
 	$has_link    = $attributes['url'] && ! empty( trim( $attributes['url'] ) );
 	$title_class = ( $attributes['showAsTeaser'] ) ? 'alpha' : 'beta';
+	$pretitle    = ( $attributes['pretitle'] ) ? trim( $attributes['pretitle'] ) : '';
 
 	ob_start();
 	?>
@@ -80,6 +82,11 @@ function iis_render_card( $attributes, $content ) {
 
 			?>
 			<div class="<?php imns( 'm-card__content' ); ?>">
+				<?php if ( ! empty( $pretitle ) ) : ?>
+				<div class="<?php imns( 'm-card__meta' ); ?>">
+					<div class="<?php imns( 'a-meta' ); ?>"><?php echo apply_filters( 'the_title', $pretitle ); ?></div>
+				</div>
+				<?php endif; ?>
 				<?php echo ( $has_link ) ? '<a href="' . esc_url( $attributes['url'] ) . '" class="' . imns( 'm-card__link', false ) . '" target="' . esc_attr( $attributes['target'] ) . '">' : ''; ?>
 				<h1 class="<?php echo $title_class; ?>">
 					<?php echo apply_filters( 'the_title', $attributes['title'] ); ?>

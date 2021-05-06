@@ -63,6 +63,10 @@ registerBlockType('iis/card', {
 			type: 'string',
 			default: null,
 		},
+		pretitle: {
+			type: 'string',
+			default: '',
+		},
 		title: {
 			type: 'string',
 			default: '',
@@ -150,8 +154,7 @@ registerBlockType('iis/card', {
 
 		if (!attributes.showAsTeaser && attributes.align === 'wide') {
 			styleCard.display = 'flex';
-			styleCardImage.maxWidth = '50%';
-			styleCardImage.height = '100%';
+			styleCardImage.minHeight = '100%';
 			styleCardImage.flex = '0 0 100%';
 			styleCardImage.width = '100%';
 			styleCardImage.borderRadius = '.25rem 0 0 .25rem';
@@ -305,6 +308,13 @@ registerBlockType('iis/card', {
 						style={(showAsTeaser && imagePreview) ? styleTeaserContent : styleCardContent}
 					>
 						<div>
+							<RichText
+								tagName="small"
+								value={attributes.pretitle}
+								placeholder={__('Title')}
+								style={{ margin: 0, fontFamily: 'monospace' }}
+								onChange={(pretitle) => setAttributes({ pretitle })}
+							/>
 							<RichText
 								tagName="h1"
 								value={attributes.title}
