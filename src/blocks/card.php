@@ -31,15 +31,16 @@ function iis_render_card( $attributes, $content ) {
 		$class .= ' m-card--shadow';
 	}
 
-	$image = null;
+	$image               = null;
 	$image_wrapper_class = imns( 'm-card__image m-card__media', false );
+	$youtube_id          = null;
 
 	if ( !empty( trim( $attributes['youtube'] ) ) ) {
 		preg_match('#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#', $attributes['youtube'], $matches);
 
 		if ( $matches && isset( $matches[0] ) ) {
-			$youtube_id = $matches[0];
-			$image = "<img src=\"https://i3.ytimg.com/vi/{$youtube_id}/maxresdefault.jpg\" alt=\"\">";
+			$youtube_id           = $matches[0];
+			$image                = "<img src=\"https://i3.ytimg.com/vi/{$youtube_id}/maxresdefault.jpg\" alt=\"\">";
 			$image_wrapper_class .= ' ' . imns( 'm-icon-overlay', false );
 		}
 	}
@@ -56,7 +57,7 @@ function iis_render_card( $attributes, $content ) {
 		);
 	}
 
-	$has_link = $attributes['url'] && ! empty( trim( $attributes['url'] ) );
+	$has_link    = $attributes['url'] && ! empty( trim( $attributes['url'] ) );
 	$title_class = ( $attributes['showAsTeaser'] ) ? 'alpha' : 'beta';
 
 	ob_start();
