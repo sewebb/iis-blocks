@@ -12,11 +12,13 @@ function iis_render_card( $attributes, $content ) {
 			'target'       => '_self',
 			'youtube'      => null,
 			'pretitle'     => null,
+			'className'    => '',
 		],
 		$attributes
 	);
 
-	$class = 'm-card';
+	$class  = 'm-card';
+	$class .= ( in_array( $attributes['align'], [ 'right', 'wide' ], true ) ) ? ' !align' . $attributes['align'] : '';
 
 	if ( $attributes['showAsTeaser'] ) {
 		$class .= ' m-card--teaser';
@@ -64,9 +66,8 @@ function iis_render_card( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<div class="align<?php echo esc_attr( $attributes['align'] ); ?>">
-		<article class="wp-block-iis-card <?php imns( $class ); ?>">
-			<?php if ( $youtube_id ) : ?>
+	<article class="wp-block-iis-card <?php imns( $class ); ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?>">
+		<?php if ( $youtube_id ) : ?>
 			<div class="<?php echo $image_wrapper_class; ?>" data-youtube="<?php echo esc_attr( $youtube_id ); ?>">
 				<button class="<?php imns( 'm-icon-overlay__button' ); ?>" aria-label="play">
 					<svg class="icon <?php imns( 'm-icon-overlay__icon' ); ?>">
@@ -75,27 +76,26 @@ function iis_render_card( $attributes, $content ) {
 				</button>
 				<?php echo $image; ?>
 			</div>
-			<?php
-			else:
-				echo $image;
-			endif;
+		<?php
+		else:
+			echo $image;
+		endif;
 
-			?>
-			<div class="<?php imns( 'm-card__content' ); ?>">
-				<?php if ( ! empty( $pretitle ) ) : ?>
+		?>
+		<div class="<?php imns( 'm-card__content' ); ?>">
+			<?php if ( ! empty( $pretitle ) ) : ?>
 				<div class="<?php imns( 'm-card__meta' ); ?>">
 					<div class="<?php imns( 'a-meta' ); ?>"><?php echo apply_filters( 'the_title', $pretitle ); ?></div>
 				</div>
-				<?php endif; ?>
-				<?php echo ( $has_link ) ? '<a href="' . esc_url( $attributes['url'] ) . '" class="' . imns( 'm-card__link', false ) . '" target="' . esc_attr( $attributes['target'] ) . '">' : ''; ?>
-				<h1 class="<?php echo $title_class; ?>">
-					<?php echo apply_filters( 'the_title', $attributes['title'] ); ?>
-				</h1>
-				<?php echo ( $has_link ) ? '</a>' : ''; ?>
-				<?php echo $content; ?>
-			</div>
-		</article>
-	</div>
+			<?php endif; ?>
+			<?php echo ( $has_link ) ? '<a href="' . esc_url( $attributes['url'] ) . '" class="' . imns( 'm-card__link', false ) . '" target="' . esc_attr( $attributes['target'] ) . '">' : ''; ?>
+			<h1 class="<?php echo $title_class; ?>">
+				<?php echo apply_filters( 'the_title', $attributes['title'] ); ?>
+			</h1>
+			<?php echo ( $has_link ) ? '</a>' : ''; ?>
+			<?php echo $content; ?>
+		</div>
+	</article>
 	<?php
 
 	return ob_get_clean();
