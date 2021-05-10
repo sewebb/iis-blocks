@@ -12,3 +12,5 @@ import './blocks/Section';
 import './blocks/SectionHeader';
 import './blocks/Card';
 import './blocks/Testimonial';
+import './blocks/Glider';
+import './blocks/Slide';

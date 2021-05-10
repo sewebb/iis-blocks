@@ -22,7 +22,7 @@ function iis_render_block_testimonial( $attributes, $content ) {
 	ob_start();
 	?>
 	<blockquote class="wp-block-iis-testimonial <?php imns( $class ); ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?>">
-		<?php echo $attributes['quote']; ?>
+		"<?php echo $attributes['quote']; ?>"
 		<footer class="<?php imns( 'a-quote__footer' ); ?>">
 			<figure>
 				<?php echo $img; ?>

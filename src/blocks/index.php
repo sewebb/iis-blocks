@@ -41,3 +41,5 @@ require_once __DIR__ . '/section.php';
 require_once __DIR__ . '/section-header.php';
 require_once __DIR__ . '/card.php';
 require_once __DIR__ . '/testimonial.php';
+require_once __DIR__ . '/glider.php';
+require_once __DIR__ . '/slide.php';

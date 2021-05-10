@@ -25,3 +25,8 @@
 	flex: 0 0 66.666%;
 	width: 66.666%;
 }
+
+.iis-block-grid > .block-editor-inner-blocks > .block-editor-block-list__layout > *[data-type="iis/slide"] {
+	margin-top: 0;
+	margin-bottom: 0;
+}
