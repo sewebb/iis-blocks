@@ -12,7 +12,8 @@ function iis_render_glider( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<div class="wp-block-iis-glider <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?> alignwide">
+	<div class="wp-block-iis-glider alignwide <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?>">
+		<h2 class="alpha"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h2>
 		<div class="glider-contain">
 			<a href="#" class="<?php imns( 'a-paging' ); ?> glider-nav js-glider-prev">
 				<span class="u-visuallyhidden"><?php _e( 'Backward', 'iis-blocks' ); ?></span>
