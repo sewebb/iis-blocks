@@ -24,7 +24,7 @@ function iis_render_glider( $attributes, $content ) {
 			<div class="glider js-glider">
 				<?php echo $content; ?>
 			</div>
-			<button type="button" class="<?php imns( 'a-paging' ); ?> glider-next js-glider-next">
+			<button type="button" class="<?php imns( 'a-paging' ); ?> glider-nav glider-next js-glider-next">
 				<span class="u-visuallyhidden"><?php _e( 'Forward', 'iis-blocks' ); ?></span>
 				<svg class="icon <?php imns( 'a-paging__icon' ); ?>">
 					<use xlink:href="#icon-arrow-forwards"></use>
