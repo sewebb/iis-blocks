@@ -15,21 +15,21 @@ function iis_render_glider( $attributes, $content ) {
 	<div class="wp-block-iis-glider alignwide <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?>">
 		<h2 class="alpha"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h2>
 		<div class="glider-contain">
-			<a href="#" class="<?php imns( 'a-paging' ); ?> glider-nav js-glider-prev">
+			<button type="button" class="<?php imns( 'a-paging' ); ?> glider-nav js-glider-prev">
 				<span class="u-visuallyhidden"><?php _e( 'Backward', 'iis-blocks' ); ?></span>
 				<svg class="icon <?php imns( 'a-paging__icon' ); ?>">
 					<use xlink:href="#icon-arrow-backwards"></use>
 				</svg>
-			</a>
+			</button>
 			<div class="glider js-glider">
 				<?php echo $content; ?>
 			</div>
-			<a href="#" class="<?php imns( 'a-paging' ); ?> glider-next js-glider-next">
+			<button type="button" class="<?php imns( 'a-paging' ); ?> glider-next js-glider-next">
 				<span class="u-visuallyhidden"><?php _e( 'Forward', 'iis-blocks' ); ?></span>
 				<svg class="icon <?php imns( 'a-paging__icon' ); ?>">
 					<use xlink:href="#icon-arrow-forwards"></use>
 				</svg>
-			</a>
+			</button>
 		</div>
 		<?php if ( $attributes['pagination'] ) : ?>
 			<div class="glider-dots"></div>
