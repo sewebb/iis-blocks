@@ -52,7 +52,7 @@ registerBlockType('iis/testimonial', {
 								<MediaUpload
 									onSelect={(imageObject) => {
 										setAttributes({
-											photoUrl: ('sizes' in imageObject) ? imageObject.sizes.thumbnail.url : imageObject.url,
+											photoUrl: ('sizes' in imageObject && imageObject.sizes.thumbnail) ? imageObject.sizes.thumbnail.url : imageObject.url,
 											photoId: imageObject.id,
 										});
 									}}
