@@ -8,7 +8,12 @@ const {
 	withColors,
 	PanelColorSettings,
 } = wp.editor;
-const { PanelBody, SelectControl } = wp.components;
+const {
+	PanelBody,
+	SelectControl,
+	TextControl,
+	ToggleControl,
+} = wp.components;
 
 registerBlockType('iis/icon', {
 	title: __('Icon'),
@@ -36,6 +41,14 @@ registerBlockType('iis/icon', {
 			type: 'string',
 			default: 'cyberspace',
 		},
+		url: {
+			type: 'string',
+			default: null,
+		},
+		newWindow: {
+			type: 'boolean',
+			default: true,
+		},
 	},
 	edit: withColors({ iconColor: 'color' })(({
 		attributes,
@@ -50,11 +63,21 @@ registerBlockType('iis/icon', {
 			supersize: '42px',
 		};
 
-		console.log(iconColor);
-
 		return (
 			<div>
 				<InspectorControls>
+					<PanelBody title="Link">
+						<TextControl
+							label="Url"
+							value={attributes.url}
+							onChange={(url) => setAttributes({ url })}
+						/>
+						<ToggleControl
+							label="Open in new window"
+							checked={attributes.newWindow}
+							onChange={(newWindow) => setAttributes({ newWindow })}
+						/>
+					</PanelBody>
 					<PanelBody>
 						<SelectControl
 							label="Size"
