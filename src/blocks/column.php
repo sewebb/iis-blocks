@@ -11,13 +11,13 @@ function iis_render_column( $attributes, $content ) {
 
 	switch ( $attributes['columnWidth'] ) {
 		case '1/2':
-			$grid_class = 'grid-18 grid-md-9';
+			$grid_class = 'grid-18 grid-lg-9';
 			break;
 		case '1/3':
-			$grid_class = 'grid-18 grid-md-6';
+			$grid_class = 'grid-18 grid-lg-6';
 			break;
 		case '2/3':
-			$grid_class = 'grid-18 grid-md-12';
+			$grid_class = 'grid-18 grid-lg-12';
 			break;
 		default:
 			$grid_class = 'grid-18';
