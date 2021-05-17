@@ -1,0 +1,57 @@
+.iis-icon-select {
+	display: flex;
+	flex-wrap: wrap;
+	width: 280px !important;
+	height: 250px !important;
+	overflow: auto;
+}
+
+.iis-icon-select__icon {
+	display: flex;
+	position: relative;
+	flex: 0 0 70px;
+	align-items: center;
+	justify-content: center;
+	width: 70px;
+	height: 70px;
+	margin: 0;
+	padding: 22px;
+	border: none;
+	outline: none;
+	background: none;
+}
+
+.iis-icon-select__icon.is-selected::after {
+	content: '';
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	bottom: 10px;
+	left: 10px;
+	border: 2px solid #55c7b4;
+	border-radius: 50%;
+}
+
+.iis-icon-select__icon img {
+	display: block;
+	max-width: 100%;
+	height: auto;
+	max-height: 100%;
+}
+
+.iis-icon-select__btn {
+	position: relative;
+}
+
+.iis-icon-select__btn .components-button {
+	padding: 0;
+}
+
+.iis-icon-select__btn .components-button::after {
+	content: '';
+	position: absolute;
+	top: -1rem;
+	right: -1rem;
+	bottom: -1rem;
+	left: -1rem;
+}
