@@ -7,7 +7,7 @@ function iis_render_icon( $attributes, $content ) {
 			'title'     => null,
 			'text'      => null,
 			'icon'      => null,
-			'size'      => null,
+			'size'      => 'large',
 			'iconColor' => 'cyberspace',
 		],
 		$attributes

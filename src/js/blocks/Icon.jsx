@@ -18,7 +18,7 @@ registerBlockType('iis/icon', {
 	attributes: {
 		size: {
 			type: 'string',
-			default: null,
+			default: 'large',
 		},
 		icon: {
 			type: 'string',
@@ -60,10 +60,6 @@ registerBlockType('iis/icon', {
 							label="Size"
 							onChange={(size) => setAttributes({ size })}
 							options={[
-								{
-									label: 'Default',
-									value: null,
-								},
 								{
 									label: 'Small',
 									value: 'small',
