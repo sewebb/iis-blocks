@@ -8,6 +8,7 @@ function iis_render_icon( $attributes, $content ) {
 			'text'      => null,
 			'icon'      => null,
 			'size'      => null,
+			'iconColor' => 'cyberspace',
 		],
 		$attributes
 	);
@@ -21,7 +22,7 @@ function iis_render_icon( $attributes, $content ) {
 	<?php if ( ! empty( $title ) || ! empty( $text ) ) : ?>
 	<div class="wp-block-iis-icon <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?> display-flex align-items-center">
 		<div class="u-m-r-3">
-			<svg class="icon u-icon <?php echo $size; ?>">
+			<svg class="icon u-icon u-icon--color <?php echo $size; ?> color-<?php echo $attributes['iconColor']; ?>">
 				<use xlink:href="#icon-<?php echo esc_attr( $attributes['icon'] ); ?>"></use>
 			</svg>
 		</div>

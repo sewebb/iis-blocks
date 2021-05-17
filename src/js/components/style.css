@@ -55,3 +55,9 @@
 	bottom: -1rem;
 	left: -1rem;
 }
+
+.iis-icon-select__icon svg {
+	width: 24px;
+	height: 24px;
+	color: #000;
+}

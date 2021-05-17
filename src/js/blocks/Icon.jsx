@@ -5,6 +5,8 @@ const { registerBlockType } = wp.blocks;
 const {
 	InspectorControls,
 	RichText,
+	withColors,
+	PanelColorSettings,
 } = wp.editor;
 const { PanelBody, SelectControl } = wp.components;
 
@@ -30,14 +32,25 @@ registerBlockType('iis/icon', {
 			type: 'string',
 			default: null,
 		},
+		iconColor: {
+			type: 'string',
+			default: 'cyberspace',
+		},
 	},
-	edit({ attributes, setAttributes }) {
+	edit: withColors({ iconColor: 'color' })(({
+		attributes,
+		setAttributes,
+		iconColor,
+		setIconColor,
+	}) => {
 		const sizes = {
 			small: '16px',
 			medium: '20px',
 			large: '28px',
 			supersize: '42px',
 		};
+
+		console.log(iconColor);
 
 		return (
 			<div>
@@ -71,10 +84,25 @@ registerBlockType('iis/icon', {
 							value={attributes.size}
 						/>
 					</PanelBody>
+					<PanelColorSettings
+						title={__('Color settings')}
+						colorSettings={[
+							{
+								value: iconColor.color,
+								onChange: setIconColor,
+								label: __('Icon Color'),
+							},
+						]}
+					/>
 				</InspectorControls>
 				<div style={{ display: 'flex', position: 'relative', alignItems: 'center' }}>
 					<div style={{ display: 'inline-block', position: 'relative' }}>
-						<IconSelect size={attributes.size in sizes ? sizes[attributes.size] : '24px'} value={attributes.icon} onChange={(icon) => setAttributes({ icon })} />
+						<IconSelect
+							size={attributes.size in sizes ? sizes[attributes.size] : '24px'}
+							value={attributes.icon}
+							onChange={(icon) => setAttributes({ icon })}
+							color={iconColor.color || '#1f2a36'}
+						/>
 					</div>
 
 					<div style={{ marginLeft: '24px' }}>
@@ -95,7 +123,7 @@ registerBlockType('iis/icon', {
 				</div>
 			</div>
 		);
-	},
+	}),
 	save() {
 		return null;
 	},
