@@ -108,12 +108,14 @@ registerBlockType('iis/icon', {
 							placeholder={__('Title')}
 							style={{ marginTop: 0, marginBottom: 0 }}
 							onChange={(title) => setAttributes({ title })}
+							allowedFormats={[]}
 						/>
 						<RichText
 							tagName="div"
 							value={attributes.text}
 							placeholder={__('Content')}
 							onChange={(text) => setAttributes({ text })}
+							allowedFormats={[]}
 						/>
 					</div>
 				</div>
