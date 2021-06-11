@@ -74,11 +74,11 @@ registerBlockType('iis/section', {
 							onChange={(val) => setAttributes({ style: val })}
 							options={[
 								{
-									label: 'Landing page',
+									label: 'Snedställd bakgrund',
 									value: 'landing-page',
 								},
 								{
-									label: 'Colored background',
+									label: 'Standard',
 									value: 'colored-background',
 								},
 							]}
@@ -87,24 +87,24 @@ registerBlockType('iis/section', {
 						{attributes.style === 'landing-page' && (
 							<Fragment>
 								<ToggleControl
-									label="White"
+									label="Vit bakgrund"
 									checked={attributes.white}
 									onChange={(white) => setAttributes({ white })}
 								/>
 								<SelectControl
-									label="Decoration"
+									label="Dekoration"
 									onChange={(decoration) => setAttributes({ decoration })}
 									options={[
 										{
-											label: 'None',
+											label: 'Ingen',
 											value: null,
 										},
 										{
-											label: 'Rectangle left',
+											label: 'Rektangel till vänster',
 											value: 'rectangle-left',
 										},
 										{
-											label: 'Rectangle right',
+											label: 'Rektangel till höger',
 											value: 'rectangle-right',
 										},
 									]}
