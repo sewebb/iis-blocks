@@ -68,17 +68,17 @@ registerBlockType('iis/section', {
 		return (
 			<div className={className}>
 				<InspectorControls>
-					<PanelBody title="Design">
+					<PanelBody title="{__('Design', 'iis-blocks')}">
 						<SelectControl
-							label="Style"
+							label={__('Style', 'iis-blocks')}
 							onChange={(val) => setAttributes({ style: val })}
 							options={[
 								{
-									label: 'Snedställd bakgrund',
+									label: __('Landing page', 'iis-blocks'),
 									value: 'landing-page',
 								},
 								{
-									label: 'Standard',
+									label: __('Colored background', 'iis-blocks'),
 									value: 'colored-background',
 								},
 							]}
@@ -87,24 +87,24 @@ registerBlockType('iis/section', {
 						{attributes.style === 'landing-page' && (
 							<Fragment>
 								<ToggleControl
-									label="Vit bakgrund"
+									label={__('White background', 'iis-blocks')}
 									checked={attributes.white}
 									onChange={(white) => setAttributes({ white })}
 								/>
 								<SelectControl
-									label="Dekoration"
+									label={__('Decoration', 'iis-blocks')}
 									onChange={(decoration) => setAttributes({ decoration })}
 									options={[
 										{
-											label: 'Ingen',
+											label: __('None', 'iis-blocks'),
 											value: null,
 										},
 										{
-											label: 'Rektangel till vänster',
+											label: __('Rectangle left', 'iis-blocks'),
 											value: 'rectangle-left',
 										},
 										{
-											label: 'Rektangel till höger',
+											label: __('Rectangle right', 'iis-blocks'),
 											value: 'rectangle-right',
 										},
 									]}
@@ -115,7 +115,7 @@ registerBlockType('iis/section', {
 					</PanelBody>
 					{attributes.style === 'landing-page' && (
 						<PanelColorSettings
-							title={__('Color settings')}
+							title={__('Color settings', 'iis-blocks')}
 							colorSettings={[
 								{
 									colors: [
@@ -137,14 +137,14 @@ registerBlockType('iis/section', {
 									],
 									value: highlightColor.color,
 									onChange: setHighlightColor,
-									label: __('Highlight Color'),
+									label: __('Color of rectangle', 'iis-blocks'),
 								},
 							]}
 						/>
 					)}
 					{attributes.style === 'colored-background' && (
 						<PanelColorSettings
-							title={__('Color settings')}
+							title={__('Color settings', 'iis-blocks')}
 							colorSettings={[
 								{
 									colors: [
@@ -181,7 +181,7 @@ registerBlockType('iis/section', {
 									],
 									value: backgroundColor.color,
 									onChange: setBackgroundColor,
-									label: __('Background Color'),
+									label: __('Background Color', 'iis-blocks'),
 								},
 							]}
 						/>
