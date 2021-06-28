@@ -44,3 +44,4 @@ require_once __DIR__ . '/testimonial.php';
 require_once __DIR__ . '/glider.php';
 require_once __DIR__ . '/slide.php';
 require_once __DIR__ . '/icon.php';
+require_once __DIR__ . '/news.php';
