@@ -1499,7 +1499,10 @@ var __ = wp.i18n.__;
 var registerBlockType = wp.blocks.registerBlockType;
 var Fragment = wp.element.Fragment;
 var InspectorControls = wp.editor.InspectorControls;
-var PanelBody = wp.components.PanelBody;
+var _wp$components = wp.components,
+    PanelBody = _wp$components.PanelBody,
+    ToggleControl = _wp$components.ToggleControl,
+    TextControl = _wp$components.TextControl;
 registerBlockType('iis/news', {
   title: __('News', 'iis-blocks'),
   category: 'iis',
@@ -1509,6 +1512,22 @@ registerBlockType('iis/news', {
     postType: {
       type: 'string',
       "default": 'post'
+    },
+    limit: {
+      type: 'number',
+      "default": 4
+    },
+    firstWide: {
+      type: 'boolean',
+      "default": true
+    },
+    displayDates: {
+      type: 'boolean',
+      "default": false
+    },
+    displayTags: {
+      type: 'boolean',
+      "default": false
     }
   },
   edit: function edit(_ref) {
@@ -1534,6 +1553,39 @@ registerBlockType('iis/news', {
       set: function set(postType) {
         return setAttributes({
           postType: postType
+        });
+      }
+    }), /*#__PURE__*/React.createElement(ToggleControl, {
+      label: "First wide",
+      checked: attributes.firstWide,
+      onChange: function onChange(firstWide) {
+        return setAttributes({
+          firstWide: firstWide
+        });
+      }
+    }), /*#__PURE__*/React.createElement(ToggleControl, {
+      label: "Display dates",
+      checked: attributes.displayDates,
+      onChange: function onChange(displayDates) {
+        return setAttributes({
+          displayDates: displayDates
+        });
+      }
+    }), /*#__PURE__*/React.createElement(ToggleControl, {
+      label: "Display tags",
+      checked: attributes.displayTags,
+      onChange: function onChange(displayTags) {
+        return setAttributes({
+          displayTags: displayTags
+        });
+      }
+    }), /*#__PURE__*/React.createElement(TextControl, {
+      label: __('Limit'),
+      value: attributes.limit,
+      type: "number",
+      onChange: function onChange(limit) {
+        return setAttributes({
+          limit: limit
         });
       }
     }))));

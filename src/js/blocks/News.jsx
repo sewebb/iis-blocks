@@ -6,7 +6,7 @@ const { Fragment } = wp.element;
 const {
 	InspectorControls,
 } = wp.editor;
-const { PanelBody } = wp.components;
+const { PanelBody, ToggleControl, TextControl } = wp.components;
 
 registerBlockType('iis/news', {
 	title: __('News', 'iis-blocks'),
@@ -17,6 +17,22 @@ registerBlockType('iis/news', {
 		postType: {
 			type: 'string',
 			default: 'post',
+		},
+		limit: {
+			type: 'number',
+			default: 4,
+		},
+		firstWide: {
+			type: 'boolean',
+			default: true,
+		},
+		displayDates: {
+			type: 'boolean',
+			default: false,
+		},
+		displayTags: {
+			type: 'boolean',
+			default: false,
 		},
 	},
 
@@ -36,6 +52,27 @@ registerBlockType('iis/news', {
 							label_key={(obj) => obj.name}
 							value={attributes.postType}
 							set={(postType) => setAttributes({ postType })}
+						/>
+						<ToggleControl
+							label="First wide"
+							checked={attributes.firstWide}
+							onChange={(firstWide) => setAttributes({ firstWide })}
+						/>
+						<ToggleControl
+							label="Display dates"
+							checked={attributes.displayDates}
+							onChange={(displayDates) => setAttributes({ displayDates })}
+						/>
+						<ToggleControl
+							label="Display tags"
+							checked={attributes.displayTags}
+							onChange={(displayTags) => setAttributes({ displayTags })}
+						/>
+						<TextControl
+							label={__('Limit')}
+							value={attributes.limit}
+							type="number"
+							onChange={(limit) => setAttributes({ limit })}
 						/>
 					</PanelBody>
 				</InspectorControls>
