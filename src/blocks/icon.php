@@ -38,9 +38,10 @@ function iis_render_icon( $attributes, $content ) {
 			<?php endif; ?>
 			<?php if ( $attributes['text'] ) : ?>
 				<?php if ( $attributes['url'] && ! empty( $attributes['url'] ) && empty( $attributes['title'] ) ) : ?>
-					<a class="beta u-icon-list-link" href="<?php echo esc_url( $attributes['url'] ); ?>" <?php echo ( $attributes['newWindow'] ) ? 'target="_blank"' : '' ?>><?php echo esc_html( $attributes['text'] ); ?></a>
+					<a class="u-icon-list-link" href="<?php echo esc_url( $attributes['url'] ); ?>" <?php echo ( $attributes['newWindow'] ) ? 'target="_blank"' : '' ?>><?php echo esc_html( $attributes['text'] ); ?></a>
 				<?php else : ?>
 				<p class="u-m-b-0"><?php echo esc_html( $attributes['text'] ); ?></p>
+				<?php endif; ?>
 			<?php endif; ?>
 		</div>
 	</div>
