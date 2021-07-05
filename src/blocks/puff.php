@@ -102,7 +102,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 	$class .= ( in_array( $attributes['align'], [ 'right', 'wide' ], true ) ) ? ' align' . $attributes['align'] : '';
 
 	if ( 'right' == $attributes['align'] && ! $attributes['showOnMobile'] ) {
-		$class .= ' u-hide-sm';
+		$class .= ' u-hide-md';
 	}
 
 	$card_class = 'm-card';
