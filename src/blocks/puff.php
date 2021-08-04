@@ -26,6 +26,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 			'className'      => '',
 			'button'         => false,
 			'shadow'         => false,
+			'target'         => '_self',
 		],
 		$attributes
 	);
@@ -151,7 +152,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 				</time>
 			<?php endif; ?>
 			<?php if ( $content['permalink'] ) : ?>
-				<a href="<?php echo $content['permalink']; ?>" class="<?php imns( 'm-card__link' ); ?>">
+				<a href="<?php echo $content['permalink']; ?>" class="<?php imns( 'm-card__link' ); ?>" target="<?php echo esc_attr( $attributes['target'] ); ?>">
 					<h2 class="<?php echo $headline_size; ?>">
 						<?php echo $content['title']; ?>
 
