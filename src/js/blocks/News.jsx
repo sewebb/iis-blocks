@@ -18,6 +18,10 @@ registerBlockType('iis/news', {
 			type: 'string',
 			default: 'post',
 		},
+		category: {
+			type: 'string',
+			default: null,
+		},
 		limit: {
 			type: 'number',
 			default: 4,
@@ -53,6 +57,17 @@ registerBlockType('iis/news', {
 							value={attributes.postType}
 							set={(postType) => setAttributes({ postType })}
 						/>
+						{attributes.postType === 'post' && (
+							<DataSelect
+								label={__('Select category', 'iis-blocks')}
+								placeholder={{ value: '', label: __('All categories', 'iis-blocks') }}
+								api="/wp/v2/categories"
+								value_key={(obj) => obj.slug}
+								label_key={(obj) => obj.name}
+								value={attributes.category}
+								set={(category) => setAttributes({ category })}
+							/>
+						)}
 						<ToggleControl
 							label="First wide"
 							checked={attributes.firstWide}

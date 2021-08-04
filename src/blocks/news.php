@@ -4,6 +4,7 @@ function iis_render_block_news( $attributes ) {
 	$attributes = array_merge(
 		[
 			'postType'     => 'post',
+			'category'     => null,
 			'limit'        => 4,
 			'firstWide'    => true,
 			'displayDates' => false,
@@ -13,12 +14,17 @@ function iis_render_block_news( $attributes ) {
 		$attributes
 	);
 
-	$posts = get_posts(
-		[
-			'post_type'   => $attributes['postType'],
-			'numberposts' => $attributes['limit'],
-		]
-	);
+
+	$args = [
+		'post_type'   => $attributes['postType'],
+		'numberposts' => $attributes['limit'],
+	];
+
+	if ( $attributes['category'] && 'post' === $attributes['postType'] ) {
+		$args['category_name'] = $attributes['category'];
+	}
+
+	$posts = get_posts( $args );
 
 	ob_start();
 
