@@ -2,7 +2,7 @@ import DataSelect from '../components/DataSelect';
 
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { Fragment } = wp.element;
+const { Fragment, useState } = wp.element;
 const {
 	InspectorControls,
 } = wp.editor;
@@ -20,6 +20,10 @@ registerBlockType('iis/news', {
 		},
 		category: {
 			type: 'string',
+			default: null,
+		},
+		pinned: {
+			type: 'number',
 			default: null,
 		},
 		limit: {
@@ -41,6 +45,8 @@ registerBlockType('iis/news', {
 	},
 
 	edit({ attributes, setAttributes }) {
+		const [items, setItems] = useState(null);
+
 		return (
 			<Fragment>
 				<div>
@@ -50,12 +56,13 @@ registerBlockType('iis/news', {
 					<PanelBody>
 						<DataSelect
 							label={__('Select post type', 'iis-blocks')}
-							placeholder={{ value: null, label: __('Post type', 'iis-blocks') }}
+							placeholder={{ value: '', label: __('Post type', 'iis-blocks') }}
 							api="/wp/v2/types"
 							value_key={(obj) => obj.slug}
 							label_key={(obj) => obj.name}
 							value={attributes.postType}
-							set={(postType) => setAttributes({ postType })}
+							set={(postType) => setAttributes({ postType, pinned: null })}
+							onItems={setItems}
 						/>
 						{attributes.postType === 'post' && (
 							<DataSelect
@@ -66,6 +73,18 @@ registerBlockType('iis/news', {
 								label_key={(obj) => obj.name}
 								value={attributes.category}
 								set={(category) => setAttributes({ category })}
+							/>
+						)}
+						{items && items.length > 0 && (
+							<DataSelect
+								label={__('Pinned post', 'iis-blocks')}
+								placeholder={{ value: '', label: __('No pinned post', 'iis-blocks') }}
+								api={items.find((i) => i.value === attributes.postType).link.split('/wp-json').pop()}
+								value_key={(obj) => obj.id}
+								label_key={(obj) => obj.title.rendered}
+								value={attributes.pinned}
+								set={(pinned) => setAttributes({ pinned: parseInt(pinned, 10) })}
+								key={attributes.postType}
 							/>
 						)}
 						<ToggleControl

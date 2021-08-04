@@ -57,8 +57,16 @@ export default class DataSelect extends Component {
 				json.map((type) => ({
 					value: this.props.value_key(type),
 					label: this.props.label_key(type),
+					link: ('_links' in type && type._links['wp:items']) ? type._links['wp:items'][0].href : null,
 				}))
 			))
+			.then((items) => {
+				if (this.props.onItems) {
+					this.props.onItems(items);
+				}
+
+				return items;
+			})
 			.then((items) => this.setState({ items, loading: false }))
 			.catch((error) => this.setState({ error, loading: false }));
 	};

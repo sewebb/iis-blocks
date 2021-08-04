@@ -5,6 +5,7 @@ function iis_render_block_news( $attributes ) {
 		[
 			'postType'     => 'post',
 			'category'     => null,
+			'pinned'       => null,
 			'limit'        => 4,
 			'firstWide'    => true,
 			'displayDates' => false,
@@ -14,17 +15,31 @@ function iis_render_block_news( $attributes ) {
 		$attributes
 	);
 
+	if ( $attributes['pinned'] ) {
+		$pinned = get_post( $attributes['pinned'] );
+	} else {
+		$pinned = null;
+	}
 
 	$args = [
 		'post_type'   => $attributes['postType'],
 		'numberposts' => $attributes['limit'],
 	];
 
+	if ( $pinned ) {
+		$args['numberposts'] -= 1;
+		$args['post__not_in'] = [ $pinned->ID ];
+	}
+
 	if ( $attributes['category'] && 'post' === $attributes['postType'] ) {
 		$args['category_name'] = $attributes['category'];
 	}
 
 	$posts = get_posts( $args );
+
+	if ( $pinned ) {
+		array_unshift( $posts, $pinned );
+	}
 
 	ob_start();
 
