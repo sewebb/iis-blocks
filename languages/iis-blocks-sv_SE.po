@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Blocks 1.0.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/iis-blocks\n"
-"POT-Creation-Date: 2021-06-11T13:39:28+00:00\n"
-"PO-Revision-Date: 2021-06-11 15:39+0200\n"
+"POT-Creation-Date: 2021-08-18T09:01:12+00:00\n"
+"PO-Revision-Date: 2021-08-18 11:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: sv_SE\n"
@@ -61,155 +61,155 @@ msgstr "sida %1$s av %2$s"
 msgid "Next page"
 msgstr "Nästa sida"
 
-#: src/js/blocks/Buttons.jsx:14
+#: dist/js/blocks.js:228
 msgid "buttons"
 msgstr ""
 
-#: src/js/blocks/Buttons.jsx:14
+#: dist/js/blocks.js:228
 msgid "button"
 msgstr ""
 
-#: src/js/blocks/Buttons.jsx:14
+#: dist/js/blocks.js:228
 msgid "action"
 msgstr ""
 
-#: src/js/blocks/Card.jsx:38
+#: dist/js/blocks.js:324
 msgid "Card"
 msgstr ""
 
-#: src/js/blocks/Card.jsx:207 src/js/blocks/Puff.jsx:214
+#: dist/js/blocks.js:499 dist/js/blocks.js:1849
 msgid "Link"
 msgstr "Länk"
 
-#: src/js/blocks/Card.jsx:208 src/js/blocks/Puff.jsx:215
+#: dist/js/blocks.js:500 dist/js/blocks.js:1850
 msgid "/link/to/here"
 msgstr ""
 
-#: src/js/blocks/Card.jsx:246 src/js/blocks/Hero.jsx:123
+#: dist/js/blocks.js:552 dist/js/blocks.js:1174
 msgid "Youtube-URL"
 msgstr ""
 
-#: src/js/blocks/Card.jsx:247 src/js/blocks/Hero.jsx:124
+#: dist/js/blocks.js:553 dist/js/blocks.js:1175
 msgid "Full youtube URL"
 msgstr ""
 
-#: src/js/blocks/Column.jsx:36 src/js/blocks/Grid.jsx:16
+#: dist/js/blocks.js:677 dist/js/blocks.js:960
 msgid "grid"
 msgstr ""
 
-#: src/js/blocks/Column.jsx:36 src/js/blocks/Grid.jsx:16
+#: dist/js/blocks.js:677 dist/js/blocks.js:960
 msgid "columns"
 msgstr "kolumner"
 
-#: src/js/blocks/Column.jsx:36 src/js/blocks/Grid.jsx:16
+#: dist/js/blocks.js:677 dist/js/blocks.js:960
 msgid "column"
 msgstr "kolumn"
 
-#: src/js/blocks/Glider.jsx:17 src/js/blocks/Slide.jsx:12
+#: dist/js/blocks.js:869 dist/js/blocks.js:2313
 msgid "glider"
 msgstr ""
 
-#: src/js/blocks/Glider.jsx:17 src/js/blocks/Slide.jsx:12
+#: dist/js/blocks.js:869 dist/js/blocks.js:2313
 msgid "slider"
 msgstr ""
 
-#: src/js/blocks/Glider.jsx:17 src/js/blocks/Slide.jsx:12
+#: dist/js/blocks.js:869 dist/js/blocks.js:2313
 msgid "slide"
 msgstr ""
 
-#: src/js/blocks/PostArchive.jsx:11
+#: dist/js/blocks.js:1501
 msgid "Post Archive"
 msgstr "Postarkiv"
 
-#: src/js/blocks/PostArchive.jsx:14
+#: dist/js/blocks.js:1504
 msgid "archive"
 msgstr "arkiv"
 
-#: src/js/blocks/PostArchive.jsx:31
+#: dist/js/blocks.js:1515
 msgid "Select post type"
 msgstr "Välj posttyp"
 
-#: src/js/blocks/PostArchive.jsx:32
+#: dist/js/blocks.js:1518
 msgid "Post type"
 msgstr "Posttyp"
 
-#: src/js/blocks/Puff.jsx:21
+#: dist/js/blocks.js:1648
 msgid "Post puff"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:25
+#: dist/js/blocks.js:1651
 msgid "card"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:26
+#: dist/js/blocks.js:1651
 msgid "teaser"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:27
+#: dist/js/blocks.js:1651
 msgid "puff"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:247
+#: dist/js/blocks.js:1900
 msgid "Display tags/categories"
 msgstr "Visa taggar/kategorier"
 
-#: src/js/blocks/Puff.jsx:264
+#: dist/js/blocks.js:1924
 msgid "Image size"
 msgstr "Bildstorlek"
 
-#: src/js/blocks/Puff.jsx:265
+#: dist/js/blocks.js:1927
 msgid "Auto"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:321
+#: dist/js/blocks.js:1975
 msgid "Select post"
 msgstr "Välj post"
 
-#: src/js/blocks/Puff.jsx:322
+#: dist/js/blocks.js:1978
 msgid "Choose a post"
 msgstr "Välj en post"
 
-#: src/js/blocks/Section.jsx:73
+#: dist/js/blocks.js:2116
 msgid "Style"
 msgstr "Stil"
 
-#: src/js/blocks/Section.jsx:77
+#: dist/js/blocks.js:2123
 msgid "Landing page"
 msgstr "Snedställd bakgrund"
 
-#: src/js/blocks/Section.jsx:81
+#: dist/js/blocks.js:2126
 msgid "Colored background"
 msgstr "Standard"
 
-#: src/js/blocks/Section.jsx:90
+#: dist/js/blocks.js:2131
 msgid "White background"
 msgstr "Vit bakgrund"
 
-#: src/js/blocks/Section.jsx:95
+#: dist/js/blocks.js:2139
 msgid "Decoration"
 msgstr "Dekoration"
 
-#: src/js/blocks/Section.jsx:99
+#: dist/js/blocks.js:2146
 msgid "None"
 msgstr "Ingen"
 
-#: src/js/blocks/Section.jsx:103
+#: dist/js/blocks.js:2149
 msgid "Rectangle left"
 msgstr "Rektangel till vänster"
 
-#: src/js/blocks/Section.jsx:107
+#: dist/js/blocks.js:2152
 msgid "Rectangle right"
 msgstr "Rektangel till höger"
 
-#: src/js/blocks/Section.jsx:118 src/js/blocks/Section.jsx:147
+#: dist/js/blocks.js:2157 dist/js/blocks.js:2177
 msgid "Color settings"
 msgstr "Färgval"
 
-#: src/js/blocks/Section.jsx:140
+#: dist/js/blocks.js:2174
 msgid "Color of rectangle"
 msgstr "Färg på rektangel"
 
-#: src/js/blocks/Section.jsx:184
+#: dist/js/blocks.js:2206
 msgid "Background Color"
 msgstr "Bakgrundsfärg"
 

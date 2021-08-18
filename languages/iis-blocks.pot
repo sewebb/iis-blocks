@@ -2,16 +2,16 @@
 # This file is distributed under the same license as the IIS Blocks plugin.
 msgid ""
 msgstr ""
-"Project-Id-Version: IIS Blocks 6.0.0\n"
+"Project-Id-Version: IIS Blocks 6.0.8\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/iis-blocks\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2021-06-11T13:39:28+00:00\n"
+"POT-Creation-Date: 2021-08-18T09:01:12+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"X-Generator: WP-CLI 2.4.0\n"
+"X-Generator: WP-CLI 2.5.0\n"
 "X-Domain: iis-blocks\n"
 
 #. Plugin Name of the plugin
@@ -59,165 +59,165 @@ msgstr ""
 msgid "Next page"
 msgstr ""
 
-#: src/js/blocks/Buttons.jsx:14
+#: dist/js/blocks.js:228
 msgid "buttons"
 msgstr ""
 
-#: src/js/blocks/Buttons.jsx:14
+#: dist/js/blocks.js:228
 msgid "button"
 msgstr ""
 
-#: src/js/blocks/Buttons.jsx:14
+#: dist/js/blocks.js:228
 msgid "action"
 msgstr ""
 
-#: src/js/blocks/Card.jsx:38
+#: dist/js/blocks.js:324
 msgid "Card"
 msgstr ""
 
-#: src/js/blocks/Card.jsx:207
-#: src/js/blocks/Puff.jsx:214
+#: dist/js/blocks.js:499
+#: dist/js/blocks.js:1849
 msgid "Link"
 msgstr ""
 
-#: src/js/blocks/Card.jsx:208
-#: src/js/blocks/Puff.jsx:215
+#: dist/js/blocks.js:500
+#: dist/js/blocks.js:1850
 msgid "/link/to/here"
 msgstr ""
 
-#: src/js/blocks/Card.jsx:246
-#: src/js/blocks/Hero.jsx:123
+#: dist/js/blocks.js:552
+#: dist/js/blocks.js:1174
 msgid "Youtube-URL"
 msgstr ""
 
-#: src/js/blocks/Card.jsx:247
-#: src/js/blocks/Hero.jsx:124
+#: dist/js/blocks.js:553
+#: dist/js/blocks.js:1175
 msgid "Full youtube URL"
 msgstr ""
 
-#: src/js/blocks/Column.jsx:36
-#: src/js/blocks/Grid.jsx:16
+#: dist/js/blocks.js:677
+#: dist/js/blocks.js:960
 msgid "grid"
 msgstr ""
 
-#: src/js/blocks/Column.jsx:36
-#: src/js/blocks/Grid.jsx:16
+#: dist/js/blocks.js:677
+#: dist/js/blocks.js:960
 msgid "columns"
 msgstr ""
 
-#: src/js/blocks/Column.jsx:36
-#: src/js/blocks/Grid.jsx:16
+#: dist/js/blocks.js:677
+#: dist/js/blocks.js:960
 msgid "column"
 msgstr ""
 
-#: src/js/blocks/Glider.jsx:17
-#: src/js/blocks/Slide.jsx:12
+#: dist/js/blocks.js:869
+#: dist/js/blocks.js:2313
 msgid "glider"
 msgstr ""
 
-#: src/js/blocks/Glider.jsx:17
-#: src/js/blocks/Slide.jsx:12
+#: dist/js/blocks.js:869
+#: dist/js/blocks.js:2313
 msgid "slider"
 msgstr ""
 
-#: src/js/blocks/Glider.jsx:17
-#: src/js/blocks/Slide.jsx:12
+#: dist/js/blocks.js:869
+#: dist/js/blocks.js:2313
 msgid "slide"
 msgstr ""
 
-#: src/js/blocks/PostArchive.jsx:11
+#: dist/js/blocks.js:1501
 msgid "Post Archive"
 msgstr ""
 
-#: src/js/blocks/PostArchive.jsx:14
+#: dist/js/blocks.js:1504
 msgid "archive"
 msgstr ""
 
-#: src/js/blocks/PostArchive.jsx:31
+#: dist/js/blocks.js:1515
 msgid "Select post type"
 msgstr ""
 
-#: src/js/blocks/PostArchive.jsx:32
+#: dist/js/blocks.js:1518
 msgid "Post type"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:21
+#: dist/js/blocks.js:1648
 msgid "Post puff"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:25
+#: dist/js/blocks.js:1651
 msgid "card"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:26
+#: dist/js/blocks.js:1651
 msgid "teaser"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:27
+#: dist/js/blocks.js:1651
 msgid "puff"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:247
+#: dist/js/blocks.js:1900
 msgid "Display tags/categories"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:264
+#: dist/js/blocks.js:1924
 msgid "Image size"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:265
+#: dist/js/blocks.js:1927
 msgid "Auto"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:321
+#: dist/js/blocks.js:1975
 msgid "Select post"
 msgstr ""
 
-#: src/js/blocks/Puff.jsx:322
+#: dist/js/blocks.js:1978
 msgid "Choose a post"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:73
+#: dist/js/blocks.js:2116
 msgid "Style"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:77
+#: dist/js/blocks.js:2123
 msgid "Landing page"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:81
+#: dist/js/blocks.js:2126
 msgid "Colored background"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:90
+#: dist/js/blocks.js:2131
 msgid "White background"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:95
+#: dist/js/blocks.js:2139
 msgid "Decoration"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:99
+#: dist/js/blocks.js:2146
 msgid "None"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:103
+#: dist/js/blocks.js:2149
 msgid "Rectangle left"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:107
+#: dist/js/blocks.js:2152
 msgid "Rectangle right"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:118
-#: src/js/blocks/Section.jsx:147
+#: dist/js/blocks.js:2157
+#: dist/js/blocks.js:2177
 msgid "Color settings"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:140
+#: dist/js/blocks.js:2174
 msgid "Color of rectangle"
 msgstr ""
 
-#: src/js/blocks/Section.jsx:184
+#: dist/js/blocks.js:2206
 msgid "Background Color"
 msgstr ""
