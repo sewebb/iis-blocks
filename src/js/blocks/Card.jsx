@@ -330,6 +330,7 @@ registerBlockType('iis/card', {
 									'core/list',
 									'iis/button',
 									'iis/buttons',
+									'iis/icon',
 								]}
 								template={[['core/paragraph']]}
 							/>
