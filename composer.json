@@ -16,16 +16,16 @@
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "3.*",
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
         "wp-coding-standards/wpcs": "^1.1"
     },
     "config": {
         "preferred-install": "dist"
     },
     "scripts": {
-        "test": "./vendor/bin/phpcs -p --standard=wordpress-rules.xml --extensions=php ./src",
-        "php-fix": "./vendor/bin/phpcbf -p --standard=wordpress-rules.xml --extensions=php ./src",
-        "php-blame": "./vendor/bin/phpcs -p --standard=wordpress-rules.xml --report=gitblame --extensions=php ./src"
+        "test": "./vendor/bin/phpcs -p --standard=phpcs.xml --extensions=php ./src",
+        "php-fix": "./vendor/bin/phpcbf -p --standard=phpcs.xml --extensions=php ./src",
+        "php-blame": "./vendor/bin/phpcs -p --standard=phpcs.xml --report=gitblame --extensions=php ./src"
     },
     "minimum-stability": "dev",
     "prefer-stable": true
