@@ -208,11 +208,6 @@ registerBlockType('iis/puff', {
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title="Content">
-						<CheckboxControl
-							label="Custom content"
-							checked={custom}
-							onChange={(value) => setAttributes({ custom: value })}
-						/>
 						{custom && (
 							<TextControl
 								label={__('Link', 'iis-blocks')}
