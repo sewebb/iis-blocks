@@ -1,1 +1,129 @@
-{"translation-revision-date":"2021-01-25 09:39+0100","generator":"WP-CLI\/2.4.0","source":"dist\/js\/blocks.js","domain":"messages","locale_data":{"messages":{"":{"domain":"messages","lang":"sv_SE","plural-forms":"nplurals=2; plural=(n != 1);"},"Post Archive":["Postarkiv"],"archive":["arkiv"],"Select post type":["V\u00e4lj posttyp"],"Post type":["Posttyp"],"Post puff":[""],"card":[""],"teaser":[""],"puff":[""],"Link":["L\u00e4nk"],"\/link\/to\/here":[""],"Display tags\/categories":["Visa taggar\/kategorier"],"Image size":["Bildstorlek"],"Auto":[""],"Select post":["V\u00e4lj post"],"Choose a post":["V\u00e4lj en post"],"grid":[""],"columns":["kolumner"],"column":["kolumn"],"Submenu":["Undermeny"],"pages":["sidor"],"sub":[""]}}}
+{
+    "translation-revision-date": "2021-08-18 11:01+0200",
+    "generator": "WP-CLI\/2.5.0",
+    "source": "dist\/js\/blocks.js",
+    "domain": "messages",
+    "locale_data": {
+        "messages": {
+            "": {
+                "domain": "messages",
+                "lang": "sv_SE",
+                "plural-forms": "nplurals=2; plural=(n != 1);"
+            },
+            "buttons": [
+                ""
+            ],
+            "button": [
+                ""
+            ],
+            "action": [
+                ""
+            ],
+            "Card": [
+                ""
+            ],
+            "Link": [
+                "L\u00e4nk"
+            ],
+            "\/link\/to\/here": [
+                ""
+            ],
+            "Youtube-URL": [
+                ""
+            ],
+            "Full youtube URL": [
+                ""
+            ],
+            "grid": [
+                ""
+            ],
+            "columns": [
+                "kolumner"
+            ],
+            "column": [
+                "kolumn"
+            ],
+            "glider": [
+                ""
+            ],
+            "slider": [
+                ""
+            ],
+            "slide": [
+                ""
+            ],
+            "Post Archive": [
+                "Postarkiv"
+            ],
+            "archive": [
+                "arkiv"
+            ],
+            "Select post type": [
+                "V\u00e4lj posttyp"
+            ],
+            "Post type": [
+                "Posttyp"
+            ],
+            "Post puff": [
+                ""
+            ],
+            "card": [
+                ""
+            ],
+            "teaser": [
+                ""
+            ],
+            "puff": [
+                ""
+            ],
+            "Display tags\/categories": [
+                "Visa taggar\/kategorier"
+            ],
+            "Image size": [
+                "Bildstorlek"
+            ],
+            "Auto": [
+                ""
+            ],
+            "Select post": [
+                "V\u00e4lj post"
+            ],
+            "Choose a post": [
+                "V\u00e4lj en post"
+            ],
+            "Style": [
+                "Stil"
+            ],
+            "Landing page": [
+                "Snedst\u00e4lld bakgrund"
+            ],
+            "Colored background": [
+                "Standard"
+            ],
+            "White background": [
+                "Vit bakgrund"
+            ],
+            "Decoration": [
+                "Dekoration"
+            ],
+            "None": [
+                "Ingen"
+            ],
+            "Rectangle left": [
+                "Rektangel till v\u00e4nster"
+            ],
+            "Rectangle right": [
+                "Rektangel till h\u00f6ger"
+            ],
+            "Color settings": [
+                "F\u00e4rgval"
+            ],
+            "Color of rectangle": [
+                "F\u00e4rg p\u00e5 rektangel"
+            ],
+            "Background Color": [
+                "Bakgrundsf\u00e4rg"
+            ]
+        }
+    }
+}

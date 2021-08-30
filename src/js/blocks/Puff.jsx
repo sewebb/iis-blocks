@@ -94,6 +94,10 @@ registerBlockType('iis/puff', {
 			type: 'boolean',
 			default: false,
 		},
+		target: {
+			type: 'string',
+			default: '_self',
+		},
 	},
 	edit({ attributes, setAttributes }) {
 		const [imageSizes, setImageSizes] = useState(null);
@@ -204,11 +208,6 @@ registerBlockType('iis/puff', {
 			<Fragment>
 				<InspectorControls>
 					<PanelBody title="Content">
-						<CheckboxControl
-							label="Custom content"
-							checked={custom}
-							onChange={(value) => setAttributes({ custom: value })}
-						/>
 						{custom && (
 							<TextControl
 								label={__('Link', 'iis-blocks')}
@@ -224,6 +223,11 @@ registerBlockType('iis/puff', {
 						/>
 					</PanelBody>
 					<PanelBody title="Display">
+						<CheckboxControl
+							label="Open link in new tab"
+							checked={attributes.target === '_blank'}
+							onChange={(value) => setAttributes({ target: (value) ? '_blank' : '_self' })}
+						/>
 						<CheckboxControl
 							label="Show as teaser"
 							checked={showAsTeaser}

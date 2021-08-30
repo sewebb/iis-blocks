@@ -1,3 +1,5 @@
+import DataSelect from '../components/DataSelect';
+
 const { __ } = wp.i18n;
 const { Fragment, useState, useEffect } = wp.element;
 const { registerBlockType } = wp.blocks;
@@ -54,6 +56,10 @@ registerBlockType('iis/card', {
 		showOnMobile: {
 			type: 'boolean',
 			default: false,
+		},
+		imageSize: {
+			type: 'string',
+			default: null,
 		},
 		imageId: {
 			type: 'number',
@@ -240,6 +246,15 @@ registerBlockType('iis/card', {
 								onChange={(showOnMobile) => setAttributes({ showOnMobile })}
 							/>
 						)}
+						<DataSelect
+							label={__('Image size', 'iis-blocks')}
+							placeholder={{ value: '', label: __('Auto', 'iis-blocks') }}
+							api="/iis-blocks/v1/image-sizes"
+							value_key={(obj) => obj.size}
+							label_key={(obj) => `${obj.name} (${obj.width}x${obj.height}`}
+							value={attributes.imageSize}
+							set={(imageSize) => setAttributes({ imageSize })}
+						/>
 					</PanelBody>
 					<PanelBody title="Youtube">
 						<TextControl
@@ -330,6 +345,7 @@ registerBlockType('iis/card', {
 									'core/list',
 									'iis/button',
 									'iis/buttons',
+									'iis/icon',
 								]}
 								template={[['core/paragraph']]}
 							/>
