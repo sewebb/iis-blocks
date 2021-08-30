@@ -68,7 +68,7 @@ registerBlockType('iis/section', {
 		return (
 			<div className={className}>
 				<InspectorControls>
-					<PanelBody title="{__('Design', 'iis-blocks')}">
+					<PanelBody title={__('Design', 'iis-blocks')}>
 						<SelectControl
 							label={__('Style', 'iis-blocks')}
 							onChange={(val) => setAttributes({ style: val })}
