@@ -9,24 +9,26 @@
 function iis_render_puff( $attributes, $inner_content ) {
 	$attributes = array_merge(
 		[
-			'custom'         => false,
-			'postId'         => null,
-			'showAsTeaser'   => false,
-			'showOnMobile'   => false,
-			'displayTags'    => false,
-			'displayExcerpt' => true,
-			'displayDates'   => false,
-			'title'          => null,
-			'text'           => null,
-			'imageId'        => null,
-			'imageSize'      => null,
-			'alignment'      => null,
-			'url'            => null,
-			'align'          => null,
-			'className'      => '',
-			'button'         => false,
-			'shadow'         => false,
-			'target'         => '_self',
+			'custom'          => false,
+			'postId'          => null,
+			'showAsTeaser'    => false,
+			'showOnMobile'    => false,
+			'displayTags'     => false,
+			'displayExcerpt'  => true,
+			'displayDates'    => false,
+			'displayPostType' => false,
+			'displayReadTime' => false,
+			'title'           => null,
+			'text'            => null,
+			'imageId'         => null,
+			'imageSize'       => null,
+			'alignment'       => null,
+			'url'             => null,
+			'align'           => null,
+			'className'       => '',
+			'button'          => false,
+			'shadow'          => false,
+			'target'          => '_self',
 		],
 		$attributes
 	);
@@ -56,6 +58,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 			'date'       => null,
 			'categories' => null,
 			'media'      => null,
+			'post_type'  => null,
 		];
 
 		$id = '';
@@ -85,6 +88,8 @@ function iis_render_puff( $attributes, $inner_content ) {
 			$icon = 'podcast';
 		}
 
+		$post_type = get_post_type_object( get_post_type( $post ) );
+
 		$content = [
 			'thumbnail'  => $thumbnail,
 			'title'      => $post->post_title,
@@ -94,6 +99,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 			'date'       => $date,
 			'categories' => $categories,
 			'media'      => $media,
+			'post_type'  => $post_type,
 		];
 
 		$id = 'id="post-' . $attributes['postId'] . '"';
@@ -122,8 +128,9 @@ function iis_render_puff( $attributes, $inner_content ) {
 		$card_class .= ' m-card--padded';
 	}
 
-	$headline_size = ( $attributes['showAsTeaser'] ) ? 'alpha' : 'beta';
+	$headline_size   = ( $attributes['showAsTeaser'] ) ? 'alpha' : 'beta';
 	$card_text_class = ( $attributes['showAsTeaser'] ) ? 'm-card__text !u-hide-md' : 'm-card__text';
+	$has_meta        = $attributes['displayDates'] || $attributes['displayPostType'] || $attributes['displayReadTime'];
 
 	ob_start(); ?>
 	<div class="<?php imns( $card_class ); ?> <?php echo iis_sanitize_html_classes( $class ); ?>" <?php echo $id; ?>>
@@ -146,10 +153,28 @@ function iis_render_puff( $attributes, $inner_content ) {
 						</svg> <?php echo $content['media'][0]->name; ?>
 					</div>
 				</div>
-			<?php elseif ( isset( $post ) && $attributes['displayDates'] && $content['date'] ) : ?>
-				<time datetime="<?php echo $post->post_date; ?>" class="<?php imns( 'a-meta' ); ?>">
-					<?php echo $content['date']; ?>
-				</time>
+			<?php elseif ( $has_meta ) : ?>
+				<div class="<?php imns( 'm-card__meta' ); ?>">
+					<?php if ( isset( $post ) && $attributes['displayDates'] && $content['date'] ) : ?>
+						<time datetime="<?php echo $post->post_date; ?>" class="<?php imns( 'a-meta' ); ?>">
+							<?php echo $content['date']; ?>
+						</time>
+					<?php endif; ?>
+					<?php if ( isset( $post ) && $attributes['displayPostType'] && $content['post_type'] ) : ?>
+						<div class="<?php imns( 'a-meta' ); ?>">
+							<?php echo $content['post_type']->labels->singular_name; ?>
+						</div>
+					<?php endif; ?>
+					<?php if ( isset( $post ) && $attributes['displayReadTime'] ) : ?>
+						<div class="<?php imns( 'a-meta' ); ?>">
+							<svg class="<?php imns( 'icon' ); ?>">
+								<use xlink:href="#icon-read"></use>
+							</svg>
+							<?php /* translators: %s is replaced with reading time in minutes */ ?>
+							<?php echo esc_html( sprintf( __( '%s min', 'iis-blocks' ), iis_blocks_get_post_reading_time( $post->ID ) ) ); ?>
+						</div>
+					<?php endif; ?>
+				</div>
 			<?php endif; ?>
 			<?php if ( $content['permalink'] ) : ?>
 				<a href="<?php echo $content['permalink']; ?>" class="<?php imns( 'm-card__link' ); ?>" target="<?php echo esc_attr( $attributes['target'] ); ?>">

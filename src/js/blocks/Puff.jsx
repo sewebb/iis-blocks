@@ -58,6 +58,14 @@ registerBlockType('iis/puff', {
 			type: 'boolean',
 			default: true,
 		},
+		displayPostType: {
+			type: 'boolean',
+			default: false,
+		},
+		displayReadTime: {
+			type: 'boolean',
+			default: false,
+		},
 		imageSize: {
 			type: 'string',
 			default: null,
@@ -261,6 +269,16 @@ registerBlockType('iis/puff', {
 									label="Display dates"
 									checked={attributes.displayDates}
 									onChange={(displayDates) => setAttributes({ displayDates })}
+								/>
+								<CheckboxControl
+									label="Display post type name"
+									checked={attributes.displayPostType}
+									onChange={(displayPostType) => setAttributes({ displayPostType })}
+								/>
+								<CheckboxControl
+									label="Display read time"
+									checked={attributes.displayReadTime}
+									onChange={(displayReadTime) => setAttributes({ displayReadTime })}
 								/>
 							</Fragment>
 						)}

@@ -12,7 +12,9 @@
     ],
     "require": {
         "php": "^7.2",
-        "iis/library": "^2.0.2"
+        "iis/library": "^2.0.2",
+        "ext-dom": "*",
+        "ext-libxml": "*"
     },
     "require-dev": {
         "squizlabs/php_codesniffer": "3.*",
