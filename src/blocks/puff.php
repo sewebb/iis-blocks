@@ -171,7 +171,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 								<use xlink:href="#icon-read"></use>
 							</svg>
 							<?php /* translators: %s is replaced with reading time in minutes */ ?>
-							<?php echo esc_html( sprintf( __( '%s min', 'iis-blocks' ), iis_blocks_get_post_reading_time( $post->ID ) ) ); ?>
+							<?php echo esc_html( sprintf( __( '%s min', 'iis-blocks' ), iis_get_post_reading_time( $post->ID ) ) ); ?>
 						</div>
 					<?php endif; ?>
 				</div>

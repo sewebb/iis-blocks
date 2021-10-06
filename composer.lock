@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "63aa9b98c06e86d343ef086bb9e1fced",
+    "content-hash": "ef69b68c5d0ff1ca95dfbb92e4817176",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.11.0",
+            "version": "v1.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "ae03311f45dfe194412081526be2e003960df74b"
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/ae03311f45dfe194412081526be2e003960df74b",
-                "reference": "ae03311f45dfe194412081526be2e003960df74b",
+                "url": "https://api.github.com/repos/composer/installers/zipball/d20a64ed3c94748397ff5973488761b22f6d3f19",
+                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19",
                 "shasum": ""
             },
             "require": {
@@ -116,6 +116,7 @@
                 "modx",
                 "moodle",
                 "osclass",
+                "pantheon",
                 "phpbb",
                 "piwik",
                 "ppi",
@@ -138,7 +139,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v1.11.0"
+                "source": "https://github.com/composer/installers/tree/v1.12.0"
             },
             "funding": [
                 {
@@ -154,30 +155,32 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-04-28T06:42:17+00:00"
+            "time": "2021-09-13T08:19:44+00:00"
         },
         {
             "name": "iis/library",
-            "version": "v2.0.2",
+            "version": "v2.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sewebb/iis-library.git",
-                "reference": "fa753cba2372b4cecd034c3f3af99cf1851d6b8e"
+                "reference": "55b2ad5b7fc5031159cefd970be8aa342d2cdbd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sewebb/iis-library/zipball/fa753cba2372b4cecd034c3f3af99cf1851d6b8e",
-                "reference": "fa753cba2372b4cecd034c3f3af99cf1851d6b8e",
+                "url": "https://api.github.com/repos/sewebb/iis-library/zipball/55b2ad5b7fc5031159cefd970be8aa342d2cdbd9",
+                "reference": "55b2ad5b7fc5031159cefd970be8aa342d2cdbd9",
                 "shasum": ""
             },
             "require": {
-                "composer/installers": "^1.6",
+                "composer/installers": "~1.0",
+                "ext-dom": "*",
                 "ext-json": "*",
+                "ext-libxml": "*",
                 "php": "^7.2"
             },
             "require-dev": {
                 "10up/wp_mock": "dev-master",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.4.4",
+                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
                 "phpunit/phpunit": "^8.1",
                 "squizlabs/php_codesniffer": "3.*",
                 "wp-coding-standards/wpcs": "^1.1"
@@ -211,9 +214,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sewebb/iis-library/issues",
-                "source": "https://github.com/sewebb/iis-library/tree/v2.0.2"
+                "source": "https://github.com/sewebb/iis-library/tree/v2.1.0"
             },
-            "time": "2021-04-15T13:20:10+00:00"
+            "time": "2021-10-06T08:21:59+00:00"
         }
     ],
     "packages-dev": [
@@ -398,7 +401,9 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2"
+        "php": "^7.2",
+        "ext-dom": "*",
+        "ext-libxml": "*"
     },
     "platform-dev": [],
     "plugin-api-version": "2.0.0"
