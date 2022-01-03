@@ -14,26 +14,26 @@
         "eslint": "eslint src --ext .jsx --ext .js"
     },
     "devDependencies": {
-        "@babel/plugin-proposal-class-properties": "^7.13.0",
-        "@babel/plugin-proposal-object-rest-spread": "^7.13.8",
+        "@babel/eslint-parser": "^7.16.5",
+        "@babel/plugin-proposal-class-properties": "^7.16.7",
+        "@babel/plugin-proposal-object-rest-spread": "^7.16.7",
         "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-        "@babel/preset-env": "^7.14.1",
-        "@babel/preset-react": "^7.13.13",
+        "@babel/preset-env": "^7.16.7",
+        "@babel/preset-react": "^7.16.7",
         "@internetstiftelsen/eslint-config-react": "^1.0.0",
-        "babel-eslint": "^10.1.0",
-        "eslint": "^7.25.0",
-        "eslint-config-airbnb": "^18.2.1",
+        "eslint": "^8.6.0",
+        "eslint-config-airbnb": "^19.0.4",
         "eslint-plugin-filenames": "^1.3.2",
-        "eslint-plugin-import": "^2.22.1",
-        "eslint-plugin-jsx-a11y": "^6.4.1",
-        "eslint-plugin-react": "^7.23.2",
-        "eslint-plugin-react-hooks": "^4.2.0",
-        "laravel-mix": "^6.0.18",
-        "resolve-url-loader": "^3.1.3",
-        "sass": "^1.32.12",
-        "sass-loader": "^11.0.1"
+        "eslint-plugin-import": "^2.25.4",
+        "eslint-plugin-jsx-a11y": "^6.5.1",
+        "eslint-plugin-react": "^7.28.0",
+        "eslint-plugin-react-hooks": "^4.3.0",
+        "laravel-mix": "^6.0.39",
+        "resolve-url-loader": "^4.0.0",
+        "sass": "^1.45.2",
+        "sass-loader": "^12.4.0"
     },
     "dependencies": {
-        "@internetstiftelsen/styleguide": "^2.17.8"
+        "@internetstiftelsen/styleguide": "^2.21.13"
     }
 }

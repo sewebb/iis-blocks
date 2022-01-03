@@ -1,5 +1,5 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "extends": "@internetstiftelsen/eslint-config-react",
     "globals": {
         "wp": true
