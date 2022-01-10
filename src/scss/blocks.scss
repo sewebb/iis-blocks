@@ -11,3 +11,35 @@
 		}
 	}
 }
+
+[data-type^="iis/"] {
+	&[data-align="right"], &[data-align="left"]{
+		.wp-block{
+			&::after {
+				content: "";
+				display: block;
+				clear: both;
+			}
+			height: auto;
+			width: 400px;
+		}
+	}
+
+	&[data-align="right"]{
+		float: right;
+		@media (min-width: 1350px) {
+			margin-right: calc(51vw - 664px);
+		}
+	}
+	&[data-align="left"]{
+		float: left;
+		@media (min-width: 1350px) {
+			margin-right: calc(51vw - 664px);
+		}
+	}
+
+	& > .wp-block > * {
+		position: relative;
+		float: none;
+	}
+}
