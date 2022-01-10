@@ -1,7 +1,7 @@
 import DataSelect from '../components/DataSelect';
 
 const { __ } = wp.i18n;
-const { Fragment, useState, useEffect } = wp.element;
+const { Fragment, useState, useEffect, useRef } = wp.element;
 const { registerBlockType } = wp.blocks;
 const {
 	CheckboxControl,
@@ -16,6 +16,7 @@ const {
 	InnerBlocks,
 	RichText,
 } = wp.editor;
+const { useBlockProps } = wp.blockEditor;
 
 function PlayIcon() {
 	return (
@@ -43,6 +44,7 @@ registerBlockType('iis/card', {
 	keywords: [__('aside'), __('sidebar'), __('content'), __('card')],
 	supports: {
 		align: ['right', 'wide'],
+		lightBlockWrapper: true,
 	},
 	attributes: {
 		background: {
@@ -99,6 +101,7 @@ registerBlockType('iis/card', {
 		},
 	},
 	edit({ attributes, setAttributes }) {
+		const ref = useRef();
 		const [imageSizes, setImageSizes] = useState(null);
 		const [imagePreview, setImagePreview] = useState(null);
 		const youtubeId = parseYoutube(attributes.youtube);
@@ -166,6 +169,11 @@ registerBlockType('iis/card', {
 			styleCardImage.borderRadius = '.25rem 0 0 .25rem';
 		}
 
+		const blockProps = useBlockProps({
+			ref,
+			className: 'test',
+		});
+
 		useEffect(() => {
 			if (!attributes.imageId) {
 				setImagePreview(null);
@@ -206,7 +214,7 @@ registerBlockType('iis/card', {
 		}, [imageSizes, attributes.imageSize, attributes.showAsTeaser, attributes.imageId]);
 
 		return (
-			<Fragment>
+			<div {...blockProps}>
 				<InspectorControls>
 					<PanelBody title="Content">
 						<TextControl
@@ -352,7 +360,7 @@ registerBlockType('iis/card', {
 						</div>
 					</div>
 				</div>
-			</Fragment>
+			</div>
 		);
 	},
 	save() {
