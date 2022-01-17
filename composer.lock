@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ef69b68c5d0ff1ca95dfbb92e4817176",
+    "content-hash": "00b453a0dc0a9ba95cc3bec993201e8b",
     "packages": [
         {
             "name": "composer/installers",
@@ -159,16 +159,16 @@
         },
         {
             "name": "iis/library",
-            "version": "v2.1.0",
+            "version": "v3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sewebb/iis-library.git",
-                "reference": "55b2ad5b7fc5031159cefd970be8aa342d2cdbd9"
+                "reference": "21f5032987447ace02574167a95422329676b85a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sewebb/iis-library/zipball/55b2ad5b7fc5031159cefd970be8aa342d2cdbd9",
-                "reference": "55b2ad5b7fc5031159cefd970be8aa342d2cdbd9",
+                "url": "https://api.github.com/repos/sewebb/iis-library/zipball/21f5032987447ace02574167a95422329676b85a",
+                "reference": "21f5032987447ace02574167a95422329676b85a",
                 "shasum": ""
             },
             "require": {
@@ -214,9 +214,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sewebb/iis-library/issues",
-                "source": "https://github.com/sewebb/iis-library/tree/v2.1.0"
+                "source": "https://github.com/sewebb/iis-library/tree/v3.0.0"
             },
-            "time": "2021-10-06T08:21:59+00:00"
+            "time": "2022-01-17T13:30:54+00:00"
         }
     ],
     "packages-dev": [
