@@ -1,7 +1,12 @@
 import DataSelect from '../components/DataSelect';
 
 const { __ } = wp.i18n;
-const { Fragment, useState, useEffect } = wp.element;
+const {
+	Fragment,
+	useState,
+	useEffect,
+	useRef,
+} = wp.element;
 const { registerBlockType } = wp.blocks;
 const {
 	CheckboxControl,
@@ -16,6 +21,7 @@ const {
 	RichText,
 	InnerBlocks,
 } = wp.editor;
+const { useBlockProps } = wp.blockEditor;
 
 registerBlockType('iis/puff', {
 	title: __('Post puff', 'iis-blocks'),
@@ -28,6 +34,7 @@ registerBlockType('iis/puff', {
 	],
 	supports: {
 		align: ['right', 'wide'],
+		lightBlockWrapper: true,
 	},
 	attributes: {
 		custom: {
@@ -108,6 +115,7 @@ registerBlockType('iis/puff', {
 		},
 	},
 	edit({ attributes, setAttributes }) {
+		const ref = useRef();
 		const [imageSizes, setImageSizes] = useState(null);
 		const [imagePreview, setImagePreview] = useState(null);
 		const {
@@ -173,6 +181,11 @@ registerBlockType('iis/puff', {
 			styleCardImage.borderRadius = '.25rem 0 0 .25rem';
 		}
 
+		const blockProps = useBlockProps({
+			ref,
+			className: 'test',
+		});
+
 		useEffect(() => {
 			if (!attributes.imageId) {
 				setImagePreview(null);
@@ -213,7 +226,8 @@ registerBlockType('iis/puff', {
 		}, [imageSizes, attributes.imageSize, attributes.showAsTeaser, attributes.imageId]);
 
 		return (
-			<Fragment>
+			// eslint-disable-next-line react/jsx-props-no-spreading
+			<div {...blockProps}>
 				<InspectorControls>
 					<PanelBody title="Content">
 						{custom && (
@@ -376,7 +390,7 @@ registerBlockType('iis/puff', {
 						)}
 					</div>
 				</div>
-			</Fragment>
+			</div>
 		);
 	},
 	save({ attributes }) {
