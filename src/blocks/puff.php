@@ -168,7 +168,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 					<?php if ( isset( $post ) && $attributes['displayReadTime'] ) : ?>
 						<div class="<?php imns( 'a-meta' ); ?>">
 							<svg class="<?php imns( 'icon' ); ?>">
-								<use xlink:href="#icon-read"></use>
+								<use xlink:href="#icon-time"></use>
 							</svg>
 							<?php /* translators: %s is replaced with reading time in minutes */ ?>
 							<?php echo esc_html( sprintf( __( '%s min', 'iis-blocks' ), iis_get_post_reading_time( $post->ID ) ) ); ?>
