@@ -13,7 +13,7 @@ function iis_render_block_download( $attributes ) {
 			<div class="grid u-position-static">
 				<div class="row flex-column">
 					<div class="grid-18 u-position-static">
-						<a href="<?php echo esc_url( $attributes['file'] ); ?>" target="_blank" class="beta <?php imns( 'm-download__link' ); ?>">
+						<a href="<?php echo esc_url( $attributes['file'] ); ?>" target="_blank" rel="noopener noreferrer" class="beta <?php imns( 'm-download__link' ); ?>">
 							<span><?php echo esc_html( $attributes['title'] ); ?></span>
 						</a>
 					</div>
