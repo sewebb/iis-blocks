@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "00b453a0dc0a9ba95cc3bec993201e8b",
+    "content-hash": "fa075f9f2ed57b1df32fb349269e1e85",
     "packages": [
         {
             "name": "composer/installers",
@@ -159,16 +159,16 @@
         },
         {
             "name": "iis/library",
-            "version": "v3.0.0",
+            "version": "v4.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sewebb/iis-library.git",
-                "reference": "21f5032987447ace02574167a95422329676b85a"
+                "reference": "0f201266b03c4b6a681ac68cd6ed33b9322bd2a5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sewebb/iis-library/zipball/21f5032987447ace02574167a95422329676b85a",
-                "reference": "21f5032987447ace02574167a95422329676b85a",
+                "url": "https://api.github.com/repos/sewebb/iis-library/zipball/0f201266b03c4b6a681ac68cd6ed33b9322bd2a5",
+                "reference": "0f201266b03c4b6a681ac68cd6ed33b9322bd2a5",
                 "shasum": ""
             },
             "require": {
@@ -187,12 +187,12 @@
             },
             "type": "library",
             "autoload": {
-                "psr-4": {
-                    "Internetstiftelsen\\": "src/"
-                },
                 "files": [
                     "src/helpers.php"
-                ]
+                ],
+                "psr-4": {
+                    "Internetstiftelsen\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -214,9 +214,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sewebb/iis-library/issues",
-                "source": "https://github.com/sewebb/iis-library/tree/v3.0.0"
+                "source": "https://github.com/sewebb/iis-library/tree/v4.0.0"
             },
-            "time": "2022-01-17T13:30:54+00:00"
+            "time": "2022-03-10T12:19:21+00:00"
         }
     ],
     "packages-dev": [
@@ -406,5 +406,5 @@
         "ext-libxml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.0.0"
+    "plugin-api-version": "2.2.0"
 }
