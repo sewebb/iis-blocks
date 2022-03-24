@@ -41,7 +41,7 @@ function iis_render_card( $attributes, $content ) {
 	$image_wrapper_class = imns( 'm-card__image m-card__media', false );
 	$youtube_id          = null;
 
-	if ( ! empty( trim( $attributes['youtube'] ) ) ) {
+	if ( ! empty( trim( $attributes['youtube'] ?? '' ) ) ) {
 		preg_match( '#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#', $attributes['youtube'], $matches );
 
 		if ( $matches && isset( $matches[0] ) ) {
