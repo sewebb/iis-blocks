@@ -63,6 +63,10 @@ registerBlockType('iis/hero', {
 			type: 'string',
 			default: null,
 		},
+		anchor: {
+			type: 'string',
+			default: '',
+		},
 		pretitle: {
 			type: 'string',
 			default: '',
@@ -113,6 +117,17 @@ registerBlockType('iis/hero', {
 							options={layouts}
 							value={attributes.layout}
 						/>
+						{attributes.layout === 'dynamic' && (
+							<div style={{ marginTop: '1rem' }}>
+								<TextControl
+									label={__('Anchor link', 'iis-blocks')}
+									placeholder={__('#section-id', 'iis-blocks')}
+									help={__('Displays a clickable arrow that scrolls down to the provided anchor.', 'iis-blocks')}
+									value={attributes.anchor}
+									onChange={(anchor) => setAttributes({ anchor })}
+								/>
+							</div>
+						)}
 					</PanelBody>
 					<PanelBody title="Background image">
 						<p>{image}</p>

@@ -12,6 +12,7 @@ function iis_render_block_hero( $attributes, $content ) {
 			'introText' => '',
 			'align'     => 'wide',
 			'youtube'   => null,
+			'anchor'    => '',
 		],
 		$attributes
 	);
@@ -117,6 +118,14 @@ function iis_render_block_hero( $attributes, $content ) {
 				</div>
 			<?php endif; ?>
 		</figcaption>
+		<?php if ( 'dynamic' === $attributes['layout'] && ! empty( $attributes['anchor'] ) ) : ?>
+			<a href="<?php echo esc_url( $attributes['anchor'] ); ?>" class="<?php imns( 'a-button a-button--a-button--icon a-button--standalone-icon a-button--standalone-icon--white a-button--icon o-hero__button-continue' ); ?>">
+				<span class="<?php imns( 'a-button__text' ); ?>"><?php _e( 'Continue', 'iis-blocks' ); ?></span>
+				<svg class="<?php imns( 'icon a-button__icon' ); ?>">
+					<use xlink:href="#icon-arrow-down"></use>
+				</svg>
+			</a>
+		<?php endif; ?>
 	</figure>
 	<?php
 
