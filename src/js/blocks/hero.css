@@ -2,6 +2,7 @@
 	position: relative;
 	text-align: left;
 	color: #fff;
+	z-index: 1;
 }
 
 .iis-block-hero--no-image {
@@ -30,12 +31,28 @@
 	align-items: flex-end;
 	text-shadow: 0 0 1rem rgba(0,0,0,.5);
 	background-image: linear-gradient(180deg,hsla(0,0%,100%,0) 0,transparent 55%,#000);
+	z-index: 1;
 }
 
 .iis-block-hero--no-image .iis-block-hero__content {
 	position: static;
 	background: none;
 	text-shadow: none;
+}
+
+.iis-block-hero--dynamic .iis-block-hero__content {
+	position: static;
+	align-items: flex-start;
+}
+
+.iis-block-hero--dynamic .iis-block-hero__content h1 {
+	--minFontSize: 22px;
+	--maxFontSize: 300px;
+	--scaler: 10vw;
+	font-size: clamp(var(--minFontSize),var(--scaler),var(--maxFontSize));
+	line-height: 1.2;
+	margin: 0;
+	padding: 0;
 }
 
 .iis-block-hero__inner-content {
@@ -54,6 +71,18 @@
 	object-fit: cover;
 	width: 100%;
 	display: block;
+}
+
+.iis-block-hero--dynamic .iis-block-hero__image {
+	height: 100%;
+	min-height: 0;
+	max-height: none;
+	position: absolute;
+	z-index: -1;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
 }
 
 .iis-block-hero__buttons .block-editor-block-list__layout {

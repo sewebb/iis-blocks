@@ -3,9 +3,11 @@
 function iis_render_block_hero( $attributes, $content ) {
 	$attributes = array_merge(
 		[
+			'layout'    => 'standard',
 			'mediaUrl'  => null,
 			'mediaId'   => null,
 			'mediaType' => null,
+			'pretitle'  => '',
 			'title'     => '',
 			'introText' => '',
 			'align'     => 'wide',
@@ -16,6 +18,10 @@ function iis_render_block_hero( $attributes, $content ) {
 
 	$class = 'o-hero';
 	$img   = null;
+
+	if ( $attributes['layout'] === 'dynamic' ) {
+		$class .= ' o-hero--dynamic-headline';
+	}
 
 	if ( 'full' !== $attributes['align'] && $attributes['mediaId'] && 'video' === $attributes['mediaType'] ) {
 		$class .= ' o-hero--border-radius o-hero--video';
@@ -89,25 +95,29 @@ function iis_render_block_hero( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<div class="wp-block-iis-hero <?php imns( $class ); ?>">
+	<figure class="wp-block-iis-hero <?php imns( $class ); ?>">
 		<?php echo $img; ?>
-		<div class="<?php imns( 'o-hero__caption' ); ?>">
-			<div class="wrapper">
-				<div class="<?php imns( 'o-hero__text' ); ?>">
-					<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
-					<?php if ( $attributes['introText'] && ! empty( trim( $attributes['introText'] ) ) ) : ?>
-					<p class="<?php imns( 'o-hero__paragraph' ); ?>"><?php echo esc_html( $attributes['introText'] ); ?></p>
-					<?php endif; ?>
+		<figcaption class="<?php imns( 'o-hero__caption' ); ?>" <?php echo ( 'dynamic' === $attributes['layout'] ) ? 'data-meta="' . esc_attr( $attributes['pretitle'] ) . '"' : ''; ?>>
+			<?php if ( 'dynamic' === $attributes['layout'] ) : ?>
+				<h1><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
+			<?php elseif ( 'standard' === $attributes['layout'] ) : ?>
+				<div class="wrapper">
+					<div class="<?php imns( 'o-hero__text' ); ?>">
+						<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
+						<?php if ( $attributes['introText'] && ! empty( trim( $attributes['introText'] ) ) ) : ?>
+						<p class="<?php imns( 'o-hero__paragraph' ); ?>"><?php echo esc_html( $attributes['introText'] ); ?></p>
+						<?php endif; ?>
 
-					<?php if ( $content ) : ?>
-					<div class="<?php imns( 'o-hero__buttons' ); ?>">
-						<?php echo $content; ?>
+						<?php if ( $content ) : ?>
+						<div class="<?php imns( 'o-hero__buttons' ); ?>">
+							<?php echo $content; ?>
+						</div>
+						<?php endif; ?>
 					</div>
-					<?php endif; ?>
 				</div>
-			</div>
-		</div>
-	</div>
+			<?php endif; ?>
+		</figcaption>
+	</figure>
 	<?php
 
 	$content = ob_get_clean();

@@ -3,7 +3,12 @@ import './hero.css';
 const { __ } = wp.i18n;
 const { Fragment } = wp.element;
 const { registerBlockType } = wp.blocks;
-const { PanelBody, Button, TextControl } = wp.components;
+const {
+	PanelBody,
+	Button,
+	TextControl,
+	SelectControl,
+} = wp.components;
 const {
 	InspectorControls,
 	MediaUpload,
@@ -21,6 +26,17 @@ function parseYoutube(url) {
 	const match = url.match(regExp);
 	return (match && match[7].length === 11) ? match[7] : false;
 }
+
+const layouts = [
+	{
+		label: 'Standard',
+		value: 'standard',
+	},
+	{
+		label: 'Dynamic',
+		value: 'dynamic',
+	},
+];
 
 registerBlockType('iis/hero', {
 	title: __('Hero'),
@@ -47,6 +63,10 @@ registerBlockType('iis/hero', {
 			type: 'string',
 			default: null,
 		},
+		pretitle: {
+			type: 'string',
+			default: '',
+		},
 		title: {
 			type: 'string',
 			default: '',
@@ -58,6 +78,10 @@ registerBlockType('iis/hero', {
 		align: {
 			type: 'string',
 			default: 'wide',
+		},
+		layout: {
+			type: 'string',
+			default: 'standard',
 		},
 	},
 	edit({ attributes, setAttributes }) {
@@ -82,6 +106,14 @@ registerBlockType('iis/hero', {
 		return (
 			<Fragment>
 				<InspectorControls>
+					<PanelBody title="Design">
+						<SelectControl
+							label="Layout"
+							onChange={(layout) => setAttributes({ layout })}
+							options={layouts}
+							value={attributes.layout}
+						/>
+					</PanelBody>
 					<PanelBody title="Background image">
 						<p>{image}</p>
 						{attributes.mediaUrl === null && noYoutube && (
@@ -129,7 +161,7 @@ registerBlockType('iis/hero', {
 						)}
 					</PanelBody>
 				</InspectorControls>
-				<div className={`iis-block-hero ${(!displayImage && !displayYoutube && !displayVideo) ? 'iis-block-hero--no-image' : null} ${(displayVideo || displayYoutube) ? 'iis-block-hero--video' : null}`}>
+				<div className={`iis-block-hero ${(!displayImage && !displayYoutube && !displayVideo) ? 'iis-block-hero--no-image' : ''} ${(displayVideo || displayYoutube) ? 'iis-block-hero--video' : ''} ${(attributes.layout === 'dynamic') ? 'iis-block-hero--dynamic' : ''}`}>
 					{displayVideo && (
 						// eslint-disable-next-line jsx-a11y/alt-text,jsx-a11y/media-has-caption
 						<video src={attributes.mediaUrl} autoPlay loop controls muted className="iis-block-hero__image" />
@@ -145,21 +177,35 @@ registerBlockType('iis/hero', {
 					{!displayVideo && !displayYoutube && (
 						<div className="iis-block-hero__content">
 							<div className="iis-block-hero__inner-content">
+								{attributes.layout === 'dynamic' && (
+									<RichText
+										tagName="div"
+										value={attributes.pretitle}
+										placeholder={__('Pre title')}
+										onChange={(pretitle) => setAttributes({ pretitle })}
+										style={{ textTransform: 'uppercase', fontSize: '1.2em', marginBottom: '-20px' }}
+									/>
+								)}
 								<RichText
 									tagName="h1"
 									value={attributes.title}
 									placeholder={__('Title')}
 									onChange={(title) => setAttributes({ title })}
+									style={{ marginTop: 0 }}
 								/>
-								<RichText
-									tagName="p"
-									value={attributes.introText}
-									placeholder={__('Content')}
-									onChange={(introText) => setAttributes({ introText })}
-								/>
-								<div className="iis-block-hero__buttons">
-									<InnerBlocks allowedBlocks={['iis/button']} />
-								</div>
+								{attributes.layout === 'standard' && (
+									<Fragment>
+										<RichText
+											tagName="p"
+											value={attributes.introText}
+											placeholder={__('Content')}
+											onChange={(introText) => setAttributes({ introText })}
+										/>
+										<div className="iis-block-hero__buttons">
+											<InnerBlocks allowedBlocks={['iis/button']} />
+										</div>
+									</Fragment>
+								)}
 							</div>
 						</div>
 					)}
