@@ -13,6 +13,8 @@ import './blocks/SectionHeader';
 import './blocks/Card';
 import './blocks/Testimonial';
 import './blocks/Glider';
+import './blocks/GliderHero';
 import './blocks/Slide';
+import './blocks/HeroSlide';
 import './blocks/Icon';
 import './blocks/News';
