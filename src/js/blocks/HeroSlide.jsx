@@ -10,7 +10,6 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 	RichText,
-	InnerBlocks,
 } = wp.editor;
 
 registerBlockType('iis/hero-slide', {
@@ -113,6 +112,6 @@ registerBlockType('iis/hero-slide', {
 		);
 	},
 	save() {
-		return <InnerBlocks.Content />;
+		return null;
 	},
 });
