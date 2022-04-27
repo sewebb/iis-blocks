@@ -113,7 +113,13 @@ registerBlockType('iis/hero', {
 					<PanelBody title="Design">
 						<SelectControl
 							label="Layout"
-							onChange={(layout) => setAttributes({ layout })}
+							onChange={(layout) => {
+								if (layout === 'dynamic') {
+									setAttributes({ layout, align: 'full' });
+								} else {
+									setAttributes({ layout });
+								}
+							}}
 							options={layouts}
 							value={attributes.layout}
 						/>

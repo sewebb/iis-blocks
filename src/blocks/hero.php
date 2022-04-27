@@ -84,7 +84,7 @@ function iis_render_block_hero( $attributes, $content ) {
 		$class .= ' o-hero--no-image';
 	}
 
-	if ( 'full' == $attributes['align'] ) {
+	if ( 'full' == $attributes['align'] || 'dynamic' === $attributes['layout'] ) {
 		$class .= ' !alignfull';
 	} elseif ( $img ) {
 		$class .= ' o-hero--border-radius !u-m-t-4';
