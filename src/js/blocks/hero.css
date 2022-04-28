@@ -93,3 +93,20 @@
 .iis-block-hero__buttons .block-editor-block-list__layout > * {
 	margin-right: 20px;
 }
+
+.cyberspace a { color: #1f2a36; }
+.ocean a { color: #50b2fc; }
+.ocean-light a { color: #a7d8fd; }
+.ocean-dark a { color: #0477ce; }
+.ruby a { color: #ff4069; }
+.ruby-light a { color: #ff9fb4; }
+.ruby-dark a { color: #d9002f; }
+.jade a { color: #55c7b4; }
+.jade-light a { color: #aae3d9; }
+.jade-dark a { color: #2d897a; }
+.lemon a { color: #ffce2e; }
+.lemon-light a { color: #ffe696; }
+.peacock a { color: #c27fec; }
+.peacock-light a { color: #e0bff5; }
+.sandstone a { color: #f99963; }
+.sandstone-light a { color: #fcccb1; }

@@ -10,6 +10,8 @@ const {
 	MediaUpload,
 	MediaUploadCheck,
 	RichText,
+	withColors,
+	PanelColorSettings,
 } = wp.editor;
 
 registerBlockType('iis/hero-slide', {
@@ -34,13 +36,29 @@ registerBlockType('iis/hero-slide', {
 			type: 'string',
 			default: '',
 		},
+		linkColor: {
+			type: 'string',
+			default: null,
+		},
 	},
-	edit({ attributes, setAttributes }) {
+	edit: withColors({ linkColor: 'color' })(({
+		attributes, setAttributes, linkColor, setLinkColor,
+	}) => {
 		const image = <img src={attributes.mediaUrl} alt="" style={{ width: '100%', height: 'auto' }} />;
 
 		return (
 			<Fragment>
 				<InspectorControls>
+					<PanelColorSettings
+						title={__('Color Settings')}
+						colorSettings={[
+							{
+								value: linkColor.color,
+								onChange: setLinkColor,
+								label: __('Link Color'),
+							},
+						]}
+					/>
 					<PanelBody title="Background image">
 						<p>{image}</p>
 						{attributes.mediaUrl === null && (
@@ -99,6 +117,7 @@ registerBlockType('iis/hero-slide', {
 							<div className="iis-block-hero__inner-content">
 								<RichText
 									tagName="h1"
+									wrapperClassName={linkColor.slug}
 									value={attributes.title}
 									placeholder={__('Title')}
 									onChange={(title) => setAttributes({ title })}
@@ -110,7 +129,7 @@ registerBlockType('iis/hero-slide', {
 				</div>
 			</Fragment>
 		);
-	},
+	}),
 	save() {
 		return null;
 	},
