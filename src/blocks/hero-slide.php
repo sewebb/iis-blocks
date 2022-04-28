@@ -17,7 +17,7 @@ function iis_render_hero_slide( $attributes, $content ) {
 
 	if ( null !== $attributes['linkColor'] ) {
 		$dom = new DOMDocument();
-		$dom->loadHTML( $title );
+		$dom->loadHTML( '<meta charset="utf8">' . $title );
 
 		$span  = $dom->getElementsByTagName( 'span' );
 		$links = $span[0]->getElementsByTagName( 'a' );
