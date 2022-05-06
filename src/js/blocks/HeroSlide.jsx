@@ -17,7 +17,7 @@ const {
 registerBlockType('iis/hero-slide', {
 	title: __('Slide'),
 	category: 'iis',
-	icon: 'megaphone',
+	icon: 'cover-image',
 	keywords: [__('slide', 'iis-blocks'), __('slider', 'iis-blocks'), __('glider', 'iis-blocks')],
 	parent: ['iis/glider-hero'],
 	getEditWrapperProps() {

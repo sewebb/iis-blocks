@@ -41,7 +41,7 @@ const layouts = [
 registerBlockType('iis/hero', {
 	title: __('Hero'),
 	category: 'iis',
-	icon: 'megaphone',
+	icon: 'cover-image',
 	keywords: [__('hero'), __('title')],
 	supports: {
 		align: ['full', 'wide'],

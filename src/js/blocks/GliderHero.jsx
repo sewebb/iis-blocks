@@ -9,7 +9,7 @@ const {
 registerBlockType('iis/glider-hero', {
 	title: __('Glider Hero'),
 	category: 'iis',
-	icon: 'megaphone',
+	icon: 'leftright',
 	keywords: [__('glider', 'iis-blocks'), __('slider', 'iis-blocks'), __('slide', 'iis-blocks'), __('hero', 'iis-blocks')],
 	getEditWrapperProps() {
 		return { 'data-align': 'full' };
