@@ -66,6 +66,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 		$post = get_post( $attributes['postId'] );
 
 		$media = get_the_terms( $post, 'media' );
+
 		if ( false !== $media ) {
 			$media_name = ! is_wp_error( $media ) ? $media[0]->name : 'article';
 		} else {

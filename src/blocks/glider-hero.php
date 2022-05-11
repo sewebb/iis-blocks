@@ -3,7 +3,8 @@
 function iis_render_glider_hero( $attributes, $content ) {
 	$attributes = array_merge(
 		[
-			'className' => '',
+			'autoScrollTime' => null,
+			'className'      => '',
 		],
 		$attributes
 	);
@@ -18,7 +19,7 @@ function iis_render_glider_hero( $attributes, $content ) {
 					<use xlink:href="#icon-arrow-backwards"></use>
 				</svg>
 			</button>
-			<div class="glider js-glider-hero">
+			<div class="glider js-glider-hero" <?php echo ( $attributes['autoScrollTime'] ) ? 'data-timeout="' . esc_attr( $attributes['autoScrollTime'] ) . '"' : ''; ?>>
 				<?php echo $content; ?>
 			</div>
 			<button type="button" class="<?php imns( 'a-paging' ); ?> glider-nav glider-nav--hero glider-next js-glider-next">
