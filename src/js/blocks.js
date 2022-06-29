@@ -16,3 +16,4 @@ import './blocks/Glider';
 import './blocks/Slide';
 import './blocks/Icon';
 import './blocks/News';
+import './blocks/Visualization';
