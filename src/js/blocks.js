@@ -18,3 +18,4 @@ import './blocks/Slide';
 import './blocks/HeroSlide';
 import './blocks/Icon';
 import './blocks/News';
+import './blocks/Visualization';
