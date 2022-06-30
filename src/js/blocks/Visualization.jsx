@@ -6,7 +6,7 @@ const {
 	withColors,
 	PanelColorSettings,
 	InnerBlocks,
-} = wp.editor;
+} = wp.blockEditor;
 const {
 	PanelBody,
 } = wp.components;
@@ -48,8 +48,6 @@ registerBlockType('iis/visualization', {
 		return (
 			<div>
 				<InspectorControls>
-					<PanelBody>
-					</PanelBody>
 					<PanelColorSettings
 						title={__('Color Settings')}
 						colorSettings={[
