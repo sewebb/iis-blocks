@@ -15,7 +15,9 @@ const {
 	MediaUploadCheck,
 	RichText,
 	InnerBlocks,
-} = wp.editor;
+	withColors,
+	PanelColorSettings,
+} = wp.blockEditor;
 
 function parseYoutube(url) {
 	if (!url) {
@@ -87,8 +89,18 @@ registerBlockType('iis/hero', {
 			type: 'string',
 			default: 'standard',
 		},
+		backgroundColor: {
+			type: 'string',
+			default: '',
+		},
 	},
-	edit({ attributes, setAttributes }) {
+	edit: withColors({ backgroundColor: 'background' })(({
+		attributes,
+		setAttributes,
+		backgroundColor,
+		setBackgroundColor
+		
+	}) => {
 		let image = null;
 		const noYoutube = attributes.youtube === null || attributes.youtube.length < 1 || attributes.align === 'full';
 		const youtubeId = parseYoutube(attributes.youtube);
@@ -96,6 +108,9 @@ registerBlockType('iis/hero', {
 		const displayImage = attributes.mediaUrl !== null && attributes.mediaType !== 'video';
 		const displayVideo = attributes.mediaUrl && attributes.mediaType === 'video' && attributes.align !== 'full';
 		const displayYoutube = !displayImage && !displayVideo && youtubeUrl && attributes.align !== 'full';
+		const blockStyle = {
+			backgroundColor: (backgroundColor.color),
+		};
 
 		if (displayVideo) {
 			// eslint-disable-next-line jsx-a11y/media-has-caption
@@ -124,7 +139,7 @@ registerBlockType('iis/hero', {
 							value={attributes.layout}
 						/>
 						{attributes.layout === 'dynamic' && (
-							<div style={{ marginTop: '1rem' }}>
+							<div style={{ marginTop: '1rem' } } >
 								<TextControl
 									label={__('Anchor link', 'iis-blocks')}
 									placeholder={__('#section-id', 'iis-blocks')}
@@ -181,8 +196,18 @@ registerBlockType('iis/hero', {
 							</div>
 						)}
 					</PanelBody>
+					<PanelColorSettings
+						title={__('Color Settings')}
+						colorSettings={[
+							{
+								value: backgroundColor.color,
+								onChange: setBackgroundColor,
+								label: __('Background Color'),
+							},
+						]}
+					/>
 				</InspectorControls>
-				<div className={`iis-block-hero ${(!displayImage && !displayYoutube && !displayVideo) ? 'iis-block-hero--no-image' : ''} ${(displayVideo || displayYoutube) ? 'iis-block-hero--video' : ''} ${(attributes.layout === 'dynamic') ? 'iis-block-hero--dynamic' : ''}`}>
+				<div style={blockStyle} className={`iis-block-hero ${(!displayImage && !displayYoutube && !displayVideo) ? 'iis-block-hero--no-image' : ''} ${(displayVideo || displayYoutube) ? 'iis-block-hero--video' : ''} ${(attributes.layout === 'dynamic') ? 'iis-block-hero--dynamic' : ''}`}>
 					{displayVideo && (
 						// eslint-disable-next-line jsx-a11y/alt-text,jsx-a11y/media-has-caption
 						<video src={attributes.mediaUrl} autoPlay loop controls muted className="iis-block-hero__image" />
@@ -206,6 +231,15 @@ registerBlockType('iis/hero', {
 										onChange={(pretitle) => setAttributes({ pretitle })}
 										style={{ textTransform: 'uppercase', fontSize: '1.2em', marginBottom: '-20px' }}
 									/>
+								)}
+								{attributes.layout !== 'dynamic' && (
+								<RichText
+									tagName="span"
+									value={attributes.pretitle}
+									placeholder={__('Pre title')}
+									onChange={(pretitle) => setAttributes({ pretitle })}
+									style={{ marginTop: 0 }}
+								/>
 								)}
 								<RichText
 									tagName="h1"
@@ -233,7 +267,7 @@ registerBlockType('iis/hero', {
 				</div>
 			</Fragment>
 		);
-	},
+	}),
 	save() {
 		return <InnerBlocks.Content />;
 	},

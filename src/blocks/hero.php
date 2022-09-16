@@ -9,15 +9,25 @@ function iis_render_block_hero( $attributes, $content ) {
 			'mediaType' => null,
 			'pretitle'  => '',
 			'title'     => '',
+			'pretitle'	=> '',
 			'introText' => '',
 			'align'     => 'wide',
 			'youtube'   => null,
 			'anchor'    => '',
+			'className'	=> '',
+			'backgroundColor' => null,
 		],
 		$attributes
 	);
 
 	$class = 'o-hero';
+	$classes = $attributes['className'];
+	$color_name = '';
+
+	if ( $attributes['backgroundColor'] ) {
+		$color_name .= ' background-' . $attributes['backgroundColor'];
+	}
+
 	$img   = null;
 
 	if ( $attributes['layout'] === 'dynamic' ) {
@@ -33,7 +43,7 @@ function iis_render_block_hero( $attributes, $content ) {
 
 		ob_start();
 		?>
-		<div class="wp-block-iis-hero u-m-b-4">
+		<div class="wp-block-iis-hero u-m-b-4 <?php echo iis_sanitize_html_classes( $classes ); ?> <?php if($color_name) : echo $color_name; endif; ?>">
 			<figure class="<?php imns( $class ); ?>">
 				<video width="100%" height="100%" src="<?php echo wp_get_attachment_url( $attributes['mediaId'] ); ?>" controls></video>
 			</figure>
@@ -64,7 +74,7 @@ function iis_render_block_hero( $attributes, $content ) {
 
 		ob_start();
 		?>
-		<div class="wp-block-iis-hero u-m-b-4">
+		<div class="wp-block-iis-hero u-m-b-4 <?php echo iis_sanitize_html_classes( $classes ); ?> <?php if($color_name) : echo $color_name; endif; ?>">
 			<figure class="<?php imns( $class ); ?>">
 				<iframe width="100%" height="100%" src="<?php echo $youtube_url; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</figure>
@@ -86,7 +96,7 @@ function iis_render_block_hero( $attributes, $content ) {
 
 	if ( 'full' == $attributes['align'] || 'dynamic' === $attributes['layout'] ) {
 		$class .= ' !alignfull';
-	} elseif ( $img ) {
+	} elseif ( $img ||  $color_name) {
 		$class .= ' o-hero--border-radius !u-m-t-4';
 	}
 
@@ -96,37 +106,40 @@ function iis_render_block_hero( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<figure class="wp-block-iis-hero <?php imns( $class ); ?>">
-		<?php echo $img; ?>
-		<figcaption class="<?php imns( 'o-hero__caption' ); ?>" <?php echo ( 'dynamic' === $attributes['layout'] ) ? 'data-meta="' . esc_attr( $attributes['pretitle'] ) . '"' : ''; ?>>
-			<?php if ( 'dynamic' === $attributes['layout'] ) : ?>
-				<h1><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
-			<?php elseif ( 'standard' === $attributes['layout'] ) : ?>
-				<div class="wrapper">
-					<div class="<?php imns( 'o-hero__text' ); ?>">
-						<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
-						<?php if ( $attributes['introText'] && ! empty( trim( $attributes['introText'] ) ) ) : ?>
-						<p class="<?php imns( 'o-hero__paragraph' ); ?>"><?php echo esc_html( $attributes['introText'] ); ?></p>
-						<?php endif; ?>
+	<div class="wp-block-iis-hero <?php imns( $class ); ?> <?php echo iis_sanitize_html_classes( $classes ); ?> <?php if($color_name && !$img) : echo $color_name; endif; ?>">
+		<figure>
+			<?php echo $img; ?>
+			<figcaption class="<?php imns( 'o-hero__caption' ); ?>" <?php echo ( 'dynamic' === $attributes['layout'] ) ? 'data-meta="' . esc_attr( $attributes['pretitle'] ) . '"' : ''; ?>>
+				<?php if ( 'dynamic' === $attributes['layout'] ) : ?>
+					<h1><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
+				<?php elseif ( 'standard' === $attributes['layout'] ) : ?>
+					<div class="wrapper">
+						<div class="<?php imns( 'o-hero__text' ); ?>">
+							<?php if ( $attributes['pretitle'] && ! empty( trim( $attributes['pretitle'] ) ) ) : ?><span class="u-display-block u-m-b-1"><?php echo esc_html( $attributes['pretitle'] ); ?></span><?php endif; ?>
+							<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
+							<?php if ( $attributes['introText'] && ! empty( trim( $attributes['introText'] ) ) ) : ?>
+							<p class="<?php imns( 'o-hero__paragraph' ); ?>"><?php echo esc_html( $attributes['introText'] ); ?></p>
+							<?php endif; ?>
 
-						<?php if ( $content ) : ?>
-						<div class="<?php imns( 'o-hero__buttons' ); ?>">
-							<?php echo $content; ?>
+							<?php if ( $content ) : ?>
+							<div class="<?php imns( 'o-hero__buttons' ); ?>">
+								<?php echo $content; ?>
+							</div>
+							<?php endif; ?>
 						</div>
-						<?php endif; ?>
 					</div>
-				</div>
-			<?php endif; ?>
-			<?php if ( 'dynamic' === $attributes['layout'] && ! empty( $attributes['anchor'] ) ) : ?>
-				<a href="<?php echo esc_url( $attributes['anchor'] ); ?>" class="<?php imns( 'a-button a-button--a-button--icon a-button--standalone-icon a-button--standalone-icon--white a-button--icon o-hero__button-continue' ); ?>">
-					<span class="<?php imns( 'a-button__text' ); ?>"><?php _e( 'Continue', 'iis-blocks' ); ?></span>
-					<svg class="<?php imns( 'icon a-button__icon' ); ?>">
-						<use xlink:href="#icon-arrow-down"></use>
-					</svg>
-				</a>
-			<?php endif; ?>
-		</figcaption>
-	</figure>
+				<?php endif; ?>
+				<?php if ( 'dynamic' === $attributes['layout'] && ! empty( $attributes['anchor'] ) ) : ?>
+					<a href="<?php echo esc_url( $attributes['anchor'] ); ?>" class="<?php imns( 'a-button a-button--a-button--icon a-button--standalone-icon a-button--standalone-icon--white a-button--icon o-hero__button-continue' ); ?>">
+						<span class="<?php imns( 'a-button__text' ); ?>"><?php _e( 'Continue', 'iis-blocks' ); ?></span>
+						<svg class="<?php imns( 'icon a-button__icon' ); ?>">
+							<use xlink:href="#icon-arrow-down"></use>
+						</svg>
+					</a>
+				<?php endif; ?>
+			</figcaption>
+		</figure>
+	</div>
 	<?php
 
 	$content = ob_get_clean();

@@ -1,1 +1,11 @@
-.iis-info-block{background:#fff;border-top:4px solid #ffce2e;padding:0 16px}.iis-info-block--big{border-top-color:#55c7b4}.iis-info-block--big p{font-size:x-large!important}
+.iis-info-block {
+  border-top: 4px solid #ffce2e;
+  background: #fff;
+  padding: 0 16px;
+}
+.iis-info-block--big {
+  border-top-color: #55c7b4;
+}
+.iis-info-block--big p {
+  font-size: x-large !important;
+}
