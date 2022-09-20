@@ -18,6 +18,7 @@ require_once __DIR__ . '/src/blocks/index.php';
  * Register image sizes
  */
 function iis_blocks_register_sizes() {
+	add_image_size( 'puff-image-large', 887, 514, [ 'center', 'top' ] );
 	add_image_size( 'puff-image', 700, 406, [ 'center', 'top' ] );
 	add_image_size( 'puff-teaser-image', 426, 505, true );
 	add_image_size( 'puff-image-4:3', 700, 525, [ 'center', 'top' ] );
