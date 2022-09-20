@@ -100,7 +100,7 @@ if ( ! class_exists( 'Iis_Blocks_Puff' ) ) :
 		 * @return array[]
 		 */
 		public static function get_image_sizes() {
-			$image_sizes        = apply_filters( 'iis_blocks_puff_image_sizes', [ 'puff-image', 'puff-teaser-image', 'puff-image-4:3' ] );
+			$image_sizes        = apply_filters( 'iis_blocks_puff_image_sizes', [ 'puff-image-large', 'puff-image', 'puff-teaser-image', 'puff-image-4:3' ] );
 			$sizes              = [];
 			$intermediate_sizes = get_intermediate_image_sizes();
 			$additional_sizes   = wp_get_additional_image_sizes();
