@@ -87,7 +87,7 @@ function iis_render_block_hero( $attributes, $content ) {
 	}
 
 	if ( $attributes['mediaId'] ) {
-		$img = wp_get_attachment_image( $attributes['mediaId'], 'hero', false, [ 'class' => imns( 'o-hero__image', false ) ] );
+		$img = wp_get_attachment_image( $attributes['mediaId'], 'hero', false, [ 'class' => imns( 'o-hero__image', false ), 'loading' => 'eager' ] );
 	}
 
 	if ( ! $img ) {
