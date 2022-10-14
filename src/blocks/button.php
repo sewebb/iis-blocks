@@ -6,6 +6,7 @@ function iis_render_block_button( $attributes ) {
 			'size'        => 'regular',
 			'text'        => '',
 			'link'        => '/',
+			'target'       => '_self',
 			'buttonColor' => null,
 		],
 		$attributes
@@ -24,7 +25,7 @@ function iis_render_block_button( $attributes ) {
 	ob_start();
 	?>
 	<div>
-		<a href="<?php echo esc_url( $attributes['link'] ); ?>" class="<?php imns( $class_name ); ?>">
+		<a href="<?php echo esc_url( $attributes['link'] ); ?>" class="<?php imns( $class_name ); ?>" target="<?php echo esc_html( $attributes['target'] ); ?>">
 			<span class="<?php imns( 'a-button__text' ); ?>"><?php echo esc_html( $attributes['text'] ); ?></span>
 		</a>
 	</div>

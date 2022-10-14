@@ -6,7 +6,7 @@ const {
 	withColors,
 	PanelColorSettings,
 } = wp.editor;
-const { PanelBody, SelectControl, TextControl } = wp.components;
+const { PanelBody, SelectControl, TextControl, CheckboxControl } = wp.components;
 
 registerBlockType('iis/button', {
 	title: __('Button'),
@@ -25,6 +25,10 @@ registerBlockType('iis/button', {
 		link: {
 			type: 'string',
 			default: '',
+		},
+		target: {
+			type: 'string',
+			default: '_self',
 		},
 		buttonColor: {
 			type: 'string',
@@ -89,6 +93,11 @@ registerBlockType('iis/button', {
 							help={(attributes.link) ? (<a style={{ display: 'block', marginTop: '1rem' }} href={attributes.link} target="_blank">{ __('Test link') }</a>) : null}
 							type="url"
 							onChange={(link) => setAttributes({ link })}
+						/>
+						<CheckboxControl
+							label={__('Open in new window')}
+							checked={attributes.target === '_blank'}
+							onChange={(value) => setAttributes({ target: (value) ? '_blank' : '_self' })}
 						/>
 					</PanelBody>
 					<PanelColorSettings
