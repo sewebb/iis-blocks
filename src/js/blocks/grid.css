@@ -9,6 +9,7 @@
 	margin-right: unset;
 	margin-left: unset;
 	max-width: none;
+	box-sizing: border-box;
 }
 
 .iis-block-grid > .block-editor-inner-blocks > .block-editor-block-list__layout > *[data-width="1/3"] {
