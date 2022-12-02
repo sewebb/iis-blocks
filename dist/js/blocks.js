@@ -1798,6 +1798,10 @@ registerBlockType('iis/info', {
     big: {
       type: 'boolean',
       "default": false
+    },
+    customBorder: {
+      type: 'boolean',
+      "default": false
     }
   },
   edit: function edit(_ref) {
@@ -1808,13 +1812,17 @@ registerBlockType('iis/info', {
     var templateLock = null;
     var className = 'iis-info-block';
 
-    if (!attributes.big) {
-      allowed.push('core/heading');
-      allowed.push('core/list');
-    } else {
+    if (attributes.big) {
       template = [['core/paragraph']];
       templateLock = 'all';
       className += " ".concat(className, "--big");
+    } else if (attributes.customBorder) {
+      template = [['core/paragraph']];
+      templateLock = 'all';
+      className += " ".concat(className, "--custom-border");
+    } else {
+      allowed.push('core/heading');
+      allowed.push('core/list');
     }
 
     return /*#__PURE__*/React.createElement("div", null, /*#__PURE__*/React.createElement(InspectorControls, null, /*#__PURE__*/React.createElement(PanelBody, null, /*#__PURE__*/React.createElement(ToggleControl, {
@@ -1823,6 +1831,14 @@ registerBlockType('iis/info', {
       onChange: function onChange(big) {
         return setAttributes({
           big: big
+        });
+      }
+    })), /*#__PURE__*/React.createElement(PanelBody, null, /*#__PURE__*/React.createElement(ToggleControl, {
+      label: "Custom border",
+      checked: attributes.customBorder,
+      onChange: function onChange(customBorder) {
+        return setAttributes({
+          customBorder: customBorder
         });
       }
     }))), /*#__PURE__*/React.createElement("div", {
@@ -1836,7 +1852,7 @@ registerBlockType('iis/info', {
   save: function save(_ref2) {
     var attributes = _ref2.attributes;
     return /*#__PURE__*/React.createElement("div", {
-      className: "iis-m-info-box ".concat(attributes.big ? 'iis-m-info-box--big' : '')
+      className: "iis-m-info-box ".concat(attributes.big ? 'iis-m-info-box--big' : '', " ").concat(attributes.customBorder ? 'iis-m-info-box--custom-border' : '')
     }, /*#__PURE__*/React.createElement(InnerBlocks.Content, null));
   }
 });

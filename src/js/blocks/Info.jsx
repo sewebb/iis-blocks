@@ -16,6 +16,10 @@ registerBlockType('iis/info', {
 			type: 'boolean',
 			default: false,
 		},
+		customBorder: {
+			type: 'boolean',
+			default: false,
+		},
 	},
 	edit({ attributes, setAttributes }) {
 		const allowed = ['core/paragraph'];
@@ -23,14 +27,19 @@ registerBlockType('iis/info', {
 		let templateLock = null;
 		let className = 'iis-info-block';
 
-		if (!attributes.big) {
-			allowed.push('core/heading');
-			allowed.push('core/list');
-		} else {
+		if (attributes.big) {
 			template = [['core/paragraph']];
 			templateLock = 'all';
 
 			className += ` ${className}--big`;
+		} else if(attributes.customBorder) {
+			template = [['core/paragraph']];
+			templateLock = 'all';
+
+			className += ` ${className}--custom-border`;
+		} else {
+			allowed.push('core/heading');
+			allowed.push('core/list');
 		}
 
 		return (
@@ -43,6 +52,13 @@ registerBlockType('iis/info', {
 							onChange={(big) => setAttributes({ big })}
 						/>
 					</PanelBody>
+					<PanelBody>
+						<ToggleControl
+							label="Custom border"
+							checked={attributes.customBorder}
+							onChange={(customBorder) => setAttributes({ customBorder })}
+						/>
+					</PanelBody>
 				</InspectorControls>
 				<div className={className}>
 					<InnerBlocks allowedBlocks={allowed} template={template} templateLock={templateLock} />
@@ -52,7 +68,7 @@ registerBlockType('iis/info', {
 	},
 	save({ attributes }) {
 		return (
-			<div className={`iis-m-info-box ${(attributes.big) ? 'iis-m-info-box--big' : ''}`}>
+			<div className={`iis-m-info-box ${(attributes.big) ? 'iis-m-info-box--big' : ''} ${(attributes.customBorder) ? 'iis-m-info-box--custom-border' : ''}`}>
 				<InnerBlocks.Content />
 			</div>
 		);
