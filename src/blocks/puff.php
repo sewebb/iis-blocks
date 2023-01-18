@@ -178,7 +178,7 @@ function iis_render_puff( $attributes, $inner_content ) {
 				</div>
 			<?php endif; ?>
 			<?php if ( $content['permalink'] ) : ?>
-				<a href="<?php echo $content['permalink']; ?>" class="<?php imns( 'm-card__link' ); ?>" target="<?php echo esc_attr( $attributes['target'] ); ?>">
+				<a href="<?php echo $content['permalink']; ?>" class="<?php imns( 'm-card__link' ); ?>" <?php iis_rel_noopener( $attributes['target'] ); ?> target="<?php echo esc_attr( $attributes['target'] ); ?>">
 					<h2 class="<?php echo $headline_size; ?>">
 						<?php echo $content['title']; ?>
 

@@ -31,14 +31,14 @@ function iis_render_icon( $attributes, $content ) {
 		<div>
 			<?php if ( $attributes['title'] ) : ?>
 				<?php if ( $attributes['url'] && ! empty( $attributes['url'] ) ) : ?>
-					<a class="beta u-icon-list-link u-link-area u-link-normal" href="<?php echo esc_url( $attributes['url'] ); ?>" <?php echo ( $attributes['newWindow'] ) ? 'target="_blank"' : '' ?>><?php echo esc_html( $attributes['title'] ); ?></a>
+					<a class="beta u-icon-list-link u-link-area u-link-normal" href="<?php echo esc_url( $attributes['url'] ); ?>" <?php echo ( $attributes['newWindow'] ) ? 'rel="noopener" target="_blank"' : '' ?>><?php echo esc_html( $attributes['title'] ); ?></a>
 				<?php else : ?>
 					<span class="beta"><?php echo esc_html( $attributes['title'] ); ?></span>
 				<?php endif; ?>
 			<?php endif; ?>
 			<?php if ( $attributes['text'] ) : ?>
 				<?php if ( $attributes['url'] && ! empty( $attributes['url'] ) && empty( $attributes['title'] ) ) : ?>
-					<a class="u-link" href="<?php echo esc_url( $attributes['url'] ); ?>" <?php echo ( $attributes['newWindow'] ) ? 'target="_blank"' : '' ?>><?php echo esc_html( $attributes['text'] ); ?></a>
+					<a class="u-link" href="<?php echo esc_url( $attributes['url'] ); ?>" <?php echo ( $attributes['newWindow'] ) ? 'rel="noopener" target="_blank"' : '' ?>><?php echo esc_html( $attributes['text'] ); ?></a>
 				<?php else : ?>
 				<p class="u-m-b-0 <?php echo ( empty( $attributes['title'] ) ) ? 'u-m-t-0' : ''; ?>"><?php echo esc_html( $attributes['text'] ); ?></p>
 				<?php endif; ?>

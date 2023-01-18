@@ -97,7 +97,7 @@ function iis_render_card( $attributes, $content ) {
 					<div class="<?php imns( 'a-meta' ); ?>"><?php echo apply_filters( 'the_title', $pretitle ); ?></div>
 				</div>
 			<?php endif; ?>
-			<?php echo ( $has_link ) ? '<a href="' . esc_url( $attributes['url'] ) . '" class="' . imns( 'm-card__link', false ) . '" target="' . esc_attr( $attributes['target'] ) . '">' : ''; ?>
+			<?php echo ( $has_link ) ? '<a href="' . esc_url( $attributes['url'] ) . '" class="' . imns( 'm-card__link', false ) . '"' . iis_rel_noopener( $attributes['target'], false ) . ' target="' . esc_attr( $attributes['target'] ) . '">' : ''; ?>
 			<h1 class="<?php echo $title_class; ?>">
 				<?php echo apply_filters( 'the_title', $attributes['title'] ); ?>
 			</h1>

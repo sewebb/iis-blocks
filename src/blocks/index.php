@@ -28,6 +28,26 @@ if ( ! function_exists( 'iis_sanitize_html_classes' ) ) {
 	}
 }
 
+if ( ! function_exists( 'iis_rel_noopener' ) ) {
+	/**
+	 * @param string $target
+	 * @param bool $echo
+	 *
+	 * @return string|void
+	 */
+	function iis_rel_noopener( string $target, bool $echo = true ) {
+		if ( '_blank' === $target ) {
+			if ( $echo ) {
+				echo ' rel="noopener"';
+			} else {
+				return ' rel="noopener"';
+			}
+		}
+
+		echo '';
+	}
+}
+
 require_once __DIR__ . '/download.php';
 require_once __DIR__ . '/post-archive.php';
 require_once __DIR__ . '/info.php';
