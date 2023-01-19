@@ -135,7 +135,7 @@ registerBlockType('iis/news', {
 							label={__('Limit')}
 							value={attributes.limit}
 							type="number"
-							onChange={(limit) => setAttributes({ limit })}
+							onChange={(limit) => setAttributes({ limit: parseInt(limit, 10) })}
 						/>
 					</PanelBody>
 				</InspectorControls>
