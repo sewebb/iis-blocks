@@ -178,6 +178,11 @@ registerBlockType('iis/section', {
 											slug: 'ocean-light',
 											color: '#a7d8fd',
 										},
+										{
+											name: __('Snow'),
+											slug: 'snow',
+											color: '#ffffff',
+										},
 									],
 									value: backgroundColor.color,
 									onChange: setBackgroundColor,
