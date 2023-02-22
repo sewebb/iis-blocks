@@ -10,6 +10,7 @@ import './blocks/Grid';
 import './blocks/Column';
 import './blocks/Section';
 import './blocks/SectionHeader';
+import './blocks/SectionReportHeader';
 import './blocks/Card';
 import './blocks/Testimonial';
 import './blocks/Glider';
