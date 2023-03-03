@@ -7,6 +7,9 @@ registerBlockType('iis/preamble', {
 	category: 'iis',
 	icon: 'editor-paragraph',
 	keywords: [__('preamble'), __('text'), __('paragraph')],
+	supports: {
+		anchor: true,
+	},
 	attributes: {
 		content: {
 			type: 'string',
@@ -36,6 +39,7 @@ registerBlockType('iis/preamble', {
 			transform(attributes) {
 				return createBlock('iis/preamble', {
 					content: attributes.content,
+					supports: supports.anchor,
 				});
 			},
 		}],

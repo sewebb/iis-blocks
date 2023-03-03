@@ -16,6 +16,9 @@ registerBlockType('iis/visualization', {
 	category: 'iis',
 	icon: 'welcome-view-site',
 	keywords: [__('visualization')],
+	supports: {
+		align: ['right'],
+	},
 	attributes: {
 		backgroundColor: {
 			type: 'string',
@@ -27,7 +30,7 @@ registerBlockType('iis/visualization', {
 		setAttributes,
 		backgroundColor,
 		setBackgroundColor
-		
+
 	}) => {
 
 		const blockStyle = {
