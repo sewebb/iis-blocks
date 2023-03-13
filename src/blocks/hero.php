@@ -43,7 +43,7 @@ function iis_render_block_hero( $attributes, $content ) {
 
 		ob_start();
 		?>
-		<div class="wp-block-iis-hero u-m-b-4 <?php echo iis_sanitize_html_classes( $classes ); ?> <?php if($color_name) : echo $color_name; endif; ?>">
+		<div class="wp-block-iis-hero <?php echo iis_sanitize_html_classes( $classes ); ?> <?php if($color_name) : echo $color_name; endif; ?>">
 			<figure class="<?php imns( $class ); ?>">
 				<video width="100%" height="100%" src="<?php echo wp_get_attachment_url( $attributes['mediaId'] ); ?>" controls></video>
 			</figure>
