@@ -74,7 +74,7 @@ function iis_render_block_hero( $attributes, $content ) {
 
 		ob_start();
 		?>
-		<div class="wp-block-iis-hero u-m-b-4 <?php echo iis_sanitize_html_classes( $classes ); ?> <?php if($color_name) : echo $color_name; endif; ?>">
+		<div class="wp-block-iis-hero <?php echo iis_sanitize_html_classes( $classes ); ?> <?php if($color_name) : echo $color_name; endif; ?>">
 			<figure class="<?php imns( $class ); ?>">
 				<iframe width="100%" height="100%" src="<?php echo $youtube_url; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 			</figure>
@@ -100,10 +100,6 @@ function iis_render_block_hero( $attributes, $content ) {
 		$class .= ' o-hero--border-radius !u-m-t-4';
 	}
 
-	if ( $img ) {
-		$class .= ' !u-m-b-4';
-	}
-
 	ob_start();
 	?>
 	<div class="wp-block-iis-hero <?php imns( $class ); ?> <?php echo iis_sanitize_html_classes( $classes ); ?> <?php if($color_name && !$img) : echo $color_name; endif; ?>">
@@ -118,13 +114,13 @@ function iis_render_block_hero( $attributes, $content ) {
 							<?php if ( $attributes['pretitle'] && ! empty( trim( $attributes['pretitle'] ) ) ) : ?><span class="u-display-block u-m-b-1"><?php echo esc_html( $attributes['pretitle'] ); ?></span><?php endif; ?>
 							<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
 							<?php if ( $attributes['introText'] && ! empty( trim( $attributes['introText'] ) ) ) : ?>
-							<p class="<?php imns( 'o-hero__paragraph' ); ?>"><?php echo esc_html( $attributes['introText'] ); ?></p>
+								<p class="<?php imns( 'o-hero__paragraph' ); ?>"><?php echo esc_html( $attributes['introText'] ); ?></p>
 							<?php endif; ?>
 
 							<?php if ( $content ) : ?>
-							<div class="<?php imns( 'o-hero__buttons' ); ?>">
-								<?php echo $content; ?>
-							</div>
+								<div class="<?php imns( 'o-hero__buttons' ); ?>">
+									<?php echo $content; ?>
+								</div>
 							<?php endif; ?>
 						</div>
 					</div>
