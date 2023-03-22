@@ -9,8 +9,6 @@ function iis_render_block_section_report_header( $attributes ) {
 		$attributes
 	);
 
-	$has_meta        =  $attributes['displayReadTime'];
-
 	ob_start();
 	?>
 	<div class="alignfull">
@@ -21,7 +19,7 @@ function iis_render_block_section_report_header( $attributes ) {
 						<svg class="<?php imns( 'icon' ); ?>">
 							<use xlink:href="#icon-time"></use>
 						</svg>
-						5 min läsning baserad på den här sektionen
+						<x-reading-time />
 					</div>
 					<header class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></header>
 					<p class="preamble">

@@ -32,6 +32,10 @@ function iis_render_block_section( $attributes, $content ) {
 		$class_name .= ' !background-' . $attributes['backgroundColor'];
 	}
 
+	$reading_time = iis_get_reading_time( $content );
+	$reading_time = esc_html( sprintf( __( '%s min', 'iis-blocks' ), $reading_time ) );
+	$content = str_replace( '<x-reading-time />', $reading_time, $content );
+
 	ob_start();
 	?>
 	<div class="<?php imns( $class_name ); ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?> alignfull">

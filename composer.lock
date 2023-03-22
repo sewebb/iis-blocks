@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fa075f9f2ed57b1df32fb349269e1e85",
+    "content-hash": "1fa6a1bd32f016a500ef5f6e4c2aa992",
     "packages": [
         {
             "name": "composer/installers",
@@ -159,16 +159,16 @@
         },
         {
             "name": "iis/library",
-            "version": "v4.0.0",
+            "version": "v4.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sewebb/iis-library.git",
-                "reference": "0f201266b03c4b6a681ac68cd6ed33b9322bd2a5"
+                "reference": "5f48cc0f35c1ae28afed3b5606b71bf767e65b0b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sewebb/iis-library/zipball/0f201266b03c4b6a681ac68cd6ed33b9322bd2a5",
-                "reference": "0f201266b03c4b6a681ac68cd6ed33b9322bd2a5",
+                "url": "https://api.github.com/repos/sewebb/iis-library/zipball/5f48cc0f35c1ae28afed3b5606b71bf767e65b0b",
+                "reference": "5f48cc0f35c1ae28afed3b5606b71bf767e65b0b",
                 "shasum": ""
             },
             "require": {
@@ -176,7 +176,7 @@
                 "ext-dom": "*",
                 "ext-json": "*",
                 "ext-libxml": "*",
-                "php": "^7.2"
+                "php": "^8.0"
             },
             "require-dev": {
                 "10up/wp_mock": "dev-master",
@@ -214,9 +214,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sewebb/iis-library/issues",
-                "source": "https://github.com/sewebb/iis-library/tree/v4.0.0"
+                "source": "https://github.com/sewebb/iis-library/tree/v4.1.0"
             },
-            "time": "2022-03-10T12:19:21+00:00"
+            "time": "2023-03-22T08:09:44+00:00"
         }
     ],
     "packages-dev": [
@@ -401,10 +401,10 @@
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
-        "php": "^7.2",
+        "php": "^7.2|^8.1",
         "ext-dom": "*",
         "ext-libxml": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
