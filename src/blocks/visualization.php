@@ -5,6 +5,7 @@ function iis_render_block_visualization( $attributes, $content ) {
 		[
 			'className' => '',
 			'backgroundColor' => null,
+			'padding' => '',
 			'align' => ''
 		],
 		$attributes
@@ -12,16 +13,20 @@ function iis_render_block_visualization( $attributes, $content ) {
 
 	$class  = 'm-card m-card--padded';
 	$class .= ( in_array( $attributes['align'], [ 'right' ], true ) ) ? ' !align' . $attributes['align'] : '';
-	$class_name = '';
+	$class_name = 'wp-block-iis-visualization';
 
-	if ( $attributes['backgroundColor'] && 'background-snow' != $attributes['backgroundColor'] ) {
+	if ( $attributes['backgroundColor'] )  {
 		$class_name .= ' background-' . $attributes['backgroundColor'];
+	}
+
+	if ( $attributes['padding'] ) {
+		$class_name .= ' wp-block-iis-visualization' . $attributes['padding'];
 	}
 
 	ob_start();
 	?>
 
-	<div class="wp-block-iis-visualization <?php imns( $class ); ?> background-<?php echo $attributes['backgroundColor']; ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?>">
+	<div class="<?php imns( $class ); ?> <?php echo $class_name; ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?>">
 		<div class="<?php imns( 'm-card__content' ); ?>">
 			<?php echo $content; ?>
 		</div>

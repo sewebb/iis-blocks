@@ -9,6 +9,7 @@ const {
 } = wp.blockEditor;
 const {
 	PanelBody,
+	CheckboxControl,
 } = wp.components;
 
 registerBlockType('iis/visualization', {
@@ -22,7 +23,11 @@ registerBlockType('iis/visualization', {
 	attributes: {
 		backgroundColor: {
 			type: 'string',
-			default: 'snow',
+			default: false,
+		},
+		padding: {
+			type: 'string',
+			default: false,
 		},
 	},
 	edit: withColors({ backgroundColor: 'background' })(({
@@ -48,9 +53,20 @@ registerBlockType('iis/visualization', {
 			textShadow: 'none',
 		};
 
+		if (attributes.padding === '--no-padding') {
+			blockStyle.padding = '0';
+		}
+
 		return (
 			<div>
 				<InspectorControls>
+					<PanelBody>
+						<CheckboxControl
+							label={__('No padding')}
+							checked={attributes.padding === '--no-padding'}
+							onChange={(value) => setAttributes({ padding: (value) ? '--no-padding' : '' })}
+						/>
+					</PanelBody>
 					<PanelColorSettings
 						title={__('Color Settings')}
 						colorSettings={[
