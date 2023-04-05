@@ -38,6 +38,10 @@ const layouts = [
 		label: 'Dynamic',
 		value: 'dynamic',
 	},
+	{
+		label: 'No Break',
+		value: 'no-break',
+	},
 ];
 
 registerBlockType('iis/hero', {
@@ -99,7 +103,7 @@ registerBlockType('iis/hero', {
 		setAttributes,
 		backgroundColor,
 		setBackgroundColor
-		
+
 	}) => {
 		let image = null;
 		const noYoutube = attributes.youtube === null || attributes.youtube.length < 1 || attributes.align === 'full';
@@ -232,7 +236,7 @@ registerBlockType('iis/hero', {
 										style={{ textTransform: 'uppercase', fontSize: '1.2em', marginBottom: '-20px' }}
 									/>
 								)}
-								{attributes.layout !== 'dynamic' && (
+								{attributes.layout !== 'dynamic' && attributes.layout !== 'no-break' && (
 								<RichText
 									tagName="span"
 									value={attributes.pretitle}
@@ -249,6 +253,19 @@ registerBlockType('iis/hero', {
 									style={{ marginTop: 0 }}
 								/>
 								{attributes.layout === 'standard' && (
+									<Fragment>
+										<RichText
+											tagName="p"
+											value={attributes.introText}
+											placeholder={__('Content')}
+											onChange={(introText) => setAttributes({ introText })}
+										/>
+										<div className="iis-block-hero__buttons">
+											<InnerBlocks allowedBlocks={['iis/button']} />
+										</div>
+									</Fragment>
+								)}
+								{attributes.layout === 'no-break' && (
 									<Fragment>
 										<RichText
 											tagName="p"

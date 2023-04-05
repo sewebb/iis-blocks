@@ -34,6 +34,10 @@ function iis_render_block_hero( $attributes, $content ) {
 		$class .= ' o-hero--dynamic-headline';
 	}
 
+	if ( $attributes['layout'] === 'no-break' ) {
+		$class .= ' o-hero--no-break';
+	}
+
 	if ( 'full' !== $attributes['align'] && $attributes['mediaId'] && 'video' === $attributes['mediaType'] ) {
 		$class .= ' o-hero--border-radius o-hero--video';
 
@@ -94,7 +98,7 @@ function iis_render_block_hero( $attributes, $content ) {
 		$class .= ' o-hero--no-image';
 	}
 
-	if ( 'full' == $attributes['align'] || 'dynamic' === $attributes['layout'] ) {
+	if ( 'full' == $attributes['align'] || 'dynamic' === $attributes['layout'] || 'no-break' === $attributes['layout'] ) {
 		$class .= ' !alignfull';
 	} elseif ( $img ||  $color_name) {
 		$class .= ' o-hero--border-radius !u-m-t-4';
@@ -108,7 +112,7 @@ function iis_render_block_hero( $attributes, $content ) {
 			<figcaption class="<?php imns( 'o-hero__caption' ); ?>" <?php echo ( 'dynamic' === $attributes['layout'] ) ? 'data-meta="' . esc_attr( $attributes['pretitle'] ) . '"' : ''; ?>>
 				<?php if ( 'dynamic' === $attributes['layout'] ) : ?>
 					<h1><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
-				<?php elseif ( 'standard' === $attributes['layout'] ) : ?>
+				<?php elseif ( 'standard' === $attributes['layout'] || 'no-break' === $attributes['layout'] ) : ?>
 					<div class="wrapper">
 						<div class="<?php imns( 'o-hero__text' ); ?>">
 							<?php if ( $attributes['pretitle'] && ! empty( trim( $attributes['pretitle'] ) ) ) : ?><span class="u-display-block u-m-b-1"><?php echo esc_html( $attributes['pretitle'] ); ?></span><?php endif; ?>
