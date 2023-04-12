@@ -14,7 +14,7 @@ function iis_render_block_section_report_header( $attributes ) {
 	<div class="alignfull">
 		<div class="wrapper">
 			<div class="row">
-				<div class="grid-18 grid-md-12 grid-lg-10 grid-xl-8 u-m-b-4">
+				<div class="grid-18 grid-md-12 grid-lg-10 grid-xl-8">
 					<div class="<?php imns( 'a-meta' ); ?>">
 						<svg class="<?php imns( 'icon' ); ?>">
 							<use xlink:href="#icon-time"></use>
