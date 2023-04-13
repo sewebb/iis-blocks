@@ -21,7 +21,7 @@ function iis_render_block_section_report_header( $attributes ) {
 						</svg>
 						<x-reading-time />
 					</div>
-					<header class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></header>
+					<header class="supersize supersize--large-mobile"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></header>
 					<p class="preamble">
 						<?php echo wp_kses_post( $attributes['text'] ); ?>
 					</p>
