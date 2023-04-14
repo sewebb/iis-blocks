@@ -2,3 +2,4 @@ node_modules
 mix-manifest.json
 vendor
 .idea/
+.DS_Store

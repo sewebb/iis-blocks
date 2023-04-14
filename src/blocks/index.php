@@ -59,7 +59,6 @@ require_once __DIR__ . '/grid.php';
 require_once __DIR__ . '/column.php';
 require_once __DIR__ . '/section.php';
 require_once __DIR__ . '/section-header.php';
-require_once __DIR__ . '/section-report-header.php';
 require_once __DIR__ . '/card.php';
 require_once __DIR__ . '/testimonial.php';
 require_once __DIR__ . '/glider.php';
