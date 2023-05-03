@@ -10,6 +10,12 @@
             "homepage": "https://internetstiftelsen.se"
         }
     ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:sewebb/iis-parent.git"
+        }
+    ],
     "require": {
         "php": "^7.2|^8.1",
         "iis/library": "^4.1",
@@ -19,7 +25,8 @@
     "require-dev": {
         "squizlabs/php_codesniffer": "3.*",
         "dealerdirect/phpcodesniffer-composer-installer": "^0.7.1",
-        "wp-coding-standards/wpcs": "^1.1"
+        "wp-coding-standards/wpcs": "^1.1",
+        "iis/iis-parent": "dev-main"
     },
     "config": {
         "preferred-install": "dist",

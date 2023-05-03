@@ -1,0 +1,6 @@
+{
+    "mappings": {
+        "wp-content/themes": "./wp-content/themes"
+    },
+    "plugins": [ "." ]
+}

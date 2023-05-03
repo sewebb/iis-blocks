@@ -1,5 +1,6 @@
 node_modules
 mix-manifest.json
 vendor
+wp-content
 .idea/
 .DS_Store
