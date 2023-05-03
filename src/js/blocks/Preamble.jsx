@@ -39,7 +39,9 @@ registerBlockType('iis/preamble', {
 			transform(attributes) {
 				return createBlock('iis/preamble', {
 					content: attributes.content,
-					supports: supports.anchor,
+					supports: {
+						anchor: true,
+					},
 				});
 			},
 		}],
