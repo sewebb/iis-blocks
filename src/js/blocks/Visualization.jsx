@@ -9,6 +9,7 @@ const {
 } = wp.blockEditor;
 const {
 	PanelBody,
+	TextControl,
 	CheckboxControl,
 } = wp.components;
 
@@ -28,6 +29,14 @@ registerBlockType('iis/visualization', {
 		padding: {
 			type: 'string',
 			default: false,
+		},
+		link: {
+			type: 'string',
+			default: '',
+		},
+		target: {
+			type: 'string',
+			default: '_self',
 		},
 	},
 	edit: withColors({ backgroundColor: 'background' })(({
@@ -65,6 +74,18 @@ registerBlockType('iis/visualization', {
 							label={__('No padding')}
 							checked={attributes.padding === '--no-padding'}
 							onChange={(value) => setAttributes({ padding: (value) ? '--no-padding' : '' })}
+						/>
+						<TextControl
+							label={__('URL')}
+							value={attributes.link}
+							help={(attributes.link) ? (<a style={{ display: 'block', marginTop: '1rem' }} href={attributes.link} target="_blank">{ __('Test link') }</a>) : null}
+							type="url"
+							onChange={(link) => setAttributes({ link })}
+						/>
+						<CheckboxControl
+							label={__('Open in new window')}
+							checked={attributes.target === '_blank'}
+							onChange={(value) => setAttributes({ target: (value) ? '_blank' : '_self' })}
 						/>
 					</PanelBody>
 					<PanelColorSettings

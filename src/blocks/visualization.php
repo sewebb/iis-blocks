@@ -6,7 +6,9 @@ function iis_render_block_visualization( $attributes, $content ) {
 			'className' => '',
 			'backgroundColor' => null,
 			'padding' => '',
-			'align' => ''
+			'align' => '',
+			'link' => '',
+			'target' => '_self'
 		],
 		$attributes
 	);
@@ -27,9 +29,13 @@ function iis_render_block_visualization( $attributes, $content ) {
 	?>
 
 	<div class="<?php imns( $class ); ?> <?php echo $class_name; ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?>">
+
 		<div class="<?php imns( 'm-card__content' ); ?>">
 			<?php echo $content; ?>
 		</div>
+		<?php if ( !empty($attributes['link']) ) : ?>
+			<a href="<?php echo esc_url( $attributes['link'] ); ?>" class="u-link-area" <?php iis_rel_noopener( $attributes['target'] ); ?> target="<?php echo esc_html( $attributes['target'] ); ?>"><span class="u-visuallyhidden"><?php echo esc_url( $attributes['link'] ); ?></span></a>
+		<?php endif; ?>
 	</div>
 	<?php
 
