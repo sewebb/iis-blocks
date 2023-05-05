@@ -1,6 +1,7 @@
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
 const { useSelect } = wp.data;
+const { Fragment } = wp.element;
 const {
 	InspectorControls,
 	withColors,
@@ -38,15 +39,18 @@ registerBlockType('iis/visualization', {
 			type: 'string',
 			default: '_self',
 		},
+		linkText: {
+			type: 'string',
+			default: '',
+		},
 	},
 	edit: withColors({ backgroundColor: 'background' })(({
 		attributes,
 		setAttributes,
 		backgroundColor,
-		setBackgroundColor
+		setBackgroundColor,
 
 	}) => {
-
 		const blockStyle = {
 			display: 'block',
 			position: 'relative',
@@ -82,11 +86,21 @@ registerBlockType('iis/visualization', {
 							type="url"
 							onChange={(link) => setAttributes({ link })}
 						/>
-						<CheckboxControl
-							label={__('Open in new window')}
-							checked={attributes.target === '_blank'}
-							onChange={(value) => setAttributes({ target: (value) ? '_blank' : '_self' })}
-						/>
+						{attributes.link && (
+							<Fragment>
+								<CheckboxControl
+									label={__('Open in new window')}
+									checked={attributes.target === '_blank'}
+									onChange={(value) => setAttributes({ target: (value) ? '_blank' : '_self' })}
+								/>
+								<TextControl
+									label={__('Link text (SEO friendly)')}
+									value={attributes.linkText}
+									type="text"
+									onChange={(linkText) => setAttributes({ linkText })}
+								/>
+							</Fragment>
+						)}
 					</PanelBody>
 					<PanelColorSettings
 						title={__('Color Settings')}
@@ -101,7 +115,7 @@ registerBlockType('iis/visualization', {
 				</InspectorControls>
 				<div>
 					<div style={blockStyle}>
-					<InnerBlocks />
+						<InnerBlocks />
 					</div>
 				</div>
 			</div>

@@ -34,7 +34,7 @@ function iis_render_block_visualization( $attributes, $content ) {
 			<?php echo $content; ?>
 		</div>
 		<?php if ( !empty($attributes['link']) ) : ?>
-			<a href="<?php echo esc_url( $attributes['link'] ); ?>" class="u-link-area" <?php iis_rel_noopener( $attributes['target'] ); ?> target="<?php echo esc_html( $attributes['target'] ); ?>"><span class="u-visuallyhidden"><?php echo esc_url( $attributes['link'] ); ?></span></a>
+			<a href="<?php echo esc_url( $attributes['link'] ); ?>" class="u-link-area" <?php iis_rel_noopener( $attributes['target'] ); ?> target="<?php echo esc_html( $attributes['target'] ); ?>"><span class="u-visuallyhidden"><?php echo esc_html( $attributes['linkText'] ); ?></span></a>
 		<?php endif; ?>
 	</div>
 	<?php
