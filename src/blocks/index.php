@@ -68,3 +68,4 @@ require_once __DIR__ . '/hero-slide.php';
 require_once __DIR__ . '/icon.php';
 require_once __DIR__ . '/news.php';
 require_once __DIR__ . '/visualization.php';
+require_once __DIR__ . '/height-limiter.php';

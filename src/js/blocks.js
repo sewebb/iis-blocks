@@ -19,6 +19,9 @@ import './blocks/HeroSlide';
 import './blocks/Icon';
 import './blocks/News';
 import './blocks/Visualization';
+import './blocks/HeightLimiter';
+
+console.log('foo!');
 
 const enableToolbarButtonOnBlocks = [
 	'core/separator',
