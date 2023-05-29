@@ -5,7 +5,10 @@ const {
 } = wp.editor;
 const { TextControl } = wp.components;
 const {
+	InspectorControls,
+	PanelColorSettings,
 	InnerBlocks,
+	withColors,
 } = wp.blockEditor;
 
 registerBlockType('iis/height-limiter', {
@@ -26,11 +29,40 @@ registerBlockType('iis/height-limiter', {
 			type: 'string',
 			default: 'Visa mindre',
 		},
+		backgroundColor: {
+			type: 'string',
+			default: false,
+		},
 
 	},
-	edit({ attributes, setAttributes }) {
+	edit: withColors({ backgroundColor: 'background' })(({
+			attributes,
+			setAttributes,
+			backgroundColor,
+			setBackgroundColor,
+
+		}) => {
 		return (
 			<div>
+				<InspectorControls>
+					<PanelColorSettings
+						title={__('Color settings', 'iis/blocks')}
+						colorSettings={[
+							{
+								colors: [
+									{
+										name: __('Snow'),
+										slug: 'snow',
+										color: '#ffffff',
+									},
+								],
+								value: backgroundColor.color,
+								onChange: setBackgroundColor,
+								label: __('Background Color', 'iis/blocks'),
+							},
+						]}
+					/>
+				</InspectorControls>
 				<div style={{ background: '#ededed', padding: '20px' }}>
 					<TextControl type="number" label={__('Height')} value={attributes.height} onChange={(height) => setAttributes({ height: height })} />
 
@@ -43,7 +75,7 @@ registerBlockType('iis/height-limiter', {
 				</div>
 			</div>
 		);
-	},
+	}),
 	save() {
 		return <InnerBlocks.Content />;
 	},

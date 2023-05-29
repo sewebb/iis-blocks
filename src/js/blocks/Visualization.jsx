@@ -1,6 +1,5 @@
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { useSelect } = wp.data;
 const { Fragment } = wp.element;
 const {
 	InspectorControls,
