@@ -4,15 +4,20 @@ function iis_render_block_height_limiter( $attributes, $content ) {
 	$attributes = array_merge(
 		[
 			'className' => '',
-			'height' => '',
-			'maximize_text' => '',
-			'minimize_text' => '',
+			'height' => '300',
+			'maximize_text' => 'Visa mer',
+			'minimize_text' => 'Visa mindre',
+			'backgroundColor' => null,
 		],
 		$attributes
 	);
 
 	$class  = 'a-height-limit';
 	$class_name = 'wp-block-iis-height-limiter js-height-limit';
+
+	if ( $attributes['backgroundColor'] )  {
+		$class .= ' a-height-limit--' . $attributes['backgroundColor'];
+	}
 
 	ob_start();
 
