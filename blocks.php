@@ -5,7 +5,7 @@
  * Description: Block library from Internetstiftelsen
  * Author: Internetstiftelsen
  * Author URI: https://internetstiftelsen.se
- * Version: 7.0.10
+ * Version: 7.0.11
  * Plugin URI: https://github.com/sewebb/iis-blocks
  * Text Domain: iis-blocks
  * Domain Path: /languages/
