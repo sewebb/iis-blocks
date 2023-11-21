@@ -49,7 +49,9 @@ function iis_render_block_hero( $attributes, $content ) {
 		?>
 		<div class="wp-block-iis-hero <?php echo iis_sanitize_html_classes( $classes ); ?> <?php if($color_name) : echo $color_name; endif; ?>">
 			<figure class="<?php imns( $class ); ?>">
-				<video width="100%" height="100%" src="<?php echo wp_get_attachment_url( $attributes['mediaId'] ); ?>" controls></video>
+				<figure class="<?php imns( $class ); ?>">
+					<video width="100%" height="100%" src="<?php echo wp_get_attachment_url( $attributes['mediaId'] ); ?>" controls></video>
+				</figure>
 			</figure>
 		</div>
 		<?php
@@ -65,7 +67,7 @@ function iis_render_block_hero( $attributes, $content ) {
 		preg_match('#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#', $attributes['youtube'], $matches);
 
 		if ( $matches && isset( $matches[0] ) ) {
-			$youtube_url = 'https://www.youtube-nocookie.com/embed/' . $matches[0] . '?rel=0';
+			$youtube_url = 'https://youtu.be' . $matches[0] . '?rel=0';
 		}
 	}
 
@@ -80,7 +82,13 @@ function iis_render_block_hero( $attributes, $content ) {
 		?>
 		<div class="wp-block-iis-hero <?php echo iis_sanitize_html_classes( $classes ); ?> <?php if($color_name) : echo $color_name; endif; ?>">
 			<figure class="<?php imns( $class ); ?>">
-				<iframe width="100%" height="100%" src="<?php echo $youtube_url; ?>" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				<div class="<?php imns('m-icon-overlay' ); ?>" data-youtube="<?php echo $matches[0]; ?>">
+
+					<button type="button" class="<?php imns('m-icon-overlay__button' ); ?>" aria-label="play"><svg class="<?php imns('icon m-icon-overlay__icon' ); ?>">
+							<use xlink:href="#icon-play"></use>
+						</svg>
+					</button>
+				</div>
 			</figure>
 		</div>
 		<?php
