@@ -22,24 +22,24 @@ registerBlockType('iis/info', {
 		},
 	},
 	edit({ attributes, setAttributes }) {
-		const allowed = ['core/paragraph'];
+		const allowed = [
+			'core/paragraph',
+			'core/heading',
+			'core/list',
+			'core/image',
+		];
 		let template = [];
 		let templateLock = null;
 		let className = 'iis-info-block';
 
 		if (attributes.big) {
 			template = [['core/paragraph']];
-			templateLock = 'all';
 
 			className += ` ${className}--big`;
-		} else if(attributes.customBorder) {
+		} else if (attributes.customBorder) {
 			template = [['core/paragraph']];
-			templateLock = 'all';
 
 			className += ` ${className}--custom-border`;
-		} else {
-			allowed.push('core/heading');
-			allowed.push('core/list');
 		}
 
 		return (
