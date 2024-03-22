@@ -26,6 +26,10 @@ registerBlockType('iis/button', {
 			type: 'string',
 			default: '',
 		},
+		data: {
+			type: 'string',
+			default: '',
+		},
 		target: {
 			type: 'string',
 			default: '_self',
@@ -98,6 +102,12 @@ registerBlockType('iis/button', {
 							label={__('Open in new window')}
 							checked={attributes.target === '_blank'}
 							onChange={(value) => setAttributes({ target: (value) ? '_blank' : '_self' })}
+						/>
+						<TextControl
+							label={__('Data Attribute')}
+							value={attributes.data}
+							type="url"
+							onChange={(data) => setAttributes({ data })}
 						/>
 					</PanelBody>
 					<PanelColorSettings
