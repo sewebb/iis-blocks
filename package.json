@@ -37,6 +37,6 @@
         "sass-loader": "^12.4.0"
     },
     "dependencies": {
-        "@internetstiftelsen/styleguide": "^2.26.23"
+        "@internetstiftelsen/styleguide": "^3.0.17"
     }
 }
