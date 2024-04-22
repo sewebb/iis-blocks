@@ -383,45 +383,6 @@ const IconSelect = withState({
 							d="M20.3 1h-8.6v2.9h8.6V1zm-5.7 18.6h2.9V11h-2.9v8.6zM26 10.1l2.1-2c-.7-.7-1.4-1.4-2.1-2l-2 2c-2.1-1.7-5-2.9-8-2.9-7.1 0-12.9 5.7-12.9 12.9S8.9 31 16 31s12.9-5.7 12.9-12.9c0-3-1-5.8-2.9-8zm-10 18c-5.6 0-10-4.4-10-10s4.4-10 10-10 10 4.4 10 10-4.4 10-10 10z"
 							fill-rule="evenodd" clip-rule="evenodd"/>
 					</symbol>
-					<symbol id="icon-spinner" viewbox="0 0 100 100" class="spinner">
-						<g>
-							<circle cx="50" cy="50" fill="none" r="43" stroke="#50b2fc"
-									stroke-width="7"></circle>
-							<circle cx="50" cy="50" fill="none" r="43" stroke="#a7d8fd"
-									stroke-width="7" stroke-linecap="square"
-									transform="rotate(27.6965 50 50)">
-								<animatetransform attributename="transform" type="rotate"
-												  calcmode="linear"
-												  values="0 50 50;180 50 50;720 50 50"
-												  keytimes="0;0.5;1" dur="2.5s" begin="0s"
-												  repeatcount="indefinite"></animatetransform>
-								<animate attributename="stroke-dasharray" calcmode="linear"
-										 values="9.42477796076938 179.0707812546182;188.4955592153876 -2.842170943040401e-14;9.42477796076938 179.0707812546182"
-										 keytimes="0;0.5;1" dur="2.5" begin="0s"
-										 repeatcount="indefinite"></animate>
-							</circle>
-						</g>
-					</symbol>
-
-					<symbol id="icon-spinner-white" viewbox="0 0 100 100" class="spinner">
-						<g>
-							<circle cx="50" cy="50" fill="none" r="43" stroke="none"
-									stroke-width="7"></circle>
-							<circle cx="50" cy="50" fill="none" r="43" stroke="#fff"
-									stroke-width="7" stroke-linecap="square"
-									transform="rotate(27.6965 50 50)">
-								<animatetransform attributename="transform" type="rotate"
-												  calcmode="linear"
-												  values="0 50 50;180 50 50;720 50 50"
-												  keytimes="0;0.5;1" dur="2.5s" begin="0s"
-												  repeatcount="indefinite"></animatetransform>
-								<animate attributename="stroke-dasharray" calcmode="linear"
-										 values="9.42477796076938 179.0707812546182;188.4955592153876 -2.842170943040401e-14;9.42477796076938 179.0707812546182"
-										 keytimes="0;0.5;1" dur="2.5" begin="0s"
-										 repeatcount="indefinite"></animate>
-							</circle>
-						</g>
-					</symbol>
 
 					<symbol id="icon-3d" viewbox="0 0 30 18">
 						<path

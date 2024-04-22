@@ -16,7 +16,7 @@
 	width: 70px;
 	height: 70px;
 	margin: 0;
-	padding: 22px;
+	padding: 10px;
 	border: none;
 	outline: none;
 	background: none;
@@ -42,7 +42,7 @@
 
 .iis-icon-select__btn {
 	position: relative;
-}
+} 
 
 .iis-icon-select__btn .components-button {
 	padding: 0;
@@ -58,7 +58,7 @@
 }
 
 .iis-icon-select__icon svg {
-	width: 24px;
-	height: 24px;
+	width: 32px;
+	height: 32px;
 	color: #000;
 }
