@@ -3253,7 +3253,7 @@ registerBlockType('iis/tabs', {
       type: 'string',
       "default": ''
     },
-    center: {
+    wrapped: {
       type: 'boolean',
       "default": true
     },
@@ -3301,11 +3301,11 @@ registerBlockType('iis/tabs', {
         });
       }
     }), /*#__PURE__*/React.createElement(ToggleControl, {
-      label: "Center tabs",
-      checked: attributes.center,
-      onChange: function onChange(center) {
+      label: "Wrapped tabs",
+      checked: attributes.wrapped,
+      onChange: function onChange(wrapped) {
         return setAttributes({
-          center: center
+          wrapped: wrapped
         });
       }
     }))), /*#__PURE__*/React.createElement(InnerBlocks, {

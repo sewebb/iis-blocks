@@ -22,7 +22,7 @@ registerBlockType('iis/tabs', {
 			type: 'string',
 			default: '',
 		},
-		center: {
+		wrapped: {
 			type: 'boolean',
 			default: true,
 		},
@@ -65,9 +65,9 @@ registerBlockType('iis/tabs', {
 							onChange={(updateURL) => setAttributes({ updateURL })}
 						/>
 						<ToggleControl
-							label="Center tabs"
-							checked={attributes.center}
-							onChange={(center) => setAttributes({ center })}
+							label="Wrapped tabs"
+							checked={attributes.wrapped}
+							onChange={(wrapped) => setAttributes({ wrapped })}
 						/>
 					</PanelBody>
 				</InspectorControls>

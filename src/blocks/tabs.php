@@ -5,7 +5,7 @@ function iis_render_tabs( $attributes, $content ) {
 		[
 			'className'  => '',
 			'align'      => '',
-			'center'      => true,
+			'wrapped'      => true,
 			'updateURL'  => false,
 		],
 		$attributes
@@ -24,8 +24,8 @@ function iis_render_tabs( $attributes, $content ) {
 	ob_start();
 	?>
 	<div data-tab-component <?php echo $updateURL; ?> class="<?php echo iis_sanitize_html_classes( $class ); ?> <?php if ( 'none' == $attributes['align'] ) : ?>u-m-x-0<?php endif; ?>">
-		<?php if ( true == $attributes['center'] ) : ?>
-			<div class="wrapper">Centrera tabbarna</div>
+		<?php if ( true == $attributes['wrapped'] ) : ?>
+			<div class="wrapper">Wrappa tabbarna</div>
 		<?php endif; ?>
 		<?php echo $content; ?>
 	</div>
