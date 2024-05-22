@@ -1,0 +1,26 @@
+.iis-block-tab {
+	height: 100%;
+}
+
+.iis-block-tab__tab {
+	border: 1px dotted #888;
+	border-bottom: 0;
+	border-top-left-radius: 0.25rem;
+	border-top-right-radius: 0.25rem;
+	background-color: #fff;
+	display: inline-flex;
+	padding-left: 1rem;
+	padding-right: 1rem;
+	transform: translateY(1px);
+}
+
+.iis-block-tab__content {
+	padding: 0 1rem;
+	border: 1px dotted #888;
+	background-color: #fff;
+}
+
+.iis-block-tab_heading {
+	font-family: sans-serif;
+	font-size: 14px;
+}

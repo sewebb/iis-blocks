@@ -40,11 +40,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _blocks_Visualization__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(_blocks_Visualization__WEBPACK_IMPORTED_MODULE_20__);
 /* harmony import */ var _blocks_HeightLimiter__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./blocks/HeightLimiter */ "./src/js/blocks/HeightLimiter.jsx");
 /* harmony import */ var _blocks_HeightLimiter__WEBPACK_IMPORTED_MODULE_21___default = /*#__PURE__*/__webpack_require__.n(_blocks_HeightLimiter__WEBPACK_IMPORTED_MODULE_21__);
+/* harmony import */ var _blocks_Tabs__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./blocks/Tabs */ "./src/js/blocks/Tabs.jsx");
+/* harmony import */ var _blocks_Tab__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./blocks/Tab */ "./src/js/blocks/Tab.jsx");
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
 
 
 
@@ -3138,6 +3142,188 @@ registerBlockType('iis/slide', {
 
 /***/ }),
 
+/***/ "./src/js/blocks/Tab.jsx":
+/*!*******************************!*\
+  !*** ./src/js/blocks/Tab.jsx ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _tab_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tab.css */ "./src/js/blocks/tab.css");
+
+var __ = wp.i18n.__;
+var Fragment = wp.element.Fragment;
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$components = wp.components,
+    PanelBody = _wp$components.PanelBody,
+    SelectControl = _wp$components.SelectControl;
+var useSelect = wp.data.useSelect;
+var _wp$editor = wp.editor,
+    InspectorControls = _wp$editor.InspectorControls,
+    InnerBlocks = _wp$editor.InnerBlocks;
+var RichText = wp.editor.RichText;
+registerBlockType('iis/tab', {
+  title: __('Tab'),
+  category: 'iis',
+  icon: 'category',
+  keywords: [__('tabb', 'iis-blocks'), __('tabs', 'iis-blocks'), __('tabbar', 'iis-blocks')],
+  parent: ['iis/tabs'],
+  attributes: {
+    tab_title: {
+      type: 'string',
+      "default": null
+    }
+  },
+  edit: function edit(_ref) {
+    var attributes = _ref.attributes,
+        setAttributes = _ref.setAttributes,
+        clientId = _ref.clientId;
+
+    var _useSelect = useSelect(function (select) {
+      var _select = select('core/block-editor'),
+          getBlockOrder = _select.getBlockOrder,
+          getBlockRootClientId = _select.getBlockRootClientId;
+
+      return {
+        hasChildBlocks: getBlockOrder(clientId).length > 0,
+        rootClientId: getBlockRootClientId(clientId)
+      };
+    }, [clientId]),
+        hasChildBlocks = _useSelect.hasChildBlocks;
+
+    return /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement("div", {
+      className: "iis-block-tab"
+    }, /*#__PURE__*/React.createElement("div", {
+      className: "iis-block-tab__tab"
+    }, /*#__PURE__*/React.createElement(RichText, {
+      identifier: "title",
+      tagName: "h2",
+      value: attributes.tab_title,
+      onChange: function onChange(value) {
+        return setAttributes({
+          tab_title: value
+        });
+      },
+      placeholder: "Tabbens titel"
+    })), /*#__PURE__*/React.createElement("div", {
+      className: "iis-block-tab__content"
+    }, /*#__PURE__*/React.createElement(InnerBlocks, {
+      renderAppender: hasChildBlocks ? undefined : function () {
+        return /*#__PURE__*/React.createElement(InnerBlocks.ButtonBlockAppender, null);
+      }
+    }))));
+  },
+  save: function save() {
+    return /*#__PURE__*/React.createElement(InnerBlocks.Content, null);
+  }
+});
+
+/***/ }),
+
+/***/ "./src/js/blocks/Tabs.jsx":
+/*!********************************!*\
+  !*** ./src/js/blocks/Tabs.jsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _tabs_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./tabs.css */ "./src/js/blocks/tabs.css");
+
+var __ = wp.i18n.__;
+var registerBlockType = wp.blocks.registerBlockType;
+var _wp$components = wp.components,
+    PanelBody = _wp$components.PanelBody,
+    ToggleControl = _wp$components.ToggleControl;
+var _wp$editor = wp.editor,
+    InspectorControls = _wp$editor.InspectorControls,
+    InnerBlocks = _wp$editor.InnerBlocks;
+var useSelect = wp.data.useSelect;
+registerBlockType('iis/tabs', {
+  title: __('Tabs'),
+  category: 'iis',
+  icon: 'table-row-after',
+  keywords: [__('tabs', 'iis-blocks'), __('tabbar', 'iis-blocks'), __('tabb', 'iis-blocks')],
+  supports: {
+    align: ['full']
+  },
+  attributes: {
+    align: {
+      type: 'string',
+      "default": ''
+    },
+    center: {
+      type: 'boolean',
+      "default": true
+    },
+    updateURL: {
+      type: 'boolean',
+      "default": false
+    }
+  },
+  getEditWrapperProps: function getEditWrapperProps(attributes) {
+    var align = attributes.align;
+
+    if (align === 'center') {
+      return {
+        'data-align': 'wide'
+      };
+    }
+
+    return {};
+  },
+  edit: function edit(_ref) {
+    var clientId = _ref.clientId,
+        attributes = _ref.attributes,
+        setAttributes = _ref.setAttributes;
+
+    var _useSelect = useSelect(function (select) {
+      var _select = select('core/block-editor'),
+          getBlockOrder = _select.getBlockOrder,
+          getBlockRootClientId = _select.getBlockRootClientId;
+
+      return {
+        hasChildBlocks: getBlockOrder(clientId).length > 0,
+        rootClientId: getBlockRootClientId(clientId)
+      };
+    }, [clientId]),
+        hasChildBlocks = _useSelect.hasChildBlocks;
+
+    return /*#__PURE__*/React.createElement("div", {
+      className: "iis-block-tabs"
+    }, /*#__PURE__*/React.createElement(InspectorControls, null, /*#__PURE__*/React.createElement(PanelBody, null, /*#__PURE__*/React.createElement(ToggleControl, {
+      label: "Update URLs",
+      checked: attributes.updateURL,
+      onChange: function onChange(updateURL) {
+        return setAttributes({
+          updateURL: updateURL
+        });
+      }
+    }), /*#__PURE__*/React.createElement(ToggleControl, {
+      label: "Center tabs",
+      checked: attributes.center,
+      onChange: function onChange(center) {
+        return setAttributes({
+          center: center
+        });
+      }
+    }))), /*#__PURE__*/React.createElement(InnerBlocks, {
+      allowedBlocks: ['iis/tab'],
+      template: [['iis/tab'], ['iis/tab']],
+      orientation: "vertical",
+      renderAppender: hasChildBlocks ? undefined : function () {
+        return /*#__PURE__*/React.createElement(InnerBlocks.ButtonBlockAppender, null);
+      }
+    }));
+  },
+  save: function save() {
+    return /*#__PURE__*/React.createElement(InnerBlocks.Content, null);
+  }
+});
+
+/***/ }),
+
 /***/ "./src/js/blocks/Testimonial.jsx":
 /*!***************************************!*\
   !*** ./src/js/blocks/Testimonial.jsx ***!
@@ -4440,6 +4626,54 @@ ___CSS_LOADER_EXPORT___.push([module.id, ".iis-block-section .rich-text::-moz-se
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./src/js/blocks/tab.css":
+/*!*****************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./src/js/blocks/tab.css ***!
+  \*****************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".iis-block-tab {\n\theight: 100%;\n}\n\n.iis-block-tab__tab {\n\tborder: 1px dotted #888;\n\tborder-bottom: 0;\n\tborder-top-left-radius: 0.25rem;\n\tborder-top-right-radius: 0.25rem;\n\tbackground-color: #fff;\n\tdisplay: inline-flex;\n\tpadding-left: 1rem;\n\tpadding-right: 1rem;\n\ttransform: translateY(1px);\n}\n\n.iis-block-tab__content {\n\tpadding: 0 1rem;\n\tborder: 1px dotted #888;\n\tbackground-color: #fff;\n}\n\n.iis-block-tab_heading {\n\tfont-family: sans-serif;\n\tfont-size: 14px;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./src/js/blocks/tabs.css":
+/*!******************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./src/js/blocks/tabs.css ***!
+  \******************************************************************************************************************************************************************************************/
+/***/ ((module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js");
+/* harmony import */ var _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0__);
+// Imports
+
+var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
+// Module
+___CSS_LOADER_EXPORT___.push([module.id, ".iis-block-tabs > .block-editor-inner-blocks > .block-editor-block-list__layout {\n\tdisplay: flex;\n\tflex-wrap: wrap;\n\tbackground-color: #ededed;\n\tpadding-left: 1rem;\n\tpadding-right: 1rem;\n}\n\n.iis-block-tabs > .block-editor-inner-blocks > .block-editor-block-list__layout > * {\n\tflex: 0 0 100%;\n\twidth: 100%;\n\tmargin-right: unset;\n\tmargin-left: unset;\n\tmax-width: none;\n\tbox-sizing: border-box;\n}\n", ""]);
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./src/js/components/style.css":
 /*!***********************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./src/js/components/style.css ***!
@@ -4700,6 +4934,66 @@ var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_section_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./src/js/blocks/tab.css":
+/*!*******************************!*\
+  !*** ./src/js/blocks/tab.css ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_tab_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./tab.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./src/js/blocks/tab.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_tab_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_tab_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
+
+/***/ }),
+
+/***/ "./src/js/blocks/tabs.css":
+/*!********************************!*\
+  !*** ./src/js/blocks/tabs.css ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! !../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js */ "./node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js");
+/* harmony import */ var _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_tabs_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! !!../../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!../../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./tabs.css */ "./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[6].oneOf[1].use[2]!./src/js/blocks/tabs.css");
+
+            
+
+var options = {};
+
+options.insert = "head";
+options.singleton = false;
+
+var update = _node_modules_style_loader_dist_runtime_injectStylesIntoStyleTag_js__WEBPACK_IMPORTED_MODULE_0___default()(_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_tabs_css__WEBPACK_IMPORTED_MODULE_1__["default"], options);
+
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_css_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_1_node_modules_postcss_loader_dist_cjs_js_ruleSet_1_rules_6_oneOf_1_use_2_tabs_css__WEBPACK_IMPORTED_MODULE_1__["default"].locals || {});
 
 /***/ }),
 

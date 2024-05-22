@@ -1,0 +1,16 @@
+.iis-block-tabs > .block-editor-inner-blocks > .block-editor-block-list__layout {
+	display: flex;
+	flex-wrap: wrap;
+	background-color: #ededed;
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+.iis-block-tabs > .block-editor-inner-blocks > .block-editor-block-list__layout > * {
+	flex: 0 0 100%;
+	width: 100%;
+	margin-right: unset;
+	margin-left: unset;
+	max-width: none;
+	box-sizing: border-box;
+}

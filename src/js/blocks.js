@@ -20,6 +20,8 @@ import './blocks/Icon';
 import './blocks/News';
 import './blocks/Visualization';
 import './blocks/HeightLimiter';
+import './blocks/Tabs';
+import './blocks/Tab';
 
 const enableToolbarButtonOnBlocks = [
 	'core/separator',

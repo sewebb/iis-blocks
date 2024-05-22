@@ -38,7 +38,7 @@ function iis_render_block_section( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<div class="<?php imns( $class_name ); ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?> alignfull">
+	<section class="<?php imns( $class_name ); ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?> alignfull">
 		<div class="<?php imns( $content_class ); ?>">
 			<div class="row">
 				<div class="grid-18">
@@ -50,7 +50,7 @@ function iis_render_block_section( $attributes, $content ) {
 				</div>
 			</div>
 		</div>
-	</div>
+	</section>
 	<?php
 
 	return ob_get_clean();
