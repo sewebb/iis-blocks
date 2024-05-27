@@ -5,13 +5,14 @@ function iis_render_tabs( $attributes, $content ) {
 		[
 			'className'  => '',
 			'align'      => '',
-			'wrapped'      => true,
+			'wrapped'    => true,
 			'updateURL'  => false,
 		],
 		$attributes
 	);
 
-	$class = $attributes['className'];
+	$class     = $attributes['className'];
+	$updateURL = '';
 
 	if ( $attributes['updateURL'] ) {
 		$updateURL = 'data-update-url="true"';

@@ -11,17 +11,11 @@ function iis_render_tab( $attributes, $content ) {
 	ob_start();
 
 	?>
-	<?php if ( true == $attributes['wrap'] ) : ?>
-		<div class="wrapper">
-	<?php endif; ?>
 	<ul class="<?php imns('o-tab-list' ); ?> js-o-tab-list">
 		<li class="<?php imns('o-tab-list__item' ); ?>">
 			<a class="<?php imns('o-tab-list__link' ); ?>" href="#<?php echo esc_html( $attributes['tab_title'] ); ?>" id="tab-<?php echo esc_html( $attributes['tab_title'] ); ?>"><?php echo esc_html( $attributes['tab_title'] ); ?></a>
 		</li>
 	</ul>
-	<?php if ( true == $attributes['wrap'] ) : ?>
-		</div>
-	<?php endif; ?>
 	<section id="<?php echo esc_html( $attributes['tab_title'] ); ?>" class="<?php imns('o-tab-panel' ); ?>">
 		<?php echo $content; ?>
 	</section>
