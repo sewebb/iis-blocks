@@ -22,6 +22,37 @@ function iis_render_tabs( $attributes, $content ) {
 		$class .= ' alignfull';
 	}
 
+	$dom = new DOMDocument();
+
+	$dom->loadHTML( $content, LIBXML_NOERROR );
+
+	$xpath = new DOMXPath( $dom );
+	$tabs = $xpath->query( '//ul[@data-tabs]' );
+	$lis = '';
+
+	foreach ( $tabs as $tab ) {
+		$liElements = $tab->getElementsByTagName( 'li' );
+
+		foreach ( $liElements as $li ) {
+			$lis .= $dom->saveHTML( $li );
+		}
+	}
+
+	$tabs = $xpath->query( '//ul[@data-tabs]' );
+	$tabsUlClass = $tabs->item(0)->getAttribute( 'class' );
+
+	foreach ( $tabs as $tab ) {
+		$tab->parentNode->removeChild( $tab );
+	}
+
+	$content = $dom->saveHTML();
+
+	// Add <ul> elements with data-tabs attribute to the beginning of the content
+	$content = '<ul data-tabs class="' . $tabsUlClass .'">' . $lis . '</ul>' . $content;
+
+	// Remove empty lines
+	$content = preg_replace( '/^\s*[\r\n]/m', '', $content );
+
 	ob_start();
 	?>
 	<div data-tab-component <?php echo $updateURL; ?> class="<?php echo iis_sanitize_html_classes( $class ); ?> <?php if ( 'none' == $attributes['align'] ) : ?>u-m-x-0<?php endif; ?>">
