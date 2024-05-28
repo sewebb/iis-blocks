@@ -22,40 +22,14 @@ function iis_render_tabs( $attributes, $content ) {
 		$class .= ' alignfull';
 	}
 
-	$dom = new DOMDocument();
-	$html = '<!doctype html><html><head><meta charset="utf-8"></head><body>' . $content . '</body></html>';
+	$tabListItems = [];
 
-	$dom->loadHTML( $html, LIBXML_NOERROR );
+	preg_match_all( '/<li class="[^"]*o-tab-list__item[^"]*">.*?<\/li>/s', $content, $tabListItems );
 
-	$xpath = new DOMXPath( $dom );
-	$tabs = $xpath->query( '//ul[@data-tabs]' );
-	$lis = '';
-
-	foreach ( $tabs as $tab ) {
-		$liElements = $tab->getElementsByTagName( 'li' );
-
-		foreach ( $liElements as $li ) {
-			$lis .= $dom->saveHTML( $li );
-		}
-	}
-
-	$tabs = $xpath->query( '//ul[@data-tabs]' );
-	$tabsUlClass = $tabs->item(0)->getAttribute( 'class' );
-
-	foreach ( $tabs as $tab ) {
-		$tab->parentNode->removeChild( $tab );
-	}
-
-	$content = $dom->saveHTML();
-
-	// Add <ul> elements with data-tabs attribute to the beginning of the content
-	$content = '<ul data-tabs class="' . $tabsUlClass .'">' . $lis . '</ul>' . $content;
-
-	// Remove doctype, html, head and body tags
-	$content = preg_replace( '/^<!doctype html><html><head><meta charset="utf-8"><\/head><body>/', '', $content );
-
-	// Remove empty lines
+	$tabListItems = implode( '', $tabListItems[0] );
+	$content = preg_replace( '/<ul data-tabs.*?<\/ul>/s', '', $content );
 	$content = preg_replace( '/^\s*[\r\n]/m', '', $content );
+
 
 	ob_start();
 	?>
@@ -63,10 +37,13 @@ function iis_render_tabs( $attributes, $content ) {
 		<?php if ( true == $attributes['wrapped'] ) : ?>
 			<div class="wrapper">
 		<?php endif; ?>
-		<?php echo $content; ?>
+		<ul class="<?php imns('o-tab-list' ); ?> js-o-tab-list">
+			<?php echo $tabListItems; ?>
+		</ul>
 		<?php if ( true == $attributes['wrapped'] ) : ?>
 			</div>
 		<?php endif; ?>
+		<?php echo $content; ?>
 	</div>
 	<?php
 
