@@ -5,7 +5,7 @@ function iis_render_tabs( $attributes, $content ) {
 		[
 			'className'  => '',
 			'align'      => '',
-			'wrapped'    => true,
+			'wrapped'    => false,
 			'updateURL'  => false,
 		],
 		$attributes

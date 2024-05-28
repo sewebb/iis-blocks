@@ -24,7 +24,7 @@ registerBlockType('iis/tabs', {
 		},
 		wrapped: {
 			type: 'boolean',
-			default: true,
+			default: false,
 		},
 		updateURL: {
 			type: 'boolean',
