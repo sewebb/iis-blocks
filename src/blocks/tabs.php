@@ -23,8 +23,9 @@ function iis_render_tabs( $attributes, $content ) {
 	}
 
 	$dom = new DOMDocument();
+	$html = '<!doctype html><html><head><meta charset="utf-8"></head><body>' . $content . '</body></html>';
 
-	$dom->loadHTML( $content, LIBXML_NOERROR );
+	$dom->loadHTML( $html, LIBXML_NOERROR );
 
 	$xpath = new DOMXPath( $dom );
 	$tabs = $xpath->query( '//ul[@data-tabs]' );
@@ -50,6 +51,9 @@ function iis_render_tabs( $attributes, $content ) {
 	// Add <ul> elements with data-tabs attribute to the beginning of the content
 	$content = '<ul data-tabs class="' . $tabsUlClass .'">' . $lis . '</ul>' . $content;
 
+	// Remove doctype, html, head and body tags
+	$content = preg_replace( '/^<!doctype html><html><head><meta charset="utf-8"><\/head><body>/', '', $content );
+
 	// Remove empty lines
 	$content = preg_replace( '/^\s*[\r\n]/m', '', $content );
 
@@ -57,9 +61,12 @@ function iis_render_tabs( $attributes, $content ) {
 	?>
 	<div data-tab-component <?php echo $updateURL; ?> class="<?php echo iis_sanitize_html_classes( $class ); ?> <?php if ( 'none' == $attributes['align'] ) : ?>u-m-x-0<?php endif; ?>">
 		<?php if ( true == $attributes['wrapped'] ) : ?>
-			<div class="wrapper">Wrappa tabbarna</div>
+			<div class="wrapper">
 		<?php endif; ?>
 		<?php echo $content; ?>
+		<?php if ( true == $attributes['wrapped'] ) : ?>
+			</div>
+		<?php endif; ?>
 	</div>
 	<?php
 
