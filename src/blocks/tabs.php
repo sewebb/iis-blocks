@@ -19,7 +19,7 @@ function iis_render_tabs( $attributes, $content ) {
 	}
 
 	if ( 'full' == $attributes['align'] ) {
-		$class .= ' alignfull';
+		$class .= ' alignfull u-border-radius-none';
 	}
 
 	$tabListItems = [];
