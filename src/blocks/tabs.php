@@ -33,7 +33,7 @@ function iis_render_tabs( $attributes, $content ) {
 
 	if ( $attributes['gray'] ) {
 		$tabPanelModifier = imns( 'o-tab-panel--gray', false );
-		$content = preg_replace( '/<section(.*?)class="([^"]+)"/', '<section$1class="$2 ' . $tabPanelModifier . '"', $content );
+		$content = preg_replace( '/<section(.*?)class="([^"]+)".*?role=\"tabpanel\"/', '<section$1class="$2 ' . $tabPanelModifier . '" role="tabpanel"', $content );
 	}
 
 

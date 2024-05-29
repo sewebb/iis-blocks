@@ -16,7 +16,7 @@ function iis_render_tab( $attributes, $content ) {
 			<a class="<?php imns('o-tab-list__link' ); ?>" href="#<?php echo esc_html( $attributes['tab_title'] ); ?>" id="tab-<?php echo esc_html( $attributes['tab_title'] ); ?>"><?php echo esc_html( $attributes['tab_title'] ); ?></a>
 		</li>
 	</ul>
-	<section id="<?php echo esc_html( $attributes['tab_title'] ); ?>" class="<?php imns('o-tab-panel' ); ?>">
+	<section id="<?php echo esc_html( $attributes['tab_title'] ); ?>" class="<?php imns('o-tab-panel' ); ?>" role="tabpanel">
 		<?php echo $content; ?>
 	</section>
 
