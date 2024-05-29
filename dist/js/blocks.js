@@ -3260,6 +3260,10 @@ registerBlockType('iis/tabs', {
     updateURL: {
       type: 'boolean',
       "default": false
+    },
+    gray: {
+      type: 'boolean',
+      "default": false
     }
   },
   getEditWrapperProps: function getEditWrapperProps(attributes) {
@@ -3306,6 +3310,14 @@ registerBlockType('iis/tabs', {
       onChange: function onChange(wrapped) {
         return setAttributes({
           wrapped: wrapped
+        });
+      }
+    }), /*#__PURE__*/React.createElement(ToggleControl, {
+      label: "Gray background",
+      checked: attributes.gray,
+      onChange: function onChange(gray) {
+        return setAttributes({
+          gray: gray
         });
       }
     }))), /*#__PURE__*/React.createElement(InnerBlocks, {

@@ -7,6 +7,7 @@ function iis_render_tabs( $attributes, $content ) {
 			'align'      => '',
 			'wrapped'    => false,
 			'updateURL'  => false,
+			'gray'       => false,
 		],
 		$attributes
 	);
@@ -35,14 +36,14 @@ function iis_render_tabs( $attributes, $content ) {
 	?>
 	<div data-tab-component <?php echo $updateURL; ?> class="<?php echo iis_sanitize_html_classes( $class ); ?> <?php if ( 'none' == $attributes['align'] ) : ?>u-m-x-0<?php endif; ?>">
 		<?php if ( true == $attributes['wrapped'] ) : ?>
-			<div class="wrapper">
-		<?php endif; ?>
-		<ul class="<?php imns('o-tab-list' ); ?> js-o-tab-list">
-			<?php echo $tabListItems; ?>
-		</ul>
-		<?php if ( true == $attributes['wrapped'] ) : ?>
-			</div>
-		<?php endif; ?>
+		<div class="wrapper">
+			<?php endif; ?>
+			<ul class="<?php imns('o-tab-list' ); ?> <?php if ( $attributes['gray'] ) : imns('o-tab-list--gray' ); endif; ?> js-o-tab-list">
+				<?php echo $tabListItems; ?>
+			</ul>
+			<?php if ( true == $attributes['wrapped'] ) : ?>
+		</div>
+	<?php endif; ?>
 		<?php echo $content; ?>
 	</div>
 	<?php

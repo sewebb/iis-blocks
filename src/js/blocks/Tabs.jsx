@@ -30,6 +30,10 @@ registerBlockType('iis/tabs', {
 			type: 'boolean',
 			default: false,
 		},
+		gray: {
+			type: 'boolean',
+			default: false,
+		},
 	},
 	getEditWrapperProps(attributes) {
 		const { align } = attributes;
@@ -68,6 +72,11 @@ registerBlockType('iis/tabs', {
 							label="Wrapped tabs"
 							checked={attributes.wrapped}
 							onChange={(wrapped) => setAttributes({ wrapped })}
+						/>
+						<ToggleControl
+							label="Gray background"
+							checked={attributes.gray}
+							onChange={(gray) => setAttributes({ gray })}
 						/>
 					</PanelBody>
 				</InspectorControls>
