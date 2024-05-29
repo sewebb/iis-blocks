@@ -32,6 +32,7 @@ function iis_render_tabs( $attributes, $content ) {
 	$content = preg_replace( '/^\s*[\r\n]/m', '', $content );
 
 	if ( $attributes['gray'] ) {
+		$tabListModifier = imns( 'o-tab-list--gray', false );
 		$tabPanelModifier = imns( 'o-tab-panel--gray', false );
 		$content = preg_replace( '/<section(.*?)class="([^"]+)".*?role=\"tabpanel\"/', '<section$1class="$2 ' . $tabPanelModifier . '" role="tabpanel"', $content );
 	}
@@ -43,7 +44,7 @@ function iis_render_tabs( $attributes, $content ) {
 		<?php if ( true == $attributes['wrapped'] ) : ?>
 		<div class="wrapper">
 			<?php endif; ?>
-			<ul class="<?php imns('o-tab-list' ); ?> <?php if ( $attributes['gray'] ) : imns('o-tab-list--gray' ); endif; ?> js-o-tab-list">
+			<ul class="<?php imns('o-tab-list' ); ?> js-o-tab-list <?php echo $tabListModifier; ?>">
 				<?php echo $tabListItems; ?>
 			</ul>
 			<?php if ( true == $attributes['wrapped'] ) : ?>
