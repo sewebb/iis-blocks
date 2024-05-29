@@ -31,6 +31,11 @@ function iis_render_tabs( $attributes, $content ) {
 	$content = preg_replace( '/<ul data-tabs.*?<\/ul>/s', '', $content );
 	$content = preg_replace( '/^\s*[\r\n]/m', '', $content );
 
+	if ( $attributes['gray'] ) {
+		$tabPanelModifier = imns( 'o-tab-panel--gray', false );
+		$content = preg_replace( '/<section(.*?)class="([^"]+)"/', '<section$1class="$2 ' . $tabPanelModifier . '"', $content );
+	}
+
 
 	ob_start();
 	?>
