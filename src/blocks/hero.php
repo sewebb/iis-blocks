@@ -142,7 +142,17 @@ endif; ?>">
 <span class="u-display-block u-m-b-1"><?php echo esc_html( $attributes['pretitle'] ); ?></span><?php endif; ?>
 							<h1 class="supersize"><?php echo apply_filters( 'the_title', $attributes['title'] ); ?></h1>
 							<?php if ( $attributes['introText'] && ! empty( trim( $attributes['introText'] ) ) ) : ?>
-								<p class="<?php imns( 'o-hero__paragraph' ); ?>"><?php echo esc_html( $attributes['introText'] ); ?></p>
+								<p class="<?php imns( 'o-hero__paragraph' ); ?>">
+									<?php echo wp_kses(
+										$attributes['introText'],
+										[
+											'a' => [
+												'href'   => [],
+												'target' => [],
+											],
+										]
+									); ?>
+								</p>
 							<?php endif; ?>
 
 							<?php if ( $content ) : ?>
