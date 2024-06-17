@@ -18,7 +18,7 @@
     ],
     "require": {
         "php": "^7.2|^8.1",
-        "iis/library": "^4.1",
+        "iis/library": "^4.3",
         "ext-dom": "*",
         "ext-libxml": "*"
     },

@@ -4,43 +4,41 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fcd75031bd76f8b8fc357d88a7a37e2d",
+    "content-hash": "68082bfdb547c11b7a4587ed3ff9bc21",
     "packages": [
         {
             "name": "composer/installers",
-            "version": "v1.12.0",
+            "version": "v2.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/composer/installers.git",
-                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19"
+                "reference": "c29dc4b93137acb82734f672c37e029dfbd95b35"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/composer/installers/zipball/d20a64ed3c94748397ff5973488761b22f6d3f19",
-                "reference": "d20a64ed3c94748397ff5973488761b22f6d3f19",
+                "url": "https://api.github.com/repos/composer/installers/zipball/c29dc4b93137acb82734f672c37e029dfbd95b35",
+                "reference": "c29dc4b93137acb82734f672c37e029dfbd95b35",
                 "shasum": ""
             },
             "require": {
-                "composer-plugin-api": "^1.0 || ^2.0"
-            },
-            "replace": {
-                "roundcube/plugin-installer": "*",
-                "shama/baton": "*"
+                "composer-plugin-api": "^1.0 || ^2.0",
+                "php": "^7.2 || ^8.0"
             },
             "require-dev": {
                 "composer/composer": "1.6.* || ^2.0",
                 "composer/semver": "^1 || ^3",
                 "phpstan/phpstan": "^0.12.55",
                 "phpstan/phpstan-phpunit": "^0.12.16",
-                "symfony/phpunit-bridge": "^4.2 || ^5",
-                "symfony/process": "^2.3"
+                "symfony/phpunit-bridge": "^5.3",
+                "symfony/process": "^5"
             },
             "type": "composer-plugin",
             "extra": {
                 "class": "Composer\\Installers\\Plugin",
                 "branch-alias": {
-                    "dev-main": "1.x-dev"
-                }
+                    "dev-main": "2.x-dev"
+                },
+                "plugin-modifies-install-path": true
             },
             "autoload": {
                 "psr-4": {
@@ -61,7 +59,6 @@
             "description": "A multi-framework Composer library installer",
             "homepage": "https://composer.github.io/installers/",
             "keywords": [
-                "Craft",
                 "Dolibarr",
                 "Eliasis",
                 "Hurad",
@@ -82,7 +79,6 @@
                 "Whmcs",
                 "WolfCMS",
                 "agl",
-                "aimeos",
                 "annotatecms",
                 "attogram",
                 "bitrix",
@@ -101,7 +97,6 @@
                 "grav",
                 "installer",
                 "itop",
-                "joomla",
                 "known",
                 "kohana",
                 "laravel",
@@ -110,6 +105,7 @@
                 "magento",
                 "majima",
                 "mako",
+                "matomo",
                 "mediawiki",
                 "miaoxing",
                 "modulework",
@@ -129,9 +125,7 @@
                 "silverstripe",
                 "sydes",
                 "sylius",
-                "symfony",
                 "tastyigniter",
-                "typo3",
                 "wordpress",
                 "yawik",
                 "zend",
@@ -139,7 +133,7 @@
             ],
             "support": {
                 "issues": "https://github.com/composer/installers/issues",
-                "source": "https://github.com/composer/installers/tree/v1.12.0"
+                "source": "https://github.com/composer/installers/tree/v2.2.0"
             },
             "funding": [
                 {
@@ -155,35 +149,35 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-09-13T08:19:44+00:00"
+            "time": "2022-08-20T06:45:11+00:00"
         },
         {
             "name": "iis/library",
-            "version": "v4.2.3",
+            "version": "v4.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sewebb/iis-library.git",
-                "reference": "aca65471e883ac0cd35f64c615e0cce1b8e9b7c7"
+                "reference": "db5be6c81d232fb6fee089829fcb9f1dfb9b8335"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sewebb/iis-library/zipball/aca65471e883ac0cd35f64c615e0cce1b8e9b7c7",
-                "reference": "aca65471e883ac0cd35f64c615e0cce1b8e9b7c7",
+                "url": "https://api.github.com/repos/sewebb/iis-library/zipball/db5be6c81d232fb6fee089829fcb9f1dfb9b8335",
+                "reference": "db5be6c81d232fb6fee089829fcb9f1dfb9b8335",
                 "shasum": ""
             },
             "require": {
-                "composer/installers": "~1.0",
+                "composer/installers": "~1.0|~2.0",
                 "ext-dom": "*",
                 "ext-json": "*",
                 "ext-libxml": "*",
                 "php": "^8.0"
             },
             "require-dev": {
-                "10up/wp_mock": "dev-master",
-                "dealerdirect/phpcodesniffer-composer-installer": "^0.7.0",
-                "phpunit/phpunit": "^8.1",
+                "10up/wp_mock": "^1.0.0",
+                "dealerdirect/phpcodesniffer-composer-installer": "^1.0.0",
+                "phpunit/phpunit": "^9.6",
                 "squizlabs/php_codesniffer": "3.*",
-                "wp-coding-standards/wpcs": "^1.1"
+                "wp-coding-standards/wpcs": "^3.0.0"
             },
             "type": "library",
             "autoload": {
@@ -214,9 +208,9 @@
             ],
             "support": {
                 "issues": "https://github.com/sewebb/iis-library/issues",
-                "source": "https://github.com/sewebb/iis-library/tree/v4.2.3"
+                "source": "https://github.com/sewebb/iis-library/tree/v4.3.0"
             },
-            "time": "2024-05-08T08:49:32+00:00"
+            "time": "2024-06-17T12:07:55+00:00"
         }
     ],
     "packages-dev": [
