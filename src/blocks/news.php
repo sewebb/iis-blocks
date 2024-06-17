@@ -69,7 +69,7 @@ function iis_render_block_news( $attributes ) {
 			</div>
 			<?php
 
-				$i++;
+				++$i;
 				endforeach;
 
 			?>

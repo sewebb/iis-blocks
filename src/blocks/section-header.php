@@ -3,8 +3,8 @@
 function iis_render_block_section_header( $attributes ) {
 	$attributes = array_merge(
 		[
-			'title' => '',
-			'text' => '',
+			'title'    => '',
+			'text'     => '',
 			'preTitle' => '',
 		],
 		$attributes

@@ -31,7 +31,7 @@ if ( ! function_exists( 'iis_sanitize_html_classes' ) ) {
 if ( ! function_exists( 'iis_rel_noopener' ) ) {
 	/**
 	 * @param string $target
-	 * @param bool $echo
+	 * @param bool   $echo
 	 *
 	 * @return string|void
 	 */

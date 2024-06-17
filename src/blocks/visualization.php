@@ -3,22 +3,22 @@
 function iis_render_block_visualization( $attributes, $content ) {
 	$attributes = array_merge(
 		[
-			'className' => '',
+			'className'       => '',
 			'backgroundColor' => null,
-			'padding' => '',
-			'align' => '',
-			'link' => '',
-			'linkText' => '',
-			'target' => '_self'
+			'padding'         => '',
+			'align'           => '',
+			'link'            => '',
+			'linkText'        => '',
+			'target'          => '_self',
 		],
 		$attributes
 	);
 
-	$class  = 'm-card m-card--padded';
-	$class .= ( in_array( $attributes['align'], [ 'right' ], true ) ) ? ' !align' . $attributes['align'] : '';
+	$class      = 'm-card m-card--padded';
+	$class     .= ( in_array( $attributes['align'], [ 'right' ], true ) ) ? ' !align' . $attributes['align'] : '';
 	$class_name = 'wp-block-iis-visualization';
 
-	if ( $attributes['backgroundColor'] )  {
+	if ( $attributes['backgroundColor'] ) {
 		$class_name .= ' background-' . $attributes['backgroundColor'];
 	}
 

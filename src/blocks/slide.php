@@ -3,12 +3,12 @@
 function iis_render_slide( $attributes, $content ) {
 	$attributes = array_merge(
 		[
-			'className'  => '',
+			'className' => '',
 		],
 		$attributes
 	);
 
-	$class  = $attributes['className'] . ' glider-slide glider-slide--stretch-items';
+	$class = $attributes['className'] . ' glider-slide glider-slide--stretch-items';
 
 	ob_start();
 	?>
