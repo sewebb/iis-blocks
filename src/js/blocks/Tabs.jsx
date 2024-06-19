@@ -2,7 +2,7 @@ import './tabs.css';
 
 const { __ } = wp.i18n;
 const { registerBlockType } = wp.blocks;
-const { PanelBody, ToggleControl } = wp.components;
+const { PanelBody, ToggleControl, TextControl } = wp.components;
 const {
 	InspectorControls,
 	InnerBlocks,
@@ -33,6 +33,10 @@ registerBlockType('iis/tabs', {
 		gray: {
 			type: 'boolean',
 			default: false,
+		},
+		name: {
+			type: 'string',
+			default: '',
 		},
 	},
 	getEditWrapperProps(attributes) {
@@ -68,6 +72,15 @@ registerBlockType('iis/tabs', {
 							checked={attributes.updateURL}
 							onChange={(updateURL) => setAttributes({ updateURL })}
 						/>
+						{attributes.updateURL && (
+							<TextControl
+								label={__('Name', 'iis-blocks')}
+								placeholder={__('My tabs', 'iis-blocks')}
+								help={__('Give your tabs a unique name. It will be visible in the URL when tabbing.', 'iis-blocks')}
+								value={attributes.name}
+								onChange={(name) => setAttributes({ name })}
+							/>
+						)}
 						<ToggleControl
 							label="Wrapped tabs"
 							checked={attributes.wrapped}

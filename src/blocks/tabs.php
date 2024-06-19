@@ -8,6 +8,7 @@ function iis_render_tabs( $attributes, $content ) {
 			'wrapped'   => false,
 			'updateURL' => false,
 			'gray'      => false,
+			'name'      => '',
 		],
 		$attributes
 	);
@@ -27,7 +28,14 @@ function iis_render_tabs( $attributes, $content ) {
 
 	preg_match_all( '/<li class="[^"]*o-tab-list__item[^"]*">.*?<\/li>/s', $content, $tabListItems );
 
-	$tabListItems = implode( '', $tabListItems[0] );
+	$url_prefix   = ( ! empty( $attributes['name'] ) ) ? sanitize_title( $attributes['name'] ) . '-' : '';
+	$tabListItems = array_map(
+		function ( $item ) use ( $url_prefix ) {
+			return preg_replace( '/href="#([^"]+)"/', 'href="#' . $url_prefix . '$1"', $item );
+		},
+		$tabListItems[0],
+	);
+	$tabListItems = implode( '', $tabListItems );
 	$content      = preg_replace( '/<ul data-tabs.*?<\/ul>/s', '', $content );
 	$content      = preg_replace( '/^\s*[\r\n]/m', '', $content );
 
