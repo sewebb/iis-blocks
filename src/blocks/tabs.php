@@ -31,7 +31,9 @@ function iis_render_tabs( $attributes, $content ) {
 	$url_prefix   = ( ! empty( $attributes['name'] ) ) ? sanitize_title( $attributes['name'] ) . '-' : '';
 	$tabListItems = array_map(
 		function ( $item ) use ( $url_prefix ) {
-			return preg_replace( '/href="#([^"]+)"/', 'href="#' . $url_prefix . '$1"', $item );
+			$item = preg_replace( '/href="#([^"]+)"/', 'href="#' . $url_prefix . '$1"', $item );
+
+			return preg_replace( '/id="tab-([^"]+)"/', 'id="' . $url_prefix . 'tab-$1"', $item );
 		},
 		$tabListItems[0],
 	);
