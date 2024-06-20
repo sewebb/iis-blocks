@@ -45,6 +45,7 @@ function iis_render_tabs( $attributes, $content ) {
 		$tabListModifier  = imns( 'o-tab-list--gray', false );
 		$tabPanelModifier = imns( 'o-tab-panel--gray', false );
 		$content          = preg_replace( '/<section(.*?)class="([^"]+)".*?role=\"tabpanel\"/', '<section$1class="$2 ' . $tabPanelModifier . '" role="tabpanel"', $content );
+		$content          = preg_replace( '/<section id="([^"]+)"/', '<section id="' . $url_prefix . '$1"', $content );
 	}
 
 	ob_start();
