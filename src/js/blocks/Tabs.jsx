@@ -67,20 +67,18 @@ registerBlockType('iis/tabs', {
 			<div className="iis-block-tabs">
 				<InspectorControls>
 					<PanelBody>
+						<TextControl
+							label={__('Name', 'iis-blocks')}
+							placeholder={__('My tabs', 'iis-blocks')}
+							help={__('Give your tabs a unique name. It will be visible in the URL when tabbing.', 'iis-blocks')}
+							value={attributes.name}
+							onChange={(name) => setAttributes({ name })}
+						/>
 						<ToggleControl
 							label="Update URLs"
 							checked={attributes.updateURL}
 							onChange={(updateURL) => setAttributes({ updateURL })}
 						/>
-						{attributes.updateURL && (
-							<TextControl
-								label={__('Name', 'iis-blocks')}
-								placeholder={__('My tabs', 'iis-blocks')}
-								help={__('Give your tabs a unique name. It will be visible in the URL when tabbing.', 'iis-blocks')}
-								value={attributes.name}
-								onChange={(name) => setAttributes({ name })}
-							/>
-						)}
 						<ToggleControl
 							label="Wrapped tabs"
 							checked={attributes.wrapped}
