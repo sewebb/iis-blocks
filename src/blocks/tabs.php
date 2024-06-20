@@ -37,16 +37,18 @@ function iis_render_tabs( $attributes, $content ) {
 		},
 		$tabListItems[0],
 	);
-	$tabListItems = implode( '', $tabListItems );
-	$content      = preg_replace( '/<ul data-tabs.*?<\/ul>/s', '', $content );
-	$content      = preg_replace( '/^\s*[\r\n]/m', '', $content );
+	$tabListItems    = implode( '', $tabListItems );
+	$content         = preg_replace( '/<ul data-tabs.*?<\/ul>/s', '', $content );
+	$content         = preg_replace( '/^\s*[\r\n]/m', '', $content );
+	$tabListModifier = '';
 
 	if ( $attributes['gray'] ) {
 		$tabListModifier  = imns( 'o-tab-list--gray', false );
 		$tabPanelModifier = imns( 'o-tab-panel--gray', false );
 		$content          = preg_replace( '/<section(.*?)class="([^"]+)".*?role=\"tabpanel\"/', '<section$1class="$2 ' . $tabPanelModifier . '" role="tabpanel"', $content );
-		$content          = preg_replace( '/<section id="([^"]+)"/', '<section id="' . $url_prefix . '$1"', $content );
 	}
+
+	$content = preg_replace( '/<section(.*?)id="([^"]+)"(.*?)role=\"tabpanel\"/', '<section$1id="' . $url_prefix . '$2"$3role="tabpanel"', $content );
 
 	ob_start();
 	?>
