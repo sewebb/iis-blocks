@@ -49,13 +49,13 @@ function iis_render_tabs( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<div data-tab-component <?php echo $updateURL; ?> class="<?php echo iis_sanitize_html_classes( $class ); ?> <?php if ( 'none' == $attributes['align'] ) :
+	<div data-tab-component class="<?php echo iis_sanitize_html_classes( $class ); ?> <?php if ( 'none' == $attributes['align'] ) :
 ?>
 u-m-x-0<?php endif; ?>">
 		<?php if ( true == $attributes['wrapped'] ) : ?>
 		<div class="wrapper">
 			<?php endif; ?>
-			<ul class="<?php imns( 'o-tab-list' ); ?> js-o-tab-list <?php echo $tabListModifier; ?>">
+			<ul class="<?php imns( 'o-tab-list' ); ?> js-o-tab-list <?php echo $tabListModifier; ?>" <?php echo $updateURL; ?>>
 				<?php echo $tabListItems; ?>
 			</ul>
 			<?php if ( true == $attributes['wrapped'] ) : ?>
