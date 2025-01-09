@@ -5,7 +5,7 @@
  * Description: Block library from Internetstiftelsen
  * Author: Internetstiftelsen
  * Author URI: https://internetstiftelsen.se
- * Version: 7.0.26
+ * Version: 7.0.27
  * Plugin URI: https://github.com/sewebb/iis-blocks
  * Text Domain: iis-blocks
  * Domain Path: /languages/
@@ -20,7 +20,7 @@ require_once __DIR__ . '/src/blocks/index.php';
 function iis_blocks_register_sizes() {
 	add_image_size( 'puff-image-large', 887, 514, [ 'center', 'top' ] );
 	add_image_size( 'puff-image', 700, 406, [ 'center', 'top' ] );
-	add_image_size( 'puff-teaser-image', 433, 514, true );
+	add_image_size( 'puff-teaser-image', 866, 1028, true );
 	add_image_size( 'puff-image-4:3', 700, 525, [ 'center', 'top' ] );
 	add_image_size( 'avatar', 36, 36, true );
 }
