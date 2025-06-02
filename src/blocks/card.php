@@ -45,10 +45,35 @@ function iis_render_card( $attributes, $content ) {
 		preg_match( '#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#', $attributes['youtube'], $matches );
 
 		if ( $matches && isset( $matches[0] ) ) {
-			$youtube_id           = $matches[0];
-			$image                = "<img src=\"https://i3.ytimg.com/vi/{$youtube_id}/maxresdefault.jpg\" alt=\"\">";
+			$youtube_id = $matches[0];
+			$base_url   = "https://i3.ytimg.com/vi/{$youtube_id}";
+			$maxres_url = "{$base_url}/maxresdefault.jpg";
+			$hq_url     = "{$base_url}/hqdefault.jpg";
+
+			$transient_key = 'yt_thumb_' . md5( $youtube_id );
+			$use_maxres    = get_transient( $transient_key );
+			if ( false === $use_maxres ) {
+				$response   = wp_remote_head( $maxres_url );
+				$use_maxres = ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) === 200;
+
+				$cache_lifetime = WEEK_IN_SECONDS + wp_rand( -DAY_IN_SECONDS, DAY_IN_SECONDS );
+				set_transient( $transient_key, $use_maxres, $cache_lifetime );
+			}
+			$thumb_url = $use_maxres ? $maxres_url : $hq_url;
+
+			list($width, $height) = getimagesize($thumb_url);
+
+			$image  = sprintf(
+				'<img width="%d" height="%d" loading="lazy" src="%s" alt="%s">',
+				(int) $width,
+				(int) $height,
+				esc_url( $thumb_url ),
+				esc_attr( 'tumnagel för video' )
+			);
+
 			$image_wrapper_class .= ' ' . imns( 'm-icon-overlay', false );
 		}
+
 	}
 
 	if ( null === $image && $attributes['imageId'] ) {
