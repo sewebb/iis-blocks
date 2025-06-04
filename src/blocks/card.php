@@ -45,35 +45,56 @@ function iis_render_card( $attributes, $content ) {
 		preg_match( '#(?<=v=)[a-zA-Z0-9-]+(?=&)|(?<=v\/)[^&\n]+(?=\?)|(?<=v=)[^&\n]+|(?<=youtu.be/)[^&\n]+#', $attributes['youtube'], $matches );
 
 		if ( $matches && isset( $matches[0] ) ) {
-			$youtube_id = $matches[0];
-			$base_url   = "https://i3.ytimg.com/vi/{$youtube_id}";
-			$maxres_url = "{$base_url}/maxresdefault.jpg";
-			$hq_url     = "{$base_url}/hqdefault.jpg";
+			$youtube_id    = $matches[0];
+			$base_url      = "https://i3.ytimg.com/vi/{$youtube_id}";
+			$webp_base_url = "https://i3.ytimg.com/vi_webp/{$youtube_id}";
+			$fallback_img  = "{$base_url}/hqdefault.jpg";
+
+			$urls = [
+				"{$webp_base_url}/maxresdefault.webp",
+				"{$base_url}/maxresdefault.jpg",
+				"{$webp_base_url}/hqdefault.webp",
+			];
 
 			$transient_key = 'yt_thumb_' . md5( $youtube_id );
-			$use_maxres    = get_transient( $transient_key );
-			if ( false === $use_maxres ) {
-				$response   = wp_remote_head( $maxres_url );
-				$use_maxres = ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) === 200;
-
+			$yt_thumb_url  = get_transient( $transient_key );
+			if ( false === $yt_thumb_url ) {
+				$found = false;
+				foreach ( $urls as $url ) {
+					$response = wp_remote_head( $url );
+					if ( ! is_wp_error( $response ) && wp_remote_retrieve_response_code( $response ) === 200 ) {
+						$yt_thumb_url = $url;
+						$found        = true;
+						break;
+					}
+				}
+				if ( ! $found ) {
+					$yt_thumb_url = $fallback_img;
+				}
 				$cache_lifetime = WEEK_IN_SECONDS + wp_rand( -DAY_IN_SECONDS, DAY_IN_SECONDS );
-				set_transient( $transient_key, $use_maxres, $cache_lifetime );
+				set_transient( $transient_key, $yt_thumb_url, $cache_lifetime );
 			}
-			$thumb_url = $use_maxres ? $maxres_url : $hq_url;
 
-			list($width, $height) = getimagesize($thumb_url);
+			// if maxresdefault is used then set width/height to 1280x720, otherwise use 480x360
+			$use_maxres = ( false !== strpos( $yt_thumb_url, 'maxresdefault' ) );
+			if ( $use_maxres ) {
+				$width  = 1280;
+				$height = 720;
+			} else {
+				$width  = 480;
+				$height = 360;
+			}
 
-			$image  = sprintf(
+			$image = sprintf(
 				'<img width="%d" height="%d" loading="lazy" src="%s" alt="%s">',
 				(int) $width,
 				(int) $height,
-				esc_url( $thumb_url ),
+				esc_url( $yt_thumb_url ),
 				esc_attr( 'tumnagel för video' )
 			);
 
 			$image_wrapper_class .= ' ' . imns( 'm-icon-overlay', false );
 		}
-
 	}
 
 	if ( null === $image && $attributes['imageId'] ) {
