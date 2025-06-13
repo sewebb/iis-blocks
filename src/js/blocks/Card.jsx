@@ -71,6 +71,10 @@ registerBlockType('iis/card', {
 			type: 'string',
 			default: null,
 		},
+		figcaption: {
+			type: 'string',
+			default: null,
+		},
 		pretitle: {
 			type: 'string',
 			default: '',
@@ -270,6 +274,15 @@ registerBlockType('iis/card', {
 							placeholder={__('Full youtube URL', 'iis-blocks')}
 							value={attributes.youtube}
 							onChange={(youtube) => setAttributes({ youtube })}
+						/>
+					</PanelBody>
+					<PanelBody title="Image caption">
+						<TextControl
+							label={__('Image description label', 'iis-blocks')}
+							help={__('This replaces pre-title, title and content', 'iis-blocks')}
+							placeholder={__('Image caption', 'iis-blocks')}
+							value={attributes.figcaption}
+							onChange={(figcaption) => setAttributes({ figcaption })}
 						/>
 					</PanelBody>
 					<PanelBody title="Image">

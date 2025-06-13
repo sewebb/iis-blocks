@@ -14,6 +14,7 @@ function iis_render_card( $attributes, $content ) {
 			'url'          => null,
 			'target'       => '_self',
 			'youtube'      => null,
+			'figcaption'   => null,
 			'pretitle'     => null,
 			'className'    => '',
 		],
@@ -115,42 +116,72 @@ function iis_render_card( $attributes, $content ) {
 		);
 	}
 
-	$has_link    = $attributes['url'] && ! empty( trim( $attributes['url'] ) );
-	$title_class = ( $attributes['showAsTeaser'] ) ? 'alpha' : 'beta';
-	$pretitle    = ( $attributes['pretitle'] ) ? trim( $attributes['pretitle'] ) : '';
+	$has_link       = $attributes['url'] && ! empty( trim( $attributes['url'] ) );
+	$figcaption     = ( $attributes['figcaption'] ) ? trim( $attributes['figcaption'] ) : '';
+	$title_class    = ( $attributes['showAsTeaser'] ) ? 'alpha' : 'beta';
+	$pretitle       = ( $attributes['pretitle'] ) ? trim( $attributes['pretitle'] ) : '';
 
 	ob_start();
 	?>
-	<article class="wp-block-iis-card <?php imns( $class ); ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?>">
-		<?php if ( $youtube_id ) : ?>
-			<div class="<?php echo $image_wrapper_class; ?>" data-youtube="<?php echo esc_attr( $youtube_id ); ?>">
-				<button class="<?php imns( 'm-icon-overlay__button' ); ?>" aria-label="play">
-					<svg class="icon <?php imns( 'm-icon-overlay__icon' ); ?>">
-						<use xlink:href="#icon-play"></use>
-					</svg>
-				</button>
-				<?php echo $image; ?>
-			</div>
-		<?php
-		else :
-			echo $image;
-		endif;
+	<?php if ( $figcaption ) : ?>
+		<figure class="wp-block-iis-card <?php imns( $class ); ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?>">
+	<?php else : ?>
+		<article class="wp-block-iis-card <?php imns( $class ); ?> <?php echo iis_sanitize_html_classes( $attributes['className'] ); ?>">
+	<?php endif; ?>
 
-		?>
-		<div class="<?php imns( 'm-card__content' ); ?>">
-			<?php if ( ! empty( $pretitle ) ) : ?>
-				<div class="<?php imns( 'm-card__meta' ); ?>">
-					<div class="<?php imns( 'a-meta' ); ?>"><?php echo apply_filters( 'the_title', $pretitle ); ?></div>
-				</div>
-			<?php endif; ?>
-			<?php echo ( $has_link ) ? '<a href="' . esc_url( $attributes['url'] ) . '" class="' . imns( 'm-card__link', false ) . '"' . iis_rel_noopener( $attributes['target'], false ) . ' target="' . esc_attr( $attributes['target'] ) . '">' : ''; ?>
-			<h1 class="<?php echo $title_class; ?>">
-				<?php echo apply_filters( 'the_title', $attributes['title'] ); ?>
-			</h1>
-			<?php echo ( $has_link ) ? '</a>' : ''; ?>
-			<?php echo $content; ?>
+	<?php if ( $youtube_id ) : ?>
+		<div class="<?php echo $image_wrapper_class; ?>" data-youtube="<?php echo esc_attr( $youtube_id ); ?>">
+			<button class="<?php imns( 'm-icon-overlay__button' ); ?>" aria-label="play">
+				<svg class="icon <?php imns( 'm-icon-overlay__icon' ); ?>">
+					<use xlink:href="#icon-play"></use>
+				</svg>
+			</button>
+			<?php echo $image; ?>
 		</div>
+	<?php else : ?>
+		<?php echo $image; ?>
+	<?php endif; ?>
+
+	<?php if ( $figcaption ) : ?>
+	<figcaption class="<?php imns( 'm-card__content' ); if ( empty( $attributes['title'] ) ) : ?> u-m-t-1<?php endif; ?>">
+		<?php echo apply_filters( 'figcaption', $figcaption ); ?>
+	</figcaption>
+	<?php else : ?>
+	<div class="<?php imns( 'm-card__content' ); ?>">
+
+		<?php if ( ! empty( $pretitle ) ) : ?>
+			<div class="<?php imns( 'm-card__meta' ); ?>">
+				<div class="<?php imns( 'a-meta' ); ?>">
+					<?php echo apply_filters( 'the_title', $pretitle ); ?>
+				</div>
+			</div>
+		<?php endif; ?>
+
+		<?php if ( $has_link ) : ?>
+		<a href="<?php echo esc_url( $attributes['url'] ); ?>"
+		   class="<?php echo imns( 'm-card__link', false ); ?>"
+			<?php echo iis_rel_noopener( $attributes['target'], false ); ?>
+		   target="<?php echo esc_attr( $attributes['target'] ); ?>">
+			<?php endif; ?>
+
+			<?php if ( ! empty( $attributes['title'] ) ) : ?>
+				<h1 class="<?php echo $title_class; ?>">
+					<?php echo apply_filters( 'the_title', $attributes['title'] ); ?>
+				</h1>
+			<?php endif; ?>
+
+			<?php if ( $has_link ) : ?>
+		</a>
+		<?php endif; ?>
+		<?php echo $content; ?>
+		</div>
+	<?php endif; ?>
+
+	<?php if ( $figcaption ) : ?>
+	</figure>
+	<?php else : ?>
 	</article>
+	<?php endif; ?>
 	<?php
 
 	return ob_get_clean();
