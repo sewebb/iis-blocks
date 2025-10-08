@@ -22,6 +22,8 @@ import './blocks/Visualization';
 import './blocks/HeightLimiter';
 import './blocks/Tabs';
 import './blocks/Tab';
+import './blocks/Selectable';
+import './blocks/SelectableItem';
 
 const enableToolbarButtonOnBlocks = [
 	'core/separator',
