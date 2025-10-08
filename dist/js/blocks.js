@@ -3119,15 +3119,25 @@ var __ = wp.i18n.__;
 var Fragment = wp.element.Fragment;
 var registerBlockType = wp.blocks.registerBlockType;
 var useSelect = wp.data.useSelect;
-var InnerBlocks = wp.editor.InnerBlocks;
+var _wp$editor = wp.editor,
+  RichText = _wp$editor.RichText,
+  InnerBlocks = _wp$editor.InnerBlocks;
 registerBlockType('iis/selectable-item', {
   title: __('Selectable item'),
   category: 'iis',
   icon: 'megaphone',
   keywords: [__('selectable', 'iis-blocks'), __('views', 'iis-blocks'), __('item', 'iis-blocks')],
   parent: ['iis/selectable'],
+  attributes: {
+    title: {
+      type: 'string',
+      "default": ''
+    }
+  },
   edit: function edit(_ref) {
-    var clientId = _ref.clientId;
+    var clientId = _ref.clientId,
+      attributes = _ref.attributes,
+      setAttributes = _ref.setAttributes;
     var _useSelect = useSelect(function (select) {
         var _select = select('core/block-editor'),
           getBlockOrder = _select.getBlockOrder,
@@ -3140,7 +3150,20 @@ registerBlockType('iis/selectable-item', {
       hasChildBlocks = _useSelect.hasChildBlocks;
     return /*#__PURE__*/React.createElement(Fragment, null, /*#__PURE__*/React.createElement("div", {
       className: "iis-block-selectable__item"
-    }, /*#__PURE__*/React.createElement("div", {
+    }, /*#__PURE__*/React.createElement(RichText, {
+      tagName: "h1",
+      value: attributes.title,
+      placeholder: __('Title'),
+      style: {
+        margin: 0,
+        marginBottom: '1rem'
+      },
+      onChange: function onChange(title) {
+        return setAttributes({
+          title: title
+        });
+      }
+    }), /*#__PURE__*/React.createElement("div", {
       className: "iis-block-selectable__item__content"
     }, /*#__PURE__*/React.createElement(InnerBlocks, {
       renderAppender: hasChildBlocks ? undefined : function () {
@@ -4679,7 +4702,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".iis-block-selectable__item {\n\tborder: 1px solid #888;\n\tbackground: #f5f4f4;\n\tpadding: 1rem;\n\tmargin-bottom: 1rem;\n}\n\n.iis-block-selectable {\n\tborder: 1px solid #888;\n\tbackground: #fefefe;\n\tpadding: 0 1rem 1rem;\n\n\t.block-list-appender.wp-block {\n\t\tposition: static !important;\n\t\twidth: 40px;\n\t}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
