@@ -14,7 +14,7 @@ function iis_render_selectable( $attributes, $content ) {
 		$attributes
 	);
 
-	$blockId = ( ! empty( $attributes['id'] ) ) ? $attributes['id'] : uniqid('selectable-');
+	$blockId = sanitize_title( ( ! empty( $attributes['id'] ) ) ? $attributes['id'] : uniqid('selectable-') );
 	$class   = $attributes['className'];
 	$dom     = new DOMDocument();
 	$html    = '<?xml encoding="UTF-8">' . $content;
@@ -48,7 +48,7 @@ function iis_render_selectable( $attributes, $content ) {
 
 	ob_start();
 	?>
-	<div class="">
+	<div class="alignwide">
 		<div class="wp-block-iis-selectable <?php echo iis_sanitize_html_classes( $class ); ?> <?php imns( $content_class ); ?>" data-selectable id="<?php echo esc_attr( $blockId ); ?>">
 			<div class="form-control">
 				<fieldset>

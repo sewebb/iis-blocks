@@ -7,7 +7,7 @@ const {
 	InnerBlocks,
 	RichText,
 } = wp.editor;
-const { PanelBody, ToggleControl, SelectControl } = wp.components;
+const { PanelBody, ToggleControl, SelectControl, TextControl } = wp.components;
 const { useEffect } = wp.element;
 
 const shadows = [
@@ -70,6 +70,12 @@ registerBlockType('iis/selectable', {
 			<div className="iis-block-selectable">
 				<InspectorControls>
 					<PanelBody>
+						<TextControl
+							label="Id"
+							value={attributes.id}
+							onChange={(id) => setAttributes({ id })}
+							help={__('Give your selectable a unique id. It will be visible in the URL when linking to items.', 'iis-blocks')}
+						/>
 						<ToggleControl
 							label="Wrapped"
 							checked={attributes.wrapped}
