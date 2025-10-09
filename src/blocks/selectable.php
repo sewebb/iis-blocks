@@ -3,11 +3,12 @@
 function iis_render_selectable( $attributes, $content ) {
 	$attributes = array_merge(
 		[
-			'className'  => '',
-			'wrapped'      => false,
+			'className'   => '',
+			'title'       => '',
+			'wrapped'     => false,
 			'transparent' => false,
-			'shadow' => 'small',
-			'rounded' => false,
+			'shadow'      => 'small',
+			'rounded'     => false,
 		],
 		$attributes
 	);
@@ -45,7 +46,7 @@ function iis_render_selectable( $attributes, $content ) {
 			<fieldset>
 				<div class="row align-items-end">
 					<div class="grid u-m-b-1">
-						<legend>Välj risktema</legend>
+						<legend><?php echo esc_html( $attributes['title'] ); ?></legend>
 						<label for="selactable" class="u-visuallyhidden">Valt risktema</label>
 						<select name="selactable" id="selactable" class="<?php imns( 'a-select a-select--full-width' ); ?>">
 							<?php foreach ( $options as $id => $title ) : ?>

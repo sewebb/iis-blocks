@@ -5,8 +5,8 @@ const { registerBlockType } = wp.blocks;
 const {
 	InspectorControls,
 	InnerBlocks,
+	RichText,
 } = wp.editor;
-const { useSelect } = wp.data;
 const { PanelBody, ToggleControl } = wp.components;
 
 registerBlockType('iis/selectable', {
@@ -18,6 +18,10 @@ registerBlockType('iis/selectable', {
 		align: ['full', 'center'],
 	},
 	attributes: {
+		title: {
+			type: 'string',
+			default: '',
+		},
 		wrapped: {
 			type: 'boolean',
 			default: false,
@@ -57,6 +61,13 @@ registerBlockType('iis/selectable', {
 						/>
 					</PanelBody>
 				</InspectorControls>
+				<RichText
+					tagName="strong"
+					value={attributes.title}
+					placeholder={__('Title')}
+					style={{ margin: 0 }}
+					onChange={(title) => setAttributes({ title })}
+				/>
 				<InnerBlocks
 					allowedBlocks={['iis/selectable-item']}
 					template={[['iis/selectable-item'], ['iis/selectable-item']]}

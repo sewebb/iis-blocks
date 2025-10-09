@@ -3033,8 +3033,8 @@ var __ = wp.i18n.__;
 var registerBlockType = wp.blocks.registerBlockType;
 var _wp$editor = wp.editor,
   InspectorControls = _wp$editor.InspectorControls,
-  InnerBlocks = _wp$editor.InnerBlocks;
-var useSelect = wp.data.useSelect;
+  InnerBlocks = _wp$editor.InnerBlocks,
+  RichText = _wp$editor.RichText;
 var _wp$components = wp.components,
   PanelBody = _wp$components.PanelBody,
   ToggleControl = _wp$components.ToggleControl;
@@ -3047,6 +3047,10 @@ registerBlockType('iis/selectable', {
     align: ['full', 'center']
   },
   attributes: {
+    title: {
+      type: 'string',
+      "default": ''
+    },
     wrapped: {
       type: 'boolean',
       "default": false
@@ -3093,7 +3097,19 @@ registerBlockType('iis/selectable', {
           rounded: rounded
         });
       }
-    }))), /*#__PURE__*/React.createElement(InnerBlocks, {
+    }))), /*#__PURE__*/React.createElement(RichText, {
+      tagName: "strong",
+      value: attributes.title,
+      placeholder: __('Title'),
+      style: {
+        margin: 0
+      },
+      onChange: function onChange(title) {
+        return setAttributes({
+          title: title
+        });
+      }
+    }), /*#__PURE__*/React.createElement(InnerBlocks, {
       allowedBlocks: ['iis/selectable-item'],
       template: [['iis/selectable-item'], ['iis/selectable-item']],
       orientation: "horizontal",
@@ -4702,7 +4718,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".iis-block-selectable__item {\n\tborder: 1px solid #888;\n\tbackground: #f5f4f4;\n\tpadding: 1rem;\n\tmargin-bottom: 1rem;\n}\n\n.iis-block-selectable {\n\tborder: 1px solid #888;\n\tbackground: #fefefe;\n\tpadding: 0 1rem 1rem;\n\n\t.block-list-appender.wp-block {\n\t\tposition: static !important;\n\t\twidth: 40px;\n\t}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".iis-block-selectable__item {\n\tborder: 1px solid #888;\n\tbackground: #f5f4f4;\n\tpadding: 1rem;\n\tmargin-bottom: 1rem;\n}\n\n.iis-block-selectable {\n\tborder: 1px solid #888;\n\tbackground: #fefefe;\n\tpadding: 1rem;\n\n\t.block-list-appender.wp-block {\n\t\tposition: static !important;\n\t\twidth: 40px;\n\t}\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
