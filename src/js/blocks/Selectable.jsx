@@ -7,8 +7,23 @@ const {
 	InnerBlocks,
 	RichText,
 } = wp.editor;
-const { PanelBody, ToggleControl } = wp.components;
+const { PanelBody, ToggleControl, SelectControl } = wp.components;
 const { useEffect } = wp.element;
+
+const shadows = [
+	{
+		label: 'None',
+		value: 'none',
+	},
+	{
+		label: 'Small',
+		value: 'small',
+	},
+	{
+		label: 'Large',
+		value: 'large',
+	},
+];
 
 registerBlockType('iis/selectable', {
 	title: __('Selectable'),
@@ -69,6 +84,12 @@ registerBlockType('iis/selectable', {
 							label="Rounded"
 							checked={attributes.rounded}
 							onChange={(rounded) => setAttributes({ rounded })}
+						/>
+						<SelectControl
+							label="Shadow"
+							onChange={(shadow) => setAttributes({ shadow })}
+							options={shadows}
+							value={attributes.shadow}
 						/>
 					</PanelBody>
 				</InspectorControls>
