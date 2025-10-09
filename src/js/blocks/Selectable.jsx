@@ -7,8 +7,19 @@ const {
 	InnerBlocks,
 	RichText,
 } = wp.editor;
-const { PanelBody, ToggleControl, SelectControl, TextControl } = wp.components;
+const {
+	PanelBody,
+	ToggleControl,
+	SelectControl,
+	TextControl,
+} = wp.components;
 const { useEffect } = wp.element;
+
+function shortId() {
+	return (
+		Date.now().toString(36) + Math.random().toString(36).slice(2, 6)
+	);
+}
 
 const shadows = [
 	{
@@ -59,12 +70,12 @@ registerBlockType('iis/selectable', {
 			default: false,
 		},
 	},
-	edit({ attributes, setAttributes, clientId }) {
+	edit({ attributes, setAttributes }) {
 		useEffect(() => {
 			if (!attributes.id) {
-				setAttributes({ id: `selectable-${clientId}` });
+				setAttributes({ id: `selectable-${shortId()}` });
 			}
-		}, [clientId, attributes.id]);
+		}, [attributes.id]);
 
 		return (
 			<div className="iis-block-selectable">
