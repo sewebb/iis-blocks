@@ -13,7 +13,7 @@ const {
 	SelectControl,
 	TextControl,
 } = wp.components;
-const { useEffect } = wp.element;
+const { useEffect, Fragment } = wp.element;
 
 function shortId() {
 	return (
@@ -57,7 +57,7 @@ registerBlockType('iis/selectable', {
 			type: 'boolean',
 			default: false,
 		},
-		transparent: {
+		background: {
 			type: 'boolean',
 			default: false,
 		},
@@ -93,21 +93,25 @@ registerBlockType('iis/selectable', {
 							onChange={(wrapped) => setAttributes({ wrapped })}
 						/>
 						<ToggleControl
-							label="Transparent"
-							checked={attributes.transparent}
-							onChange={(transparent) => setAttributes({ transparent })}
+							label="Background"
+							checked={attributes.background}
+							onChange={(background) => setAttributes({ background })}
 						/>
-						<ToggleControl
-							label="Rounded"
-							checked={attributes.rounded}
-							onChange={(rounded) => setAttributes({ rounded })}
-						/>
-						<SelectControl
-							label="Shadow"
-							onChange={(shadow) => setAttributes({ shadow })}
-							options={shadows}
-							value={attributes.shadow}
-						/>
+						{attributes.background && (
+							<Fragment>
+								<ToggleControl
+									label="Rounded"
+									checked={attributes.rounded}
+									onChange={(rounded) => setAttributes({ rounded })}
+								/>
+								<SelectControl
+									label="Shadow"
+									onChange={(shadow) => setAttributes({ shadow })}
+									options={shadows}
+									value={attributes.shadow}
+								/>
+							</Fragment>
+						)}
 					</PanelBody>
 				</InspectorControls>
 				<RichText

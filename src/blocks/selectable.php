@@ -7,7 +7,7 @@ function iis_render_selectable( $attributes, $content ) {
 			'id'          => '',
 			'title'       => '',
 			'wrapped'     => false,
-			'transparent' => false,
+			'background'  => false,
 			'shadow'      => 'small',
 			'rounded'     => false,
 		],
@@ -38,12 +38,16 @@ function iis_render_selectable( $attributes, $content ) {
 
 	$content_class = 'o-selectable';
 
-	if ( $attributes['rounded'] ) {
+	if ( $attributes['rounded'] && $attributes['background'] ) {
 		$content_class .= ' o-selectable--border-radius';
 	}
 
-	if ( $attributes['shadow'] !== 'none' ) {
+	if ( $attributes['shadow'] !== 'none' && $attributes['background'] ) {
 		$content_class .= ' o-selectable--shadow-' . $attributes['shadow'];
+	}
+
+	if ( $attributes['background'] ) {
+		$content_class .= ' background-snow';
 	}
 
 	ob_start();
