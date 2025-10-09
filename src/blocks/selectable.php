@@ -4,6 +4,7 @@ function iis_render_selectable( $attributes, $content ) {
 	$attributes = array_merge(
 		[
 			'className'   => '',
+			'id'          => '',
 			'title'       => '',
 			'wrapped'     => false,
 			'transparent' => false,
@@ -13,9 +14,10 @@ function iis_render_selectable( $attributes, $content ) {
 		$attributes
 	);
 
-	$class = $attributes['className'];
-	$dom   = new DOMDocument();
-	$html  = '<?xml encoding="UTF-8">' . $content;
+	$blockId = ( ! empty( $attributes['id'] ) ) ? $attributes['id'] : uniqid('selectable-');
+	$class   = $attributes['className'];
+	$dom     = new DOMDocument();
+	$html    = '<?xml encoding="UTF-8">' . $content;
 
 	$dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
 
@@ -47,8 +49,8 @@ function iis_render_selectable( $attributes, $content ) {
 				<div class="row align-items-end">
 					<div class="grid u-m-b-1">
 						<legend><?php echo esc_html( $attributes['title'] ); ?></legend>
-						<label for="selactable" class="u-visuallyhidden">Valt risktema</label>
-						<select name="selactable" id="selactable" class="<?php imns( 'a-select a-select--full-width' ); ?>">
+						<label for="<?php echo esc_attr( $blockId ); ?>" class="u-visuallyhidden"><?php echo esc_html( $attributes['title'] ); ?></label>
+						<select name="<?php echo esc_attr( $blockId ); ?>" id="<?php echo esc_attr( $blockId ); ?>" class="<?php imns( 'a-select a-select--full-width' ); ?>">
 							<?php foreach ( $options as $id => $title ) : ?>
 								<option value="<?php echo $id; ?>"><?php echo $title; ?></option>
 							<?php endforeach; ?>

@@ -8,6 +8,7 @@ const {
 	RichText,
 } = wp.editor;
 const { PanelBody, ToggleControl } = wp.components;
+const { useEffect } = wp.element;
 
 registerBlockType('iis/selectable', {
 	title: __('Selectable'),
@@ -18,6 +19,10 @@ registerBlockType('iis/selectable', {
 		align: ['full', 'center'],
 	},
 	attributes: {
+		id: {
+			type: 'string',
+			default: '',
+		},
 		title: {
 			type: 'string',
 			default: '',
@@ -39,7 +44,13 @@ registerBlockType('iis/selectable', {
 			default: false,
 		},
 	},
-	edit({ attributes, setAttributes }) {
+	edit({ attributes, setAttributes, clientId }) {
+		useEffect(() => {
+			if (!attributes.id) {
+				setAttributes({ id: `selectable-${clientId}` });
+			}
+		}, [clientId, attributes.id]);
+
 		return (
 			<div className="iis-block-selectable">
 				<InspectorControls>
