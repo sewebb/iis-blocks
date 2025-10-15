@@ -70,7 +70,7 @@ function iis_render_selectable( $attributes, $content ) {
 							</div>
 							<div class="grid-md-auto u-m-b-1">
 								<button class="<?php imns( 'a-button a-button--icon' ); ?> u-m-r-1" data-selectable-all>
-								<span class="<?php imns( 'a-button__text' ); ?>">
+								<span class="<?php imns( 'a-button__text' ); ?>" data-label-pressed="Visa en i taget" data-label-unpressed="Visa alla">
 									Visa alla
 								</span>
 									<svg class="<?php imns( 'icon a-button__icon' ); ?>">
@@ -78,7 +78,7 @@ function iis_render_selectable( $attributes, $content ) {
 									</svg>
 								</button>
 								<button class="<?php imns( 'a-button a-button--ocean-light a-button--icon' ); ?>" data-selectable-copy>
-								<span class="<?php imns( 'a-button__text' ); ?>">
+								<span class="<?php imns( 'a-button__text' ); ?>" data-copied="Kopierad!">
 									Kopiera länk
 								</span>
 									<svg class="<?php imns( 'icon a-button__icon' ); ?>">
