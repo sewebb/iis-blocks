@@ -6,7 +6,7 @@ function iis_render_selectable( $attributes, $content ) {
 			'className'   => '',
 			'id'          => '',
 			'title'       => '',
-			'wrapped'     => false,
+			'full'        => false,
 			'background'  => false,
 			'shadow'      => 'small',
 			'rounded'     => false,
@@ -47,53 +47,53 @@ function iis_render_selectable( $attributes, $content ) {
 	}
 
 	if ( $attributes['background'] ) {
-		$content_class .= ' background-snow';
+		$content_class .= ' !background-snow';
 	}
+
+	$wrapper_class = $attributes['full'] ? 'alignfull' : 'alignwide';
 
 	ob_start();
 	?>
-	<div class="alignfull">
-		<?php if ( $attributes['wrapped'] ) : ?><div class="wrapper"><?php endif; ?>
-			<div class="wp-block-iis-selectable <?php echo iis_sanitize_html_classes( $class ); ?> <?php imns( $content_class ); ?>" data-selectable id="<?php echo esc_attr( $blockId ); ?>">
-				<div class="form-control">
-					<fieldset>
-						<div class="row align-items-end">
-							<div class="grid u-m-b-1">
-								<legend><?php echo esc_html( $attributes['title'] ); ?></legend>
-								<label for="<?php echo esc_attr( $blockId ); ?>-select" class="u-visuallyhidden"><?php echo esc_html( $attributes['title'] ); ?></label>
-								<select data-selectable-select name="<?php echo esc_attr( $blockId ); ?>-select" id="<?php echo esc_attr( $blockId ); ?>-select" class="<?php imns( 'a-select a-select--full-width' ); ?>">
-									<option value="" disabled>Alla</option>
-									<?php foreach ( $options as $id => $title ) : ?>
-										<option value="<?php echo $id; ?>"><?php echo $title; ?></option>
-									<?php endforeach; ?>
-								</select>
-							</div>
-							<div class="grid-md-auto u-m-b-1">
-								<button class="<?php imns( 'a-button a-button--icon' ); ?> u-m-r-1" data-selectable-all>
+	<div class="<?php echo iis_sanitize_html_classes( $wrapper_class ); ?>">
+		<div class="wp-block-iis-selectable <?php echo iis_sanitize_html_classes( $class ); ?> <?php imns( $content_class ); ?>" data-selectable id="<?php echo esc_attr( $blockId ); ?>">
+			<div class="form-control">
+				<fieldset>
+					<div class="row align-items-end">
+						<div class="grid u-m-b-1">
+							<legend><?php echo esc_html( $attributes['title'] ); ?></legend>
+							<label for="<?php echo esc_attr( $blockId ); ?>-select" class="u-visuallyhidden"><?php echo esc_html( $attributes['title'] ); ?></label>
+							<select data-selectable-select name="<?php echo esc_attr( $blockId ); ?>-select" id="<?php echo esc_attr( $blockId ); ?>-select" class="<?php imns( 'a-select a-select--full-width' ); ?>">
+								<option value="" disabled>Alla</option>
+								<?php foreach ( $options as $id => $title ) : ?>
+									<option value="<?php echo $id; ?>"><?php echo $title; ?></option>
+								<?php endforeach; ?>
+							</select>
+						</div>
+						<div class="grid-md-auto u-m-b-1">
+							<button class="<?php imns( 'a-button a-button--icon' ); ?> u-m-r-1" data-selectable-all>
 								<span class="<?php imns( 'a-button__text' ); ?>" data-label-pressed="Visa en i taget" data-label-unpressed="Visa alla">
 									Visa alla
 								</span>
-									<svg class="<?php imns( 'icon a-button__icon' ); ?>">
-										<use xlink:href="#icon-hamburger"></use>
-									</svg>
-								</button>
-								<button class="<?php imns( 'a-button a-button--ocean-light a-button--icon' ); ?>" data-selectable-copy>
+								<svg class="<?php imns( 'icon a-button__icon' ); ?>">
+									<use xlink:href="#icon-hamburger"></use>
+								</svg>
+							</button>
+							<button class="<?php imns( 'a-button a-button--ocean-light a-button--icon' ); ?>" data-selectable-copy>
 								<span class="<?php imns( 'a-button__text' ); ?>" data-copied="Kopierad!">
 									Kopiera länk
 								</span>
-									<svg class="<?php imns( 'icon a-button__icon' ); ?>">
-										<use xlink:href="#icon-link"></use>
-									</svg>
-								</button>
-							</div>
+								<svg class="<?php imns( 'icon a-button__icon' ); ?>">
+									<use xlink:href="#icon-link"></use>
+								</svg>
+							</button>
 						</div>
-					</fieldset>
-				</div>
-				<div data-selectable-items>
-					<?php echo implode( "\n", $parsedItems ); ?>
-				</div>
+					</div>
+				</fieldset>
 			</div>
-		<?php if ( $attributes['wrapped'] ) : ?></div><?php endif; ?>
+			<div data-selectable-items>
+				<?php echo implode( "\n", $parsedItems ); ?>
+			</div>
+		</div>
 	</div>
 	<?php
 

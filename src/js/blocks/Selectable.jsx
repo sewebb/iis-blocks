@@ -53,7 +53,7 @@ registerBlockType('iis/selectable', {
 			type: 'string',
 			default: '',
 		},
-		wrapped: {
+		full: {
 			type: 'boolean',
 			default: false,
 		},
@@ -88,9 +88,9 @@ registerBlockType('iis/selectable', {
 							help={__('Give your selectable a unique id. It will be visible in the URL when linking to items.', 'iis-blocks')}
 						/>
 						<ToggleControl
-							label="Wrapped"
-							checked={attributes.wrapped}
-							onChange={(wrapped) => setAttributes({ wrapped })}
+							label="Full width"
+							checked={attributes.full}
+							onChange={(full) => setAttributes({ full })}
 						/>
 						<ToggleControl
 							label="Background"
