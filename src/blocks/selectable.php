@@ -47,7 +47,7 @@ function iis_render_selectable( $attributes, $content ) {
 	}
 
 	if ( $attributes['background'] ) {
-		$content_class .= ' !background-snow';
+		$content_class .= ' !background-snow o-selectable--padded';
 	}
 
 	$wrapper_class = $attributes['full'] ? 'alignfull' : 'alignwide';
