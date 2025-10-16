@@ -5,7 +5,7 @@
  * Description: Block library from Internetstiftelsen
  * Author: Internetstiftelsen
  * Author URI: https://internetstiftelsen.se
- * Version: 7.0.30
+ * Version: 7.0.31
  * Plugin URI: https://github.com/sewebb/iis-blocks
  * Text Domain: iis-blocks
  * Domain Path: /languages/
@@ -77,7 +77,7 @@ function iis_blocks_categories( $categories ) {
 	);
 }
 
-add_filter( 'block_categories', 'iis_blocks_categories', 10 );
+add_filter( 'block_categories_all', 'iis_blocks_categories', 10 );
 add_action( 'init', 'iis_blocks_assets' );
 
 function iis_blocks_load_textdomain() {
