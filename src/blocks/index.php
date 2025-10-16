@@ -71,3 +71,5 @@ require_once __DIR__ . '/visualization.php';
 require_once __DIR__ . '/height-limiter.php';
 require_once __DIR__ . '/tabs.php';
 require_once __DIR__ . '/tab.php';
+require_once __DIR__ . '/selectable.php';
+require_once __DIR__ . '/selectable-item.php';
