@@ -17,9 +17,9 @@ function iis_render_selectable( $attributes, $content ) {
 	$blockId = sanitize_title( ( ! empty( $attributes['id'] ) ) ? $attributes['id'] : uniqid('selectable-') );
 	$class   = $attributes['className'];
 	$dom     = new DOMDocument();
-	$html    = '<?xml encoding="UTF-8">' . $content;
+	$html    = '<!DOCTYPE html><html><head><meta charset="UTF-8"></head><body>' . $content . '</body></html>';
 
-	$dom->loadHTML($html, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+	$dom->loadHTML($html, LIBXML_NOERROR);
 
 	$xpath       = new DOMXPath( $dom );
 	$items       = $xpath->query( '//div[@data-selectable-item]' );
