@@ -3,9 +3,11 @@ const { Fragment } = wp.element;
 const { registerBlockType } = wp.blocks;
 const { useSelect } = wp.data;
 const {
-	RichText,
 	InnerBlocks,
 } = wp.editor;
+const {
+	TextControl,
+} = wp.components;
 
 registerBlockType('iis/selectable-item', {
 	title: __('Selectable item'),
@@ -38,11 +40,10 @@ registerBlockType('iis/selectable-item', {
 		return (
 			<Fragment>
 				<div className="iis-block-selectable__item">
-					<RichText
-						tagName="h1"
+					<TextControl
+						label="Title"
 						value={attributes.title}
 						placeholder={__('Title')}
-						style={{ margin: 0, marginBottom: '1rem' }}
 						onChange={(title) => setAttributes({ title })}
 					/>
 					<div className="iis-block-selectable__item__content">

@@ -30,7 +30,7 @@ function iis_render_selectable( $attributes, $content ) {
 
 	foreach ( $items as $item ) {
 		$id           = $item->getAttribute( 'id' );
-		$title        = $item->getElementsByTagName( 'h2' )->item( 0 )->textContent;
+		$title        = $item->getAttribute( 'data-selectable-item' );
 		$options[$id] = $title;
 
 		$item->setAttribute( 'id', $blockId . '-' . $id );
