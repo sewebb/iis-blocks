@@ -6,6 +6,8 @@ const {
 	InspectorControls,
 	InnerBlocks,
 	RichText,
+	withColors,
+	PanelColorSettings,
 } = wp.editor;
 const {
 	PanelBody,
@@ -69,8 +71,23 @@ registerBlockType('iis/selectable', {
 			type: 'boolean',
 			default: false,
 		},
+		buttonColor: {
+			type: 'string',
+			default: 'ocean',
+		},
+		copyButtonColor: {
+			type: 'string',
+			default: 'ocean-light',
+		},
 	},
-	edit({ attributes, setAttributes }) {
+	edit: withColors({ buttonColor: 'color', copyButtonColor: 'color' })(({
+		attributes,
+		setAttributes,
+		buttonColor,
+		setButtonColor,
+		copyButtonColor,
+		setCopyButtonColor,
+	}) => {
 		useEffect(() => {
 			if (!attributes.id) {
 				setAttributes({ id: `selectable-${shortId()}` });
@@ -113,6 +130,21 @@ registerBlockType('iis/selectable', {
 							</Fragment>
 						)}
 					</PanelBody>
+					<PanelColorSettings
+						title={__('Colors')}
+						colorSettings={[
+							{
+								value: buttonColor.color,
+								onChange: setButtonColor,
+								label: __('"Show all" Button Color'),
+							},
+							{
+								value: copyButtonColor.color,
+								onChange: setCopyButtonColor,
+								label: __('"Copy" Button Color'),
+							},
+						]}
+					/>
 				</InspectorControls>
 				<RichText
 					tagName="strong"
@@ -131,7 +163,7 @@ registerBlockType('iis/selectable', {
 				/>
 			</div>
 		);
-	},
+	}),
 	save() {
 		return <InnerBlocks.Content />;
 	},

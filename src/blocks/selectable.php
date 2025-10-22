@@ -3,13 +3,15 @@
 function iis_render_selectable( $attributes, $content ) {
 	$attributes = array_merge(
 		[
-			'className'   => '',
-			'id'          => '',
-			'title'       => '',
-			'full'        => false,
-			'background'  => false,
-			'shadow'      => 'small',
-			'rounded'     => false,
+			'className'       => '',
+			'id'              => '',
+			'title'           => '',
+			'full'            => false,
+			'background'      => false,
+			'shadow'          => 'small',
+			'rounded'         => false,
+			'buttonColor'     => 'ocean',
+			'copyButtonColor' => 'ocean-light',
 		],
 		$attributes
 	);
@@ -70,7 +72,7 @@ function iis_render_selectable( $attributes, $content ) {
 							</select>
 						</div>
 						<div class="grid-md-auto u-m-b-1">
-							<button class="<?php imns( 'a-button a-button--icon' ); ?> u-m-r-1" data-selectable-all>
+							<button class="<?php imns( 'a-button a-button--icon a-button--' . $attributes['buttonColor']); ?> u-m-r-1" data-selectable-all>
 								<span class="<?php imns( 'a-button__text' ); ?>" data-label-pressed="Visa en i taget" data-label-unpressed="Visa alla">
 									Visa alla
 								</span>
@@ -78,7 +80,7 @@ function iis_render_selectable( $attributes, $content ) {
 									<use xlink:href="#icon-hamburger"></use>
 								</svg>
 							</button>
-							<button class="<?php imns( 'a-button a-button--ocean-light a-button--icon' ); ?>" data-selectable-copy>
+							<button class="<?php imns( 'a-button a-button--' . $attributes['copyButtonColor'] . ' a-button--icon' ); ?>" data-selectable-copy>
 								<span class="<?php imns( 'a-button__text' ); ?>" data-copied="Kopierad!">
 									Kopiera länk
 								</span>
