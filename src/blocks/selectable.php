@@ -12,6 +12,7 @@ function iis_render_selectable( $attributes, $content ) {
 			'rounded'         => false,
 			'buttonColor'     => 'ocean',
 			'copyButtonColor' => 'ocean-light',
+			'articleIndent'   => false,
 		],
 		$attributes
 	);
@@ -46,6 +47,10 @@ function iis_render_selectable( $attributes, $content ) {
 
 	if ( $attributes['shadow'] !== 'none' && $attributes['background'] ) {
 		$content_class .= ' o-selectable--shadow-' . $attributes['shadow'];
+	}
+
+	if ( $attributes['articleIndent'] ) {
+		$content_class .= ' o-selectable--article-indent';
 	}
 
 	if ( $attributes['background'] ) {

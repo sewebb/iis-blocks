@@ -79,6 +79,10 @@ registerBlockType('iis/selectable', {
 			type: 'string',
 			default: 'ocean-light',
 		},
+		articleIndent: {
+			type: 'boolean',
+			default: false,
+		},
 	},
 	edit: withColors({ buttonColor: 'color', copyButtonColor: 'color' })(({
 		attributes,
@@ -103,6 +107,11 @@ registerBlockType('iis/selectable', {
 							value={attributes.id}
 							onChange={(id) => setAttributes({ id })}
 							help={__('Give your selectable a unique id. It will be visible in the URL when linking to items.', 'iis-blocks')}
+						/>
+						<ToggleControl
+							label="Article indent"
+							checked={attributes.articleIndent}
+							onChange={(articleIndent) => setAttributes({ articleIndent })}
 						/>
 						<ToggleControl
 							label="Full width"
