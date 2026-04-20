@@ -42,8 +42,8 @@ function iis_render_block_section( $attributes, $content ) {
 		<div class="<?php imns( $content_class ); ?>">
 			<div class="row">
 				<div class="grid-18">
-					<div class="<?php imns( 'article' ); ?>">
-						<div class="<?php imns( 'article__content' ); ?>">
+					<div class="<?php imns( 'article' ); ?>">AA
+						<div class="<?php imns( 'article__content article__content--full-width' ); ?>">
 							<?php echo $content; ?>
 						</div>
 					</div>
