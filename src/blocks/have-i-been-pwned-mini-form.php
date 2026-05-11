@@ -127,15 +127,15 @@ function internetkunskap_render_have_i_been_pwned_mini_form( $attributes, $conte
 				>
 					<input type="hidden" name="hibp-search" value="1">
 					<label for="<?php echo esc_attr( $input_id ); ?>" class="u-visuallyhidden">Ange din e-postadress</label>
-					<div class="internetkunskap-m-input-group">
-						<span class="internetkunskap-m-input-group__label" aria-hidden="true">
+					<div class="<?php imns( 'm-input-group' ); ?>">
+						<span class="<?php imns( 'm-input-group__label' ); ?>" aria-hidden="true">
 							<svg class="icon u-icon--medium">
 								<use xlink:href="#icon-search"></use>
 							</svg>
 						</span>
-						<input name="account" type="email" required placeholder="Ange din e-postadress" id="<?php echo esc_attr( $input_id ); ?>" class="internetkunskap-a-input">
-						<button type="submit" class="internetkunskap-a-button internetkunskap-a-button--input-group internetkunskap-a-button--ocean-light">
-							<span class="internetkunskap-a-button__text">Sök</span>
+						<input name="account" type="email" required placeholder="Ange din e-postadress" id="<?php echo esc_attr( $input_id ); ?>" class="<?php imns( 'a-input' ); ?>">
+						<button type="submit" class="<?php imns( 'a-button a-button--input-group a-button--ocean-light' ); ?>">
+							<span class="<?php imns( 'a-button__text' ); ?>">Sök</span>
 						</button>
 					</div>
 				</form>
