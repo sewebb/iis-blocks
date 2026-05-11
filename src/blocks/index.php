@@ -73,3 +73,4 @@ require_once __DIR__ . '/tabs.php';
 require_once __DIR__ . '/tab.php';
 require_once __DIR__ . '/selectable.php';
 require_once __DIR__ . '/selectable-item.php';
+require_once __DIR__ . '/have-i-been-pwned-mini-form.php';

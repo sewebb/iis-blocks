@@ -24,6 +24,7 @@ import './blocks/Tabs';
 import './blocks/Tab';
 import './blocks/Selectable';
 import './blocks/SelectableItem';
+import './blocks/HaveIBeenPwnedMiniForm';
 
 const enableToolbarButtonOnBlocks = [
 	'core/separator',
