@@ -329,13 +329,7 @@ registerBlockType('internetkunskap/have-i-been-pwned-mini-form', {
 							<p>{attributes.figcaption}</p>
 						)}
 						<label style={{ display: 'block', marginTop: '16px' }}>
-							<span className="u-visuallyhidden">{__('Ange din e-postadress', 'internetkunskap')}</span>
 							<div style={inputGroupStyle}>
-								<span style={labelStyle}>
-									<svg className="icon" aria-hidden="true">
-										<use xlinkHref="#icon-search" />
-									</svg>
-								</span>
 								<input
 									disabled
 									placeholder={__('Ange din e-postadress', 'internetkunskap')}
