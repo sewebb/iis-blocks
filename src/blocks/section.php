@@ -6,7 +6,7 @@ function iis_render_block_section( $attributes, $content ) {
 			'white'           => false,
 			'highlightColor'  => 'ruby',
 			'decoration'      => null,
-			'style'           => 'landing-page',
+			'sectionStyle'    => 'landing-page',
 			'backgroundColor' => null,
 			'className'       => '',
 		],
@@ -16,7 +16,7 @@ function iis_render_block_section( $attributes, $content ) {
 	$class_name    = 'o-section';
 	$content_class = '!wrapper o-section__content';
 
-	if ( $attributes['style'] === 'landing-page' ) {
+	if ( $attributes['sectionStyle'] === 'landing-page' ) {
 		if ( $attributes['white'] ) {
 			$class_name .= ' o-section--white';
 		}

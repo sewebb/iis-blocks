@@ -8,7 +8,7 @@ const {
 	InnerBlocks,
 	withColors,
 	PanelColorSettings,
-} = wp.editor;
+} = wp.blockEditor;
 const { PanelBody, ToggleControl, SelectControl } = wp.components;
 
 registerBlockType('iis/section', {
@@ -33,7 +33,7 @@ registerBlockType('iis/section', {
 			type: 'string',
 			default: null,
 		},
-		style: {
+		sectionStyle: {
 			type: 'string',
 			default: 'landing-page',
 		},
@@ -59,7 +59,7 @@ registerBlockType('iis/section', {
 			padding: '20px 0',
 		};
 
-		if (attributes.style === 'colored-background' && backgroundColor) {
+		if (attributes.sectionStyle === 'colored-background' && backgroundColor) {
 			style.backgroundColor = backgroundColor.color;
 		}
 
@@ -71,7 +71,7 @@ registerBlockType('iis/section', {
 					<PanelBody title={__('Design', 'iis-blocks')}>
 						<SelectControl
 							label={__('Style', 'iis-blocks')}
-							onChange={(val) => setAttributes({ style: val })}
+							onChange={(val) => setAttributes({ sectionStyle: val })}
 							options={[
 								{
 									label: __('Landing page', 'iis-blocks'),
@@ -82,9 +82,9 @@ registerBlockType('iis/section', {
 									value: 'colored-background',
 								},
 							]}
-							value={attributes.style}
+							value={attributes.sectionStyle}
 						/>
-						{attributes.style === 'landing-page' && (
+						{attributes.sectionStyle === 'landing-page' && (
 							<Fragment>
 								<ToggleControl
 									label={__('White background', 'iis-blocks')}
@@ -113,7 +113,7 @@ registerBlockType('iis/section', {
 							</Fragment>
 						)}
 					</PanelBody>
-					{attributes.style === 'landing-page' && (
+					{attributes.sectionStyle === 'landing-page' && (
 						<PanelColorSettings
 							title={__('Color settings', 'iis-blocks')}
 							colorSettings={[
@@ -142,7 +142,7 @@ registerBlockType('iis/section', {
 							]}
 						/>
 					)}
-					{attributes.style === 'colored-background' && (
+					{attributes.sectionStyle === 'colored-background' && (
 						<PanelColorSettings
 							title={__('Color settings', 'iis-blocks')}
 							colorSettings={[
