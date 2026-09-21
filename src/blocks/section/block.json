@@ -1,0 +1,46 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/section",
+    "title": "Section",
+    "category": "iis",
+    "icon": "align-center",
+    "keywords": [
+        "section"
+    ],
+    "attributes": {
+        "white": {
+            "type": "boolean",
+            "default": false
+        },
+        "align": {
+            "type": "string",
+            "default": "full"
+        },
+        "highlightColor": {
+            "type": "string",
+            "default": "ruby-light"
+        },
+        "decoration": {
+            "type": "string",
+            "default": null
+        },
+        "sectionStyle": {
+            "type": "string",
+            "default": "landing-page"
+        },
+        "backgroundColor": {
+            "type": "string",
+            "default": null
+        }
+    },
+    "supports": {
+        "align": [
+            "full"
+        ]
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "render": "file:./render.php"
+}

@@ -1,0 +1,45 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "iis/icon",
+  "title": "Icon",
+  "category": "iis",
+  "icon": "megaphone",
+  "keywords": [
+    "icon"
+  ],
+  "attributes": {
+    "size": {
+      "type": "string",
+      "default": "large"
+    },
+    "icon": {
+      "type": "string",
+      "default": null
+    },
+    "title": {
+      "type": "string",
+      "default": null
+    },
+    "text": {
+      "type": "string",
+      "default": null
+    },
+    "iconColor": {
+      "type": "string",
+      "default": "cyberspace"
+    },
+    "url": {
+      "type": "string",
+      "default": null
+    },
+    "newWindow": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "textdomain": "iis-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

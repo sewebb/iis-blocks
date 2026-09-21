@@ -213,6 +213,51 @@ msgstr "Färg på rektangel"
 msgid "Background Color"
 msgstr "Bakgrundsfärg"
 
+#: src/blocks/postarchive/block.json
+msgctxt "block title"
+msgid "Post Archive"
+msgstr "Postarkiv"
+
+#: src/blocks/postarchive/block.json
+msgctxt "block keyword"
+msgid "archive"
+msgstr "arkiv"
+
+#: src/blocks/column/block.json src/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "column"
+msgstr "kolumn"
+
+#: src/blocks/column/block.json src/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "columns"
+msgstr "kolumner"
+
+#: src/blocks/button/block.json
+msgctxt "block title"
+msgid "Button"
+msgstr "Knapp"
+
+#: src/blocks/buttons/block.json
+msgctxt "block title"
+msgid "Buttons"
+msgstr "Knappar"
+
+#: src/blocks/column/block.json
+msgctxt "block title"
+msgid "Column"
+msgstr "Kolumn"
+
+#: src/blocks/grid/block.json
+msgctxt "block title"
+msgid "Grid"
+msgstr "Rutnät"
+
+#: src/blocks/icon/block.json
+msgctxt "block title"
+msgid "Icon"
+msgstr "Ikon"
+
 #~ msgid "Submenu"
 #~ msgstr "Undermeny"
 

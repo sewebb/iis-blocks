@@ -1,0 +1,34 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/height-limiter",
+    "title": "Height limiter",
+    "category": "iis",
+    "icon": "image-flip-vertical",
+    "keywords": [
+        "height",
+        "limit",
+        "limiter"
+    ],
+    "attributes": {
+        "height": {
+            "type": "number",
+            "default": 300
+        },
+        "maximize_text": {
+            "type": "string",
+            "default": "Visa mer"
+        },
+        "minimize_text": {
+            "type": "string",
+            "default": "Visa mindre"
+        },
+        "backgroundColor": {
+            "type": "string",
+            "default": false
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

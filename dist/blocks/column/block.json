@@ -1,0 +1,26 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "iis/column",
+  "title": "Column",
+  "category": "iis",
+  "icon": "megaphone",
+  "keywords": [
+    "grid",
+    "columns",
+    "column"
+  ],
+  "parent": [
+    "iis/grid"
+  ],
+  "attributes": {
+    "columnWidth": {
+      "type": "string",
+      "default": "1/2"
+    }
+  },
+  "textdomain": "iis-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

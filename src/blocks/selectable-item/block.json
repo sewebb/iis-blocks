@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/selectable-item",
+    "title": "Selectable item",
+    "category": "iis",
+    "icon": "megaphone",
+    "keywords": [
+        "selectable",
+        "views",
+        "item"
+    ],
+    "parent": [
+        "iis/selectable"
+    ],
+    "attributes": {
+        "title": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "render": "file:./render.php"
+}

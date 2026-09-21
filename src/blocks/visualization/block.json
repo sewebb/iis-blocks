@@ -1,0 +1,41 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/visualization",
+    "title": "Visualization",
+    "category": "iis",
+    "icon": "welcome-view-site",
+    "keywords": [
+        "visualization"
+    ],
+    "supports": {
+        "align": [
+            "right"
+        ]
+    },
+    "attributes": {
+        "backgroundColor": {
+            "type": "string",
+            "default": false
+        },
+        "padding": {
+            "type": "string",
+            "default": false
+        },
+        "link": {
+            "type": "string",
+            "default": ""
+        },
+        "target": {
+            "type": "string",
+            "default": "_self"
+        },
+        "linkText": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

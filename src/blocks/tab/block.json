@@ -1,0 +1,26 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/tab",
+    "title": "Tab",
+    "category": "iis",
+    "icon": "category",
+    "keywords": [
+        "tabb",
+        "tabs",
+        "tabbar"
+    ],
+    "parent": [
+        "iis/tabs"
+    ],
+    "attributes": {
+        "tab_title": {
+            "type": "string",
+            "default": null
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "render": "file:./render.php"
+}

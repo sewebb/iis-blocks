@@ -9,10 +9,11 @@
  * Plugin URI: https://github.com/sewebb/iis-blocks
  * Text Domain: iis-blocks
  * Domain Path: /languages/
+ * Requires at least: 6.6
  */
 
 require_once __DIR__ . '/src/classes/index.php';
-require_once __DIR__ . '/src/blocks/index.php';
+require_once __DIR__ . '/src/helpers.php';
 
 /**
  * Register image sizes
@@ -27,30 +28,36 @@ function iis_blocks_register_sizes() {
 
 add_action( 'after_setup_theme', 'iis_blocks_register_sizes' );
 
-function iis_blocks_assets() {
-	wp_register_script(
+function iis_blocks_register_blocks() {
+	foreach ( glob( __DIR__ . '/dist/blocks/*/block.json' ) as $metadata_file ) {
+		register_block_type( $metadata_file );
+	}
+}
+
+function iis_blocks_editor_scripts() {
+	$asset = require __DIR__ . '/dist/editor/index.asset.php';
+
+	wp_enqueue_script(
 		'iis_blocks-js', // Handle.
-		plugins_url( '/dist/js/blocks.js', __FILE__ ),
-		array( 'wp-blocks', 'wp-i18n', 'wp-element', 'wp-editor' ),
-		filemtime( plugin_dir_path( __FILE__ ) . 'dist/js/blocks.js' ),
-		true
-	);
-
-	wp_register_style(
-		'iis_blocks-css', // Handle.
-		plugins_url( 'dist/css/blocks.css', __FILE__ ),
-		['wp-edit-blocks'],
-		filemtime( plugin_dir_path( __FILE__ ) . 'dist/css/blocks.css' )
-	);
-
-	register_block_type(
-		'iis/blocks', array(
-			'editor_script' => 'iis_blocks-js',
-			'editor_style'  => 'iis_blocks-css',
-		)
+		plugins_url( 'dist/editor/index.js', __FILE__ ),
+		$asset['dependencies'],
+		$asset['version']
 	);
 
 	wp_set_script_translations( 'iis_blocks-js', 'iis-blocks', plugin_dir_path( __FILE__ ) . 'languages' );
+}
+
+function iis_blocks_editor_styles() {
+	if ( ! is_admin() ) {
+		return;
+	}
+
+	wp_enqueue_style(
+		'iis_blocks-css', // Handle.
+		plugins_url( 'dist/editor/index.css', __FILE__ ),
+		['wp-edit-blocks'],
+		filemtime( __DIR__ . '/dist/editor/index.css' )
+	);
 }
 
 /**
@@ -78,7 +85,9 @@ function iis_blocks_categories( $categories ) {
 }
 
 add_filter( 'block_categories_all', 'iis_blocks_categories', 10 );
-add_action( 'init', 'iis_blocks_assets' );
+add_action( 'init', 'iis_blocks_register_blocks' );
+add_action( 'enqueue_block_editor_assets', 'iis_blocks_editor_scripts', 5 );
+add_action( 'enqueue_block_assets', 'iis_blocks_editor_styles' );
 
 function iis_blocks_load_textdomain() {
 	load_plugin_textdomain( 'iis-blocks', false, dirname( plugin_basename( __FILE__ ) ) . '/languages/' );

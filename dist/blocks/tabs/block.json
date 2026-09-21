@@ -1,0 +1,44 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "iis/tabs",
+  "title": "Tabs",
+  "category": "iis",
+  "icon": "table-row-after",
+  "keywords": [
+    "tabs",
+    "tabbar",
+    "tabb"
+  ],
+  "supports": {
+    "align": [
+      "full"
+    ]
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": ""
+    },
+    "wrapped": {
+      "type": "boolean",
+      "default": false
+    },
+    "updateURL": {
+      "type": "boolean",
+      "default": false
+    },
+    "gray": {
+      "type": "boolean",
+      "default": false
+    },
+    "name": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "iis-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

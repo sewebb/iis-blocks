@@ -1,0 +1,68 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/hero",
+    "title": "Hero",
+    "category": "iis",
+    "icon": "cover-image",
+    "keywords": [
+        "hero",
+        "title"
+    ],
+    "supports": {
+        "align": [
+            "full",
+            "wide"
+        ]
+    },
+    "attributes": {
+        "mediaUrl": {
+            "type": "string",
+            "default": null
+        },
+        "mediaId": {
+            "type": "number",
+            "default": null
+        },
+        "mediaType": {
+            "type": "string",
+            "default": null
+        },
+        "youtube": {
+            "type": "string",
+            "default": null
+        },
+        "anchor": {
+            "type": "string",
+            "default": ""
+        },
+        "pretitle": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "introText": {
+            "type": "string",
+            "default": ""
+        },
+        "align": {
+            "type": "string",
+            "default": "wide"
+        },
+        "layout": {
+            "type": "string",
+            "default": "standard"
+        },
+        "backgroundColor": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "render": "file:./render.php"
+}

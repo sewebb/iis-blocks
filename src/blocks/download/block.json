@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/download",
+    "title": "Download",
+    "category": "iis",
+    "icon": "download",
+    "keywords": [
+        "download",
+        "pdf",
+        "attach"
+    ],
+    "attributes": {
+        "title": {
+            "type": "string",
+            "default": null
+        },
+        "content": {
+            "type": "string",
+            "default": null
+        },
+        "file": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

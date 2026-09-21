@@ -1,0 +1,10 @@
+.iis-block-selectable {
+	border: 1px solid #888;
+	background: #fefefe;
+	padding: 1rem;
+
+	.block-list-appender.wp-block {
+		position: static !important;
+		width: 40px;
+	}
+}

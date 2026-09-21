@@ -1,0 +1,101 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/puff",
+    "title": "Post puff",
+    "category": "iis",
+    "icon": "format-aside",
+    "keywords": [
+        "card",
+        "teaser",
+        "puff"
+    ],
+    "supports": {
+        "align": [
+            "right",
+            "wide"
+        ],
+        "lightBlockWrapper": true
+    },
+    "attributes": {
+        "custom": {
+            "type": "boolean",
+            "default": false
+        },
+        "postId": {
+            "type": "string",
+            "default": null
+        },
+        "postPreview": {
+            "type": "object",
+            "default": {}
+        },
+        "showAsTeaser": {
+            "type": "boolean",
+            "default": false
+        },
+        "showOnMobile": {
+            "type": "boolean",
+            "default": false
+        },
+        "displayTags": {
+            "type": "boolean",
+            "default": false
+        },
+        "displayExcerpt": {
+            "type": "boolean",
+            "default": true
+        },
+        "displayPostType": {
+            "type": "boolean",
+            "default": false
+        },
+        "displayReadTime": {
+            "type": "boolean",
+            "default": false
+        },
+        "imageSize": {
+            "type": "string",
+            "default": null
+        },
+        "imageId": {
+            "type": "number",
+            "default": null
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "text": {
+            "type": "string",
+            "default": ""
+        },
+        "url": {
+            "type": "string",
+            "default": null
+        },
+        "align": {
+            "type": "string",
+            "default": null
+        },
+        "button": {
+            "type": "boolean",
+            "default": false
+        },
+        "displayDates": {
+            "type": "boolean",
+            "default": false
+        },
+        "shadow": {
+            "type": "boolean",
+            "default": false
+        },
+        "target": {
+            "type": "string",
+            "default": "_self"
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

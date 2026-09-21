@@ -221,3 +221,48 @@ msgstr ""
 #: dist/js/blocks.js:2206
 msgid "Background Color"
 msgstr ""
+
+#: src/blocks/postarchive/block.json
+msgctxt "block title"
+msgid "Post Archive"
+msgstr ""
+
+#: src/blocks/postarchive/block.json
+msgctxt "block keyword"
+msgid "archive"
+msgstr ""
+
+#: src/blocks/column/block.json src/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "column"
+msgstr ""
+
+#: src/blocks/column/block.json src/blocks/grid/block.json
+msgctxt "block keyword"
+msgid "columns"
+msgstr ""
+
+#: src/blocks/button/block.json
+msgctxt "block title"
+msgid "Button"
+msgstr ""
+
+#: src/blocks/buttons/block.json
+msgctxt "block title"
+msgid "Buttons"
+msgstr ""
+
+#: src/blocks/column/block.json
+msgctxt "block title"
+msgid "Column"
+msgstr ""
+
+#: src/blocks/grid/block.json
+msgctxt "block title"
+msgid "Grid"
+msgstr ""
+
+#: src/blocks/icon/block.json
+msgctxt "block title"
+msgid "Icon"
+msgstr ""

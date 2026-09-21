@@ -1,0 +1,1 @@
+(()=>{"use strict";const t=window.wp.hooks,s=["core/separator"];(0,t.addFilter)("blocks.registerBlockType","custom-attributes/set-toolbar-button-attribute",(t,r)=>{if(!s.includes(r))return t;const o={...t};return o.supports&&o.supports.align?(o.supports.align.push("left"),o):o})})();
