@@ -1,7 +1,7 @@
 import './icon-select.css';
 
 import { Popover, Button } from '@wordpress/components';
-import { withState, useRefEffect } from '@wordpress/compose';
+import { useRefEffect } from '@wordpress/compose';
 import { useState, useEffect } from '@wordpress/element';
 
 /**
@@ -28,14 +28,13 @@ function loadSprite(element) {
 		});
 }
 
-const IconSelectBase = ({
-	isVisible,
-	setState,
+const IconSelect = ({
 	value,
 	onChange,
 	size,
 	color,
 }) => {
+	const [isVisible, setIsVisible] = useState(false);
 	const [icons, setIcons] = useState([]);
 	const iconRef = useRefEffect(loadSprite, []);
 	const popoverRef = useRefEffect(loadSprite, []);
@@ -50,11 +49,11 @@ const IconSelectBase = ({
 
 	const onSelect = (e) => {
 		onChange(e.target.closest('button').value);
-		setState({ isVisible: false });
+		setIsVisible(false);
 	};
 
 	const toggleVisible = () => {
-		setState((state) => ({ isVisible: !state.isVisible }));
+		setIsVisible((visible) => !visible);
 	};
 
 	return (
@@ -104,7 +103,5 @@ const IconSelectBase = ({
 		</>
 	);
 };
-
-const IconSelect = withState({ isVisible: false })(IconSelectBase);
 
 export default IconSelect;
