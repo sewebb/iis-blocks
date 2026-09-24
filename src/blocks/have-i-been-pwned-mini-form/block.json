@@ -1,0 +1,68 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "internetkunskap/have-i-been-pwned-mini-form",
+    "title": "Have I Been Pwned Mini Form",
+    "category": "internetkunskap",
+    "icon": "search",
+    "keywords": [
+        "pwned",
+        "breach",
+        "email"
+    ],
+    "supports": {
+        "align": [
+            "right",
+            "wide"
+        ]
+    },
+    "attributes": {
+        "background": {
+            "type": "boolean",
+            "default": true
+        },
+        "showOnMobile": {
+            "type": "boolean",
+            "default": false
+        },
+        "imageSize": {
+            "type": "string",
+            "default": null
+        },
+        "imageId": {
+            "type": "number",
+            "default": null
+        },
+        "figcaption": {
+            "type": "string",
+            "default": null
+        },
+        "pretitle": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "align": {
+            "type": "string",
+            "default": null
+        },
+        "shadow": {
+            "type": "boolean",
+            "default": false
+        },
+        "targetUrl": {
+            "type": "string",
+            "default": ""
+        },
+        "openInNewTab": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}

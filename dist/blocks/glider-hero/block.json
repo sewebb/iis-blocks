@@ -1,0 +1,24 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "iis/glider-hero",
+  "title": "Glider Hero",
+  "category": "iis",
+  "icon": "leftright",
+  "keywords": [
+    "glider",
+    "slider",
+    "slide",
+    "hero"
+  ],
+  "attributes": {
+    "autoScrollTime": {
+      "type": "number",
+      "default": null
+    }
+  },
+  "textdomain": "iis-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

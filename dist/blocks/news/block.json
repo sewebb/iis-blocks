@@ -1,0 +1,48 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "iis/news",
+  "title": "News",
+  "category": "iis",
+  "icon": "edit-large",
+  "keywords": [
+    "news"
+  ],
+  "attributes": {
+    "postType": {
+      "type": "string",
+      "default": "post"
+    },
+    "category": {
+      "type": "string",
+      "default": null
+    },
+    "pinned": {
+      "type": "number",
+      "default": null
+    },
+    "limit": {
+      "type": "number",
+      "default": 4
+    },
+    "firstWide": {
+      "type": "boolean",
+      "default": true
+    },
+    "displayDates": {
+      "type": "boolean",
+      "default": false
+    },
+    "displayTags": {
+      "type": "boolean",
+      "default": false
+    },
+    "buttonText": {
+      "type": "string",
+      "default": "Show more"
+    }
+  },
+  "textdomain": "iis-blocks",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

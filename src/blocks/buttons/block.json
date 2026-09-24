@@ -1,0 +1,17 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/buttons",
+    "title": "Buttons",
+    "category": "iis",
+    "icon": "admin-links",
+    "keywords": [
+        "buttons",
+        "button",
+        "action"
+    ],
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "render": "file:./render.php"
+}

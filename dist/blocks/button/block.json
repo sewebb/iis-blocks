@@ -1,0 +1,40 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "iis/button",
+  "title": "Button",
+  "category": "iis",
+  "icon": "admin-links",
+  "keywords": [
+    "button"
+  ],
+  "attributes": {
+    "size": {
+      "type": "string",
+      "default": "regular"
+    },
+    "text": {
+      "type": "string",
+      "default": ""
+    },
+    "link": {
+      "type": "string",
+      "default": ""
+    },
+    "data": {
+      "type": "string",
+      "default": ""
+    },
+    "target": {
+      "type": "string",
+      "default": "_self"
+    },
+    "buttonColor": {
+      "type": "string",
+      "default": null
+    }
+  },
+  "textdomain": "iis-blocks",
+  "editorScript": "file:./index.js",
+  "render": "file:./render.php"
+}

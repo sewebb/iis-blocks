@@ -1,5 +1,5 @@
 node_modules
-mix-manifest.json
+dist/**/*.map
 vendor
 wp-content
 .idea/

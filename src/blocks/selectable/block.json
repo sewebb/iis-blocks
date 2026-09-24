@@ -1,0 +1,61 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/selectable",
+    "title": "Selectable",
+    "category": "iis",
+    "icon": "megaphone",
+    "keywords": [
+        "selectable",
+        "views",
+        "select"
+    ],
+    "supports": {
+        "align": [
+            "full",
+            "center"
+        ]
+    },
+    "attributes": {
+        "id": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "full": {
+            "type": "boolean",
+            "default": false
+        },
+        "background": {
+            "type": "boolean",
+            "default": false
+        },
+        "shadow": {
+            "type": "string",
+            "default": "small"
+        },
+        "rounded": {
+            "type": "boolean",
+            "default": false
+        },
+        "buttonColor": {
+            "type": "string",
+            "default": "ocean"
+        },
+        "copyButtonColor": {
+            "type": "string",
+            "default": "ocean-light"
+        },
+        "articleIndent": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "editorStyle": "file:./index.css",
+    "render": "file:./render.php"
+}

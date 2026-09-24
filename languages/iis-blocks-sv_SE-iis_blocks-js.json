@@ -1,7 +1,7 @@
 {
     "translation-revision-date": "2021-08-18 11:01+0200",
     "generator": "WP-CLI\/2.5.0",
-    "source": "dist\/js\/blocks.js",
+    "source": "dist\/editor\/index.js",
     "domain": "messages",
     "locale_data": {
         "messages": {
@@ -123,6 +123,33 @@
             ],
             "Background Color": [
                 "Bakgrundsf\u00e4rg"
+            ],
+            "block title\u0004Post Archive": [
+                "Postarkiv"
+            ],
+            "block keyword\u0004archive": [
+                "arkiv"
+            ],
+            "block keyword\u0004column": [
+                "kolumn"
+            ],
+            "block keyword\u0004columns": [
+                "kolumner"
+            ],
+            "block title\u0004Button": [
+                "Knapp"
+            ],
+            "block title\u0004Buttons": [
+                "Knappar"
+            ],
+            "block title\u0004Column": [
+                "Kolumn"
+            ],
+            "block title\u0004Grid": [
+                "Rutn\u00e4t"
+            ],
+            "block title\u0004Icon": [
+                "Ikon"
             ]
         }
     }

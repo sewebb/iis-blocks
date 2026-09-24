@@ -1,0 +1,38 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "iis/hero-slide",
+  "title": "Slide",
+  "category": "iis",
+  "icon": "cover-image",
+  "keywords": [
+    "slide",
+    "slider",
+    "glider"
+  ],
+  "parent": [
+    "iis/glider-hero"
+  ],
+  "attributes": {
+    "mediaUrl": {
+      "type": "string",
+      "default": null
+    },
+    "mediaId": {
+      "type": "number",
+      "default": null
+    },
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "linkColor": {
+      "type": "string",
+      "default": null
+    }
+  },
+  "textdomain": "iis-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

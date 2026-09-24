@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "iis/grid",
+  "title": "Grid",
+  "category": "iis",
+  "icon": "megaphone",
+  "keywords": [
+    "grid",
+    "columns",
+    "column"
+  ],
+  "supports": {
+    "align": [
+      "full",
+      "center"
+    ]
+  },
+  "attributes": {
+    "align": {
+      "type": "string",
+      "default": "center"
+    },
+    "asymmetric": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "textdomain": "iis-blocks",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "render": "file:./render.php"
+}

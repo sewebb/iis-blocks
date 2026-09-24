@@ -1,0 +1,24 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/preamble",
+    "title": "Preamble",
+    "category": "iis",
+    "icon": "editor-paragraph",
+    "keywords": [
+        "preamble",
+        "text",
+        "paragraph"
+    ],
+    "supports": {
+        "anchor": true
+    },
+    "attributes": {
+        "content": {
+            "type": "string",
+            "default": ""
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js"
+}

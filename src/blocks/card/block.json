@@ -1,0 +1,82 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "iis/card",
+    "title": "Card",
+    "category": "iis",
+    "icon": "text-page",
+    "keywords": [
+        "aside",
+        "sidebar",
+        "content",
+        "card"
+    ],
+    "supports": {
+        "align": [
+            "right",
+            "wide"
+        ],
+        "lightBlockWrapper": true
+    },
+    "attributes": {
+        "background": {
+            "type": "boolean",
+            "default": false
+        },
+        "showAsTeaser": {
+            "type": "boolean",
+            "default": false
+        },
+        "showOnMobile": {
+            "type": "boolean",
+            "default": false
+        },
+        "imageSize": {
+            "type": "string",
+            "default": null
+        },
+        "imageId": {
+            "type": "number",
+            "default": null
+        },
+        "youtube": {
+            "type": "string",
+            "default": null
+        },
+        "figcaption": {
+            "type": "string",
+            "default": null
+        },
+        "pretitle": {
+            "type": "string",
+            "default": ""
+        },
+        "title": {
+            "type": "string",
+            "default": ""
+        },
+        "url": {
+            "type": "string",
+            "default": null
+        },
+        "target": {
+            "type": "string",
+            "default": "_self"
+        },
+        "align": {
+            "type": "string",
+            "default": null
+        },
+        "displayDates": {
+            "type": "boolean",
+            "default": false
+        },
+        "shadow": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "textdomain": "iis-blocks",
+    "editorScript": "file:./index.js",
+    "render": "file:./render.php"
+}
